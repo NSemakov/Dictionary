@@ -8,15 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		01083E3F95C3BACEF2DE4B0A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8E645F75A1AF8B9A7B2E2DB /* libPods.a */; };
+		8456915F1CE9EDBB005E4AE1 /* NVServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8456915E1CE9EDBB005E4AE1 /* NVServerManager.m */; settings = {ASSET_TAGS = (); }; };
+		845691621CE9F741005E4AE1 /* NVCreateNewDictVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 845691611CE9F741005E4AE1 /* NVCreateNewDictVC.m */; settings = {ASSET_TAGS = (); }; };
+		845691661CE9F8B2005E4AE1 /* NVChooseLangVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 845691651CE9F8B2005E4AE1 /* NVChooseLangVC.m */; settings = {ASSET_TAGS = (); }; };
 		845894341CE8BC3800D4FE35 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 845894331CE8BC3800D4FE35 /* main.m */; };
 		845894371CE8BC3800D4FE35 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 845894361CE8BC3800D4FE35 /* AppDelegate.m */; };
-		8458943A1CE8BC3800D4FE35 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845894391CE8BC3800D4FE35 /* ViewController.m */; };
-		8458943D1CE8BC3800D4FE35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8458943B1CE8BC3800D4FE35 /* Main.storyboard */; };
 		845894401CE8BC3800D4FE35 /* UpYourDictionary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8458943E1CE8BC3800D4FE35 /* UpYourDictionary.xcdatamodeld */; };
 		845894421CE8BC3800D4FE35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 845894411CE8BC3800D4FE35 /* Assets.xcassets */; };
 		845894451CE8BC3800D4FE35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845894431CE8BC3800D4FE35 /* LaunchScreen.storyboard */; };
 		845894501CE8BC3800D4FE35 /* UpYourDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8458944F1CE8BC3800D4FE35 /* UpYourDictionaryTests.m */; };
 		8458945B1CE8BC3800D4FE35 /* UpYourDictionaryUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8458945A1CE8BC3800D4FE35 /* UpYourDictionaryUITests.m */; };
+		8462CDE11CEA4D0B00E742AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8462CDDF1CEA4D0B00E742AC /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,13 +39,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8456915D1CE9EDBB005E4AE1 /* NVServerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVServerManager.h; sourceTree = "<group>"; };
+		8456915E1CE9EDBB005E4AE1 /* NVServerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVServerManager.m; sourceTree = "<group>"; };
+		845691601CE9F741005E4AE1 /* NVCreateNewDictVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVCreateNewDictVC.h; sourceTree = "<group>"; };
+		845691611CE9F741005E4AE1 /* NVCreateNewDictVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVCreateNewDictVC.m; sourceTree = "<group>"; };
+		845691641CE9F8B2005E4AE1 /* NVChooseLangVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVChooseLangVC.h; sourceTree = "<group>"; };
+		845691651CE9F8B2005E4AE1 /* NVChooseLangVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVChooseLangVC.m; sourceTree = "<group>"; };
 		8458942F1CE8BC3800D4FE35 /* UpYourDictionary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UpYourDictionary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		845894331CE8BC3800D4FE35 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		845894351CE8BC3800D4FE35 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		845894361CE8BC3800D4FE35 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		845894381CE8BC3800D4FE35 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		845894391CE8BC3800D4FE35 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		8458943C1CE8BC3800D4FE35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8458943F1CE8BC3800D4FE35 /* UpYourDictionary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UpYourDictionary.xcdatamodel; sourceTree = "<group>"; };
 		845894411CE8BC3800D4FE35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		845894441CE8BC3800D4FE35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -54,6 +59,7 @@
 		845894561CE8BC3800D4FE35 /* UpYourDictionaryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UpYourDictionaryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8458945A1CE8BC3800D4FE35 /* UpYourDictionaryUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpYourDictionaryUITests.m; sourceTree = "<group>"; };
 		8458945C1CE8BC3800D4FE35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8462CDE01CEA4D0B00E742AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A34005371E3A80E4C5532B92 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B8E645F75A1AF8B9A7B2E2DB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD93336E2697EA394E75826 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -94,6 +100,18 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		845691631CE9F74D005E4AE1 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				845691641CE9F8B2005E4AE1 /* NVChooseLangVC.h */,
+				845691651CE9F8B2005E4AE1 /* NVChooseLangVC.m */,
+				8462CDDF1CEA4D0B00E742AC /* Main.storyboard */,
+				845691601CE9F741005E4AE1 /* NVCreateNewDictVC.h */,
+				845691611CE9F741005E4AE1 /* NVCreateNewDictVC.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
 		845894261CE8BC3800D4FE35 = {
 			isa = PBXGroup;
 			children = (
@@ -119,11 +137,11 @@
 		845894311CE8BC3800D4FE35 /* UpYourDictionary */ = {
 			isa = PBXGroup;
 			children = (
+				8456915D1CE9EDBB005E4AE1 /* NVServerManager.h */,
+				8456915E1CE9EDBB005E4AE1 /* NVServerManager.m */,
 				845894351CE8BC3800D4FE35 /* AppDelegate.h */,
 				845894361CE8BC3800D4FE35 /* AppDelegate.m */,
-				845894381CE8BC3800D4FE35 /* ViewController.h */,
-				845894391CE8BC3800D4FE35 /* ViewController.m */,
-				8458943B1CE8BC3800D4FE35 /* Main.storyboard */,
+				845691631CE9F74D005E4AE1 /* ViewControllers */,
 				845894411CE8BC3800D4FE35 /* Assets.xcassets */,
 				845894431CE8BC3800D4FE35 /* LaunchScreen.storyboard */,
 				845894461CE8BC3800D4FE35 /* Info.plist */,
@@ -274,9 +292,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8462CDE11CEA4D0B00E742AC /* Main.storyboard in Resources */,
 				845894451CE8BC3800D4FE35 /* LaunchScreen.storyboard in Resources */,
 				845894421CE8BC3800D4FE35 /* Assets.xcassets in Resources */,
-				8458943D1CE8BC3800D4FE35 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,9 +367,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8458943A1CE8BC3800D4FE35 /* ViewController.m in Sources */,
+				845691661CE9F8B2005E4AE1 /* NVChooseLangVC.m in Sources */,
 				845894371CE8BC3800D4FE35 /* AppDelegate.m in Sources */,
 				845894341CE8BC3800D4FE35 /* main.m in Sources */,
+				8456915F1CE9EDBB005E4AE1 /* NVServerManager.m in Sources */,
+				845691621CE9F741005E4AE1 /* NVCreateNewDictVC.m in Sources */,
 				845894401CE8BC3800D4FE35 /* UpYourDictionary.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -388,20 +408,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		8458943B1CE8BC3800D4FE35 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8458943C1CE8BC3800D4FE35 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		845894431CE8BC3800D4FE35 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				845894441CE8BC3800D4FE35 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		8462CDDF1CEA4D0B00E742AC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8462CDE01CEA4D0B00E742AC /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
