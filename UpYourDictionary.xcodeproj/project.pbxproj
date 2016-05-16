@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		01083E3F95C3BACEF2DE4B0A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8E645F75A1AF8B9A7B2E2DB /* libPods.a */; };
+		844E4EA91CEA508A0012AB04 /* NVLangFromVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 844E4EA81CEA508A0012AB04 /* NVLangFromVC.m */; settings = {ASSET_TAGS = (); }; };
+		844E4EAC1CEA50A90012AB04 /* NVLangToVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 844E4EAB1CEA50A90012AB04 /* NVLangToVC.m */; settings = {ASSET_TAGS = (); }; };
 		8456915F1CE9EDBB005E4AE1 /* NVServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8456915E1CE9EDBB005E4AE1 /* NVServerManager.m */; settings = {ASSET_TAGS = (); }; };
 		845691621CE9F741005E4AE1 /* NVCreateNewDictVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 845691611CE9F741005E4AE1 /* NVCreateNewDictVC.m */; settings = {ASSET_TAGS = (); }; };
 		845691661CE9F8B2005E4AE1 /* NVChooseLangVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 845691651CE9F8B2005E4AE1 /* NVChooseLangVC.m */; settings = {ASSET_TAGS = (); }; };
@@ -39,6 +41,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		844E4EA71CEA508A0012AB04 /* NVLangFromVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVLangFromVC.h; sourceTree = "<group>"; };
+		844E4EA81CEA508A0012AB04 /* NVLangFromVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVLangFromVC.m; sourceTree = "<group>"; };
+		844E4EAA1CEA50A90012AB04 /* NVLangToVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVLangToVC.h; sourceTree = "<group>"; };
+		844E4EAB1CEA50A90012AB04 /* NVLangToVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVLangToVC.m; sourceTree = "<group>"; };
 		8456915D1CE9EDBB005E4AE1 /* NVServerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVServerManager.h; sourceTree = "<group>"; };
 		8456915E1CE9EDBB005E4AE1 /* NVServerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVServerManager.m; sourceTree = "<group>"; };
 		845691601CE9F741005E4AE1 /* NVCreateNewDictVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVCreateNewDictVC.h; sourceTree = "<group>"; };
@@ -105,7 +111,10 @@
 			children = (
 				845691641CE9F8B2005E4AE1 /* NVChooseLangVC.h */,
 				845691651CE9F8B2005E4AE1 /* NVChooseLangVC.m */,
-				8462CDDF1CEA4D0B00E742AC /* Main.storyboard */,
+				844E4EA71CEA508A0012AB04 /* NVLangFromVC.h */,
+				844E4EA81CEA508A0012AB04 /* NVLangFromVC.m */,
+				844E4EAA1CEA50A90012AB04 /* NVLangToVC.h */,
+				844E4EAB1CEA50A90012AB04 /* NVLangToVC.m */,
 				845691601CE9F741005E4AE1 /* NVCreateNewDictVC.h */,
 				845691611CE9F741005E4AE1 /* NVCreateNewDictVC.m */,
 			);
@@ -143,6 +152,7 @@
 				845894361CE8BC3800D4FE35 /* AppDelegate.m */,
 				845691631CE9F74D005E4AE1 /* ViewControllers */,
 				845894411CE8BC3800D4FE35 /* Assets.xcassets */,
+				8462CDDF1CEA4D0B00E742AC /* Main.storyboard */,
 				845894431CE8BC3800D4FE35 /* LaunchScreen.storyboard */,
 				845894461CE8BC3800D4FE35 /* Info.plist */,
 				8458943E1CE8BC3800D4FE35 /* UpYourDictionary.xcdatamodeld */,
@@ -368,8 +378,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				845691661CE9F8B2005E4AE1 /* NVChooseLangVC.m in Sources */,
+				844E4EAC1CEA50A90012AB04 /* NVLangToVC.m in Sources */,
 				845894371CE8BC3800D4FE35 /* AppDelegate.m in Sources */,
 				845894341CE8BC3800D4FE35 /* main.m in Sources */,
+				844E4EA91CEA508A0012AB04 /* NVLangFromVC.m in Sources */,
 				8456915F1CE9EDBB005E4AE1 /* NVServerManager.m in Sources */,
 				845691621CE9F741005E4AE1 /* NVCreateNewDictVC.m in Sources */,
 				845894401CE8BC3800D4FE35 /* UpYourDictionary.xcdatamodeld in Sources */,

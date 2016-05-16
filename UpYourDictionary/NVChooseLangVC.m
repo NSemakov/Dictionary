@@ -6,6 +6,7 @@
 //  Copyright © 2016 Admin. All rights reserved.
 //
 
+//use as a parent (and as abstract class)
 #import "NVChooseLangVC.h"
 #import "NVServerManager.h"
 @interface NVChooseLangVC ()
@@ -87,8 +88,5 @@
 
 
 
-- (IBAction)buttonDone:(UIBarButtonItem *)sender {
-    [self.delegate refreshData:(self.currentLang)];
-    [self.navigationController popViewControllerAnimated:YES];
-}
+
 @end

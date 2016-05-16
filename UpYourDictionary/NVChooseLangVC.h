@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-@protocol NVChooseLangVCProtocol
--(void) refreshData:(NSString*) text;
-@end
+
+
 @interface NVChooseLangVC : UITableViewController 
 - (IBAction)buttonDone:(UIBarButtonItem *)sender;
-@property (strong,nonatomic) id<NVChooseLangVCProtocol> delegate;
+
 @property (strong,nonatomic) NSString* currentLang;
 @end

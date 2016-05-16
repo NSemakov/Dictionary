@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="0Ad-tG-VwD">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -155,6 +156,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Language to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0It-qe-PKW">
+                                                    <rect key="frame" x="25" y="10" width="123" height="21"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P6e-AA-FxM">
                                                     <rect key="frame" x="362" y="7" width="178" height="30"/>
                                                     <animations/>
@@ -164,13 +172,6 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Language to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0It-qe-PKW">
-                                                    <rect key="frame" x="25" y="10" width="123" height="21"/>
-                                                    <animations/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <animations/>
                                             <constraints>
@@ -183,7 +184,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <segue destination="LUf-e9-MdS" kind="show" identifier="SegueLangTo" id="tTg-nd-xK8"/>
+                                            <segue destination="8ld-mN-lLk" kind="show" identifier="SegueLangTo" id="LIh-5H-EbZ"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="oX3-7c-6GU">
@@ -277,10 +278,10 @@
             </objects>
             <point key="canvasLocation" x="1740" y="60"/>
         </scene>
-        <!--Choose Language-->
+        <!--Choose Language From-->
         <scene sceneID="i3e-YO-EFM">
             <objects>
-                <tableViewController id="LUf-e9-MdS" customClass="NVChooseLangVC" sceneMemberID="viewController">
+                <tableViewController id="LUf-e9-MdS" customClass="NVLangFromVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6d0-D9-VKu">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -303,10 +304,10 @@
                             <outlet property="delegate" destination="LUf-e9-MdS" id="w65-Tj-nDD"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Choose Language" id="v2x-Km-VFS">
+                    <navigationItem key="navigationItem" title="Choose Language From" id="v2x-Km-VFS">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="GJd-vH-zhG">
                             <connections>
-                                <action selector="buttonDone:" destination="LUf-e9-MdS" id="zd2-XE-QDk"/>
+                                <action selector="buttonDone:" destination="LUf-e9-MdS" id="45b-bG-pzf"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -314,6 +315,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8pp-01-Njv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2468" y="-411"/>
+        </scene>
+        <!--Choose Language To-->
+        <scene sceneID="47l-nQ-vTw">
+            <objects>
+                <tableViewController id="8ld-mN-lLk" customClass="NVLangToVC" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="lbx-H9-bvL">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="eu7-uA-g1N">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eu7-uA-g1N" id="sL7-MC-3Zc">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="8ld-mN-lLk" id="sGf-uu-GRZ"/>
+                            <outlet property="delegate" destination="8ld-mN-lLk" id="XgC-Ir-QYo"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Choose Language To" id="sdu-WR-7QH">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="UMW-2g-xxF">
+                            <connections>
+                                <action selector="buttonDone:" destination="8ld-mN-lLk" id="V2k-v0-v7d"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bda-Dl-LEW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3106" y="-411"/>
         </scene>
         <!--Choose dictionary theme-->
         <scene sceneID="1nc-Re-xef">
@@ -531,7 +570,4 @@
             <point key="canvasLocation" x="1045" y="879"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="tTg-nd-xK8"/>
-    </inferredMetricsTieBreakers>
 </document>

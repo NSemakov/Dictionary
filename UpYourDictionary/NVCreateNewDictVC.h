@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-@protocol NVChooseLangVCProtocol;
-@interface NVCreateNewDictVC : UITableViewController <NVChooseLangVCProtocol>
+@protocol NVLangFromVCProtocol;
+@protocol NVLangToVCProtocol;
+@interface NVCreateNewDictVC : UITableViewController <NVLangFromVCProtocol,NVLangToVCProtocol>
 @property (weak, nonatomic) IBOutlet UITextField *textFieldLangFrom;
 @property (weak, nonatomic) IBOutlet UITextField *textFieldLangTo;
 @property (weak, nonatomic) IBOutlet UITextField *textFieldDictTheme;
 - (IBAction)buttonCancel:(UIButton *)sender;
 - (IBAction)buttonSave:(UIButton *)sender;
--(void) refreshData:(NSString*) text;
+-(void) refreshDataWithText:(NSString*) text IsFrom:(BOOL) IsFrom;
 @end

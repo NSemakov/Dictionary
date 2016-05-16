@@ -7,7 +7,8 @@
 //
 
 #import "NVCreateNewDictVC.h"
-#import "NVChooseLangVC.h"
+#import "NVLangFromVC.h"
+#import "NVLangToVC.h"
 #import "NVServerManager.h"
 @interface NVCreateNewDictVC ()
 
@@ -24,9 +25,13 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-#pragma mark - NVChooseLangVCProtocol
--(void) refreshData:(NSString*) text {
+#pragma mark - NVLangFromVCProtocol
+-(void) refreshDataWithText:(NSString*) text {
     self.textFieldLangFrom.text = text;
+}
+#pragma mark - NVLangToVCProtocol
+-(void) refreshDataLangToWithText:(NSString*) text {
+    self.textFieldLangTo.text = text;
 }
 
 #pragma mark - Navigation
@@ -36,14 +41,18 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"SegueLangFrom"]) {
-        NVChooseLangVC *vc = segue.destinationViewController;
+        NVLangFromVC *vc = segue.destinationViewController;
         vc.delegate = self;
         if (![self.textFieldLangFrom.text isEqualToString:@""]) {
             vc.currentLang = self.textFieldLangFrom.text;
         }
         
     } else if ([segue.identifier isEqualToString:@"SegueLangTo"]){
-        NVChooseLangVC *vc = segue.destinationViewController;
+        NVLangToVC *vc = segue.destinationViewController;
+        vc.delegate = self;
+        if (![self.textFieldLangTo.text isEqualToString:@""]) {
+            vc.currentLang = self.textFieldLangTo.text;
+        }
     }
     
     
