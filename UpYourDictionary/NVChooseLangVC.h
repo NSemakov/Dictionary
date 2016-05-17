@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NVParentViewController.h"
 
-
-@interface NVChooseLangVC : UITableViewController 
+@interface NVChooseLangVC : NVParentViewController
 - (IBAction)buttonDone:(UIBarButtonItem *)sender;
 
 @property (strong,nonatomic) NSString* currentLang;

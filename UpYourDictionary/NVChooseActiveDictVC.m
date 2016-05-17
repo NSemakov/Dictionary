@@ -1,94 +1,46 @@
 //
-//  NVCreateNewDict.m
+//  NVChooseActiveDictVC.m
 //  UpYourDictionary
 //
-//  Created by Admin on 16/05/16.
+//  Created by Admin on 17/05/16.
 //  Copyright © 2016 Admin. All rights reserved.
 //
 
-#import "NVCreateNewDictVC.h"
-#import "NVLangFromVC.h"
-#import "NVLangToVC.h"
-#import "NVServerManager.h"
-#import "NVChooseDictThemeVC.h"
-@interface NVCreateNewDictVC ()
+#import "NVChooseActiveDictVC.h"
+
+@interface NVChooseActiveDictVC ()
 
 @end
 
-@implementation NVCreateNewDictVC
-//@synthesize fetchedResultsController=_fetchedResultsController;
+@implementation NVChooseActiveDictVC
+@synthesize fetchedResultsController=_fetchedResultsController;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
--(void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:YES];
-    
-    //ATTENTION! In viewDidAppear only, because if do it in viewDidLoad, then (NULL) will appear on screen, while new view controller is appearing.
-    self.managedObjectContext = [[NVDataManager sharedManager] managedObjectContext];
-    NVDicts* newDict=[NSEntityDescription insertNewObjectForEntityForName:@"NVDicts" inManagedObjectContext:self.managedObjectContext];
-    self.dict = newDict;
-    
-}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-#pragma mark - NVLangFromVCProtocol
--(void) refreshDataWithText:(NSString*) text {
-    self.textFieldLangFrom.text = text;
-}
-#pragma mark - NVLangToVCProtocol
--(void) refreshDataLangToWithText:(NSString*) text {
-    self.textFieldLangTo.text = text;
-}
 
- #pragma mark - NVChooseThemeVCProtocol
- -(void) refreshDataThemeWithText:(NSString*) text VC:(NVChooseDictThemeVC*) vc{
- self.textFieldDictTheme.text = text;
- self.templateForDict = vc.curTemplate;
- }
- 
+/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([segue.identifier isEqualToString:@"SegueLangFrom"]) {
-        NVLangFromVC *vc = segue.destinationViewController;
-        vc.delegate = self;
-        if (![self.textFieldLangFrom.text isEqualToString:@""]) {
-            vc.currentLang = self.textFieldLangFrom.text;
-        }
-        
-    } else if ([segue.identifier isEqualToString:@"SegueLangTo"]){
-        NVLangToVC *vc = segue.destinationViewController;
-        vc.delegate = self;
-        if (![self.textFieldLangTo.text isEqualToString:@""]) {
-            vc.currentLang = self.textFieldLangTo.text;
-        }
-    }
-    
-    
 }
+*/
 
 
-- (IBAction)buttonCancel:(UIButton *)sender {
-    [self.managedObjectContext rollback];
-    [self.navigationController popViewControllerAnimated:YES];
+#pragma mark - overriden methods 
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
+#warning pay attention
 }
-
-- (IBAction)buttonSave:(UIButton *)sender {
-    self.dict.from = self.textFieldLangFrom.text;
-    self.dict.to = self.textFieldLangTo.text;
-    
-#warning check all fields!
-    NSError* error = nil;
-    [self.managedObjectContext save:&error];
-}
-#pragma mark - overriden methods
-/*
 - (NSFetchedResultsController *)fetchedResultsController
 {
     if (_fetchedResultsController != nil) {
@@ -97,6 +49,7 @@
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
+#warning entity name override!
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"NVDicts" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     //[fetchRequest setRelationshipKeyPathsForPrefetching:@[@"coursesAsStudent",@"coursesAsTeacher"]];
@@ -105,7 +58,7 @@
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"from" ascending:YES];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"template1.name" ascending:YES];
     NSArray *sortDescriptors = @[sortDescriptor];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -129,5 +82,7 @@
     
     return _fetchedResultsController;
 }
- */
+
+- (IBAction)buttonAdd:(UIBarButtonItem *)sender {
+}
 @end
