@@ -8,15 +8,21 @@
 
 #import "NVParentViewController.h"
 #import "NVTemplates.h"
-
+#import "NVCreateTemplateVC.h"
 @protocol NVChooseDictThemeVCProtocol;
 
 @interface NVChooseDictThemeVC : NVParentViewController
 @property (strong,nonatomic) id<NVChooseDictThemeVCProtocol> delegate;
 @property (strong,nonatomic) NVTemplates* curTemplate;
+@property (strong,nonatomic) UIAlertController* alertCtrl;
+
+- (IBAction)buttonAddOwnWords:(UIBarButtonItem *)sender;
+- (IBAction)buttonOk:(UIBarButtonItem *)sender;
+
+
 @end
 
 
 @protocol NVChooseDictThemeVCProtocol
--(void) refreshDataThemeWithText:(NSString*) text VC:(NVChooseDictThemeVC*) vc;
+-(void) refreshDataThemeWithTemplate:(NVTemplates*) templ;
 @end

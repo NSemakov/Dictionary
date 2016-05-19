@@ -8,6 +8,7 @@
 
 #import "NVParentViewController.h"
 #import "NVDicts.h"
+#import "NVTemplates.h"
 @interface NVChooseActiveDictVC : NVParentViewController
 - (IBAction)buttonAdd:(UIBarButtonItem *)sender;
 

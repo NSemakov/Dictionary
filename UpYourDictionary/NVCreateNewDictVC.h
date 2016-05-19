@@ -25,9 +25,9 @@
 @property (strong,nonatomic) NVDicts* dict;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
-- (IBAction)buttonCancel:(UIButton *)sender;
-- (IBAction)buttonSave:(UIButton *)sender;
+- (IBAction)buttonCancel:(UIBarButtonItem *)sender;
+- (IBAction)buttonSave:(UIBarButtonItem *)sender;
 -(void) refreshDataWithText:(NSString*) text;
 -(void) refreshDataLangToWithText:(NSString*) text;
--(void) refreshDataThemeWithText:(NSString*) text VC:(NVChooseDictThemeVC*) vc;
+-(void) refreshDataThemeWithTemplate:(NVTemplates*) templ;
 @end

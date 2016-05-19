@@ -9,12 +9,17 @@
         <!--Navigation Controller-->
         <scene sceneID="3rS-2G-coD">
             <objects>
-                <navigationController id="0Ad-tG-VwD" sceneMemberID="viewController">
+                <navigationController toolbarHidden="NO" id="0Ad-tG-VwD" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="urd-wb-u91">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="x9P-3B-ouq">
+                        <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </toolbar>
                     <connections>
                         <segue destination="oF1-Xm-Ihs" kind="relationship" relationship="rootViewController" id="Tkh-ep-AjP"/>
                     </connections>
@@ -235,7 +240,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <segue destination="Xit-mw-II1" kind="show" id="vdF-OF-d3d"/>
+                                            <segue destination="Xit-mw-II1" kind="show" identifier="SegueChooseDictTheme" id="vdF-OF-d3d"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="tjl-CL-eTa">
@@ -244,30 +249,6 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tjl-CL-eTa" id="Tsu-G2-T1r">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eof-g0-YDl">
-                                                    <rect key="frame" x="88" y="5" width="46" height="30"/>
-                                                    <animations/>
-                                                    <color key="backgroundColor" red="0.0" green="1" blue="0.06150112543299624" alpha="0.74504100177304966" colorSpace="calibratedRGB"/>
-                                                    <state key="normal" title="Save">
-                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="buttonSave:" destination="Pgx-qF-JTM" eventType="touchUpInside" id="PYl-fV-ak0"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sew-HH-3zz">
-                                                    <rect key="frame" x="354" y="8" width="66" height="30"/>
-                                                    <animations/>
-                                                    <color key="backgroundColor" red="1" green="0.072431445114119475" blue="0.042062890294921607" alpha="0.74504100177304966" colorSpace="calibratedRGB"/>
-                                                    <state key="normal" title="Cancel">
-                                                        <color key="titleColor" red="1" green="0.98039780633455742" blue="0.92351984032744816" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="buttonCancel:" destination="Pgx-qF-JTM" eventType="touchUpInside" id="7x3-r9-qrK"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
                                             <animations/>
                                         </tableViewCellContentView>
                                         <animations/>
@@ -280,6 +261,18 @@
                             <outlet property="delegate" destination="Pgx-qF-JTM" id="stq-sO-0qf"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem title="Save" id="cp5-9p-vwp">
+                            <connections>
+                                <action selector="buttonSave:" destination="Pgx-qF-JTM" id="NKU-Jg-uH4"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="Cancel" id="BoU-II-Nwh">
+                            <connections>
+                                <action selector="buttonCancel:" destination="Pgx-qF-JTM" id="jjq-py-yHb"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="New dictionary" id="xUz-UR-3uT"/>
                     <connections>
                         <outlet property="textFieldDictTheme" destination="LXx-EC-JQY" id="ne6-K9-QHO"/>
@@ -413,13 +406,23 @@
                             <outlet property="delegate" destination="Xit-mw-II1" id="PGO-F7-Bbn"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem title="Ok" id="IOC-CG-BzW">
+                            <connections>
+                                <action selector="buttonOk:" destination="Xit-mw-II1" id="Emq-f3-ImD"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Choose dictionary theme" id="e7V-0p-Q0K">
                         <barButtonItem key="rightBarButtonItem" title="Add own words" id="4oe-KP-zUr">
                             <connections>
-                                <segue destination="Hcq-SV-ZHo" kind="show" id="QoR-Ht-X3h"/>
+                                <action selector="buttonAddOwnWords:" destination="Xit-mw-II1" id="BlP-i7-Ncl"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="Hcq-SV-ZHo" kind="show" identifier="AddOwnWords" id="9Ko-ar-rt4"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nRh-A2-tOc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -435,21 +438,21 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="OFi-ZR-L31">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="OFi-ZR-L31" customClass="NVCreateTemplateCell">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OFi-ZR-L31" id="aEP-9J-PSp">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Word" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rWo-aU-bdg">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Word" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rWo-aU-bdg">
                                             <rect key="frame" x="35" y="11" width="42" height="21"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type your word" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AGI-6n-fQd">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type your word" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AGI-6n-fQd">
                                             <rect key="frame" x="391" y="7" width="115" height="30"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -457,8 +460,18 @@
                                         </textField>
                                     </subviews>
                                     <animations/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="AGI-6n-fQd" secondAttribute="trailing" constant="86" id="7XT-id-Zm5"/>
+                                        <constraint firstItem="rWo-aU-bdg" firstAttribute="leading" secondItem="aEP-9J-PSp" secondAttribute="leadingMargin" constant="27" id="9dV-FU-Aby"/>
+                                        <constraint firstItem="rWo-aU-bdg" firstAttribute="centerY" secondItem="aEP-9J-PSp" secondAttribute="centerY" id="IiK-Te-YHN"/>
+                                        <constraint firstItem="AGI-6n-fQd" firstAttribute="centerY" secondItem="aEP-9J-PSp" secondAttribute="centerY" id="iKm-74-pCR"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <connections>
+                                    <outlet property="labelLeft" destination="rWo-aU-bdg" id="kpb-Dl-02L"/>
+                                    <outlet property="textField" destination="AGI-6n-fQd" id="KlH-Jb-hnr"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="EeK-Pd-CwU">
                                 <rect key="frame" x="0.0" y="136" width="600" height="44"/>
@@ -466,30 +479,6 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EeK-Pd-CwU" id="IXM-7D-nx3">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K0M-xO-vTC">
-                                            <rect key="frame" x="409" y="8" width="66" height="30"/>
-                                            <animations/>
-                                            <color key="backgroundColor" red="1" green="0.072431445110000006" blue="0.042062890290000002" alpha="0.74504100179999999" colorSpace="calibratedRGB"/>
-                                            <state key="normal" title="Cancel">
-                                                <color key="titleColor" red="1" green="0.98039780629999995" blue="0.92351984030000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="buttonCancel:" destination="Hcq-SV-ZHo" eventType="touchUpInside" id="qr2-qO-fCg"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FJs-ir-BgO">
-                                            <rect key="frame" x="109" y="8" width="46" height="30"/>
-                                            <animations/>
-                                            <color key="backgroundColor" red="0.0" green="1" blue="0.061501125429999998" alpha="0.74504100179999999" colorSpace="calibratedRGB"/>
-                                            <state key="normal" title="Save">
-                                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="buttonSaveTemplate:" destination="Hcq-SV-ZHo" eventType="touchUpInside" id="Rf6-fW-obz"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
                                     <animations/>
                                 </tableViewCellContentView>
                                 <animations/>
@@ -500,6 +489,18 @@
                             <outlet property="delegate" destination="Hcq-SV-ZHo" id="Y6B-bz-GJN"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem title="Save" id="8nn-8R-9KG">
+                            <connections>
+                                <action selector="buttonSaveTemplate:" destination="Hcq-SV-ZHo" id="klw-c9-0gY"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="Cancel" id="l7B-FO-ATI">
+                            <connections>
+                                <action selector="buttonCancel:" destination="Hcq-SV-ZHo" id="AnG-2z-00I"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Create new dictionary with my words" id="uuy-pF-yOm">
                         <barButtonItem key="rightBarButtonItem" title="Add word" id="VoL-VK-sH7">
                             <connections>

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		01083E3F95C3BACEF2DE4B0A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8E645F75A1AF8B9A7B2E2DB /* libPods.a */; };
+		843BCB6D1CEDE034000F30A3 /* NVCreateTemplateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843BCB6C1CEDE034000F30A3 /* NVCreateTemplateCell.m */; settings = {ASSET_TAGS = (); }; };
 		844630801CEB977A004E0994 /* NVDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8446307F1CEB977A004E0994 /* NVDataManager.m */; settings = {ASSET_TAGS = (); }; };
 		8446309C1CEBAC32004E0994 /* NVParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8446309B1CEBAC32004E0994 /* NVParentViewController.m */; settings = {ASSET_TAGS = (); }; };
 		8446309F1CEBAE22004E0994 /* NVChooseActiveDictVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8446309E1CEBAE22004E0994 /* NVChooseActiveDictVC.m */; settings = {ASSET_TAGS = (); }; };
@@ -34,6 +35,7 @@
 		845894501CE8BC3800D4FE35 /* UpYourDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8458944F1CE8BC3800D4FE35 /* UpYourDictionaryTests.m */; };
 		8458945B1CE8BC3800D4FE35 /* UpYourDictionaryUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8458945A1CE8BC3800D4FE35 /* UpYourDictionaryUITests.m */; };
 		8462CDE11CEA4D0B00E742AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8462CDDF1CEA4D0B00E742AC /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
+		84F2FDB21CEE619B00714DF0 /* NVMainStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F2FDB11CEE619B00714DF0 /* NVMainStrategy.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		843BCB6B1CEDE034000F30A3 /* NVCreateTemplateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVCreateTemplateCell.h; sourceTree = "<group>"; };
+		843BCB6C1CEDE034000F30A3 /* NVCreateTemplateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVCreateTemplateCell.m; sourceTree = "<group>"; };
 		8446307E1CEB977A004E0994 /* NVDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVDataManager.h; sourceTree = "<group>"; };
 		8446307F1CEB977A004E0994 /* NVDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVDataManager.m; sourceTree = "<group>"; };
 		8446309A1CEBAC32004E0994 /* NVParentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVParentViewController.h; sourceTree = "<group>"; };
@@ -105,6 +109,9 @@
 		8458945A1CE8BC3800D4FE35 /* UpYourDictionaryUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpYourDictionaryUITests.m; sourceTree = "<group>"; };
 		8458945C1CE8BC3800D4FE35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8462CDE01CEA4D0B00E742AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		84F2FDB01CEE619B00714DF0 /* NVMainStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVMainStrategy.h; sourceTree = "<group>"; };
+		84F2FDB11CEE619B00714DF0 /* NVMainStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVMainStrategy.m; sourceTree = "<group>"; };
+		84F2FDB31CEE621F00714DF0 /* NVStrategyProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVStrategyProtocol.h; sourceTree = "<group>"; };
 		A34005371E3A80E4C5532B92 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B8E645F75A1AF8B9A7B2E2DB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD93336E2697EA394E75826 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -145,6 +152,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		843BCB6E1CEDE04C000F30A3 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				843BCB6B1CEDE034000F30A3 /* NVCreateTemplateCell.h */,
+				843BCB6C1CEDE034000F30A3 /* NVCreateTemplateCell.m */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		844630991CEBA199004E0994 /* CoreDataModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +189,7 @@
 			children = (
 				845691641CE9F8B2005E4AE1 /* NVChooseLangVC.h */,
 				845691651CE9F8B2005E4AE1 /* NVChooseLangVC.m */,
+				843BCB6E1CEDE04C000F30A3 /* Cells */,
 				844630A31CEBBB9A004E0994 /* NVCreateTemplateVC.h */,
 				844630A41CEBBB9A004E0994 /* NVCreateTemplateVC.m */,
 				844E4EA71CEA508A0012AB04 /* NVLangFromVC.h */,
@@ -222,6 +239,9 @@
 				845894361CE8BC3800D4FE35 /* AppDelegate.m */,
 				8446307E1CEB977A004E0994 /* NVDataManager.h */,
 				8446307F1CEB977A004E0994 /* NVDataManager.m */,
+				84F2FDB01CEE619B00714DF0 /* NVMainStrategy.h */,
+				84F2FDB11CEE619B00714DF0 /* NVMainStrategy.m */,
+				84F2FDB31CEE621F00714DF0 /* NVStrategyProtocol.h */,
 				845691631CE9F74D005E4AE1 /* ViewControllers */,
 				845894411CE8BC3800D4FE35 /* Assets.xcassets */,
 				8462CDDF1CEA4D0B00E742AC /* Main.storyboard */,
@@ -459,6 +479,7 @@
 				844630BF1CEBCAD3004E0994 /* NVTemplates.m in Sources */,
 				844630C11CEBCAD3004E0994 /* NVWords.m in Sources */,
 				844630BC1CEBCAD3004E0994 /* NVDicts+CoreDataProperties.m in Sources */,
+				843BCB6D1CEDE034000F30A3 /* NVCreateTemplateCell.m in Sources */,
 				844630A21CEBBB1E004E0994 /* NVChooseDictThemeVC.m in Sources */,
 				844630BD1CEBCAD3004E0994 /* NVDicts.m in Sources */,
 				845894371CE8BC3800D4FE35 /* AppDelegate.m in Sources */,
@@ -467,6 +488,7 @@
 				844630801CEB977A004E0994 /* NVDataManager.m in Sources */,
 				8446309F1CEBAE22004E0994 /* NVChooseActiveDictVC.m in Sources */,
 				844630C21CEBCAD3004E0994 /* NVContent+CoreDataProperties.m in Sources */,
+				84F2FDB21CEE619B00714DF0 /* NVMainStrategy.m in Sources */,
 				844E4EA91CEA508A0012AB04 /* NVLangFromVC.m in Sources */,
 				8456915F1CE9EDBB005E4AE1 /* NVServerManager.m in Sources */,
 				845691621CE9F741005E4AE1 /* NVCreateNewDictVC.m in Sources */,
@@ -561,7 +583,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -599,7 +621,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

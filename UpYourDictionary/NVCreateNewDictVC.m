@@ -25,9 +25,13 @@
     [super viewDidAppear:YES];
     
     //ATTENTION! In viewDidAppear only, because if do it in viewDidLoad, then (NULL) will appear on screen, while new view controller is appearing.
-    self.managedObjectContext = [[NVDataManager sharedManager] managedObjectContext];
-    NVDicts* newDict=[NSEntityDescription insertNewObjectForEntityForName:@"NVDicts" inManagedObjectContext:self.managedObjectContext];
-    self.dict = newDict;
+    
+    if (!self.dict) {
+        self.managedObjectContext = [[NVDataManager sharedManager] managedObjectContext];
+        NVDicts* newDict=[NSEntityDescription insertNewObjectForEntityForName:@"NVDicts" inManagedObjectContext:self.managedObjectContext];
+        self.dict = newDict;
+    }
+    
     
 }
 - (void)didReceiveMemoryWarning {
@@ -44,9 +48,9 @@
 }
 
  #pragma mark - NVChooseThemeVCProtocol
- -(void) refreshDataThemeWithText:(NSString*) text VC:(NVChooseDictThemeVC*) vc{
- self.textFieldDictTheme.text = text;
- self.templateForDict = vc.curTemplate;
+-(void) refreshDataThemeWithTemplate:(NVTemplates*) templ{
+    self.textFieldDictTheme.text = templ.name;
+    self.templateForDict = templ;
  }
  
 #pragma mark - Navigation
@@ -61,31 +65,44 @@
         if (![self.textFieldLangFrom.text isEqualToString:@""]) {
             vc.currentLang = self.textFieldLangFrom.text;
         }
-        
     } else if ([segue.identifier isEqualToString:@"SegueLangTo"]){
         NVLangToVC *vc = segue.destinationViewController;
         vc.delegate = self;
         if (![self.textFieldLangTo.text isEqualToString:@""]) {
             vc.currentLang = self.textFieldLangTo.text;
         }
+    } else if ([segue.identifier isEqualToString:@"SegueChooseDictTheme"]){
+        NVChooseDictThemeVC *vc = segue.destinationViewController;
+        vc.delegate = self;
+        if (self.templateForDict) {
+            vc.curTemplate = self.templateForDict;
+        }
     }
-    
+
     
 }
 
 
-- (IBAction)buttonCancel:(UIButton *)sender {
+- (IBAction)buttonCancel:(UIBarButtonItem *)sender {
     [self.managedObjectContext rollback];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)buttonSave:(UIButton *)sender {
+- (IBAction)buttonSave:(UIBarButtonItem *)sender {
     self.dict.from = self.textFieldLangFrom.text;
     self.dict.to = self.textFieldLangTo.text;
-    
+    self.dict.template1 = self.templateForDict;
+    self.dict.progress = @(0);
+    self.dict.isActive = @(false);
 #warning check all fields!
     NSError* error = nil;
-    [self.managedObjectContext save:&error];
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"error:%@",error.localizedDescription);
+        NSLog(@"user info:%@",error.userInfo);
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
 }
 #pragma mark - overriden methods
 /*

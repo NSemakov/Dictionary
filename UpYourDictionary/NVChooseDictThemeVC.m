@@ -24,28 +24,40 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"AddOwnWords"]) {
+        NVCreateTemplateVC* vc = segue.destinationViewController;
+        vc.templateName = (NSString*) sender;
+    }
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
 #pragma mark - overriden methods
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
-#warning pay attention
+    NVTemplates *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    cell.textLabel.text = object.name;
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][0];
+    if (self.curTemplate) {
+       NSInteger catIndex = [[sectionInfo objects] indexOfObject:self.curTemplate];
+        if (catIndex==indexPath.row) {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        } 
+    }
+    
+
+
 }
 - (NSFetchedResultsController *)fetchedResultsController
 {
     if (_fetchedResultsController != nil) {
         return _fetchedResultsController;
     }
-#warning entity name override!
+
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"NVTemplates" inManagedObjectContext:self.managedObjectContext];
@@ -80,5 +92,59 @@
     
     return _fetchedResultsController;
 }
+#pragma mark - UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][0];
+    if (self.curTemplate) {
+        NSInteger catIndex = [[sectionInfo objects] indexOfObject:self.curTemplate];
+        if (catIndex == indexPath.row) {
+            return;
+        }
+        NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:catIndex inSection:0];
+        UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:oldIndexPath];
+        if (oldCell.accessoryType == UITableViewCellAccessoryCheckmark) {
+            oldCell.accessoryType = UITableViewCellAccessoryNone;
+        }
+        
+    }
+    
+    UITableViewCell *newCell = [tableView cellForRowAtIndexPath:indexPath];
+    if (newCell.accessoryType == UITableViewCellAccessoryNone) {
+        newCell.accessoryType = UITableViewCellAccessoryCheckmark;
+        self.curTemplate = [[sectionInfo objects]  objectAtIndex:indexPath.row];
+    }
+    
+    
+    
+}
+
+#pragma mark - actions
+
+- (IBAction)buttonAddOwnWords:(UIBarButtonItem *)sender {
+    self.alertCtrl=[UIAlertController alertControllerWithTitle:@"Input template name" message:@"please" preferredStyle:UIAlertControllerStyleAlert];
+    [self.alertCtrl addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder=@"New template name";
+    }];
+    __weak NVChooseDictThemeVC* weakSelf = self;
+    UIAlertAction* okAction=[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        UITextField* field=weakSelf.alertCtrl.textFields.firstObject;
+        //[self handleNameOfNewFolder:field.text];
+        [self performSegueWithIdentifier:@"AddOwnWords" sender:field.text];
+    }];
+    UIAlertAction* cancelAction=[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+    }];
+    [self.alertCtrl addAction:okAction];
+    [self.alertCtrl addAction:cancelAction];
+    [self presentViewController:self.alertCtrl animated:YES completion:nil];
+}
+
+- (IBAction)buttonOk:(UIBarButtonItem *)sender {
+    [self.delegate refreshDataThemeWithTemplate:self.curTemplate];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 @end
