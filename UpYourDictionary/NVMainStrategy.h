@@ -11,6 +11,7 @@
 #import "NVContent.h"
 #import "NVDicts.h"
 #import "NVDataManager.h"
+#import "NVServerManager.h"
 #import "NVTemplates.h"
 #import "NVWords.h"
 @interface NVMainStrategy : NSObject <NVStrategyProtocol>

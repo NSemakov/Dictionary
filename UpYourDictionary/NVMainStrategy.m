@@ -29,43 +29,81 @@ static const NSInteger countAim = 20;
      */
 #warning all in background thread, notification - on main
     self.activeDict =[self.fetchedDict firstObject];
-    if (self.activeDict) {
+    if (self.activeDict) {//есть активный словарь
         NSArray* activeContent =self.fetchedContent;
-        if (!self.fetchedContent || [activeContent count] < numberOfWords) {
-            //уже есть какая-то строка, но слов меньше минимума
-            if (self.fetchedAllowedWords > 0) {
-                //в 1 есть слова
-                NVWords* newWord = [self.fetchedAllowedWords firstObject];
-#warning translate function here
-                NVContent* newContent=[NSEntityDescription insertNewObjectForEntityForName:@"NVContents" inManagedObjectContext:self.managedObjectContext];
-                newContent.word = newWord.word;
-#warning insert result of translation
-                //newContent.translation = smth.translation;
-                newContent.count = 0;
-                newContent.dict = self.activeDict;
-                
-                NSError* error = nil;
-                [self.managedObjectContext save:&error];
-                if (!error) {
-                    [self resetFetchedProperties];
+        if (activeContent) { //есть активный контент
+            if ([activeContent count] < numberOfWords) {//меньше 10 слов?
+                if (self.fetchedAllowedWords > 0) { //в источнике слов еще есть неиспользованные слова для перевода
+                    //берем любое слово из источника, переводим, добавляем в контент и перевызываем эту же функцию.
+                    [self takeWordTranslateAdd];
+                } else { //больше нет слов в источнике для перевода.
+                    //просто работаем - извлекаем с наим. счетчиком, показываем пушем, увеличиваем счетчик и кладем обратно.
+                    [self routineWork];
                 }
-            } else {
-                //не осталось слов для показа
-#warning no words to show.
+            } else { //больше 10 слов
+                //работаем - извлекаем с наим. счетчиком, показываем пушем, увеличиваем счетчик и кладем обратно.
+                [self routineWork];
+            }
+        } else {//нет активного контента
+            if (self.fetchedAllowedWords > 0) {//в 1 еще есть слова, значит самое начало
+                //берем любое слово из источника, переводим, добавляем в контент и перевызываем эту же функцию.
+                [self takeWordTranslateAdd];
+            } else {//в 1 нет слов, значит конец
                 
             }
-            
-        } else {
-            //если рабочий сет слов полон
-            NVContent* contentToShow = self.fetchedWordsAllowedToShow.firstObject;
-            NSString* stringToShow = [NSString stringWithFormat:@"%@ - %@",contentToShow.word,contentToShow.translation];
-#warning show in local notification; increase count by 1 and save to context;
         }
-    } else {
-        //если нет активного словаря.
+    } else {//если нет активного словаря.
+        
     }
     
 }
+-(void) routineWork {
+    //работаем - извлекаем с наим. счетчиком, показываем пушем, увеличиваем счетчик и кладем обратно.
+    NVContent* contentToShow = self.fetchedWordsAllowedToShow.firstObject;
+    NSString* stringToShow = [NSString stringWithFormat:@"%@ - %@",contentToShow.word,contentToShow.translation];
+#warning show in local notification; increase count by 1 and save to context;
+    contentToShow.count = @([contentToShow.count integerValue]+1);
+    NSError* error = nil;
+    [self.managedObjectContext save:&error];
+    if (!error) {
+        [self resetFetchedProperties];
+    }
+}
+-(void) takeWordTranslateAdd{
+    //берем любое слово из источника, переводим, добавляем в контент и перевызываем эту же функцию.
+    
+    NVWords* newWord = [self.fetchedAllowedWords firstObject];
+    NSString* wordToTranslate = newWord.word;
+    NSString* fromLangShort = nil;
+    NSString* toLangShort = nil;
+#warning translate function here
+    __weak NVMainStrategy* weakSelf = self;
+    [[NVServerManager sharedManager] POSTTranslatePhrase:wordToTranslate fromLang:fromLangShort toLang:toLangShort OnSuccess:^(NSDictionary *languages) {
+        //все оставшиеся действия надо делать здесь.
+        if (weakSelf.managedObjectContext) {
+            NVContent* newContent=[NSEntityDescription insertNewObjectForEntityForName:@"NVContents" inManagedObjectContext:weakSelf.managedObjectContext];
+            newContent.word = newWord.word;
+#warning insert result of translation
+            
+            //newContent.translation = smth.translation;
+            newContent.count = 0;
+            newContent.dict = weakSelf.activeDict;
+            
+            NSError* error = nil;
+            [weakSelf.managedObjectContext save:&error];
+            if (!error) {
+                [weakSelf resetFetchedProperties];
+            }
+            
+            [weakSelf performAlgo];
+        }
+        
+    } onFailure:^(NSString *error) {
+        
+    }];
+    
+}
+
 -(void) resetFetchedProperties{
     self.fetchedAllowedWords = nil;
     self.fetchedContent = nil;
