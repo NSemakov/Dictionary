@@ -38,8 +38,44 @@
 #pragma mark - overriden methods 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     NVDicts *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    if ([object.isActive boolValue]) {
+        self.activeDict = object;
+        self.curDict = object;
+    }
     cell.textLabel.text = [NSString stringWithFormat:@"%@ %@ %@ %@",object.template1.name,object.from,object.to,object.progress];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][0];
+    if (self.curDict) {
+        NSInteger catIndex = [[sectionInfo objects] indexOfObject:self.curDict];
+        if (catIndex==indexPath.row) {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+    }
+
 #warning pay attention
+}
+#pragma mark - UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][0];
+    if (self.curDict) {
+        NSInteger catIndex = [[sectionInfo objects] indexOfObject:self.curDict];
+        if (catIndex == indexPath.row) {
+            return;
+        }
+        NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:catIndex inSection:0];
+        UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:oldIndexPath];
+        if (oldCell.accessoryType == UITableViewCellAccessoryCheckmark) {
+            oldCell.accessoryType = UITableViewCellAccessoryNone;
+        }
+        
+    }
+    
+    UITableViewCell *newCell = [tableView cellForRowAtIndexPath:indexPath];
+    if (newCell.accessoryType == UITableViewCellAccessoryNone) {
+        newCell.accessoryType = UITableViewCellAccessoryCheckmark;
+        self.curDict = [[sectionInfo objects]  objectAtIndex:indexPath.row];
+    }
 }
 - (NSFetchedResultsController *)fetchedResultsController
 {
@@ -82,7 +118,38 @@
     
     return _fetchedResultsController;
 }
-
+#pragma mark - actions
 - (IBAction)buttonAdd:(UIBarButtonItem *)sender {
+}
+
+- (IBAction)buttonSave:(UIBarButtonItem *)sender {
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][0];
+    if (self.curDict && self.activeDict) {
+        if ([self.curDict isEqual:self.activeDict]) {
+            [self.navigationController popViewControllerAnimated:YES];
+        } else {
+            self.curDict.isActive = @(true);
+            self.activeDict.isActive = @(false);
+            NSError* error = nil;
+            if (![self.managedObjectContext save:&error]) {
+                NSLog(@"error: %@, user info: %@", error.localizedDescription,error.userInfo);
+            } else {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }
+    } else if (self.curDict && !self.activeDict){
+        self.curDict.isActive = @(true);
+        NSError* error = nil;
+        if (![self.managedObjectContext save:&error]) {
+            NSLog(@"error: %@, user info: %@", error.localizedDescription,error.userInfo);
+        } else {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }
+    
+}
+
+- (IBAction)buttonCancel:(UIBarButtonItem *)sender {
+    
 }
 @end

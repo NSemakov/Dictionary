@@ -31,27 +31,29 @@
         NVDicts* newDict=[NSEntityDescription insertNewObjectForEntityForName:@"NVDicts" inManagedObjectContext:self.managedObjectContext];
         self.dict = newDict;
     }
-    
-    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 #pragma mark - NVLangFromVCProtocol
--(void) refreshDataWithText:(NSString*) text {
+-(void) refreshDataWithText:(NSString*) text shortLangFrom:(NSString*) shortLangFrom {
     self.textFieldLangFrom.text = text;
+    self.langFromShort = shortLangFrom;
 }
+
 #pragma mark - NVLangToVCProtocol
--(void) refreshDataLangToWithText:(NSString*) text {
+-(void) refreshDataLangToWithText:(NSString*) text shortLangTo:(NSString*) shortLangTo {
     self.textFieldLangTo.text = text;
+    self.langToShort = shortLangTo;
 }
 
  #pragma mark - NVChooseThemeVCProtocol
 -(void) refreshDataThemeWithTemplate:(NVTemplates*) templ{
     self.textFieldDictTheme.text = templ.name;
     self.templateForDict = templ;
- }
+}
  
 #pragma mark - Navigation
 
@@ -78,11 +80,7 @@
             vc.curTemplate = self.templateForDict;
         }
     }
-
-    
 }
-
-
 - (IBAction)buttonCancel:(UIBarButtonItem *)sender {
     [self.managedObjectContext rollback];
     [self.navigationController popViewControllerAnimated:YES];
@@ -94,6 +92,8 @@
     self.dict.template1 = self.templateForDict;
     self.dict.progress = @(0);
     self.dict.isActive = @(false);
+    self.dict.fromShort = self.langFromShort;
+    self.dict.toShort = self.langToShort;
 #warning check all fields!
     NSError* error = nil;
     if (![self.managedObjectContext save:&error]) {
@@ -105,46 +105,4 @@
     
 }
 #pragma mark - overriden methods
-/*
-- (NSFetchedResultsController *)fetchedResultsController
-{
-    if (_fetchedResultsController != nil) {
-        return _fetchedResultsController;
-    }
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"NVDicts" inManagedObjectContext:self.managedObjectContext];
-    [fetchRequest setEntity:entity];
-    //[fetchRequest setRelationshipKeyPathsForPrefetching:@[@"coursesAsStudent",@"coursesAsTeacher"]];
-    
-    // Set the batch size to a suitable number.
-    [fetchRequest setFetchBatchSize:20];
-    
-    // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"from" ascending:YES];
-    NSArray *sortDescriptors = @[sortDescriptor];
-    
-    [fetchRequest setSortDescriptors:sortDescriptors];
-    
-    //NSManagedObjectID *moID=[self.person objectID];
-    //NSPredicate* predicate=[NSPredicate predicateWithFormat:@"(SELF = %@)",self.person];
-    //[fetchRequest setPredicate:predicate];
-    // Edit the section name key path and cache name if appropriate.
-    // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-    aFetchedResultsController.delegate = self;
-    self.fetchedResultsController = aFetchedResultsController;
-    
-    NSError *error = nil;
-    if (![self.fetchedResultsController performFetch:&error]) {
-        // Replace this implementation with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
-    
-    return _fetchedResultsController;
-}
- */
 @end

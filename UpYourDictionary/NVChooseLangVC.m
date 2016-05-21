@@ -77,6 +77,7 @@
     if (newCell.accessoryType == UITableViewCellAccessoryNone) {
         newCell.accessoryType = UITableViewCellAccessoryCheckmark;
         self.currentLang = [[self.langs allValues] objectAtIndex:indexPath.row];
+        self.currentShort = [[self.langs allKeys] objectAtIndex:indexPath.row];
     }
     
     UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:oldIndexPath];

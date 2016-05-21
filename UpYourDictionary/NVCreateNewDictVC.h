@@ -24,10 +24,12 @@
 @property (strong,nonatomic) NVTemplates* templateForDict;
 @property (strong,nonatomic) NVDicts* dict;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSString *langFromShort;
+@property (strong, nonatomic) NSString *langToShort;
 
 - (IBAction)buttonCancel:(UIBarButtonItem *)sender;
 - (IBAction)buttonSave:(UIBarButtonItem *)sender;
--(void) refreshDataWithText:(NSString*) text;
--(void) refreshDataLangToWithText:(NSString*) text;
+-(void) refreshDataWithText:(NSString*) text shortLangFrom:(NSString*) shortLangFrom;
+-(void) refreshDataLangToWithText:(NSString*) text shortLangTo:(NSString*) shortLangTo;
 -(void) refreshDataThemeWithTemplate:(NVTemplates*) templ;
 @end

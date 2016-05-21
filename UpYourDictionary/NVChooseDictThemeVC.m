@@ -115,9 +115,6 @@
         newCell.accessoryType = UITableViewCellAccessoryCheckmark;
         self.curTemplate = [[sectionInfo objects]  objectAtIndex:indexPath.row];
     }
-    
-    
-    
 }
 
 #pragma mark - actions

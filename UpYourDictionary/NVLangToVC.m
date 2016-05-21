@@ -24,7 +24,7 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)buttonDone:(UIBarButtonItem *)sender {
-    [self.delegate refreshDataLangToWithText:(self.currentLang)];
+    [self.delegate refreshDataLangToWithText:(self.currentLang) shortLangTo:self.currentShort];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

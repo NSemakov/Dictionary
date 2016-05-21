@@ -8,7 +8,7 @@
 
 #import "NVChooseLangVC.h"
 @protocol NVLangFromVCProtocol
--(void) refreshDataWithText:(NSString*) text;
+-(void) refreshDataWithText:(NSString*) text shortLangFrom:(NSString*) shortLangFrom;
 @end
 
 @interface NVLangFromVC : NVChooseLangVC

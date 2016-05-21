@@ -28,10 +28,10 @@
             </objects>
             <point key="canvasLocation" x="-307" y="397"/>
         </scene>
-        <!--View Controller-->
+        <!--MenuVC-->
         <scene sceneID="5qJ-I6-GpO">
             <objects>
-                <viewController id="oF1-Xm-Ihs" sceneMemberID="viewController">
+                <viewController id="oF1-Xm-Ihs" customClass="NVMenuVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="C6j-XM-bDb"/>
                         <viewControllerLayoutGuide type="bottom" id="OEg-Vj-ibR"/>
@@ -62,17 +62,41 @@
                                     <segue destination="DSt-dp-HgC" kind="show" id="jNA-OL-xLJ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nD9-AS-jdT">
+                                <rect key="frame" x="277" y="313" width="46" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="buttonTestAlgo:" destination="oF1-Xm-Ihs" eventType="touchUpInside" id="3ip-OG-dfx"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tl2-y6-PZk">
+                                <rect key="frame" x="252" y="343" width="97" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="r3G-4X-8OG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="GvJ-MV-83v" firstAttribute="top" secondItem="poj-iQ-bVH" secondAttribute="bottom" constant="60" id="2jk-Zz-7U0"/>
                             <constraint firstItem="poj-iQ-bVH" firstAttribute="centerX" secondItem="xNA-Re-zpJ" secondAttribute="centerX" id="AnJ-9u-nz3"/>
+                            <constraint firstItem="nD9-AS-jdT" firstAttribute="centerX" secondItem="xNA-Re-zpJ" secondAttribute="centerX" id="FOR-Db-hdH"/>
+                            <constraint firstItem="tl2-y6-PZk" firstAttribute="centerX" secondItem="xNA-Re-zpJ" secondAttribute="centerX" id="LKL-5H-vCy"/>
+                            <constraint firstItem="nD9-AS-jdT" firstAttribute="top" secondItem="GvJ-MV-83v" secondAttribute="bottom" constant="70" id="ZJh-CO-vmj"/>
+                            <constraint firstItem="tl2-y6-PZk" firstAttribute="top" secondItem="nD9-AS-jdT" secondAttribute="bottom" id="g2c-zU-Gxz"/>
                             <constraint firstItem="GvJ-MV-83v" firstAttribute="centerX" secondItem="xNA-Re-zpJ" secondAttribute="centerX" id="hLp-gU-PGu"/>
                             <constraint firstItem="poj-iQ-bVH" firstAttribute="top" secondItem="C6j-XM-bDb" secondAttribute="bottom" constant="59" id="ujB-r0-ahh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="4xz-wi-PLB"/>
+                    <connections>
+                        <outlet property="textFieldTest" destination="tl2-y6-PZk" id="xXJ-e8-37v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ALp-hB-zsZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -104,6 +128,18 @@
                             <outlet property="delegate" destination="uQE-7S-cJx" id="lBy-0B-hui"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem title="Save" id="CdD-hc-8sl">
+                            <connections>
+                                <action selector="buttonSave:" destination="uQE-7S-cJx" id="fRn-xe-g4J"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="Cancel" id="En3-ht-jnP">
+                            <connections>
+                                <action selector="buttonCancel:" destination="uQE-7S-cJx" id="mQs-mh-rAP"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Choose dictionary" id="xU2-ke-FkU">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="pSm-cx-iKe">
                             <connections>

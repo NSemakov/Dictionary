@@ -14,6 +14,12 @@
 #import "NVServerManager.h"
 #import "NVTemplates.h"
 #import "NVWords.h"
+
+@protocol NVMainStrategyProtocol <NSObject>
+
+-(void) showWord:(NSString*) word translation:(NSString*) translation;
+
+@end
 @interface NVMainStrategy : NSObject <NVStrategyProtocol>
 @property (strong,nonatomic) NSManagedObjectContext* managedObjectContext;
 @property (strong,nonatomic) NSArray*  fetchedDict;
@@ -21,7 +27,9 @@
 @property (strong,nonatomic) NSArray*  fetchedAllowedWords;
 @property (strong,nonatomic) NSArray*  fetchedWordsAllowedToShow;
 @property (strong,nonatomic) NVDicts* activeDict;
-@property (strong,nonatomic) NVDicts* activeTemplate;
+@property (strong,nonatomic) NVTemplates* activeTemplate;
+@property (strong,nonatomic) id <NVMainStrategyProtocol> delegate;
 -(void) performAlgo;
 -(void) pauseAlgo;
++(NVMainStrategy*) sharedManager;
 @end

@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="15A284" minimumToolsVersion="Automatic">
     <entity name="NVContent" representedClassName="NVContent" syncable="YES">
-        <attribute name="count" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="counter" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="translation" attributeType="String" syncable="YES"/>
         <attribute name="word" attributeType="String" syncable="YES"/>
         <relationship name="dict" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NVDicts" inverseName="contentUnit" inverseEntity="NVDicts" syncable="YES"/>
     </entity>
     <entity name="NVDicts" representedClassName="NVDicts" syncable="YES">
         <attribute name="from" attributeType="String" syncable="YES"/>
+        <attribute name="fromShort" attributeType="String" syncable="YES"/>
         <attribute name="isActive" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="progress" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="to" attributeType="String" syncable="YES"/>
+        <attribute name="toShort" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="contentUnit" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="NVContent" inverseName="dict" inverseEntity="NVContent" syncable="YES"/>
         <relationship name="template1" maxCount="1" deletionRule="Nullify" destinationEntity="NVTemplates" inverseName="dict" inverseEntity="NVTemplates" syncable="YES"/>
     </entity>
@@ -24,8 +26,8 @@
         <relationship name="template1" toMany="YES" deletionRule="Nullify" destinationEntity="NVTemplates" inverseName="word" inverseEntity="NVTemplates" syncable="YES"/>
     </entity>
     <elements>
-        <element name="NVDicts" positionX="-11108" positionY="-4288" width="128" height="133"/>
         <element name="NVContent" positionX="-10656" positionY="-4273" width="128" height="103"/>
+        <element name="NVDicts" positionX="-11108" positionY="-4288" width="128" height="163"/>
         <element name="NVTemplates" positionX="-10863" positionY="-4150" width="128" height="88"/>
         <element name="NVWords" positionX="-10631" positionY="-4135" width="119" height="73"/>
     </elements>

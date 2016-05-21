@@ -14,7 +14,6 @@
 		8446309F1CEBAE22004E0994 /* NVChooseActiveDictVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8446309E1CEBAE22004E0994 /* NVChooseActiveDictVC.m */; settings = {ASSET_TAGS = (); }; };
 		844630A21CEBBB1E004E0994 /* NVChooseDictThemeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 844630A11CEBBB1E004E0994 /* NVChooseDictThemeVC.m */; settings = {ASSET_TAGS = (); }; };
 		844630A51CEBBB9A004E0994 /* NVCreateTemplateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 844630A41CEBBB9A004E0994 /* NVCreateTemplateVC.m */; settings = {ASSET_TAGS = (); }; };
-		844630BC1CEBCAD3004E0994 /* NVDicts+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 844630AD1CEBCAD3004E0994 /* NVDicts+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
 		844630BD1CEBCAD3004E0994 /* NVDicts.m in Sources */ = {isa = PBXBuildFile; fileRef = 844630AF1CEBCAD3004E0994 /* NVDicts.m */; settings = {ASSET_TAGS = (); }; };
 		844630BE1CEBCAD3004E0994 /* NVTemplates+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 844630B11CEBCAD3004E0994 /* NVTemplates+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
 		844630BF1CEBCAD3004E0994 /* NVTemplates.m in Sources */ = {isa = PBXBuildFile; fileRef = 844630B31CEBCAD3004E0994 /* NVTemplates.m */; settings = {ASSET_TAGS = (); }; };
@@ -36,6 +35,8 @@
 		8458945B1CE8BC3800D4FE35 /* UpYourDictionaryUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8458945A1CE8BC3800D4FE35 /* UpYourDictionaryUITests.m */; };
 		8462CDE11CEA4D0B00E742AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8462CDDF1CEA4D0B00E742AC /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
 		84F2FDB21CEE619B00714DF0 /* NVMainStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F2FDB11CEE619B00714DF0 /* NVMainStrategy.m */; settings = {ASSET_TAGS = (); }; };
+		84F6A3C01CEFCCC2001F3CAC /* NVDicts+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F6A3BF1CEFCCC2001F3CAC /* NVDicts+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		84F6A3C31CEFCFF6001F3CAC /* NVMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F6A3C21CEFCFF6001F3CAC /* NVMenuVC.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,8 +69,6 @@
 		844630A11CEBBB1E004E0994 /* NVChooseDictThemeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVChooseDictThemeVC.m; sourceTree = "<group>"; };
 		844630A31CEBBB9A004E0994 /* NVCreateTemplateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVCreateTemplateVC.h; sourceTree = "<group>"; };
 		844630A41CEBBB9A004E0994 /* NVCreateTemplateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVCreateTemplateVC.m; sourceTree = "<group>"; };
-		844630AC1CEBCAD3004E0994 /* NVDicts+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NVDicts+CoreDataProperties.h"; sourceTree = "<group>"; };
-		844630AD1CEBCAD3004E0994 /* NVDicts+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NVDicts+CoreDataProperties.m"; sourceTree = "<group>"; };
 		844630AE1CEBCAD3004E0994 /* NVDicts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVDicts.h; sourceTree = "<group>"; };
 		844630AF1CEBCAD3004E0994 /* NVDicts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVDicts.m; sourceTree = "<group>"; };
 		844630B01CEBCAD3004E0994 /* NVTemplates+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NVTemplates+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -112,6 +111,10 @@
 		84F2FDB01CEE619B00714DF0 /* NVMainStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVMainStrategy.h; sourceTree = "<group>"; };
 		84F2FDB11CEE619B00714DF0 /* NVMainStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVMainStrategy.m; sourceTree = "<group>"; };
 		84F2FDB31CEE621F00714DF0 /* NVStrategyProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVStrategyProtocol.h; sourceTree = "<group>"; };
+		84F6A3BE1CEFCCC2001F3CAC /* NVDicts+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NVDicts+CoreDataProperties.h"; sourceTree = "<group>"; };
+		84F6A3BF1CEFCCC2001F3CAC /* NVDicts+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NVDicts+CoreDataProperties.m"; sourceTree = "<group>"; };
+		84F6A3C11CEFCFF6001F3CAC /* NVMenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVMenuVC.h; sourceTree = "<group>"; };
+		84F6A3C21CEFCFF6001F3CAC /* NVMenuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVMenuVC.m; sourceTree = "<group>"; };
 		A34005371E3A80E4C5532B92 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B8E645F75A1AF8B9A7B2E2DB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD93336E2697EA394E75826 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -164,8 +167,8 @@
 		844630991CEBA199004E0994 /* CoreDataModels */ = {
 			isa = PBXGroup;
 			children = (
-				844630AC1CEBCAD3004E0994 /* NVDicts+CoreDataProperties.h */,
-				844630AD1CEBCAD3004E0994 /* NVDicts+CoreDataProperties.m */,
+				84F6A3BE1CEFCCC2001F3CAC /* NVDicts+CoreDataProperties.h */,
+				84F6A3BF1CEFCCC2001F3CAC /* NVDicts+CoreDataProperties.m */,
 				844630AE1CEBCAD3004E0994 /* NVDicts.h */,
 				844630AF1CEBCAD3004E0994 /* NVDicts.m */,
 				844630B01CEBCAD3004E0994 /* NVTemplates+CoreDataProperties.h */,
@@ -198,6 +201,8 @@
 				8446309E1CEBAE22004E0994 /* NVChooseActiveDictVC.m */,
 				844E4EAA1CEA50A90012AB04 /* NVLangToVC.h */,
 				844E4EAB1CEA50A90012AB04 /* NVLangToVC.m */,
+				84F6A3C11CEFCFF6001F3CAC /* NVMenuVC.h */,
+				84F6A3C21CEFCFF6001F3CAC /* NVMenuVC.m */,
 				844630A01CEBBB1E004E0994 /* NVChooseDictThemeVC.h */,
 				844630A11CEBBB1E004E0994 /* NVChooseDictThemeVC.m */,
 				845691601CE9F741005E4AE1 /* NVCreateNewDictVC.h */,
@@ -473,12 +478,12 @@
 				845691661CE9F8B2005E4AE1 /* NVChooseLangVC.m in Sources */,
 				844630C01CEBCAD3004E0994 /* NVWords+CoreDataProperties.m in Sources */,
 				844630A51CEBBB9A004E0994 /* NVCreateTemplateVC.m in Sources */,
+				84F6A3C01CEFCCC2001F3CAC /* NVDicts+CoreDataProperties.m in Sources */,
 				844630BE1CEBCAD3004E0994 /* NVTemplates+CoreDataProperties.m in Sources */,
 				844630C31CEBCAD3004E0994 /* NVContent.m in Sources */,
 				844E4EAC1CEA50A90012AB04 /* NVLangToVC.m in Sources */,
 				844630BF1CEBCAD3004E0994 /* NVTemplates.m in Sources */,
 				844630C11CEBCAD3004E0994 /* NVWords.m in Sources */,
-				844630BC1CEBCAD3004E0994 /* NVDicts+CoreDataProperties.m in Sources */,
 				843BCB6D1CEDE034000F30A3 /* NVCreateTemplateCell.m in Sources */,
 				844630A21CEBBB1E004E0994 /* NVChooseDictThemeVC.m in Sources */,
 				844630BD1CEBCAD3004E0994 /* NVDicts.m in Sources */,
@@ -493,6 +498,7 @@
 				8456915F1CE9EDBB005E4AE1 /* NVServerManager.m in Sources */,
 				845691621CE9F741005E4AE1 /* NVCreateNewDictVC.m in Sources */,
 				845894401CE8BC3800D4FE35 /* UpYourDictionary.xcdatamodeld in Sources */,
+				84F6A3C31CEFCFF6001F3CAC /* NVMenuVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
