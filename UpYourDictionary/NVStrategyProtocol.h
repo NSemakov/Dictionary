@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @protocol NVStrategyProtocol <NSObject>
--(void) performAlgo;
+-(NSString*) performAlgo;
 -(void) pauseAlgo;
 @end

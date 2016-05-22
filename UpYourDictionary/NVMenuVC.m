@@ -27,7 +27,8 @@
 }
 
 - (IBAction)buttonTestAlgo:(UIButton *)sender {
-    [[NVMainStrategy sharedManager] performAlgo];
+    //[[NVMainStrategy sharedManager] performAlgo];
+    //[[NVMainStrategy sharedManager] startFireAlert];
 }
 -(void) showWord:(NSString*) word translation:(NSString*) translation{
     self.textFieldTest.text = [NSString stringWithFormat:@"%@ - %@",word,translation];

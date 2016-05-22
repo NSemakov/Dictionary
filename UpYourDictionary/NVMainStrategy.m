@@ -26,7 +26,8 @@ static const NSInteger countAim = 20;
      Что хорошо - прогресс при этом не стирается. Все остается на своих местах.
      */
 }
--(void) performAlgo{
+-(NSString*) performAlgo{
+    NSString* result = nil;
     /*
      эта функция вызывается по таймеру какой-то другой функцией из таймера.
      взять текущий словарь, если нет контента, создать контент
@@ -45,31 +46,31 @@ static const NSInteger countAim = 20;
 
         if ([activeContent count] > 0) { //есть активный контент
             if ([activeContent count] < numberOfWords) {//меньше 10 слов?
-                if (self.fetchedAllowedWords > 0) { //в источнике слов еще есть неиспользованные слова для перевода
+                if ([self.fetchedAllowedWords count] > 0) { //в источнике слов еще есть неиспользованные слова для перевода
                     //берем любое слово из источника, переводим, добавляем в контент и перевызываем эту же функцию.
                     [self takeWordTranslateAdd];
                 } else { //больше нет слов в источнике для перевода.
                     //просто работаем - извлекаем с наим. счетчиком, показываем пушем, увеличиваем счетчик и кладем обратно.
-                    [self routineWork];
+                    result = [self routineWork];
                 }
             } else { //больше 10 слов
                 //работаем - извлекаем с наим. счетчиком, показываем пушем, увеличиваем счетчик и кладем обратно.
-                [self routineWork];
+                result = [self routineWork];
             }
         } else {//нет активного контента
-            if (self.fetchedAllowedWords > 0) {//в 1 еще есть слова, значит самое начало
+            if ([self.fetchedAllowedWords count]> 0) {//в 1 еще есть слова, значит самое начало
                 //берем любое слово из источника, переводим, добавляем в контент и перевызываем эту же функцию.
                 [self takeWordTranslateAdd];
             } else {//в 1 нет слов, значит конец
-                
+                result = @"end01";
             }
         }
     } else {//если нет активного словаря.
         
     }
-    
+    return result;
 }
--(void) routineWork {
+-(NSString*) routineWork {
     //работаем - извлекаем с наим. счетчиком, показываем пушем, увеличиваем счетчик и кладем обратно.
     NVContent* contentToShow = self.fetchedWordsAllowedToShow.firstObject;
     NSString* stringToShow = [NSString stringWithFormat:@"%@ - %@",contentToShow.word,contentToShow.translation];
@@ -81,6 +82,7 @@ static const NSInteger countAim = 20;
     if (!error) {
         [self resetFetchedProperties];
     }
+    return stringToShow;
 }
 -(void) takeWordTranslateAdd{
     //берем любое слово из источника, переводим, добавляем в контент и перевызываем эту же функцию.
@@ -89,23 +91,22 @@ static const NSInteger countAim = 20;
     NSString* wordToTranslate = newWord.word;
     NSString* fromLangShort = self.activeDict.fromShort;
     NSString* toLangShort = self.activeDict.toShort;
-#warning translate function here
     __weak NVMainStrategy* weakSelf = self;
-    [[NVServerManager sharedManager] POSTTranslatePhrase:wordToTranslate fromLang:fromLangShort toLang:toLangShort OnSuccess:^(NSDictionary *languages) {
+    [[NVServerManager sharedManager] POSTTranslatePhrase:wordToTranslate fromLang:fromLangShort toLang:toLangShort OnSuccess:^(NSString* translation) {
         //все оставшиеся действия надо делать здесь.
         if (weakSelf.managedObjectContext) {
-            NVContent* newContent=[NSEntityDescription insertNewObjectForEntityForName:@"NVContents" inManagedObjectContext:weakSelf.managedObjectContext];
+            NVContent* newContent=[NSEntityDescription insertNewObjectForEntityForName:@"NVContent" inManagedObjectContext:weakSelf.managedObjectContext];
             newContent.word = newWord.word;
-#warning insert result of translation
-            
-            //newContent.translation = smth.translation;
-            newContent.counter = 0;
+            newContent.translation = translation;
+            newContent.counter = @(0);
             newContent.dict = weakSelf.activeDict;
             
             NSError* error = nil;
-            [weakSelf.managedObjectContext save:&error];
-            if (!error) {
+            
+            if ([weakSelf.managedObjectContext save:&error]) {
                 [weakSelf resetFetchedProperties];
+            } else {
+                NSLog(@"error: %@\n userInfo:%@",error.localizedDescription,error.userInfo);
             }
             
             [weakSelf performAlgo];
@@ -123,13 +124,35 @@ static const NSInteger countAim = 20;
     self.fetchedDict = nil;
     self.fetchedWordsAllowedToShow=nil;
 }
--(void) functionWithTimer{
-    /*
-     здесь задается таймер и вызывается функция со стратегией. возможно именно функция с таймером должна вызываться.
-     Если таймер уже создан, тогда все работает, создавать таймер не надо. если нулл, тогда создать и запустить.
-     */
+-(NSString*) algoResultHandler {
+    NSString* stringToReturn = nil;
+    NSString* result = [self performAlgo];
+    if ([result isEqualToString:@"end01"]) {
+        stringToReturn = @"end01";
+    } else if ([result isEqual:nil]){
+        stringToReturn = [self algoResultHandler];
+    } else {
+        stringToReturn = result;
+    }
+    return stringToReturn;
+}
+-(void) startFireAlert{
+    NSTimeInterval interval;
+    interval = 10;//12 hours from now
+    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+    localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:interval]; //Enter the time here in seconds.
+    localNotification.alertBody= [self algoResultHandler];
+    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    localNotification.repeatInterval= NSCalendarUnitMinute; //Repeating instructions here.
+    localNotification.soundName= UILocalNotificationDefaultSoundName;
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    
+    
 }
 -(NSArray*) fetchedAllowedWords{
+    if (_fetchedAllowedWords != nil) {
+        return _fetchedAllowedWords;
+    }
     NSMutableArray* array =[NSMutableArray array];
     //NSArray* sourceArray = [self.activeDict.contentUnit allObjects];
     for (NVContent* contentUnit in self.activeDict.contentUnit) {
@@ -196,7 +219,10 @@ static const NSInteger countAim = 20;
     [fetchRequest setSortDescriptors:sortDescriptors];
     
     //NSManagedObjectID *moID=[self.person objectID];
-    NSPredicate* predicate=[NSPredicate predicateWithFormat:@"template1==%@ AND NOT (word IN %@)",self.activeTemplate, forbiddenWords];
+    //NSArray* forbiddenWords1 = [NSArray arrayWithObjects:@"one",@"two", nil];
+    NSSet* set1 = [NSSet setWithObject:self.activeTemplate];
+    NSPredicate* predicate=[NSPredicate predicateWithFormat:@"(ANY template1 IN %@) && NOT (word IN %@)",set1, forbiddenWords];
+    //NSPredicate*  predicate = [NSComparisonPredicate predicateWithLeftExpression:[NSExpression expressionForKeyPath:@"template1"] rightExpression:[NSExpression expressionForConstantValue:array1] modifier:NSDirectPredicateModifier type:NSInPredicateOperatorType options:0];
     [fetchRequest setPredicate:predicate];
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".

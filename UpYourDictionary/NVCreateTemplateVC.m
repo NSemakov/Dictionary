@@ -98,7 +98,7 @@
         if ([cell.textField.text isEqualToString:@""]) {
             [arrayOfWrongObjects addObject:@(row+1)];
         } else{
-            word.word = cell.labelLeft.text;
+            word.word = cell.textField.text;
         }
     }
     return arrayOfWrongObjects;

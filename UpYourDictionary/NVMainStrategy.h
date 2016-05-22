@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "NVStrategyProtocol.h"
 #import "NVContent.h"
 #import "NVDicts.h"
@@ -29,7 +30,8 @@
 @property (strong,nonatomic) NVDicts* activeDict;
 @property (strong,nonatomic) NVTemplates* activeTemplate;
 @property (strong,nonatomic) id <NVMainStrategyProtocol> delegate;
--(void) performAlgo;
+-(NSString*) performAlgo;
 -(void) pauseAlgo;
+- (void) startFireAlert;
 +(NVMainStrategy*) sharedManager;
 @end

@@ -60,14 +60,17 @@
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][0];
     if (self.curDict) {
         NSInteger catIndex = [[sectionInfo objects] indexOfObject:self.curDict];
-        if (catIndex == indexPath.row) {
-            return;
-        }
+        
         NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:catIndex inSection:0];
         UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:oldIndexPath];
         if (oldCell.accessoryType == UITableViewCellAccessoryCheckmark) {
             oldCell.accessoryType = UITableViewCellAccessoryNone;
         }
+        if (catIndex == indexPath.row) {
+            self.curDict=nil;
+            return;
+        }
+        
         
     }
     
@@ -126,25 +129,23 @@
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][0];
     if (self.curDict && self.activeDict) {
         if ([self.curDict isEqual:self.activeDict]) {
-            [self.navigationController popViewControllerAnimated:YES];
+            //nothing. для единообразия. все равно сохраняем контекст, даже если ничего не изменилось.
         } else {
             self.curDict.isActive = @(true);
             self.activeDict.isActive = @(false);
-            NSError* error = nil;
-            if (![self.managedObjectContext save:&error]) {
-                NSLog(@"error: %@, user info: %@", error.localizedDescription,error.userInfo);
-            } else {
-                [self.navigationController popViewControllerAnimated:YES];
-            }
         }
     } else if (self.curDict && !self.activeDict){
         self.curDict.isActive = @(true);
-        NSError* error = nil;
-        if (![self.managedObjectContext save:&error]) {
-            NSLog(@"error: %@, user info: %@", error.localizedDescription,error.userInfo);
-        } else {
-            [self.navigationController popViewControllerAnimated:YES];
-        }
+    } else if (!self.curDict && self.activeDict){
+        self.activeDict.isActive=@(false);
+    }
+    
+    //save context
+    NSError* error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"error: %@, user info: %@", error.localizedDescription,error.userInfo);
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
     }
     
 }
