@@ -70,8 +70,6 @@
             self.curDict=nil;
             return;
         }
-        
-        
     }
     
     UITableViewCell *newCell = [tableView cellForRowAtIndexPath:indexPath];
@@ -151,6 +149,21 @@
 }
 
 - (IBAction)buttonCancel:(UIBarButtonItem *)sender {
+    
+}
+
+- (IBAction)buttonDisableChoise:(UIBarButtonItem *)sender {
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][0];
+    if (self.curDict) {
+        NSInteger catIndex = [[sectionInfo objects] indexOfObject:self.curDict];
+        
+        NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:catIndex inSection:0];
+        UITableViewCell *oldCell = [self.tableView cellForRowAtIndexPath:oldIndexPath];
+        oldCell.accessoryType = UITableViewCellAccessoryNone;
+
+        self.curDict=nil;
+        //[self.tableView reloadData];
+    }
     
 }
 @end

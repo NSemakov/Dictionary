@@ -134,6 +134,11 @@
                                 <action selector="buttonSave:" destination="uQE-7S-cJx" id="fRn-xe-g4J"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem title="Снять выбор" id="6ec-G9-Ceb">
+                            <connections>
+                                <action selector="buttonDisableChoise:" destination="uQE-7S-cJx" id="eO0-ds-Efw"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem title="Cancel" id="En3-ht-jnP">
                             <connections>
                                 <action selector="buttonCancel:" destination="uQE-7S-cJx" id="mQs-mh-rAP"/>

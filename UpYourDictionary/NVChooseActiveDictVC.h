@@ -13,6 +13,7 @@
 - (IBAction)buttonAdd:(UIBarButtonItem *)sender;
 - (IBAction)buttonSave:(UIBarButtonItem *)sender;
 - (IBAction)buttonCancel:(UIBarButtonItem *)sender;
+- (IBAction)buttonDisableChoise:(UIBarButtonItem *)sender;
 @property (strong,nonatomic) NVDicts* curDict;
 @property (strong,nonatomic) NVDicts* activeDict;
 @end

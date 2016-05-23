@@ -59,9 +59,17 @@
         cell=[[NVCreateTemplateCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     cell.labelLeft.text =[NSString stringWithFormat:@"%d. Word:",indexPath.row+1];
+    cell.textField.delegate = self;
+    cell.textField.text = [[self.tempWordsSet objectAtIndex:indexPath.row] word];
     return cell;
 }
-
+#pragma mark - UITextFieldDelegate
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    NVCreateTemplateCell* cell = [[textField superview] superview];
+    NSIndexPath* indexPath =  [self.tableView indexPathForCell:cell];
+    NVWords* word = [self.tempWordsSet objectAtIndex:indexPath.row];
+    word.word = textField.text;
+}
 #pragma mark - Actions
 
 
@@ -94,12 +102,15 @@
     for (NVWords* word in self.tempWordsSet) {
         NSInteger row = [self.tempWordsSet indexOfObject:word];
         NSIndexPath* indexPath = [NSIndexPath indexPathForRow:row inSection:0];
-        NVCreateTemplateCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        if ([word.word isEqualToString:@""]) {
+            [arrayOfWrongObjects addObject:@(row+1)];
+        }
+        /*NVCreateTemplateCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
         if ([cell.textField.text isEqualToString:@""]) {
             [arrayOfWrongObjects addObject:@(row+1)];
         } else{
             word.word = cell.textField.text;
-        }
+        }*/
     }
     return arrayOfWrongObjects;
 }
