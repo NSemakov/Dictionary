@@ -29,7 +29,7 @@
 
 }
 -(void) application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
-    NSLog(@"received");
+    NSLog(@"received: %@",notification.alertBody);
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
 
@@ -39,24 +39,8 @@
     //[[NVMainStrategy sharedManager] startFireAlert];
 }
 - (void) application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
-    
-    NSInteger notifyLeft = [[UIApplication sharedApplication].scheduledLocalNotifications count];
-    NSDate* lastNofityFireDate = [[UIApplication sharedApplication].scheduledLocalNotifications lastObject].fireDate;
-    for (NSInteger i = 1; i<62-notifyLeft; i++) {
-        //интервал из настроек
-        NSInteger timeToPush = [[NSUserDefaults standardUserDefaults] integerForKey:NVTimeToPush];
-        if (timeToPush == 0) {
-            timeToPush = 2;}
-        
-        NSDateComponents *hourComponent = [[NSDateComponents alloc] init];
-        hourComponent.hour = i*timeToPush;
-        
-        NSCalendar *theCalendar = [NSCalendar currentCalendar];
-        NSDate *nextDate = [theCalendar dateByAddingComponents:hourComponent toDate:lastNofityFireDate options:0];
-        
-        [[NVMainStrategy sharedManager] startFireAlertAtDate:nextDate];
-    }
-    completionHandler(UIBackgroundFetchResultNewData);
+    [[NVNotificationManager sharedManager] addNewNotificationToFullSet];
+        completionHandler(UIBackgroundFetchResultNewData);
 }
 - (void)applicationWillEnterForeground:(UIApplication *)application {
 

@@ -81,19 +81,7 @@
     sliderValue = self.sliderNumberOfWords.value;
     [[NSUserDefaults standardUserDefaults] setInteger:sliderValue forKey:NVNumberOfWordsToShow];
         //create local notifications in background
-        dispatch_queue_t queue = dispatch_queue_create("com.UpYourDictionary.multithreading.queue", DISPATCH_QUEUE_CONCURRENT);
-        dispatch_async(queue, ^{
-             [[UIApplication sharedApplication] cancelAllLocalNotifications];
-            NSInteger timeToPush = [[NSUserDefaults standardUserDefaults] integerForKey:NVTimeToPush];
-            if (timeToPush == 0) {
-                timeToPush = 2;}
-            for (NSInteger i = 0; i<62; i++) {
-                
-                //интервал из настроек и перевод его из часов в секунды
-                NSDate* fireDate= [NSDate dateWithTimeIntervalSinceNow:20+i*timeToPush*60*60];
-                [[NVMainStrategy sharedManager] startFireAlertAtDate:fireDate];
-            }
-        });
+    [[NVNotificationManager sharedManager] generateNewNotifications];
         
         [self.navigationController popViewControllerAnimated:YES];
 }

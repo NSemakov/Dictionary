@@ -32,9 +32,7 @@
     NVWords* newWord=[NSEntityDescription insertNewObjectForEntityForName:@"NVWords" inManagedObjectContext:self.childContext];
     self.tempWordsSet = [NSMutableArray new];
     [self.tempWordsSet addObject:newWord];
-    [self.tableView reloadData];
-#warning  имя темплейту надо. при нажатии кнопки на предыдущем контроллере или здесь где-то поле
-    
+    [self.tableView reloadData];    
     
 }
 - (void)didReceiveMemoryWarning {
@@ -60,12 +58,12 @@
     }
     cell.labelLeft.text =[NSString stringWithFormat:@"%d. Word:",indexPath.row+1];
     cell.textField.delegate = self;
-    cell.textField.text = [[self.tempWordsSet objectAtIndex:indexPath.row] word];
+    cell.textField.text = (NSString*)[[self.tempWordsSet objectAtIndex:indexPath.row] word];
     return cell;
 }
 #pragma mark - UITextFieldDelegate
 - (void)textFieldDidEndEditing:(UITextField *)textField{
-    NVCreateTemplateCell* cell = [[textField superview] superview];
+    NVCreateTemplateCell* cell = (NVCreateTemplateCell*)[[textField superview] superview];
     NSIndexPath* indexPath =  [self.tableView indexPathForCell:cell];
     NVWords* word = [self.tempWordsSet objectAtIndex:indexPath.row];
     word.word = textField.text;

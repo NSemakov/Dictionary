@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Constants.h"
-#import "NVMainStrategy.h"
-@interface NVSettingsVC : UITableViewController 
+//#import "NVMainStrategy.h"
+#import "NVNotificationManager.h"
+@interface NVSettingsVC : UITableViewController
 @property (weak, nonatomic) IBOutlet UILabel *labelTimeToPush;
 @property (weak, nonatomic) IBOutlet UILabel *labelNumberOfWords;
 @property (weak, nonatomic) IBOutlet UISlider *sliderTimeToPush;

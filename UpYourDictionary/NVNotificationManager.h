@@ -11,6 +11,10 @@
 #import "NVMainStrategy.h"
 #import "NVDicts.h"
 #import "NVContent.h"
+#import "Constants.h"
 @interface NVNotificationManager : NSObject
++(NVNotificationManager*) sharedManager;
 
+-(void) generateNewNotifications;
+-(void) addNewNotificationToFullSet;
 @end

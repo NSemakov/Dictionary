@@ -10,5 +10,6 @@
 #define Constants_h
 static NSString * const NVNumberOfWordsToShow = @"numberOfWords";
 static NSString * const NVTimeToPush = @"timeToPush";
+static NSInteger const wordsInOneNotify = 3;
 
 #endif /* Constants_h */

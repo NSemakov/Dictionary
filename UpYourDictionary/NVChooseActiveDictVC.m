@@ -51,7 +51,7 @@
         }
     }
 
-#warning pay attention
+
 }
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -86,7 +86,7 @@
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
-#warning entity name override!
+
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"NVDicts" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     //[fetchRequest setRelationshipKeyPathsForPrefetching:@[@"coursesAsStudent",@"coursesAsTeacher"]];
@@ -124,10 +124,9 @@
 }
 
 - (IBAction)buttonSave:(UIBarButtonItem *)sender {
-    //cancel all notifications
-    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+
     //save dictionary as active
-    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][0];
+    //id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][0];
     if (self.curDict && self.activeDict) {
         if ([self.curDict isEqual:self.activeDict]) {
             //nothing. для единообразия. все равно сохраняем контекст, даже если ничего не изменилось.
@@ -146,19 +145,7 @@
     if (![self.managedObjectContext save:&error]) {
         NSLog(@"error: %@, user info: %@", error.localizedDescription,error.userInfo);
     } else {
-        //create local notifications in background
-        dispatch_queue_t queue = dispatch_queue_create("com.UpYourDictionary.multithreading.queue", DISPATCH_QUEUE_CONCURRENT);
-        dispatch_async(queue, ^{
-            NSInteger timeToPush = [[NSUserDefaults standardUserDefaults] integerForKey:NVTimeToPush];
-            if (timeToPush == 0) {
-                timeToPush = 2;}
-            for (NSInteger i = 0; i<62; i++) {
-                
-                //интервал из настроек и перевод его из часов в секунды
-            NSDate* fireDate= [NSDate dateWithTimeIntervalSinceNow:20+i*timeToPush*60*60];
-                [[NVMainStrategy sharedManager] startFireAlertAtDate:fireDate];
-        }
-        });
+        [[NVNotificationManager sharedManager] generateNewNotifications];
         
         [self.navigationController popViewControllerAnimated:YES];
     }

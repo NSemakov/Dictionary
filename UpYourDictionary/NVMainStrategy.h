@@ -33,6 +33,5 @@
 @property (strong, nonatomic) NSMutableSet* setOfTempTakenWords;
 -(NVContent*) performAlgo;
 -(void) pauseAlgo;
--(void) startFireAlertAtDate:(NSDate*) fireDate;
 +(NVMainStrategy*) sharedManager;
 @end

@@ -94,7 +94,7 @@
     self.dict.isActive = @(false);
     self.dict.fromShort = self.langFromShort;
     self.dict.toShort = self.langToShort;
-#warning check all fields!
+
     NSError* error = nil;
     if (![self.managedObjectContext save:&error]) {
         NSLog(@"error:%@",error.localizedDescription);

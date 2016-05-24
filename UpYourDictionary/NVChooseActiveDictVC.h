@@ -9,8 +9,9 @@
 #import "NVParentViewController.h"
 #import "NVDicts.h"
 #import "NVTemplates.h"
-#import "NVMainStrategy.h"
+//#import "NVMainStrategy.h"
 #import "Constants.h"
+#import "NVNotificationManager.h"
 @interface NVChooseActiveDictVC : NVParentViewController
 - (IBAction)buttonAdd:(UIBarButtonItem *)sender;
 - (IBAction)buttonSave:(UIBarButtonItem *)sender;
