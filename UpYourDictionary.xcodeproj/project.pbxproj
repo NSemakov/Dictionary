@@ -23,6 +23,7 @@
 		844630C31CEBCAD3004E0994 /* NVContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 844630BB1CEBCAD3004E0994 /* NVContent.m */; settings = {ASSET_TAGS = (); }; };
 		844E4EA91CEA508A0012AB04 /* NVLangFromVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 844E4EA81CEA508A0012AB04 /* NVLangFromVC.m */; settings = {ASSET_TAGS = (); }; };
 		844E4EAC1CEA50A90012AB04 /* NVLangToVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 844E4EAB1CEA50A90012AB04 /* NVLangToVC.m */; settings = {ASSET_TAGS = (); }; };
+		8451201B1CF3B620007759F7 /* NVSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8451201A1CF3B620007759F7 /* NVSettingsVC.m */; settings = {ASSET_TAGS = (); }; };
 		8456915F1CE9EDBB005E4AE1 /* NVServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8456915E1CE9EDBB005E4AE1 /* NVServerManager.m */; settings = {ASSET_TAGS = (); }; };
 		845691621CE9F741005E4AE1 /* NVCreateNewDictVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 845691611CE9F741005E4AE1 /* NVCreateNewDictVC.m */; settings = {ASSET_TAGS = (); }; };
 		845691661CE9F8B2005E4AE1 /* NVChooseLangVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 845691651CE9F8B2005E4AE1 /* NVChooseLangVC.m */; settings = {ASSET_TAGS = (); }; };
@@ -87,6 +88,9 @@
 		844E4EA81CEA508A0012AB04 /* NVLangFromVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVLangFromVC.m; sourceTree = "<group>"; };
 		844E4EAA1CEA50A90012AB04 /* NVLangToVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVLangToVC.h; sourceTree = "<group>"; };
 		844E4EAB1CEA50A90012AB04 /* NVLangToVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVLangToVC.m; sourceTree = "<group>"; };
+		845120191CF3B620007759F7 /* NVSettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVSettingsVC.h; sourceTree = "<group>"; };
+		8451201A1CF3B620007759F7 /* NVSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVSettingsVC.m; sourceTree = "<group>"; };
+		8451201C1CF3BE31007759F7 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		8456915D1CE9EDBB005E4AE1 /* NVServerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVServerManager.h; sourceTree = "<group>"; };
 		8456915E1CE9EDBB005E4AE1 /* NVServerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVServerManager.m; sourceTree = "<group>"; };
 		845691601CE9F741005E4AE1 /* NVCreateNewDictVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVCreateNewDictVC.h; sourceTree = "<group>"; };
@@ -207,6 +211,8 @@
 				844630A11CEBBB1E004E0994 /* NVChooseDictThemeVC.m */,
 				845691601CE9F741005E4AE1 /* NVCreateNewDictVC.h */,
 				845691611CE9F741005E4AE1 /* NVCreateNewDictVC.m */,
+				845120191CF3B620007759F7 /* NVSettingsVC.h */,
+				8451201A1CF3B620007759F7 /* NVSettingsVC.m */,
 				8446309A1CEBAC32004E0994 /* NVParentViewController.h */,
 				8446309B1CEBAC32004E0994 /* NVParentViewController.m */,
 			);
@@ -247,6 +253,7 @@
 				84F2FDB01CEE619B00714DF0 /* NVMainStrategy.h */,
 				84F2FDB11CEE619B00714DF0 /* NVMainStrategy.m */,
 				84F2FDB31CEE621F00714DF0 /* NVStrategyProtocol.h */,
+				8451201C1CF3BE31007759F7 /* Constants.h */,
 				845691631CE9F74D005E4AE1 /* ViewControllers */,
 				845894411CE8BC3800D4FE35 /* Assets.xcassets */,
 				8462CDDF1CEA4D0B00E742AC /* Main.storyboard */,
@@ -487,6 +494,7 @@
 				844630BE1CEBCAD3004E0994 /* NVTemplates+CoreDataProperties.m in Sources */,
 				844630C31CEBCAD3004E0994 /* NVContent.m in Sources */,
 				844E4EAC1CEA50A90012AB04 /* NVLangToVC.m in Sources */,
+				8451201B1CF3B620007759F7 /* NVSettingsVC.m in Sources */,
 				844630BF1CEBCAD3004E0994 /* NVTemplates.m in Sources */,
 				844630C11CEBCAD3004E0994 /* NVWords.m in Sources */,
 				843BCB6D1CEDE034000F30A3 /* NVCreateTemplateCell.m in Sources */,

@@ -557,7 +557,7 @@
         <!--Settings-->
         <scene sceneID="Xri-l0-P5e">
             <objects>
-                <tableViewController id="DSt-dp-HgC" sceneMemberID="viewController">
+                <tableViewController id="DSt-dp-HgC" customClass="NVSettingsVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="J52-bd-BkL">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -566,15 +566,25 @@
                         <sections>
                             <tableViewSection id="3aT-2R-PIa">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="ld3-Lb-xgO">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="timeToPush" id="ld3-Lb-xgO">
                                         <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ld3-Lb-xgO" id="iO8-rD-k4w">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time to Push" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7M-ib-ODM">
-                                                    <rect key="frame" x="41" y="11" width="109" height="21"/>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="1" maxValue="12" translatesAutoresizingMaskIntoConstraints="NO" id="DlV-KJ-VR8">
+                                                    <rect key="frame" x="476" y="7" width="118" height="31"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="114" id="Yfx-i5-E3A"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <action selector="sliderActionTimeToPush:" destination="DSt-dp-HgC" eventType="valueChanged" id="agS-ON-cIZ"/>
+                                                    </connections>
+                                                </slider>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Time to Push" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7M-ib-ODM">
+                                                    <rect key="frame" x="8" y="11" width="109" height="21"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -582,18 +592,34 @@
                                                 </label>
                                             </subviews>
                                             <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="DlV-KJ-VR8" secondAttribute="trailing" id="Txo-gC-qdM"/>
+                                                <constraint firstItem="DlV-KJ-VR8" firstAttribute="centerY" secondItem="iO8-rD-k4w" secondAttribute="centerY" id="WI9-ke-UKy"/>
+                                                <constraint firstItem="B7M-ib-ODM" firstAttribute="centerY" secondItem="iO8-rD-k4w" secondAttribute="centerY" id="dgt-be-xw0"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="B7M-ib-ODM" secondAttribute="leading" id="tAm-im-VSR"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="hdX-Q1-8Y8">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="numberOfWords" id="hdX-Q1-8Y8">
                                         <rect key="frame" x="0.0" y="108" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hdX-Q1-8Y8" id="XdT-xh-qhu">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Number of words" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qca-Hb-ubJ">
-                                                    <rect key="frame" x="43" y="11" width="138" height="21"/>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="m8t-Zy-Ghp">
+                                                    <rect key="frame" x="476" y="7" width="118" height="31"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="114" id="zDO-vZ-OIu"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <action selector="sliderActionNumberOfWords:" destination="DSt-dp-HgC" eventType="valueChanged" id="x4c-HS-kff"/>
+                                                    </connections>
+                                                </slider>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Number of words" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qca-Hb-ubJ">
+                                                    <rect key="frame" x="8" y="11" width="138" height="21"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -601,6 +627,12 @@
                                                 </label>
                                             </subviews>
                                             <animations/>
+                                            <constraints>
+                                                <constraint firstItem="m8t-Zy-Ghp" firstAttribute="centerY" secondItem="XdT-xh-qhu" secondAttribute="centerY" id="3qg-fQ-RnO"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="qca-Hb-ubJ" secondAttribute="leading" id="C8e-YH-u6y"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="m8t-Zy-Ghp" secondAttribute="trailing" id="MsH-Sw-YTn"/>
+                                                <constraint firstItem="qca-Hb-ubJ" firstAttribute="centerY" secondItem="XdT-xh-qhu" secondAttribute="centerY" id="Z04-cU-cu4"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>
@@ -622,7 +654,25 @@
                             <outlet property="delegate" destination="DSt-dp-HgC" id="cOe-Ao-9Ma"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem title="Save" id="Cng-VH-61F">
+                            <connections>
+                                <action selector="buttonSave:" destination="DSt-dp-HgC" id="qEB-Cc-OrE"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="Cancel" id="te1-x6-dy4">
+                            <connections>
+                                <action selector="buttonCancel:" destination="DSt-dp-HgC" id="Xcf-Ak-goN"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Settings" id="DJc-CW-kYn"/>
+                    <connections>
+                        <outlet property="labelNumberOfWords" destination="qca-Hb-ubJ" id="gjr-B0-QnF"/>
+                        <outlet property="labelTimeToPush" destination="B7M-ib-ODM" id="JJ9-zT-W2M"/>
+                        <outlet property="sliderNumberOfWords" destination="m8t-Zy-Ghp" id="Jve-7O-VYt"/>
+                        <outlet property="sliderTimeToPush" destination="DlV-KJ-VR8" id="0EZ-Ct-T7J"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Fy-1F-eKk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

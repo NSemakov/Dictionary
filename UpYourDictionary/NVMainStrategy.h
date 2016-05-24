@@ -32,6 +32,6 @@
 @property (strong,nonatomic) id <NVMainStrategyProtocol> delegate;
 -(NSString*) performAlgo;
 -(void) pauseAlgo;
-- (void) startFireAlert;
+-(void) startFireAlertAtDate:(NSDate*) fireDate;
 +(NVMainStrategy*) sharedManager;
 @end

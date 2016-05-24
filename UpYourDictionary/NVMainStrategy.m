@@ -128,7 +128,7 @@ static const NSInteger countAim = 20;
     NSString* stringToReturn = nil;
     NSString* result = [self performAlgo];
     if ([result isEqualToString:@"end01"]) {
-        stringToReturn = @"end01";
+        stringToReturn = @"Dictionary is done! Choose another one or disable it";
     } else if ([result isEqual:nil]){
         stringToReturn = [self algoResultHandler];
     } else {
@@ -136,11 +136,16 @@ static const NSInteger countAim = 20;
     }
     return stringToReturn;
 }
--(void) startFireAlert{
+-(void) startFireAlertAtDate:(NSDate*) fireDate{
+    self.activeDict =[self.fetchedDict firstObject];
+    if (!self.activeDict) { //не работаем без активного словаря
+        return;
+    }
+    //take settings like number of words, frequency in hours
     NSTimeInterval interval;
-    interval = 10;//12 hours from now
+    //interval = 60;//12 hours from now
     UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-    localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:interval]; //Enter the time here in seconds.
+    localNotification.fireDate = fireDate ; //Enter the time here in seconds.
     localNotification.alertBody= [self algoResultHandler];
     localNotification.timeZone = [NSTimeZone defaultTimeZone];
     localNotification.repeatInterval= NSCalendarUnitMinute; //Repeating instructions here.

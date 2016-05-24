@@ -18,12 +18,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
-    UIUserNotificationType types = UIUserNotificationTypeBadge| UIUserNotificationTypeSound| UIUserNotificationTypeAlert;
+    UIUserNotificationType types = UIUserNotificationTypeAlert;
     UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
     [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
     NSLog(@"did finish launching with options");
-
-    [[UIApplication sharedApplication] cancelAllLocalNotifications];
 
     return YES;
 }
@@ -41,29 +39,27 @@
     //[[NVMainStrategy sharedManager] startFireAlert];
 }
 - (void) application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
-    UILocalNotification* notify = [UIApplication sharedApplication].scheduledLocalNotifications.firstObject;
-        NSLog(@"Notification : %@",notify.alertBody);
-    NSTimeInterval originalTime = [notify.fireDate timeIntervalSinceReferenceDate];
-    NSTimeInterval curTime = [[NSDate date] timeIntervalSinceReferenceDate];
-    NSTimeInterval elapsed = curTime - originalTime;
-    NSLog(@"elapsed %f",elapsed);
-    if (elapsed > 30){
-        [[UIApplication sharedApplication] cancelAllLocalNotifications];
-        [[NVMainStrategy sharedManager] startFireAlert];
+    
+    NSInteger notifyLeft = [[UIApplication sharedApplication].scheduledLocalNotifications count];
+    NSDate* lastNofityFireDate = [[UIApplication sharedApplication].scheduledLocalNotifications lastObject].fireDate;
+    for (NSInteger i = 1; i<62-notifyLeft; i++) {
+        //интервал из настроек
+        NSInteger timeToPush = [[NSUserDefaults standardUserDefaults] integerForKey:NVTimeToPush];
+        if (timeToPush == 0) {
+            timeToPush = 2;}
+        
+        NSDateComponents *hourComponent = [[NSDateComponents alloc] init];
+        hourComponent.hour = i*timeToPush;
+        
+        NSCalendar *theCalendar = [NSCalendar currentCalendar];
+        NSDate *nextDate = [theCalendar dateByAddingComponents:hourComponent toDate:lastNofityFireDate options:0];
+        
+        [[NVMainStrategy sharedManager] startFireAlertAtDate:nextDate];
     }
     completionHandler(UIBackgroundFetchResultNewData);
 }
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    NSLog(@"applicationWillEnterForeground");
-    for (UILocalNotification* notify in [UIApplication sharedApplication].scheduledLocalNotifications) {
-        NSLog(@"Notification: %@",notify.alertBody);
-    }
-    [[UIApplication sharedApplication] cancelAllLocalNotifications];
-    NSLog(@"Notification after");
-    for (UILocalNotification* notify in [UIApplication sharedApplication].scheduledLocalNotifications) {
-        NSLog(@"Notification : %@",notify.alertBody);
-    }
+
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
