@@ -23,6 +23,7 @@
 		844630C31CEBCAD3004E0994 /* NVContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 844630BB1CEBCAD3004E0994 /* NVContent.m */; settings = {ASSET_TAGS = (); }; };
 		844E4EA91CEA508A0012AB04 /* NVLangFromVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 844E4EA81CEA508A0012AB04 /* NVLangFromVC.m */; settings = {ASSET_TAGS = (); }; };
 		844E4EAC1CEA50A90012AB04 /* NVLangToVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 844E4EAB1CEA50A90012AB04 /* NVLangToVC.m */; settings = {ASSET_TAGS = (); }; };
+		844FCFAE1CF475C100DCCA8A /* NVNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 844FCFAD1CF475C100DCCA8A /* NVNotificationManager.m */; settings = {ASSET_TAGS = (); }; };
 		8451201B1CF3B620007759F7 /* NVSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8451201A1CF3B620007759F7 /* NVSettingsVC.m */; settings = {ASSET_TAGS = (); }; };
 		8456915F1CE9EDBB005E4AE1 /* NVServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8456915E1CE9EDBB005E4AE1 /* NVServerManager.m */; settings = {ASSET_TAGS = (); }; };
 		845691621CE9F741005E4AE1 /* NVCreateNewDictVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 845691611CE9F741005E4AE1 /* NVCreateNewDictVC.m */; settings = {ASSET_TAGS = (); }; };
@@ -88,6 +89,8 @@
 		844E4EA81CEA508A0012AB04 /* NVLangFromVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVLangFromVC.m; sourceTree = "<group>"; };
 		844E4EAA1CEA50A90012AB04 /* NVLangToVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVLangToVC.h; sourceTree = "<group>"; };
 		844E4EAB1CEA50A90012AB04 /* NVLangToVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVLangToVC.m; sourceTree = "<group>"; };
+		844FCFAC1CF475C100DCCA8A /* NVNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVNotificationManager.h; sourceTree = "<group>"; };
+		844FCFAD1CF475C100DCCA8A /* NVNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVNotificationManager.m; sourceTree = "<group>"; };
 		845120191CF3B620007759F7 /* NVSettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVSettingsVC.h; sourceTree = "<group>"; };
 		8451201A1CF3B620007759F7 /* NVSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVSettingsVC.m; sourceTree = "<group>"; };
 		8451201C1CF3BE31007759F7 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -244,6 +247,8 @@
 		845894311CE8BC3800D4FE35 /* UpYourDictionary */ = {
 			isa = PBXGroup;
 			children = (
+				844FCFAC1CF475C100DCCA8A /* NVNotificationManager.h */,
+				844FCFAD1CF475C100DCCA8A /* NVNotificationManager.m */,
 				8456915D1CE9EDBB005E4AE1 /* NVServerManager.h */,
 				8456915E1CE9EDBB005E4AE1 /* NVServerManager.m */,
 				845894351CE8BC3800D4FE35 /* AppDelegate.h */,
@@ -507,6 +512,7 @@
 				8446309F1CEBAE22004E0994 /* NVChooseActiveDictVC.m in Sources */,
 				844630C21CEBCAD3004E0994 /* NVContent+CoreDataProperties.m in Sources */,
 				84F2FDB21CEE619B00714DF0 /* NVMainStrategy.m in Sources */,
+				844FCFAE1CF475C100DCCA8A /* NVNotificationManager.m in Sources */,
 				844E4EA91CEA508A0012AB04 /* NVLangFromVC.m in Sources */,
 				8456915F1CE9EDBB005E4AE1 /* NVServerManager.m in Sources */,
 				845691621CE9F741005E4AE1 /* NVCreateNewDictVC.m in Sources */,

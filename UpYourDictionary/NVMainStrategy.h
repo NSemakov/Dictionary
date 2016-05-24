@@ -30,7 +30,8 @@
 @property (strong,nonatomic) NVDicts* activeDict;
 @property (strong,nonatomic) NVTemplates* activeTemplate;
 @property (strong,nonatomic) id <NVMainStrategyProtocol> delegate;
--(NSString*) performAlgo;
+@property (strong, nonatomic) NSMutableSet* setOfTempTakenWords;
+-(NVContent*) performAlgo;
 -(void) pauseAlgo;
 -(void) startFireAlertAtDate:(NSDate*) fireDate;
 +(NVMainStrategy*) sharedManager;

@@ -16,6 +16,7 @@ static const NSInteger countAim = 20;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         manager=[[NVMainStrategy alloc]init];
+        manager.setOfTempTakenWords = [[NSMutableSet alloc]init];
     });
     return manager;
 }
@@ -26,8 +27,10 @@ static const NSInteger countAim = 20;
      Что хорошо - прогресс при этом не стирается. Все остается на своих местах.
      */
 }
--(NSString*) performAlgo{
-    NSString* result = nil;
+-(NVContent*) performAlgo{
+    //либо NVContent со словом, переводом и счетчиком
+    //либо nil - если слово просто было переведено и добавлено. значит этот алгоритм надо вызвать еще раз, чтобы получить слово.
+    NVContent* result = nil;
     /*
      эта функция вызывается по таймеру какой-то другой функцией из таймера.
      взять текущий словарь, если нет контента, создать контент
@@ -37,9 +40,7 @@ static const NSInteger countAim = 20;
      Берем слово с наименьшим счетчиком, показываем (local notification) (пока что выводим на экран, где словари и настройки).
      счетчик увеличиваем. ну и т.д. по стратегии. сюда же доп проверки на количество.
      */
-#warning all in background thread, notification - on main
-    self.activeDict =[self.fetchedDict firstObject];
-    
+
     if (self.activeDict) {//есть активный словарь
         self.activeTemplate=self.activeDict.template1;
         NSArray* activeContent =self.fetchedContent;
@@ -48,7 +49,9 @@ static const NSInteger countAim = 20;
             if ([activeContent count] < numberOfWords) {//меньше 10 слов?
                 if ([self.fetchedAllowedWords count] > 0) { //в источнике слов еще есть неиспользованные слова для перевода
                     //берем любое слово из источника, переводим, добавляем в контент и перевызываем эту же функцию.
-                    [self takeWordTranslateAdd];
+                    if (numberOfWords - [activeContent count] > [self.setOfTempTakenWords count]) {
+                        [self takeWordTranslateAdd];
+                    }
                 } else { //больше нет слов в источнике для перевода.
                     //просто работаем - извлекаем с наим. счетчиком, показываем пушем, увеличиваем счетчик и кладем обратно.
                     result = [self routineWork];
@@ -61,33 +64,58 @@ static const NSInteger countAim = 20;
             if ([self.fetchedAllowedWords count]> 0) {//в 1 еще есть слова, значит самое начало
                 //берем любое слово из источника, переводим, добавляем в контент и перевызываем эту же функцию.
                 [self takeWordTranslateAdd];
-            } else {//в 1 нет слов, значит конец
-                result = @"end01";
+            } else {//в 1 нет слов, значит конец, сбрасываем активность словаря.
+                self.activeDict.isActive = @(false);
+                result = [self performLastStep];
             }
         }
-    } else {//если нет активного словаря.
+    } else {//если нет активного словаря, вернется nil
         
     }
     return result;
 }
--(NSString*) routineWork {
+-(NVContent*) performLastStep {
+    NVContent* newWord=[NSEntityDescription insertNewObjectForEntityForName:@"NVWords" inManagedObjectContext:self.managedObjectContext];
+    newWord.word = @"!";
+    NVContent* newContent=[NSEntityDescription insertNewObjectForEntityForName:@"NVContent" inManagedObjectContext:self.managedObjectContext];
+    newContent.word = newWord.word;
+    newContent.translation = @"Dictionary is done! Please, choose another one.";
+    newContent.counter = @(10);
+    newContent.dict = self.activeDict;
+    
+    NSError* error = nil;
+    
+    if ([self.managedObjectContext save:&error]) {
+        [self resetFetchedProperties];
+        return newContent;
+    } else {
+        NSLog(@"error: %@\n userInfo:%@",error.localizedDescription,error.userInfo);
+        return nil;
+    }
+    
+}
+-(NVContent*) routineWork {
     //работаем - извлекаем с наим. счетчиком, показываем пушем, увеличиваем счетчик и кладем обратно.
     NVContent* contentToShow = self.fetchedWordsAllowedToShow.firstObject;
-    NSString* stringToShow = [NSString stringWithFormat:@"%@ - %@",contentToShow.word,contentToShow.translation];
-#warning show in local notification; increase count by 1 and save to context;
-    [self.delegate showWord:contentToShow.word translation:contentToShow.translation];
+    //NSString* stringToShow = [NSString stringWithFormat:@"%@ - %@",contentToShow.word,contentToShow.translation];
+    //[self.delegate showWord:contentToShow.word translation:contentToShow.translation];
     contentToShow.counter = @([contentToShow.counter integerValue]+1);
     NSError* error = nil;
     [self.managedObjectContext save:&error];
     if (!error) {
         [self resetFetchedProperties];
     }
-    return stringToShow;
+    return contentToShow;
 }
 -(void) takeWordTranslateAdd{
-    //берем любое слово из источника, переводим, добавляем в контент и перевызываем эту же функцию.
-    
-    NVWords* newWord = [self.fetchedAllowedWords firstObject];
+    //берем любое слово из источника, проверяем, не взято ли оно уже для перевода. переводим, добавляем в контент и .
+    NSSet* set = [NSSet setWithArray:self.fetchedAllowedWords];
+    NVWords* newWord = [set anyObject];
+    if ([self.setOfTempTakenWords containsObject:newWord]) {
+        return;
+    } else {
+        [self.setOfTempTakenWords addObject:newWord];
+    }
     NSString* wordToTranslate = newWord.word;
     NSString* fromLangShort = self.activeDict.fromShort;
     NSString* toLangShort = self.activeDict.toShort;
@@ -105,11 +133,12 @@ static const NSInteger countAim = 20;
             
             if ([weakSelf.managedObjectContext save:&error]) {
                 [weakSelf resetFetchedProperties];
+                [self.setOfTempTakenWords removeObject:newWord];
             } else {
                 NSLog(@"error: %@\n userInfo:%@",error.localizedDescription,error.userInfo);
             }
             
-            [weakSelf performAlgo];
+            //[weakSelf performAlgo];
         }
         
     } onFailure:^(NSString *error) {
@@ -123,38 +152,26 @@ static const NSInteger countAim = 20;
     self.fetchedContent = nil;
     self.fetchedDict = nil;
     self.fetchedWordsAllowedToShow=nil;
+    self.activeDict = nil;
+    self.activeTemplate = nil;
 }
--(NSString*) algoResultHandler {
-    NSString* stringToReturn = nil;
-    NSString* result = [self performAlgo];
-    if ([result isEqualToString:@"end01"]) {
-        stringToReturn = @"Dictionary is done! Choose another one or disable it";
-    } else if ([result isEqual:nil]){
-        stringToReturn = [self algoResultHandler];
-    } else {
-        stringToReturn = result;
+-(NVContent*) algoResultHandler {
+    //stringToReturn = @"Dictionary is done! Choose another one or disable it";
+    //NSString* stringToReturn = nil;
+    NVContent* result = nil;
+    if (self.activeDict) {
+        result = [self performAlgo];
+        if (!result) {
+            result = [self algoResultHandler];
+        }
     }
-    return stringToReturn;
-}
--(void) startFireAlertAtDate:(NSDate*) fireDate{
-    self.activeDict =[self.fetchedDict firstObject];
-    if (!self.activeDict) { //не работаем без активного словаря
-        return;
-    }
-    //take settings like number of words, frequency in hours
-    NSTimeInterval interval;
-    //interval = 60;//12 hours from now
-    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-    localNotification.fireDate = fireDate ; //Enter the time here in seconds.
-    localNotification.alertBody= [self algoResultHandler];
-    localNotification.timeZone = [NSTimeZone defaultTimeZone];
-    localNotification.repeatInterval= NSCalendarUnitMinute; //Repeating instructions here.
-    localNotification.soundName= UILocalNotificationDefaultSoundName;
-    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
     
-    
+    return result;
 }
--(NSArray*) fetchedAllowedWords{
+- (NVDicts*) activeDict{
+    return [self.fetchedDict firstObject];
+}
+- (NSArray*) fetchedAllowedWords{
     if (_fetchedAllowedWords != nil) {
         return _fetchedAllowedWords;
     }

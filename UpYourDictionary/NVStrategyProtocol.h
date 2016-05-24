@@ -7,8 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
+@class NVDicts;
+@class NVContent;
 @protocol NVStrategyProtocol <NSObject>
--(NSString*) performAlgo;
+@property (strong,nonatomic) NVDicts* activeDict;
+-(NVContent*) algoResultHandler;
+-(NVContent*) performAlgo;
 -(void) pauseAlgo;
 @end
