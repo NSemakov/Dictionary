@@ -30,6 +30,7 @@
     newTemplate.name = self.templateName;
     self.templateNew = newTemplate;
     NVWords* newWord=[NSEntityDescription insertNewObjectForEntityForName:@"NVWords" inManagedObjectContext:self.childContext];
+    newWord.word=@"";
     self.tempWordsSet = [NSMutableArray new];
     [self.tempWordsSet addObject:newWord];
     [self.tableView reloadData];    
@@ -74,6 +75,7 @@
 
 - (IBAction)buttonAddWord:(UIBarButtonItem *)sender {
     NVWords* newWord=[NSEntityDescription insertNewObjectForEntityForName:@"NVWords" inManagedObjectContext:self.childContext];
+    newWord.word=@"";
     [self.tempWordsSet addObject:newWord];
     NSIndexPath * indexPath = [NSIndexPath indexPathForRow:[self.tempWordsSet count]-1 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
@@ -96,6 +98,7 @@
     for (NVWords* word in self.tempWordsSet) {
         NSInteger row = [self.tempWordsSet indexOfObject:word];
         //NSIndexPath* indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+        
         if ([word.word isEqualToString:@""]) {
             [arrayOfWrongObjects addObject:@(row+1)];
         }

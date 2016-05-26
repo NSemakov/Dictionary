@@ -51,10 +51,10 @@
     NSArray* arrayOfScheduledNotification = [app scheduledLocalNotifications];
     NSInteger initialCount = [arrayOfScheduledNotification count];
     for (NSInteger i = initialCount; i>0; i--) {
-        if (initialCount!= [[app scheduledLocalNotifications] count]) {
+        /*if (initialCount!= [[app scheduledLocalNotifications] count]) {
             //если в процессе отката вызвалась нотификация по времени и их стало меньше, тогда перевызовем этот метод еще раз
             [self cancelNotificationsCompleteWay];
-        }
+        }*/
         UILocalNotification* lastNotify = [arrayOfScheduledNotification objectAtIndex:i-1];
         NSDate* lastNotifyFireDate = lastNotify.fireDate;
         //NSMutableArray* userInfoArray = ;
@@ -68,6 +68,10 @@
                 //просто сохраняем с уменьшенным счетчиком
             }
         }
+        if (notifyInUse) {
+            [self.managedObjectContext deleteObject:notifyInUse];
+        }
+        
         NSError* error = nil;
         [self.managedObjectContext save:&error];
         //[app cancelLocalNotification:lastNotify];
@@ -158,7 +162,7 @@
         localNotification.soundName= UILocalNotificationDefaultSoundName;
         localNotification.userInfo = nil;
         [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-        NSLog(@"from nvnotman. localNot:%@ body:%@",localNotification.fireDate,localNotification.alertBody);
+        NSLog(@"from nvnotman. localNot body:%@",localNotification.alertBody);
     }
     
     
@@ -171,7 +175,7 @@
     // Edit the entity name as appropriate.
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"NVNotifyInUse" inManagedObjectContext:moc];
     [fetchRequest setEntity:entity];
-    //[fetchRequest setRelationshipKeyPathsForPrefetching:@[@"NVTemplates",@"NVContent"]];
+    [fetchRequest setRelationshipKeyPathsForPrefetching:@[@"content",@"counter"]];
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     
@@ -199,7 +203,7 @@
 }
 -(NSArray*) fetchedAllNotifies
 {
-    NSManagedObjectContext* moc = [[NVDataManager sharedManager] managedObjectContext];
+    NSManagedObjectContext* moc = self.managedObjectContext;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"NVNotifyInUse" inManagedObjectContext:moc];
@@ -221,7 +225,6 @@
     NSError* error = nil;
     NSArray* resultArray= [moc executeFetchRequest:fetchRequest error:&error];
     if (!error) {
-        //_fetchedWordsAllowedToShow = resultArray;
         return resultArray;
     } else {
         NSLog(@"error: %@, local description: %@",error.userInfo, error.localizedDescription);

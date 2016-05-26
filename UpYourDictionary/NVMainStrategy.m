@@ -96,6 +96,8 @@ static const NSInteger countAim = 20;
     [self.managedObjectContext save:&error];
     if (!error) {
         [self resetFetchedProperties];
+    } else {
+        NSLog(@"error in routine work: %@,%@",error.description,error.userInfo);
     }
     return contentToShow;
 }
@@ -198,7 +200,7 @@ static const NSInteger countAim = 20;
     
     
     //NSManagedObjectID *moID=[self.person objectID];
-    NSPredicate* predicate=[NSPredicate predicateWithFormat:@"dict =%@ AND counter < %d",self.activeDict, countAim];
+    NSPredicate* predicate=[NSPredicate predicateWithFormat:@"dict =%@ AND counter < %@",self.activeDict, @(countAim)];
     [fetchRequest setPredicate:predicate];
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
@@ -207,9 +209,9 @@ static const NSInteger countAim = 20;
     if (!error) {
         _fetchedWordsAllowedToShow = resultArray;
         //NSLog(@"resultArray: %@",resultArray);
-        /*for (NVContent* content in resultArray) {
+        for (NVContent* content in resultArray) {
             NSLog(@"word:%@,counter:%@",content.word,content.counter);
-        }*/
+        }
         return resultArray;
     } else {
         NSLog(@"error: %@, local description: %@",error.userInfo, error.localizedDescription);
@@ -276,7 +278,7 @@ static const NSInteger countAim = 20;
     [fetchRequest setSortDescriptors:sortDescriptors];
     
     //NSManagedObjectID *moID=[self.person objectID];
-    NSPredicate* predicate=[NSPredicate predicateWithFormat:@"dict=%@ AND counter < %d",self.activeDict, countAim];
+    NSPredicate* predicate=[NSPredicate predicateWithFormat:@"dict=%@ AND counter < %d",self.activeDict, @(countAim)];
     [fetchRequest setPredicate:predicate];
 
     NSError* error = nil;
