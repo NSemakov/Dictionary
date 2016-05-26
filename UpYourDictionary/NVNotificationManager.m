@@ -170,14 +170,14 @@
 }
 -(NVNotifyInUse*) fetchedNotifyWithDate:(NSDate*) fireDate
 {
-    NSManagedObjectContext* moc = [[NVDataManager sharedManager] managedObjectContext];
+    NSManagedObjectContext* moc = self.managedObjectContext;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"NVNotifyInUse" inManagedObjectContext:moc];
     [fetchRequest setEntity:entity];
     [fetchRequest setRelationshipKeyPathsForPrefetching:@[@"content",@"counter"]];
     // Set the batch size to a suitable number.
-    [fetchRequest setFetchBatchSize:20];
+    //[fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"fireDate" ascending:YES];
@@ -210,7 +210,7 @@
     [fetchRequest setEntity:entity];
     //[fetchRequest setRelationshipKeyPathsForPrefetching:@[@"NVTemplates",@"NVContent"]];
     // Set the batch size to a suitable number.
-    [fetchRequest setFetchBatchSize:20];
+    //[fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
     //NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"fireDate" ascending:YES];
@@ -233,7 +233,7 @@
 }
 - (NSManagedObjectContext*) managedObjectContext{
     if (!_managedObjectContext) {
-        _managedObjectContext=[[NVDataManager sharedManager] managedObjectContext];
+        _managedObjectContext=[[NVDataManager sharedManager] privateManagedObjectContext];
     }
     return _managedObjectContext;
 }

@@ -88,7 +88,7 @@ static const NSInteger countAim = 20;
 -(NVContent*) routineWork {
     //работаем - извлекаем с наим. счетчиком, показываем пушем, увеличиваем счетчик и кладем обратно.
     NVContent* contentToShow = self.fetchedWordsAllowedToShow.firstObject;
-    //NSString* stringToShow = [NSString stringWithFormat:@"%@ - %@",contentToShow.word,contentToShow.translation];
+
     //[self.delegate showWord:contentToShow.word translation:contentToShow.translation];
     contentToShow.counter = @([contentToShow.counter integerValue]+1);
     NSLog(@"contentInRoutineWork:%@; Counter:%@",contentToShow.word,contentToShow.counter);
@@ -167,9 +167,9 @@ static const NSInteger countAim = 20;
     return [self.fetchedDict firstObject];
 }
 - (NSArray*) fetchedAllowedWords{
-    if (_fetchedAllowedWords != nil) {
+    /*if (_fetchedAllowedWords != nil) {
         return _fetchedAllowedWords;
-    }
+    }*/
     NSMutableArray* array =[NSMutableArray array];
     //NSArray* sourceArray = [self.activeDict.contentUnit allObjects];
     for (NVContent* contentUnit in self.activeDict.contentUnit) {
@@ -180,10 +180,9 @@ static const NSInteger countAim = 20;
 }
 -(NSArray*) fetchedWordsAllowedToShow
 {
-    if (_fetchedWordsAllowedToShow != nil) {
+    /*if (_fetchedWordsAllowedToShow != nil) {
         return _fetchedWordsAllowedToShow;
-    }
-    self.managedObjectContext = [[NVDataManager sharedManager] managedObjectContext];
+    }*/
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"NVContent" inManagedObjectContext:self.managedObjectContext];
@@ -224,7 +223,6 @@ static const NSInteger countAim = 20;
     /*if (_fetchedAllowedWords != nil) {
         return _fetchedAllowedWords;
     }*/
-    self.managedObjectContext = [[NVDataManager sharedManager] managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"NVWords" inManagedObjectContext:self.managedObjectContext];
@@ -259,10 +257,9 @@ static const NSInteger countAim = 20;
 }
 - (NSArray *)fetchedContent
 {
-    if (_fetchedContent != nil) {
+    /*if (_fetchedContent != nil) {
         return _fetchedContent ;
-    }
-    self.managedObjectContext = [[NVDataManager sharedManager] managedObjectContext];
+    }*/
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"NVContent" inManagedObjectContext:self.managedObjectContext];
@@ -294,10 +291,10 @@ static const NSInteger countAim = 20;
 
 - (NSArray *)fetchedDict
 {
-    if (_fetchedDict != nil) {
+    /*if (_fetchedDict != nil) {
         return _fetchedDict ;
-    }
-    self.managedObjectContext = [[NVDataManager sharedManager] managedObjectContext];
+    }*/
+
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"NVDicts" inManagedObjectContext:self.managedObjectContext];
@@ -322,5 +319,10 @@ static const NSInteger countAim = 20;
         return nil;
     }
 }
-
+- (NSManagedObjectContext*) managedObjectContext{
+    if (!_managedObjectContext) {
+        _managedObjectContext=[[NVDataManager sharedManager] privateManagedObjectContext];
+    }
+    return _managedObjectContext;
+}
 @end
