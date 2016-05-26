@@ -12,9 +12,10 @@
 #import "NVDicts.h"
 #import "NVContent.h"
 #import "Constants.h"
+#import "NVNotifyInUse.h"
 @interface NVNotificationManager : NSObject
 +(NVNotificationManager*) sharedManager;
-
+@property (strong,nonatomic) NSManagedObjectContext* managedObjectContext;
 -(void) generateNewNotifications;
 -(void) addNewNotificationToFullSet;
 @end

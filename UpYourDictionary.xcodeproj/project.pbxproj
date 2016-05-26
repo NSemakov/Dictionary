@@ -21,6 +21,8 @@
 		844630C11CEBCAD3004E0994 /* NVWords.m in Sources */ = {isa = PBXBuildFile; fileRef = 844630B71CEBCAD3004E0994 /* NVWords.m */; settings = {ASSET_TAGS = (); }; };
 		844630C21CEBCAD3004E0994 /* NVContent+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 844630B91CEBCAD3004E0994 /* NVContent+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
 		844630C31CEBCAD3004E0994 /* NVContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 844630BB1CEBCAD3004E0994 /* NVContent.m */; settings = {ASSET_TAGS = (); }; };
+		844B6EEE1CF72E5B00B093FA /* NVNotifyInUse+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B6EEB1CF72E5B00B093FA /* NVNotifyInUse+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		844B6EEF1CF72E5B00B093FA /* NVNotifyInUse.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B6EED1CF72E5B00B093FA /* NVNotifyInUse.m */; settings = {ASSET_TAGS = (); }; };
 		844E4EA91CEA508A0012AB04 /* NVLangFromVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 844E4EA81CEA508A0012AB04 /* NVLangFromVC.m */; settings = {ASSET_TAGS = (); }; };
 		844E4EAC1CEA50A90012AB04 /* NVLangToVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 844E4EAB1CEA50A90012AB04 /* NVLangToVC.m */; settings = {ASSET_TAGS = (); }; };
 		844FCFAE1CF475C100DCCA8A /* NVNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 844FCFAD1CF475C100DCCA8A /* NVNotificationManager.m */; settings = {ASSET_TAGS = (); }; };
@@ -85,6 +87,10 @@
 		844630B91CEBCAD3004E0994 /* NVContent+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NVContent+CoreDataProperties.m"; sourceTree = "<group>"; };
 		844630BA1CEBCAD3004E0994 /* NVContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVContent.h; sourceTree = "<group>"; };
 		844630BB1CEBCAD3004E0994 /* NVContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVContent.m; sourceTree = "<group>"; };
+		844B6EEA1CF72E5B00B093FA /* NVNotifyInUse+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NVNotifyInUse+CoreDataProperties.h"; sourceTree = "<group>"; };
+		844B6EEB1CF72E5B00B093FA /* NVNotifyInUse+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NVNotifyInUse+CoreDataProperties.m"; sourceTree = "<group>"; };
+		844B6EEC1CF72E5B00B093FA /* NVNotifyInUse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVNotifyInUse.h; sourceTree = "<group>"; };
+		844B6EED1CF72E5B00B093FA /* NVNotifyInUse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVNotifyInUse.m; sourceTree = "<group>"; };
 		844E4EA71CEA508A0012AB04 /* NVLangFromVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVLangFromVC.h; sourceTree = "<group>"; };
 		844E4EA81CEA508A0012AB04 /* NVLangFromVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVLangFromVC.m; sourceTree = "<group>"; };
 		844E4EAA1CEA50A90012AB04 /* NVLangToVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVLangToVC.h; sourceTree = "<group>"; };
@@ -190,6 +196,10 @@
 				844630B91CEBCAD3004E0994 /* NVContent+CoreDataProperties.m */,
 				844630BA1CEBCAD3004E0994 /* NVContent.h */,
 				844630BB1CEBCAD3004E0994 /* NVContent.m */,
+				844B6EEA1CF72E5B00B093FA /* NVNotifyInUse+CoreDataProperties.h */,
+				844B6EEB1CF72E5B00B093FA /* NVNotifyInUse+CoreDataProperties.m */,
+				844B6EEC1CF72E5B00B093FA /* NVNotifyInUse.h */,
+				844B6EED1CF72E5B00B093FA /* NVNotifyInUse.m */,
 			);
 			name = CoreDataModels;
 			sourceTree = "<group>";
@@ -503,6 +513,7 @@
 				844630BF1CEBCAD3004E0994 /* NVTemplates.m in Sources */,
 				844630C11CEBCAD3004E0994 /* NVWords.m in Sources */,
 				843BCB6D1CEDE034000F30A3 /* NVCreateTemplateCell.m in Sources */,
+				844B6EEF1CF72E5B00B093FA /* NVNotifyInUse.m in Sources */,
 				844630A21CEBBB1E004E0994 /* NVChooseDictThemeVC.m in Sources */,
 				844630BD1CEBCAD3004E0994 /* NVDicts.m in Sources */,
 				845894371CE8BC3800D4FE35 /* AppDelegate.m in Sources */,
@@ -511,6 +522,7 @@
 				844630801CEB977A004E0994 /* NVDataManager.m in Sources */,
 				8446309F1CEBAE22004E0994 /* NVChooseActiveDictVC.m in Sources */,
 				844630C21CEBCAD3004E0994 /* NVContent+CoreDataProperties.m in Sources */,
+				844B6EEE1CF72E5B00B093FA /* NVNotifyInUse+CoreDataProperties.m in Sources */,
 				84F2FDB21CEE619B00714DF0 /* NVMainStrategy.m in Sources */,
 				844FCFAE1CF475C100DCCA8A /* NVNotificationManager.m in Sources */,
 				844E4EA91CEA508A0012AB04 /* NVLangFromVC.m in Sources */,

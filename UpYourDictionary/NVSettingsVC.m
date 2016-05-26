@@ -83,7 +83,7 @@
         //create local notifications in background
     [[NVNotificationManager sharedManager] generateNewNotifications];
         
-        [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)buttonCancel:(UIBarButtonItem *)sender {

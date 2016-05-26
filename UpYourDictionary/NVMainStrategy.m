@@ -31,15 +31,6 @@ static const NSInteger countAim = 20;
     //либо NVContent со словом, переводом и счетчиком
     //либо nil - если слово просто было переведено и добавлено. значит этот алгоритм надо вызвать еще раз, чтобы получить слово.
     NVContent* result = nil;
-    /*
-     эта функция вызывается по таймеру какой-то другой функцией из таймера.
-     взять текущий словарь, если нет контента, создать контент
-     взять слово из темплейта, проверить есть ли оно в контенте
-     если есть берем следующее
-     если нет - подходит, добавляем в контент, переводим, счетчик в 0.
-     Берем слово с наименьшим счетчиком, показываем (local notification) (пока что выводим на экран, где словари и настройки).
-     счетчик увеличиваем. ну и т.д. по стратегии. сюда же доп проверки на количество.
-     */
 
     if (self.activeDict) {//есть активный словарь
         self.activeTemplate=self.activeDict.template1;
@@ -100,6 +91,7 @@ static const NSInteger countAim = 20;
     //NSString* stringToShow = [NSString stringWithFormat:@"%@ - %@",contentToShow.word,contentToShow.translation];
     //[self.delegate showWord:contentToShow.word translation:contentToShow.translation];
     contentToShow.counter = @([contentToShow.counter integerValue]+1);
+    NSLog(@"contentInRoutineWork:%@; Counter:%@",contentToShow.word,contentToShow.counter);
     NSError* error = nil;
     [self.managedObjectContext save:&error];
     if (!error) {
@@ -110,41 +102,42 @@ static const NSInteger countAim = 20;
 -(void) takeWordTranslateAdd{
     //берем любое слово из источника, проверяем, не взято ли оно уже для перевода. переводим, добавляем в контент и .
     NSSet* set = [NSSet setWithArray:self.fetchedAllowedWords];
-    NVWords* newWord = [set anyObject];
-    if ([self.setOfTempTakenWords containsObject:newWord]) {
-        return;
-    } else {
-        [self.setOfTempTakenWords addObject:newWord];
-    }
-    NSString* wordToTranslate = newWord.word;
-    NSString* fromLangShort = self.activeDict.fromShort;
-    NSString* toLangShort = self.activeDict.toShort;
-    __weak NVMainStrategy* weakSelf = self;
-    [[NVServerManager sharedManager] POSTTranslatePhrase:wordToTranslate fromLang:fromLangShort toLang:toLangShort OnSuccess:^(NSString* translation) {
-        //все оставшиеся действия надо делать здесь.
-        if (weakSelf.managedObjectContext) {
-            NVContent* newContent=[NSEntityDescription insertNewObjectForEntityForName:@"NVContent" inManagedObjectContext:weakSelf.managedObjectContext];
-            newContent.word = newWord.word;
-            newContent.translation = translation;
-            newContent.counter = @(0);
-            newContent.dict = weakSelf.activeDict;
-            
-            NSError* error = nil;
-            
-            if ([weakSelf.managedObjectContext save:&error]) {
-                [weakSelf resetFetchedProperties];
-                [self.setOfTempTakenWords removeObject:newWord];
-            } else {
-                NSLog(@"error: %@\n userInfo:%@",error.localizedDescription,error.userInfo);
+        NVWords* newWord = [set anyObject];
+        if ([self.setOfTempTakenWords containsObject:newWord]) {
+            return;
+        } else {
+            [self.setOfTempTakenWords addObject:newWord];
+        }
+        NSString* wordToTranslate = newWord.word;
+        NSString* fromLangShort = self.activeDict.fromShort;
+        NSString* toLangShort = self.activeDict.toShort;
+        __weak NVMainStrategy* weakSelf = self;
+        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+        [[NVServerManager sharedManager] POSTTranslatePhrase:wordToTranslate fromLang:fromLangShort toLang:toLangShort OnSuccess:^(NSString* translation) {
+            //все оставшиеся действия надо делать здесь.
+            if (weakSelf.managedObjectContext) {
+                NVContent* newContent=[NSEntityDescription insertNewObjectForEntityForName:@"NVContent" inManagedObjectContext:weakSelf.managedObjectContext];
+                newContent.word = newWord.word;
+                newContent.translation = translation;
+                newContent.counter = @(0);
+                newContent.dict = weakSelf.activeDict;
+                
+                NSError* error = nil;
+                
+                if ([weakSelf.managedObjectContext save:&error]) {
+                    [weakSelf resetFetchedProperties];
+                    [self.setOfTempTakenWords removeObject:newWord];
+                } else {
+                    NSLog(@"error: %@\n userInfo:%@",error.localizedDescription,error.userInfo);
+                }
+                dispatch_semaphore_signal(semaphore);
+                //[weakSelf performAlgo];
             }
             
-            //[weakSelf performAlgo];
-        }
-        
-    } onFailure:^(NSString *error) {
-        
-    }];
-    
+        } onFailure:^(NSString *error) {
+            dispatch_semaphore_signal(semaphore);
+        }];
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
 }
 
 -(void) resetFetchedProperties{
@@ -213,6 +206,10 @@ static const NSInteger countAim = 20;
     NSArray* resultArray= [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     if (!error) {
         _fetchedWordsAllowedToShow = resultArray;
+        //NSLog(@"resultArray: %@",resultArray);
+        /*for (NVContent* content in resultArray) {
+            NSLog(@"word:%@,counter:%@",content.word,content.counter);
+        }*/
         return resultArray;
     } else {
         NSLog(@"error: %@, local description: %@",error.userInfo, error.localizedDescription);

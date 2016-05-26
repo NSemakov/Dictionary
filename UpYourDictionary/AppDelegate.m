@@ -29,7 +29,7 @@
 
 }
 -(void) application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
-    NSLog(@"received: %@",notification.alertBody);
+    NSLog(@"received:body %@, date %@",notification.alertBody,notification.fireDate);
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
 
