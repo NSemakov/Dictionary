@@ -86,13 +86,15 @@
 }
 
 -(void) generateNewNotifications{
-    __weak NVNotificationManager* weakSelf = self;
+    //__weak NVNotificationManager* weakSelf = self;
     
     //create local notifications in background
-    dispatch_queue_t queue = dispatch_queue_create("com.UpYourDictionary.multithreading.queue", DISPATCH_QUEUE_SERIAL);
+    /*dispatch_queue_t queue = dispatch_queue_create("com.UpYourDictionary.multithreading.queue", DISPATCH_QUEUE_SERIAL);
     dispatch_async(queue, ^{
+            });*/
+    [self.managedObjectContext performBlock:^{
         //cancel all notifications
-        [weakSelf cancelNotificationsCompleteWay];
+        [self cancelNotificationsCompleteWay];
         
         NSInteger settingsWords = [[NSUserDefaults standardUserDefaults] integerForKey:NVNumberOfWordsToShow];
         if (settingsWords == 0) {
@@ -108,11 +110,11 @@
                 NSInteger n = (x>wordsInOneNotify)? wordsInOneNotify : x;
                 //формируем конкретную нотификацию в зависимости от кол-ва слов.
                 NSDate* fireDate= [NSDate dateWithTimeIntervalSinceNow:20+i*timeToPush*60*60];
-                [weakSelf startFireAlertAtDate:fireDate numberOfWords:n iteration:j];
-                
+                [self startFireAlertAtDate:fireDate numberOfWords:n iteration:j];
             }
         }
-    });
+
+    }];
 }
 -(void) putUserInfoInCoreData:(NSSet*) userInfoSet onFireDate:(NSDate*) fireDate{
     /*NSMutableDictionary* userInfoDict = [NSMutableDictionary dictionaryWithObject:userInfoArray forKey:fireDate];
@@ -144,6 +146,7 @@
         if (!contentToShow) { //не работаем без активного словаря
             return;
         }
+        //NSLog(@"word:%@     translation:%@",contentToShow.word,contentToShow.translation);
         NSString* stringToShowTemp = [NSString stringWithFormat:@" %@ - %@;",contentToShow.word,contentToShow.translation];
         stringToShow = [stringToShow stringByAppendingString:stringToShowTemp];
         [userInfoSet addObject:contentToShow];//несколько словарей в нотификации, т.к. несколько слов

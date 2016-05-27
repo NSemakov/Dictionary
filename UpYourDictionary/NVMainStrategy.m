@@ -57,7 +57,7 @@ static const NSInteger countAim = 20;
                 [self takeWordTranslateAdd];
             } else {//в 1 нет слов, значит конец, сбрасываем активность словаря.
                 self.activeDict.isActive = @(false);
-                result = [self performLastStep];
+                //result = [self performLastStep];
             }
         }
     } else {//если нет активного словаря, вернется nil
@@ -87,11 +87,12 @@ static const NSInteger countAim = 20;
 }
 -(NVContent*) routineWork {
     //работаем - извлекаем с наим. счетчиком, показываем пушем, увеличиваем счетчик и кладем обратно.
+
     NVContent* contentToShow = self.fetchedWordsAllowedToShow.firstObject;
 
     //[self.delegate showWord:contentToShow.word translation:contentToShow.translation];
     contentToShow.counter = @([contentToShow.counter integerValue]+1);
-    NSLog(@"contentInRoutineWork:%@; Counter:%@",contentToShow.word,contentToShow.counter);
+   // NSLog(@"contentInRoutineWork:%@; Counter:%@",contentToShow.word,contentToShow.counter);
     NSError* error = nil;
     [self.managedObjectContext save:&error];
     if (!error) {
@@ -208,9 +209,10 @@ static const NSInteger countAim = 20;
     if (!error) {
         _fetchedWordsAllowedToShow = resultArray;
         //NSLog(@"resultArray: %@",resultArray);
-        for (NVContent* content in resultArray) {
+        /*for (NVContent* content in resultArray) {
             NSLog(@"word:%@,counter:%@",content.word,content.counter);
         }
+         */
         return resultArray;
     } else {
         NSLog(@"error: %@, local description: %@",error.userInfo, error.localizedDescription);

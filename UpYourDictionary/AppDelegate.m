@@ -21,7 +21,7 @@
     UIUserNotificationType types = UIUserNotificationTypeAlert;
     UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
     [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
-    NSLog(@"did finish launching with options");
+    ///NSLog(@"did finish launching with options");
 
     return YES;
 }
