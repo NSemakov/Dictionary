@@ -22,6 +22,8 @@
         <relationship name="content" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NVContent" inverseName="notify" inverseEntity="NVContent" syncable="YES"/>
     </entity>
     <entity name="NVTemplates" representedClassName="NVTemplates" syncable="YES">
+        <attribute name="lang" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="langShort" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="dict" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NVDicts" inverseName="template1" inverseEntity="NVDicts" syncable="YES"/>
         <relationship name="word" toMany="YES" deletionRule="Nullify" destinationEntity="NVWords" inverseName="template1" inverseEntity="NVWords" syncable="YES"/>
@@ -32,9 +34,9 @@
     </entity>
     <elements>
         <element name="NVContent" positionX="-10656" positionY="-4273" width="128" height="118"/>
-        <element name="NVDicts" positionX="-11108" positionY="-4288" width="128" height="163"/>
-        <element name="NVTemplates" positionX="-10863" positionY="-4150" width="128" height="88"/>
-        <element name="NVWords" positionX="-10631" positionY="-4135" width="119" height="73"/>
+        <element name="NVDicts" positionX="-11117" positionY="-4318" width="128" height="163"/>
         <element name="NVNotifyInUse" positionX="-11106" positionY="-4057" width="128" height="73"/>
+        <element name="NVTemplates" positionX="-10775" positionY="-4138" width="128" height="118"/>
+        <element name="NVWords" positionX="-10586" positionY="-4123" width="119" height="73"/>
     </elements>
 </model>

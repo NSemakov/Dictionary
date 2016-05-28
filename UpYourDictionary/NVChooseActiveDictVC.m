@@ -129,26 +129,48 @@
     //id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][0];
     if (self.curDict && self.activeDict) {
         if ([self.curDict isEqual:self.activeDict]) {
-            //nothing. для единообразия. все равно сохраняем контекст, даже если ничего не изменилось.
+            //nothing. ничего не изменилось.
         } else {
             self.curDict.isActive = @(true);
             self.activeDict.isActive = @(false);
+            //save context
+            NSError* error = nil;
+            if (![self.managedObjectContext save:&error]) {
+                NSLog(@"error: %@, user info: %@", error.localizedDescription,error.userInfo);
+            } else {
+                [[NVNotificationManager sharedManager] generateNewNotifications];
+                [self.navigationController popViewControllerAnimated:YES];
+            }
         }
-    } else if (self.curDict && !self.activeDict){
+    } else if (self.curDict && !self.activeDict){//не было активного словаря, ставим галочку в первый раз
         self.curDict.isActive = @(true);
-    } else if (!self.curDict && self.activeDict){
+        //save context
+        NSError* error = nil;
+        if (![self.managedObjectContext save:&error]) {
+            NSLog(@"error: %@, user info: %@", error.localizedDescription,error.userInfo);
+        } else {
+            [[NVNotificationManager sharedManager] generateNewNotifications];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    } else if (!self.curDict && self.activeDict){//был активный словарь, активность сняли
         self.activeDict.isActive=@(false);
+
+        //save context
+        NSError* error = nil;
+        if (![self.managedObjectContext save:&error]) {
+            NSLog(@"error: %@, user info: %@", error.localizedDescription,error.userInfo);
+        } else {
+            //cancel local notifications in background
+            dispatch_queue_t queue = dispatch_queue_create("com.UpYourDictionary.multithreading.queue", DISPATCH_QUEUE_CONCURRENT);
+             dispatch_async(queue, ^{
+                 [[NVNotificationManager sharedManager] cancelNotificationsCompleteWay];
+             });
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     }
     
-    //save context
-    NSError* error = nil;
-    if (![self.managedObjectContext save:&error]) {
-        NSLog(@"error: %@, user info: %@", error.localizedDescription,error.userInfo);
-    } else {
-        [[NVNotificationManager sharedManager] generateNewNotifications];
-        
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+
     
 }
 

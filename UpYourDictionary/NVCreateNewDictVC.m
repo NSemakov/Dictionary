@@ -94,6 +94,11 @@
     self.dict.isActive = @(false);
     self.dict.fromShort = self.langFromShort;
     self.dict.toShort = self.langToShort;
+    if (!self.dict.template1.lang) {//если язык шаблона не установлен, значит был создан новый шаблон и ему выставляется язык, который был выбран в поле from
+        self.dict.template1.lang = self.dict.from;
+        self.dict.template1.langShort=self.dict.fromShort;
+    }
+    
 
     NSError* error = nil;
     if (![self.managedObjectContext save:&error]) {

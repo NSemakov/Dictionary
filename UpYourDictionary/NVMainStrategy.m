@@ -105,42 +105,65 @@ static const NSInteger countAim = 20;
 -(void) takeWordTranslateAdd{
     //берем любое слово из источника, проверяем, не взято ли оно уже для перевода. переводим, добавляем в контент и .
     NSSet* set = [NSSet setWithArray:self.fetchedAllowedWords];
-        NVWords* newWord = [set anyObject];
-        if ([self.setOfTempTakenWords containsObject:newWord]) {
-            return;
-        } else {
-            [self.setOfTempTakenWords addObject:newWord];
-        }
-        NSString* wordToTranslate = newWord.word;
-        NSString* fromLangShort = self.activeDict.fromShort;
-        NSString* toLangShort = self.activeDict.toShort;
+    NVWords* newWord = [set anyObject];
+    if ([self.setOfTempTakenWords containsObject:newWord]) {
+        return;
+    } else {
+        [self.setOfTempTakenWords addObject:newWord];
+    }
+    NSString* wordToTranslate = newWord.word;
+    //NSString* fromLangShort = self.activeDict.fromShort;
+    //NSString* toLangShort = self.activeDict.toShort;
+    __block NVContent* newContent=[NSEntityDescription insertNewObjectForEntityForName:@"NVContent" inManagedObjectContext:self.managedObjectContext];
+    newContent.counter = @(0);
+    newContent.dict = self.activeDict;
+    [self tranlsateToSourceLangText:wordToTranslate content:newContent];
+    [self translateToEndLangText:wordToTranslate content:newContent];
+   
+    NSError* error = nil;
+    
+    if ([self.managedObjectContext save:&error]) {
+        [self resetFetchedProperties];
+        [self.setOfTempTakenWords removeObject:newWord];
+    } else {
+        NSLog(@"error: %@\n userInfo:%@",error.localizedDescription,error.userInfo);
+    }
+}
+-(void) tranlsateToSourceLangText:(NSString*) text content:(NVContent*) content{
+    if ([self.activeTemplate.langShort isEqualToString:self.activeDict.fromShort]) {//прямо копируем слово в источник
+        content.word = text;
+    } else {//если не совпадает, переводим слово и вставляем в источник
         __weak NVMainStrategy* weakSelf = self;
         dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-        [[NVServerManager sharedManager] POSTTranslatePhrase:wordToTranslate fromLang:fromLangShort toLang:toLangShort OnSuccess:^(NSString* translation) {
+        [[NVServerManager sharedManager] POSTTranslatePhrase:text fromLang:self.activeTemplate.langShort toLang:self.activeDict.fromShort OnSuccess:^(NSString* translation) {
             //все оставшиеся действия надо делать здесь.
             if (weakSelf.managedObjectContext) {
-                NVContent* newContent=[NSEntityDescription insertNewObjectForEntityForName:@"NVContent" inManagedObjectContext:weakSelf.managedObjectContext];
-                newContent.word = newWord.word;
-                newContent.translation = translation;
-                newContent.counter = @(0);
-                newContent.dict = weakSelf.activeDict;
-                
-                NSError* error = nil;
-                
-                if ([weakSelf.managedObjectContext save:&error]) {
-                    [weakSelf resetFetchedProperties];
-                    [self.setOfTempTakenWords removeObject:newWord];
-                } else {
-                    NSLog(@"error: %@\n userInfo:%@",error.localizedDescription,error.userInfo);
-                }
+                content.word = translation;
                 dispatch_semaphore_signal(semaphore);
-                //[weakSelf performAlgo];
             }
-            
         } onFailure:^(NSString *error) {
             dispatch_semaphore_signal(semaphore);
         }];
-    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    }
+}
+-(void) translateToEndLangText:(NSString*) text content:(NVContent*) content{
+    if ([self.activeTemplate.langShort isEqualToString:self.activeDict.toShort]) {//прямо копируем слово в перевод
+        content.translation = text;
+    } else {//если не совпадает, переводим слово и вставляем в перевод
+        __weak NVMainStrategy* weakSelf = self;
+        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+        [[NVServerManager sharedManager] POSTTranslatePhrase:text fromLang:self.activeTemplate.langShort toLang:self.activeDict.toShort OnSuccess:^(NSString* translation) {
+            //все оставшиеся действия надо делать здесь.
+            if (weakSelf.managedObjectContext) {
+                content.translation = translation;
+                dispatch_semaphore_signal(semaphore);
+            }
+        } onFailure:^(NSString *error) {
+            dispatch_semaphore_signal(semaphore);
+        }];
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    }
 }
 
 -(void) resetFetchedProperties{
@@ -175,6 +198,7 @@ static const NSInteger countAim = 20;
     //NSArray* sourceArray = [self.activeDict.contentUnit allObjects];
     for (NVContent* contentUnit in self.activeDict.contentUnit) {
         [array addObject:contentUnit.word];
+        [array addObject:contentUnit.translation];
     }
     
     return [self fetchedAllowedWordsWhereNotAllowed:[NSSet setWithArray:[array copy]]];
@@ -327,4 +351,46 @@ static const NSInteger countAim = 20;
     }
     return _managedObjectContext;
 }
+
+
+/*-(void) takeWordTranslateAdd{
+ //берем любое слово из источника, проверяем, не взято ли оно уже для перевода. переводим, добавляем в контент и .
+ NSSet* set = [NSSet setWithArray:self.fetchedAllowedWords];
+ NVWords* newWord = [set anyObject];
+ if ([self.setOfTempTakenWords containsObject:newWord]) {
+ return;
+ } else {
+ [self.setOfTempTakenWords addObject:newWord];
+ }
+ NSString* wordToTranslate = newWord.word;
+ NSString* fromLangShort = self.activeDict.fromShort;
+ NSString* toLangShort = self.activeDict.toShort;
+ __weak NVMainStrategy* weakSelf = self;
+ dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+ [[NVServerManager sharedManager] POSTTranslatePhrase:wordToTranslate fromLang:fromLangShort toLang:toLangShort OnSuccess:^(NSString* translation) {
+ //все оставшиеся действия надо делать здесь.
+ if (weakSelf.managedObjectContext) {
+ NVContent* newContent=[NSEntityDescription insertNewObjectForEntityForName:@"NVContent" inManagedObjectContext:weakSelf.managedObjectContext];
+ newContent.word = newWord.word;
+ newContent.translation = translation;
+ newContent.counter = @(0);
+ newContent.dict = weakSelf.activeDict;
+ 
+ NSError* error = nil;
+ 
+ if ([weakSelf.managedObjectContext save:&error]) {
+ [weakSelf resetFetchedProperties];
+ [self.setOfTempTakenWords removeObject:newWord];
+ } else {
+ NSLog(@"error: %@\n userInfo:%@",error.localizedDescription,error.userInfo);
+ }
+ dispatch_semaphore_signal(semaphore);
+ //[weakSelf performAlgo];
+ }
+ 
+ } onFailure:^(NSString *error) {
+ dispatch_semaphore_signal(semaphore);
+ }];
+ dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+ }*/
 @end

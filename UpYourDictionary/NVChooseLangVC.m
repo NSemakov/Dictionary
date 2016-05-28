@@ -11,7 +11,8 @@
 #import "NVServerManager.h"
 @interface NVChooseLangVC ()
 @property (strong,nonatomic) NSArray* dirs;
-@property (strong,nonatomic) NSDictionary* langs;
+@property (strong,nonatomic) NSArray* langs;
+@property (strong,nonatomic) NSArray* langsShort;
 
 
 @end
@@ -27,8 +28,15 @@
     
     __weak NVChooseLangVC* weakSelf = self;
     [[NVServerManager sharedManager] POSTListOfDirectionsOnSuccess:^(NSDictionary *responseObject) {
-    weakSelf.langs = [responseObject objectForKey:@"langs"] ;
-    weakSelf.dirs=[responseObject objectForKey:@"dirs"] ;
+        NSArray* langs = [[responseObject objectForKey:@"langs"] allValues];
+        weakSelf.langs = [langs sortedArrayUsingComparator:^NSComparisonResult(NSString* obj1, NSString* obj2) {
+            return [obj1 compare:obj2];
+        }];
+        NSArray* langsShort = [[responseObject objectForKey:@"langs"] allKeys];
+        weakSelf.langsShort = [langsShort sortedArrayUsingComparator:^NSComparisonResult(NSString* obj1, NSString* obj2) {
+            return [obj1 compare:obj2];
+        }];
+        weakSelf.dirs=[responseObject objectForKey:@"dirs"];
         [weakSelf.tableView reloadData];
     } onFailure:^(NSString *error) {
         
@@ -53,9 +61,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    
-    cell.textLabel.text = [[self.langs allValues] objectAtIndex:indexPath.row];
-    NSInteger catIndex = [[self.langs allValues] indexOfObject:self.currentLang];
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    cell.textLabel.text = [self.langs objectAtIndex:indexPath.row];
+    NSInteger catIndex = [self.langs indexOfObject:self.currentLang];
     if (catIndex!= NSNotFound) {
         if (catIndex==indexPath.row) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -67,7 +75,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    NSInteger catIndex = [[self.langs allValues] indexOfObject:self.currentLang];
+    NSInteger catIndex = [self.langs indexOfObject:self.currentLang];
     if (catIndex == indexPath.row) {
         return;
     }
@@ -76,8 +84,8 @@
     UITableViewCell *newCell = [tableView cellForRowAtIndexPath:indexPath];
     if (newCell.accessoryType == UITableViewCellAccessoryNone) {
         newCell.accessoryType = UITableViewCellAccessoryCheckmark;
-        self.currentLang = [[self.langs allValues] objectAtIndex:indexPath.row];
-        self.currentShort = [[self.langs allKeys] objectAtIndex:indexPath.row];
+        self.currentLang = [self.langs objectAtIndex:indexPath.row];
+        self.currentShort = [self.langsShort objectAtIndex:indexPath.row];
     }
     
     UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:oldIndexPath];

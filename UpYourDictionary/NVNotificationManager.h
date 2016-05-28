@@ -17,5 +17,6 @@
 +(NVNotificationManager*) sharedManager;
 @property (strong,nonatomic) NSManagedObjectContext* managedObjectContext;
 -(void) generateNewNotifications;
+-(void) cancelNotificationsCompleteWay;
 -(void) addNewNotificationToFullSet;
 @end
