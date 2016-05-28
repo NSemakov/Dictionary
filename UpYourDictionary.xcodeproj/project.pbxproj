@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		01083E3F95C3BACEF2DE4B0A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8E645F75A1AF8B9A7B2E2DB /* libPods.a */; };
+		841C9B061CFA5ADB00E45423 /* UpYourDictionary.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 841C9B051CFA5ADB00E45423 /* UpYourDictionary.sqlite */; settings = {ASSET_TAGS = (); }; };
 		843BCB6D1CEDE034000F30A3 /* NVCreateTemplateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843BCB6C1CEDE034000F30A3 /* NVCreateTemplateCell.m */; settings = {ASSET_TAGS = (); }; };
 		844630801CEB977A004E0994 /* NVDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8446307F1CEB977A004E0994 /* NVDataManager.m */; settings = {ASSET_TAGS = (); }; };
 		8446309C1CEBAC32004E0994 /* NVParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8446309B1CEBAC32004E0994 /* NVParentViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -61,6 +62,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		841C9B051CFA5ADB00E45423 /* UpYourDictionary.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = UpYourDictionary.sqlite; sourceTree = SOURCE_ROOT; };
 		843BCB6B1CEDE034000F30A3 /* NVCreateTemplateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVCreateTemplateCell.h; sourceTree = "<group>"; };
 		843BCB6C1CEDE034000F30A3 /* NVCreateTemplateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVCreateTemplateCell.m; sourceTree = "<group>"; };
 		8446307E1CEB977A004E0994 /* NVDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVDataManager.h; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 		845894311CE8BC3800D4FE35 /* UpYourDictionary */ = {
 			isa = PBXGroup;
 			children = (
+				841C9B051CFA5ADB00E45423 /* UpYourDictionary.sqlite */,
 				844FCFAC1CF475C100DCCA8A /* NVNotificationManager.h */,
 				844FCFAD1CF475C100DCCA8A /* NVNotificationManager.m */,
 				8456915D1CE9EDBB005E4AE1 /* NVServerManager.h */,
@@ -428,6 +431,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8462CDE11CEA4D0B00E742AC /* Main.storyboard in Resources */,
+				841C9B061CFA5ADB00E45423 /* UpYourDictionary.sqlite in Resources */,
 				845894451CE8BC3800D4FE35 /* LaunchScreen.storyboard in Resources */,
 				845894421CE8BC3800D4FE35 /* Assets.xcassets in Resources */,
 			);

@@ -46,6 +46,7 @@
 
 }
 -(void) cancelNotificationsCompleteWay{
+    [self.managedObjectContext performBlockAndWait:^{
     //отмена нотификаций, а также откат алгоритма
     UIApplication* app =[UIApplication sharedApplication];
     NSArray* arrayOfScheduledNotification = [app scheduledLocalNotifications];
@@ -61,6 +62,7 @@
         NVNotifyInUse* notifyInUse = [self fetchedNotifyWithDate:lastNotifyFireDate];
         
         for (NVContent* content in notifyInUse.content) {//отменяем каждое слово в нотификации
+            NSLog(@"content to cancel: %@, counter before: %@, fireDate:%@",content.word,content.counter,notifyInUse.fireDate);
             content.counter = @([content.counter integerValue]-1);
             if ([content.counter isEqual:@(0)]) {//если счетчик стал 0, значит удаляем из активной таблицы
                 [self.managedObjectContext deleteObject:content];
@@ -75,6 +77,7 @@
         NSError* error = nil;
         [self.managedObjectContext save:&error];
         //[app cancelLocalNotification:lastNotify];
+        NSLog(@"cancelled %ld",(long)i);
     }
     [app cancelAllLocalNotifications];
     NSArray* arrayOfLeftNotifies = [self fetchedAllNotifies];
@@ -83,6 +86,7 @@
     }
     NSError* error = nil;
     [self.managedObjectContext save:&error];
+    }];
 }
 
 -(void) generateNewNotifications{
@@ -111,7 +115,9 @@
                 //формируем конкретную нотификацию в зависимости от кол-ва слов.
                 NSDate* fireDate= [NSDate dateWithTimeIntervalSinceNow:20+i*timeToPush*60*60];
                 [self startFireAlertAtDate:fireDate numberOfWords:n iteration:j];
+                
             }
+            NSLog(@"created N:%d",i);
         }
 
     }];

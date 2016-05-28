@@ -28,14 +28,18 @@
     
     __weak NVChooseLangVC* weakSelf = self;
     [[NVServerManager sharedManager] POSTListOfDirectionsOnSuccess:^(NSDictionary *responseObject) {
-        NSArray* langs = [[responseObject objectForKey:@"langs"] allValues];
-        weakSelf.langs = [langs sortedArrayUsingComparator:^NSComparisonResult(NSString* obj1, NSString* obj2) {
+        NSDictionary* langDict =[responseObject objectForKey:@"langs"];
+        NSArray* langs = [langDict allValues];
+        NSArray* sortedLangs=[langs sortedArrayUsingComparator:^NSComparisonResult(NSString* obj1, NSString* obj2) {
             return [obj1 compare:obj2];
         }];
-        NSArray* langsShort = [[responseObject objectForKey:@"langs"] allKeys];
-        weakSelf.langsShort = [langsShort sortedArrayUsingComparator:^NSComparisonResult(NSString* obj1, NSString* obj2) {
-            return [obj1 compare:obj2];
-        }];
+        weakSelf.langs = sortedLangs;
+        //ключи сортируются в зависимости от сортировки основных значений
+        NSMutableArray* sortedLangsShort = [NSMutableArray new];
+        for (NSString *s in sortedLangs){
+            [sortedLangsShort addObjectsFromArray:[langDict allKeysForObject:s]];
+        }
+        weakSelf.langsShort = [sortedLangsShort copy];
         weakSelf.dirs=[responseObject objectForKey:@"dirs"];
         [weakSelf.tableView reloadData];
     } onFailure:^(NSString *error) {

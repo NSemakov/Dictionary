@@ -24,19 +24,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-
-#pragma mark - overriden methods 
+#pragma mark - overriden methods
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    cell.accessoryType = UITableViewCellAccessoryNone;
     NVDicts *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
     if ([object.isActive boolValue]) {
         self.activeDict = object;
@@ -50,8 +40,6 @@
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
     }
-
-
 }
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -161,10 +149,10 @@
             NSLog(@"error: %@, user info: %@", error.localizedDescription,error.userInfo);
         } else {
             //cancel local notifications in background
-            dispatch_queue_t queue = dispatch_queue_create("com.UpYourDictionary.multithreading.queue", DISPATCH_QUEUE_CONCURRENT);
-             dispatch_async(queue, ^{
+            //dispatch_queue_t queue = dispatch_queue_create("com.UpYourDictionary.multithreading.queue", DISPATCH_QUEUE_CONCURRENT);
+             //dispatch_async(queue, ^{
                  [[NVNotificationManager sharedManager] cancelNotificationsCompleteWay];
-             });
+             //});
             
             [self.navigationController popViewControllerAnimated:YES];
         }
