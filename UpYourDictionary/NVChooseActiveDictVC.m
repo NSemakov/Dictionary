@@ -118,6 +118,7 @@
     if (self.curDict && self.activeDict) {
         if ([self.curDict isEqual:self.activeDict]) {
             //nothing. ничего не изменилось.
+            [self.navigationController popViewControllerAnimated:YES];
         } else {
             self.curDict.isActive = @(true);
             self.activeDict.isActive = @(false);

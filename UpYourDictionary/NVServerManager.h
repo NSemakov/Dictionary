@@ -8,14 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import <AFNetworking/AFNetworking.h>
+#import <SystemConfiguration/SCNetworkReachability.h>
 @class NVAccessToken;
 @interface NVServerManager : NSObject
 @property (strong,nonatomic) NVAccessToken* accessToken;
 @property (strong,nonatomic) AFHTTPSessionManager* manager;
 +(NVServerManager*) sharedManager;
--(void) POSTListOfDirectionsOnSuccess:(void(^)(NSDictionary* languages)) onSuccess
-                        onFailure:(void(^)(NSString* error)) onFailure;
+- (bool) isNetworkAvailable;
+-(void) POSTListOfDirectionsOnLang:(NSString*) lang OnSuccess:(void(^)(NSDictionary* languages)) onSuccess
+                         onFailure:(void(^)(NSString* error)) onFailure;
 -(void) POSTTranslatePhrase:(NSString*) phrase fromLang:(NSString*) fromLang toLang:(NSString*) toLang OnSuccess:(void(^)(NSString* translation)) onSuccess onFailure:(void(^)(NSString* error)) onFailure;
+-(void) POSTLookUpDictionary:(NSString*) phrase fromLang:(NSString*) fromLang toLang:(NSString*) toLang OnSuccess:(void(^)(NSString* translation)) onSuccess
+                   onFailure:(void(^)(NSString* error)) onFailure;
 /*-(void) getFriendsFromServerCount:(NSInteger) count
                        withOffset:(NSInteger) offset
                         onSuccess:(void(^)(NSArray* friends)) onSuccess

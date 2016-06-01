@@ -117,53 +117,116 @@ static const NSInteger countAim = 20;
     __block NVContent* newContent=[NSEntityDescription insertNewObjectForEntityForName:@"NVContent" inManagedObjectContext:self.managedObjectContext];
     newContent.counter = @(0);
     newContent.dict = self.activeDict;
-    [self tranlsateToSourceLangText:wordToTranslate content:newContent];
-    [self translateToEndLangText:wordToTranslate content:newContent];
-   
-    NSError* error = nil;
-    
-    if ([self.managedObjectContext save:&error]) {
-        [self resetFetchedProperties];
-        [self.setOfTempTakenWords removeObject:newWord];
-    } else {
-        NSLog(@"error: %@\n userInfo:%@",error.localizedDescription,error.userInfo);
+
+    if ([self tranlsateToSourceLangText:wordToTranslate content:newContent] && [self translateToEndLangText:wordToTranslate content:newContent]) {
+        //если перевод успешен, тогда сохраняем
+        NSError* error = nil;
+        
+        if ([self.managedObjectContext save:&error]) {
+            [self resetFetchedProperties];
+            [self.setOfTempTakenWords removeObject:newWord];
+        } else {
+            NSLog(@"error: %@\n userInfo:%@",error.localizedDescription,error.userInfo);
+        }
     }
+    
 }
--(void) tranlsateToSourceLangText:(NSString*) text content:(NVContent*) content{
+-(BOOL) tranlsateToSourceLangText:(NSString*) text content:(NVContent*) content{
+    //превращаем два асинхронных вызова в синхронные. Сначала поиск в словаре яндекса, если не найдено, поиск в переводчике. Индикатор - переменная flag.
+    __block BOOL isSuccess = NO;
     if ([self.activeTemplate.langShort isEqualToString:self.activeDict.fromShort]) {//прямо копируем слово в источник
         content.word = text;
+        isSuccess = YES;
     } else {//если не совпадает, переводим слово и вставляем в источник
         __weak NVMainStrategy* weakSelf = self;
-        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-        [[NVServerManager sharedManager] POSTTranslatePhrase:text fromLang:self.activeTemplate.langShort toLang:self.activeDict.fromShort OnSuccess:^(NSString* translation) {
-            //все оставшиеся действия надо делать здесь.
-            if (weakSelf.managedObjectContext) {
-                content.word = translation;
+
+        if ([[NVServerManager sharedManager] isNetworkAvailable]){
+            dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+            __block BOOL flag = false;
+            [[NVServerManager sharedManager] POSTLookUpDictionary:text fromLang:self.activeTemplate.langShort toLang:self.activeDict.fromShort OnSuccess:^(NSString* translation) {
+                //все оставшиеся действия надо делать здесь.
+                if (weakSelf.managedObjectContext) {
+                    if (translation) {
+                        content.word = translation;
+                        isSuccess = YES;
+                        flag = true;
+                    }
+                    
+                    dispatch_semaphore_signal(semaphore);
+                }
+            } onFailure:^(NSString *error) {
+                NSLog(@"error in dict: %@", error);
                 dispatch_semaphore_signal(semaphore);
+            }];
+            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+            //поиск в переводчике, если в словаре не найдено
+            semaphore = dispatch_semaphore_create(0);
+            
+            if (!flag){
+                [[NVServerManager sharedManager] POSTTranslatePhrase:text fromLang:self.activeTemplate.langShort toLang:self.activeDict.fromShort OnSuccess:^(NSString* translation) {
+                    //все оставшиеся действия надо делать здесь.
+                    if (weakSelf.managedObjectContext) {
+                        content.word = translation;
+                        isSuccess = YES;
+                        dispatch_semaphore_signal(semaphore);
+                    }
+                } onFailure:^(NSString *error) {
+                    dispatch_semaphore_signal(semaphore);
+                }];
+                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
             }
-        } onFailure:^(NSString *error) {
-            dispatch_semaphore_signal(semaphore);
-        }];
-        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+            
+        }
+        
+        
     }
+    return isSuccess;
 }
--(void) translateToEndLangText:(NSString*) text content:(NVContent*) content{
+-(BOOL) translateToEndLangText:(NSString*) text content:(NVContent*) content{//true в случае успешного перевода.
+    __block BOOL isSuccess = NO;
     if ([self.activeTemplate.langShort isEqualToString:self.activeDict.toShort]) {//прямо копируем слово в перевод
         content.translation = text;
+        isSuccess = YES;
     } else {//если не совпадает, переводим слово и вставляем в перевод
         __weak NVMainStrategy* weakSelf = self;
-        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-        [[NVServerManager sharedManager] POSTTranslatePhrase:text fromLang:self.activeTemplate.langShort toLang:self.activeDict.toShort OnSuccess:^(NSString* translation) {
-            //все оставшиеся действия надо делать здесь.
-            if (weakSelf.managedObjectContext) {
-                content.translation = translation;
+
+        if ([[NVServerManager sharedManager] isNetworkAvailable]){
+            dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+            __block BOOL flag = false;
+            [[NVServerManager sharedManager] POSTLookUpDictionary:text fromLang:self.activeTemplate.langShort toLang:self.activeDict.toShort OnSuccess:^(NSString* translation)
+             {
+                //все оставшиеся действия надо делать здесь.
+                if (weakSelf.managedObjectContext) {
+                    content.translation = translation;
+                    isSuccess = YES;
+                    dispatch_semaphore_signal(semaphore);
+                }
+            } onFailure:^(NSString *error) {
                 dispatch_semaphore_signal(semaphore);
+            }];
+            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+            
+            //поиск в переводчике, если в словаре не найдено
+            semaphore = dispatch_semaphore_create(0);
+            
+            if (!flag){
+                [[NVServerManager sharedManager] POSTTranslatePhrase:text fromLang:self.activeTemplate.langShort toLang:self.activeDict.toShort OnSuccess:^(NSString* translation) {
+                    //все оставшиеся действия надо делать здесь.
+                    if (weakSelf.managedObjectContext) {
+                        content.translation = translation;
+                        isSuccess = YES;
+                        dispatch_semaphore_signal(semaphore);
+                    }
+                } onFailure:^(NSString *error) {
+                    dispatch_semaphore_signal(semaphore);
+                }];
+                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
             }
-        } onFailure:^(NSString *error) {
-            dispatch_semaphore_signal(semaphore);
-        }];
-        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        }
+        
+        
     }
+    return isSuccess;
 }
 
 -(void) resetFetchedProperties{

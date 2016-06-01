@@ -27,7 +27,9 @@
     }
     
     __weak NVChooseLangVC* weakSelf = self;
-    [[NVServerManager sharedManager] POSTListOfDirectionsOnSuccess:^(NSDictionary *responseObject) {
+    NSString* curSystemLang = [[[NSBundle mainBundle] preferredLocalizations] objectAtIndex:0];
+    //NSString* curSystemLang = [[NSLocale preferredLanguages] objectAtIndex:0];
+    [[NVServerManager sharedManager] POSTListOfDirectionsOnLang:curSystemLang OnSuccess:^(NSDictionary *responseObject) {
         NSDictionary* langDict =[responseObject objectForKey:@"langs"];
         NSArray* langs = [langDict allValues];
         NSArray* sortedLangs=[langs sortedArrayUsingComparator:^NSComparisonResult(NSString* obj1, NSString* obj2) {
