@@ -7,10 +7,7 @@
 //
 
 #import "NVCreateNewDictVC.h"
-#import "NVLangFromVC.h"
-#import "NVLangToVC.h"
-#import "NVServerManager.h"
-#import "NVChooseDictThemeVC.h"
+
 @interface NVCreateNewDictVC ()
 
 @end
@@ -41,20 +38,29 @@
 -(void) refreshDataWithText:(NSString*) text shortLangFrom:(NSString*) shortLangFrom {
     self.textFieldLangFrom.text = text;
     self.langFromShort = shortLangFrom;
+    UITableViewCell* cell = (UITableViewCell*)self.textFieldLangFrom.superview.superview;
+    cell.backgroundColor = [self greenColor];
 }
 
 #pragma mark - NVLangToVCProtocol
 -(void) refreshDataLangToWithText:(NSString*) text shortLangTo:(NSString*) shortLangTo {
     self.textFieldLangTo.text = text;
     self.langToShort = shortLangTo;
+    UITableViewCell* cell = (UITableViewCell*)self.textFieldLangTo.superview.superview;
+    cell.backgroundColor = [self greenColor];
 }
 
  #pragma mark - NVChooseThemeVCProtocol
 -(void) refreshDataThemeWithTemplate:(NVTemplates*) templ{
     self.textFieldDictTheme.text = templ.name;
     self.templateForDict = templ;
+    UITableViewCell* cell = (UITableViewCell*)self.textFieldDictTheme.superview.superview;
+    cell.backgroundColor = [self greenColor];
 }
- 
+
+-(UIColor*) greenColor{
+    return [UIColor colorWithRed:(124/255.f) green:232/255.f blue:136/255.f alpha:1];
+}
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -108,6 +114,13 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
     
+}
+
+- (IBAction)actionBackButton:(UIBarButtonItem *)sender {
+    
+    [self.managedObjectContext rollback];
+    [NSThread sleepForTimeInterval:.5];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark - overriden methods
 @end

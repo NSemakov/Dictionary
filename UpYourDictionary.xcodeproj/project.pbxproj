@@ -38,6 +38,7 @@
 		845894451CE8BC3800D4FE35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845894431CE8BC3800D4FE35 /* LaunchScreen.storyboard */; };
 		845894501CE8BC3800D4FE35 /* UpYourDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8458944F1CE8BC3800D4FE35 /* UpYourDictionaryTests.m */; };
 		8458945B1CE8BC3800D4FE35 /* UpYourDictionaryUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8458945A1CE8BC3800D4FE35 /* UpYourDictionaryUITests.m */; };
+		845E96571D0B3E7E0011856C /* NVCreateDictCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 845E96561D0B3E7E0011856C /* NVCreateDictCell.m */; settings = {ASSET_TAGS = (); }; };
 		8462CDE11CEA4D0B00E742AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8462CDDF1CEA4D0B00E742AC /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
 		84F2FDB21CEE619B00714DF0 /* NVMainStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F2FDB11CEE619B00714DF0 /* NVMainStrategy.m */; settings = {ASSET_TAGS = (); }; };
 		84F3976F1CFB96CF00720199 /* UpYourDictionary.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 84F3976E1CFB96CF00720199 /* UpYourDictionary.sqlite */; settings = {ASSET_TAGS = (); }; };
@@ -124,6 +125,8 @@
 		845894561CE8BC3800D4FE35 /* UpYourDictionaryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UpYourDictionaryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8458945A1CE8BC3800D4FE35 /* UpYourDictionaryUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpYourDictionaryUITests.m; sourceTree = "<group>"; };
 		8458945C1CE8BC3800D4FE35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		845E96551D0B3E7E0011856C /* NVCreateDictCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVCreateDictCell.h; sourceTree = "<group>"; };
+		845E96561D0B3E7E0011856C /* NVCreateDictCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVCreateDictCell.m; sourceTree = "<group>"; };
 		8462CDE01CEA4D0B00E742AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84F2FDB01CEE619B00714DF0 /* NVMainStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVMainStrategy.h; sourceTree = "<group>"; };
 		84F2FDB11CEE619B00714DF0 /* NVMainStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVMainStrategy.m; sourceTree = "<group>"; };
@@ -178,6 +181,8 @@
 			children = (
 				843BCB6B1CEDE034000F30A3 /* NVCreateTemplateCell.h */,
 				843BCB6C1CEDE034000F30A3 /* NVCreateTemplateCell.m */,
+				845E96551D0B3E7E0011856C /* NVCreateDictCell.h */,
+				845E96561D0B3E7E0011856C /* NVCreateDictCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -526,6 +531,7 @@
 				844630A21CEBBB1E004E0994 /* NVChooseDictThemeVC.m in Sources */,
 				844630BD1CEBCAD3004E0994 /* NVDicts.m in Sources */,
 				845894371CE8BC3800D4FE35 /* AppDelegate.m in Sources */,
+				845E96571D0B3E7E0011856C /* NVCreateDictCell.m in Sources */,
 				8446309C1CEBAC32004E0994 /* NVParentViewController.m in Sources */,
 				845894341CE8BC3800D4FE35 /* main.m in Sources */,
 				844630801CEB977A004E0994 /* NVDataManager.m in Sources */,

@@ -8,7 +8,7 @@
 
 #import "NVMainStrategy.h"
 static const NSInteger numberOfWords = 10;
-static const NSInteger countAim = 20;
+static const NSInteger countAim = 10;
 @implementation NVMainStrategy
 
 +(NVMainStrategy*) sharedManager{
@@ -35,10 +35,11 @@ static const NSInteger countAim = 20;
     if (self.activeDict) {//есть активный словарь
         self.activeTemplate=self.activeDict.template1;
         NSArray* activeContent =self.fetchedContent;
-
+        
         if ([activeContent count] > 0) { //есть активный контент
             if ([activeContent count] < numberOfWords) {//меньше 10 слов?
-                if ([self.fetchedAllowedWords count] > 0) { //в источнике слов еще есть неиспользованные слова для перевода
+                NSArray* fetchedAllowedWords = self.fetchedAllowedWords;
+                if (fetchedAllowedWords && [fetchedAllowedWords count] > 0) { //в источнике слов еще есть неиспользованные слова для перевода
                     //берем любое слово из источника, переводим, добавляем в контент и перевызываем эту же функцию.
                     if (numberOfWords - [activeContent count] > [self.setOfTempTakenWords count]) {
                         [self takeWordTranslateAdd];
@@ -52,12 +53,12 @@ static const NSInteger countAim = 20;
                 result = [self routineWork];
             }
         } else {//нет активного контента
-            if ([self.fetchedAllowedWords count]> 0) {//в 1 еще есть слова, значит самое начало
+            NSArray* fetchedAllowedWords = self.fetchedAllowedWords;
+            if (fetchedAllowedWords && [fetchedAllowedWords count] > 0) {//в 1 еще есть слова, значит самое начало
                 //берем любое слово из источника, переводим, добавляем в контент и перевызываем эту же функцию.
                 [self takeWordTranslateAdd];
             } else {//в 1 нет слов, значит конец, сбрасываем активность словаря.
-                self.activeDict.isActiveProgram = @(false);
-                //result = [self performLastStep];
+                result = [self performLastStep];
             }
         }
     } else {//если нет активного словаря, вернется nil
@@ -71,9 +72,10 @@ static const NSInteger countAim = 20;
     NVContent* newContent=[NSEntityDescription insertNewObjectForEntityForName:@"NVContent" inManagedObjectContext:self.managedObjectContext];
     newContent.word = newWord.word;
     newContent.translation = @"Dictionary is done! Please, choose another one.";
-    newContent.counter = @(10);
+    newContent.counter = @(1);
     newContent.dict = self.activeDict;
-    
+    newContent.originalWord =@"Dictionary is done! Please, choose another one.";
+    self.activeDict.isActiveProgram = @(NO);
     NSError* error = nil;
     
     if ([self.managedObjectContext save:&error]) {
@@ -117,7 +119,7 @@ static const NSInteger countAim = 20;
     __block NVContent* newContent=[NSEntityDescription insertNewObjectForEntityForName:@"NVContent" inManagedObjectContext:self.managedObjectContext];
     newContent.counter = @(0);
     newContent.dict = self.activeDict;
-
+    newContent.originalWord = wordToTranslate;
     if ([self tranlsateToSourceLangText:wordToTranslate content:newContent] && [self translateToEndLangText:wordToTranslate content:newContent]) {
         //если перевод успешен, тогда сохраняем
         NSError* error = nil;
@@ -170,6 +172,7 @@ static const NSInteger countAim = 20;
                         dispatch_semaphore_signal(semaphore);
                     }
                 } onFailure:^(NSString *error) {
+                    NSLog(@"error in translator: %@", error);
                     dispatch_semaphore_signal(semaphore);
                 }];
                 dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
@@ -249,7 +252,12 @@ static const NSInteger countAim = 20;
     return result;
 }
 - (NVDicts*) activeDict{
-    return [self.fetchedDict firstObject];
+    if ([self.fetchedDict count]>0) {
+        return [self.fetchedDict firstObject];
+    } else {
+        return nil;
+    }
+    
 }
 - (NSArray*) fetchedAllowedWords{
     /*if (_fetchedAllowedWords != nil) {
@@ -258,8 +266,8 @@ static const NSInteger countAim = 20;
     NSMutableArray* array =[NSMutableArray array];
     //NSArray* sourceArray = [self.activeDict.contentUnit allObjects];
     for (NVContent* contentUnit in self.activeDict.contentUnit) {
-        [array addObject:contentUnit.word];
-        [array addObject:contentUnit.translation];
+        [array addObject:contentUnit.originalWord];
+        //NSLog(@"fetchedAllowedWords. used words:%@",contentUnit.originalWord);
     }
     
     return [self fetchedAllowedWordsWhereNotAllowed:[NSSet setWithArray:[array copy]]];
@@ -336,6 +344,10 @@ static const NSInteger countAim = 20;
     NSArray* resultArray= [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     if (!error) {
         //_fetchedAllowedWords = resultArray;
+        /**for (NVWords* word in resultArray) {
+            //NSLog(@"fetchedAllowedWordsWhereNotAllowed. allowed words:%@",word.word);
+        }*/
+        
         return resultArray;
     } else {
         NSLog(@"error: %@, local description: %@",error.userInfo, error.localizedDescription);
@@ -362,7 +374,7 @@ static const NSInteger countAim = 20;
     [fetchRequest setSortDescriptors:sortDescriptors];
     
     //NSManagedObjectID *moID=[self.person objectID];
-    NSPredicate* predicate=[NSPredicate predicateWithFormat:@"dict=%@ AND counter < %d",self.activeDict, @(countAim)];
+    NSPredicate* predicate=[NSPredicate predicateWithFormat:@"dict=%@ AND counter < %@",self.activeDict, @(countAim)];
     [fetchRequest setPredicate:predicate];
 
     NSError* error = nil;

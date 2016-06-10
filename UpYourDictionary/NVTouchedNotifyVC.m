@@ -55,7 +55,7 @@
     NVNotifyInUse* notifyInUse =[[NVNotificationManager sharedManager] fetchedNotifyWithDate:notify.fireDate];
     
     for (NVContent* content in notifyInUse.content) {
-        NSLog(@"content to cancel: %@, counter before: %@, fireDate:%@",content.word,content.counter,notifyInUse.fireDate);
+        //NSLog(@"content to cancel: %@, counter before: %@, fireDate:%@",content.word,content.counter,notifyInUse.fireDate);
         NSString* stringToShow = [NSString stringWithFormat:@"%@ - %@", content.word, content.translation];
         [self.arrayOfWords addObject:stringToShow];
         NSIndexPath* indexPath = [NSIndexPath indexPathForRow:[self.arrayOfWords count]-1 inSection:0];

@@ -2,6 +2,7 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="15A284" minimumToolsVersion="Automatic">
     <entity name="NVContent" representedClassName="NVContent" syncable="YES">
         <attribute name="counter" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="originalWord" attributeType="String" syncable="YES"/>
         <attribute name="translation" attributeType="String" syncable="YES"/>
         <attribute name="word" attributeType="String" syncable="YES"/>
         <relationship name="dict" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NVDicts" inverseName="contentUnit" inverseEntity="NVDicts" syncable="YES"/>
@@ -34,7 +35,7 @@
         <relationship name="template1" toMany="YES" deletionRule="Nullify" destinationEntity="NVTemplates" inverseName="word" inverseEntity="NVTemplates" syncable="YES"/>
     </entity>
     <elements>
-        <element name="NVContent" positionX="-10656" positionY="-4273" width="128" height="118"/>
+        <element name="NVContent" positionX="-10656" positionY="-4273" width="128" height="133"/>
         <element name="NVDicts" positionX="-11117" positionY="-4318" width="128" height="178"/>
         <element name="NVNotifyInUse" positionX="-11106" positionY="-4057" width="128" height="73"/>
         <element name="NVTemplates" positionX="-10775" positionY="-4138" width="128" height="118"/>

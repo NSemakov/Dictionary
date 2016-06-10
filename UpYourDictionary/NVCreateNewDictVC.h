@@ -11,6 +11,11 @@
 #import "NVDicts.h"
 #import "NVTemplates.h"
 #import "NVDataManager.h"
+#import "NVServerManager.h"
+#import "NVChooseDictThemeVC.h"
+
+#import "NVLangFromVC.h"
+#import "NVLangToVC.h"
 @class NVChooseDictThemeVC;
 
 @protocol NVLangFromVCProtocol;
@@ -18,9 +23,9 @@
 @protocol NVChooseDictThemeVCProtocol;
 
 @interface NVCreateNewDictVC : UITableViewController <NVLangFromVCProtocol,NVLangToVCProtocol, NVChooseDictThemeVCProtocol>
-@property (weak, nonatomic) IBOutlet UITextField *textFieldLangFrom;
-@property (weak, nonatomic) IBOutlet UITextField *textFieldLangTo;
-@property (weak, nonatomic) IBOutlet UITextField *textFieldDictTheme;
+@property (weak, nonatomic) IBOutlet UILabel *textFieldLangFrom;
+@property (weak, nonatomic) IBOutlet UILabel *textFieldLangTo;
+@property (weak, nonatomic) IBOutlet UILabel *textFieldDictTheme;
 @property (strong,nonatomic) NVTemplates* templateForDict;
 @property (strong,nonatomic) NVDicts* dict;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -29,6 +34,7 @@
 
 - (IBAction)buttonCancel:(UIBarButtonItem *)sender;
 - (IBAction)buttonSave:(UIBarButtonItem *)sender;
+- (IBAction)actionBackButton:(UIBarButtonItem *)sender;
 -(void) refreshDataWithText:(NSString*) text shortLangFrom:(NSString*) shortLangFrom;
 -(void) refreshDataLangToWithText:(NSString*) text shortLangTo:(NSString*) shortLangTo;
 -(void) refreshDataThemeWithTemplate:(NVTemplates*) templ;
