@@ -56,7 +56,7 @@ static const NSInteger countAim = 20;
                 //берем любое слово из источника, переводим, добавляем в контент и перевызываем эту же функцию.
                 [self takeWordTranslateAdd];
             } else {//в 1 нет слов, значит конец, сбрасываем активность словаря.
-                self.activeDict.isActive = @(false);
+                self.activeDict.isActiveProgram = @(false);
                 //result = [self performLastStep];
             }
         }
@@ -80,7 +80,7 @@ static const NSInteger countAim = 20;
         [self resetFetchedProperties];
         return newContent;
     } else {
-        NSLog(@"error: %@\n userInfo:%@",error.localizedDescription,error.userInfo);
+        NSLog(@"error performLastStep: %@\n userInfo:%@",error.localizedDescription,error.userInfo);
         return nil;
     }
     
@@ -121,12 +121,11 @@ static const NSInteger countAim = 20;
     if ([self tranlsateToSourceLangText:wordToTranslate content:newContent] && [self translateToEndLangText:wordToTranslate content:newContent]) {
         //если перевод успешен, тогда сохраняем
         NSError* error = nil;
-        
         if ([self.managedObjectContext save:&error]) {
             [self resetFetchedProperties];
             [self.setOfTempTakenWords removeObject:newWord];
         } else {
-            NSLog(@"error: %@\n userInfo:%@",error.localizedDescription,error.userInfo);
+            NSLog(@"error takeWordTranslateAdd: %@\n userInfo:%@",error.localizedDescription,error.userInfo);
         }
     }
     
@@ -140,7 +139,7 @@ static const NSInteger countAim = 20;
     } else {//если не совпадает, переводим слово и вставляем в источник
         __weak NVMainStrategy* weakSelf = self;
 
-        if ([[NVServerManager sharedManager] isNetworkAvailable]){
+        
             dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
             __block BOOL flag = false;
             [[NVServerManager sharedManager] POSTLookUpDictionary:text fromLang:self.activeTemplate.langShort toLang:self.activeDict.fromShort OnSuccess:^(NSString* translation) {
@@ -176,7 +175,7 @@ static const NSInteger countAim = 20;
                 dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
             }
             
-        }
+        
         
         
     }
@@ -190,7 +189,6 @@ static const NSInteger countAim = 20;
     } else {//если не совпадает, переводим слово и вставляем в перевод
         __weak NVMainStrategy* weakSelf = self;
 
-        if ([[NVServerManager sharedManager] isNetworkAvailable]){
             dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
             __block BOOL flag = false;
             [[NVServerManager sharedManager] POSTLookUpDictionary:text fromLang:self.activeTemplate.langShort toLang:self.activeDict.toShort OnSuccess:^(NSString* translation)
@@ -222,7 +220,7 @@ static const NSInteger countAim = 20;
                 }];
                 dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
             }
-        }
+        
         
         
     }
@@ -396,7 +394,7 @@ static const NSInteger countAim = 20;
     NSArray *sortDescriptors = @[sortDescriptor];
     [fetchRequest setSortDescriptors:sortDescriptors];
     //NSManagedObjectID *moID=[self.person objectID];
-    NSPredicate* predicate=[NSPredicate predicateWithFormat:@"isActive = %@",@(true)];
+    NSPredicate* predicate=[NSPredicate predicateWithFormat:@"(isActive = %@) AND (isActiveProgram = %@)",@(YES), @(YES)];
     [fetchRequest setPredicate:predicate];
     NSError* error = nil;
     NSArray* resultArray= [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
@@ -404,7 +402,7 @@ static const NSInteger countAim = 20;
         _fetchedDict  = resultArray;
         return resultArray;
     } else {
-        NSLog(@"error: %@, local description: %@",error.userInfo, error.localizedDescription);
+        NSLog(@"error fetchedDict: %@, local description: %@",error.userInfo, error.localizedDescription);
         return nil;
     }
 }

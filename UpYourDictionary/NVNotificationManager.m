@@ -96,6 +96,7 @@
     /*dispatch_queue_t queue = dispatch_queue_create("com.UpYourDictionary.multithreading.queue", DISPATCH_QUEUE_SERIAL);
     dispatch_async(queue, ^{
             });*/
+
     [self.managedObjectContext performBlock:^{
         //cancel all notifications
         [self cancelNotificationsCompleteWay];
@@ -121,6 +122,7 @@
         }
 
     }];
+
 }
 -(void) putUserInfoInCoreData:(NSSet*) userInfoSet onFireDate:(NSDate*) fireDate{
     /*NSMutableDictionary* userInfoDict = [NSMutableDictionary dictionaryWithObject:userInfoArray forKey:fireDate];
@@ -136,8 +138,16 @@
     [newNotify addContent:userInfoSet];
     NSError* error = nil;
     [self.managedObjectContext save:&error];
+    if (!error) {
+        //_fetchedWordsAllowedToShow = resultArray;
+    } else {
+        NSLog(@"error putUserInfoInCoreData: %@, local description: %@",error.userInfo, error.localizedDescription);
+    
+    }
 }
 -(void) startFireAlertAtDate:(NSDate*) fireDate numberOfWords:(NSInteger)numberWords iteration:(NSInteger) iteration{
+    if ([[NVServerManager sharedManager] isNetworkAvailable]){
+        
     NSDateComponents *secComponent = [[NSDateComponents alloc] init];
     secComponent.second = iteration;
     
@@ -175,8 +185,9 @@
     }
     
     
-
+    }
 }
+
 -(NVNotifyInUse*) fetchedNotifyWithDate:(NSDate*) fireDate
 {
     NSManagedObjectContext* moc = self.managedObjectContext;
@@ -206,7 +217,7 @@
         //_fetchedWordsAllowedToShow = resultArray;
         return [resultArray firstObject];
     } else {
-        NSLog(@"error: %@, local description: %@",error.userInfo, error.localizedDescription);
+        NSLog(@"error fetchedNotifyWithDate: %@, local description: %@",error.userInfo, error.localizedDescription);
         return nil;
     }
 }
@@ -236,7 +247,7 @@
     if (!error) {
         return resultArray;
     } else {
-        NSLog(@"error: %@, local description: %@",error.userInfo, error.localizedDescription);
+        NSLog(@"error fetchedAllNotifies: %@, local description: %@",error.userInfo, error.localizedDescription);
         return nil;
     }
 }

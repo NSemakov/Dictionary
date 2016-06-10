@@ -11,6 +11,7 @@
         <attribute name="from" attributeType="String" syncable="YES"/>
         <attribute name="fromShort" attributeType="String" syncable="YES"/>
         <attribute name="isActive" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="isActiveProgram" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="progress" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="to" attributeType="String" syncable="YES"/>
         <attribute name="toShort" optional="YES" attributeType="String" syncable="YES"/>
@@ -34,7 +35,7 @@
     </entity>
     <elements>
         <element name="NVContent" positionX="-10656" positionY="-4273" width="128" height="118"/>
-        <element name="NVDicts" positionX="-11117" positionY="-4318" width="128" height="163"/>
+        <element name="NVDicts" positionX="-11117" positionY="-4318" width="128" height="178"/>
         <element name="NVNotifyInUse" positionX="-11106" positionY="-4057" width="128" height="73"/>
         <element name="NVTemplates" positionX="-10775" positionY="-4138" width="128" height="118"/>
         <element name="NVWords" positionX="-10586" positionY="-4123" width="119" height="73"/>

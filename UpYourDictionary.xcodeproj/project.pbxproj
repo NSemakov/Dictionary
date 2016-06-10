@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		01083E3F95C3BACEF2DE4B0A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8E645F75A1AF8B9A7B2E2DB /* libPods.a */; };
+		84037B9F1D0A2EFF005EBCAD /* NVTouchedNotifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84037B9E1D0A2EFF005EBCAD /* NVTouchedNotifyVC.m */; settings = {ASSET_TAGS = (); }; };
 		843BCB6D1CEDE034000F30A3 /* NVCreateTemplateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843BCB6C1CEDE034000F30A3 /* NVCreateTemplateCell.m */; settings = {ASSET_TAGS = (); }; };
 		844630801CEB977A004E0994 /* NVDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8446307F1CEB977A004E0994 /* NVDataManager.m */; settings = {ASSET_TAGS = (); }; };
 		8446309C1CEBAC32004E0994 /* NVParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8446309B1CEBAC32004E0994 /* NVParentViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -62,6 +63,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		84037B9D1D0A2EFF005EBCAD /* NVTouchedNotifyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVTouchedNotifyVC.h; sourceTree = "<group>"; };
+		84037B9E1D0A2EFF005EBCAD /* NVTouchedNotifyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVTouchedNotifyVC.m; sourceTree = "<group>"; };
 		843BCB6B1CEDE034000F30A3 /* NVCreateTemplateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVCreateTemplateCell.h; sourceTree = "<group>"; };
 		843BCB6C1CEDE034000F30A3 /* NVCreateTemplateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVCreateTemplateCell.m; sourceTree = "<group>"; };
 		8446307E1CEB977A004E0994 /* NVDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVDataManager.h; sourceTree = "<group>"; };
@@ -230,6 +233,8 @@
 				8451201A1CF3B620007759F7 /* NVSettingsVC.m */,
 				8446309A1CEBAC32004E0994 /* NVParentViewController.h */,
 				8446309B1CEBAC32004E0994 /* NVParentViewController.m */,
+				84037B9D1D0A2EFF005EBCAD /* NVTouchedNotifyVC.h */,
+				84037B9E1D0A2EFF005EBCAD /* NVTouchedNotifyVC.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -533,6 +538,7 @@
 				8456915F1CE9EDBB005E4AE1 /* NVServerManager.m in Sources */,
 				845691621CE9F741005E4AE1 /* NVCreateNewDictVC.m in Sources */,
 				845894401CE8BC3800D4FE35 /* UpYourDictionary.xcdatamodeld in Sources */,
+				84037B9F1D0A2EFF005EBCAD /* NVTouchedNotifyVC.m in Sources */,
 				84F6A3C31CEFCFF6001F3CAC /* NVMenuVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -2,7 +2,7 @@
 //  NVDicts+CoreDataProperties.h
 //  UpYourDictionary
 //
-//  Created by Admin on 21/05/16.
+//  Created by Admin on 06/06/16.
 //  Copyright © 2016 Admin. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -16,11 +16,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NVDicts (CoreDataProperties)
 
 @property (nullable, nonatomic, retain) NSString *from;
+@property (nullable, nonatomic, retain) NSString *fromShort;
 @property (nullable, nonatomic, retain) NSNumber *isActive;
 @property (nullable, nonatomic, retain) NSNumber *progress;
 @property (nullable, nonatomic, retain) NSString *to;
-@property (nullable, nonatomic, retain) NSString *fromShort;
 @property (nullable, nonatomic, retain) NSString *toShort;
+@property (nullable, nonatomic, retain) NSNumber *isActiveProgram;
 @property (nullable, nonatomic, retain) NSSet<NVContent *> *contentUnit;
 @property (nullable, nonatomic, retain) NVTemplates *template1;
 

@@ -94,7 +94,7 @@
     }
     _privateManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     [_privateManagedObjectContext setPersistentStoreCoordinator:coordinator];
-    [_managedObjectContext setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
+    [_privateManagedObjectContext setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
     return _privateManagedObjectContext;
 }
 - (NSManagedObjectContext *)managedObjectContext {

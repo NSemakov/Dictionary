@@ -22,7 +22,7 @@
     UIUserNotificationType types = UIUserNotificationTypeAlert;
     UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
     [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
-    //NSLog(@"did finish launching with options");
+    NSLog(@"did finish launching with options");
 
     return YES;
 }
@@ -30,8 +30,26 @@
 
 }
 -(void) application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
-    NSLog(@"received:body %@, date %@",notification.alertBody,notification.fireDate);
+    //NSLog(@"received:body %@, date %@",notification.alertBody,notification.fireDate);
+    
+    [[self window] makeKeyAndVisible];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    UINavigationController *navigationController = (UINavigationController*) self.window.rootViewController;
+    UIViewController* lastStackVC = [[navigationController viewControllers] lastObject];
+    NVTouchedNotifyVC *vc = nil;
+    if ([lastStackVC isKindOfClass:[NVTouchedNotifyVC class]]){
+        //контроллер показывающий нотифаи уже открыт
+        vc = (NVTouchedNotifyVC*) lastStackVC;
+        [vc refreshTableWithNotify:notification];
+    } else {
+        //если это не контроллер нотификаций, значит это первое нажатие на нотифай
+        vc = [storyboard instantiateViewControllerWithIdentifier:@"NVTouchedNotifyVC"];
+        [vc refreshTableWithNotify:notification];
+        [lastStackVC.navigationController showViewController:vc sender:nil];
+    }
 }
+
 - (void)applicationWillResignActive:(UIApplication *)application {
 
 }
@@ -54,7 +72,6 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
-    //[self saveContext];
 }
 
 @end

@@ -11,6 +11,8 @@
 //#import "NVMainStrategy.h"
 #import "NVNotificationManager.h"
 #import "Constants.h"
+#import "NVTouchedNotifyVC.h"
+#import "NVMenuVC.h"
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

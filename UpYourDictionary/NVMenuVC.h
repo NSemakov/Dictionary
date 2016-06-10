@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "NVMainStrategy.h"
 @interface NVMenuVC : UIViewController <NVMainStrategyProtocol>
-- (IBAction)buttonTestAlgo:(UIButton *)sender;
-@property (weak, nonatomic) IBOutlet UITextField *textFieldTest;
+//- (IBAction)buttonTestAlgo:(UIButton *)sender;
+//@property (weak, nonatomic) IBOutlet UITextField *textFieldTest;
 
 @end

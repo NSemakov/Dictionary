@@ -2,7 +2,7 @@
 //  NVDicts+CoreDataProperties.m
 //  UpYourDictionary
 //
-//  Created by Admin on 21/05/16.
+//  Created by Admin on 06/06/16.
 //  Copyright © 2016 Admin. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -14,11 +14,12 @@
 @implementation NVDicts (CoreDataProperties)
 
 @dynamic from;
+@dynamic fromShort;
 @dynamic isActive;
 @dynamic progress;
 @dynamic to;
-@dynamic fromShort;
 @dynamic toShort;
+@dynamic isActiveProgram;
 @dynamic contentUnit;
 @dynamic template1;
 

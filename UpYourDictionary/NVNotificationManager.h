@@ -19,4 +19,5 @@
 -(void) generateNewNotifications;
 -(void) cancelNotificationsCompleteWay;
 -(void) addNewNotificationToFullSet;
+-(NVNotifyInUse*) fetchedNotifyWithDate:(NSDate*) fireDate;
 @end

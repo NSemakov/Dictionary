@@ -115,6 +115,8 @@
 
     //save dictionary as active
     //id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][0];
+    
+    
     if (self.curDict && self.activeDict) {
         if ([self.curDict isEqual:self.activeDict]) {
             //nothing. ничего не изменилось.
@@ -125,7 +127,7 @@
             //save context
             NSError* error = nil;
             if (![self.managedObjectContext save:&error]) {
-                NSLog(@"error: %@, user info: %@", error.localizedDescription,error.userInfo);
+                NSLog(@"error buttonSave: %@, user info: %@", error.localizedDescription,error.userInfo);
             } else {
                 [[NVNotificationManager sharedManager] generateNewNotifications];
                 [self.navigationController popViewControllerAnimated:YES];
@@ -136,18 +138,18 @@
         //save context
         NSError* error = nil;
         if (![self.managedObjectContext save:&error]) {
-            NSLog(@"error: %@, user info: %@", error.localizedDescription,error.userInfo);
+            NSLog(@"error buttonSave: %@, user info: %@", error.localizedDescription,error.userInfo);
         } else {
             [[NVNotificationManager sharedManager] generateNewNotifications];
             [self.navigationController popViewControllerAnimated:YES];
         }
     } else if (!self.curDict && self.activeDict){//был активный словарь, активность сняли
         self.activeDict.isActive=@(false);
-
+        [[NVNotificationManager sharedManager] cancelNotificationsCompleteWay];
         //save context
         NSError* error = nil;
         if (![self.managedObjectContext save:&error]) {
-            NSLog(@"error: %@, user info: %@", error.localizedDescription,error.userInfo);
+            NSLog(@"error buttonSave: %@, user info: %@", error.localizedDescription,error.userInfo);
         } else {
             //cancel local notifications in background
             //dispatch_queue_t queue = dispatch_queue_create("com.UpYourDictionary.multithreading.queue", DISPATCH_QUEUE_CONCURRENT);
@@ -160,7 +162,6 @@
     }
     
 
-    
 }
 
 - (IBAction)buttonCancel:(UIBarButtonItem *)sender {
