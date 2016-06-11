@@ -15,7 +15,7 @@
 #import "NVServerManager.h"
 #import "NVTemplates.h"
 #import "NVWords.h"
-
+#import "Constants.h"
 @protocol NVMainStrategyProtocol <NSObject>
 
 -(void) showWord:(NSString*) word translation:(NSString*) translation;

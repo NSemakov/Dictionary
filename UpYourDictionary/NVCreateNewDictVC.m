@@ -38,24 +38,33 @@
 -(void) refreshDataWithText:(NSString*) text shortLangFrom:(NSString*) shortLangFrom {
     self.textFieldLangFrom.text = text;
     self.langFromShort = shortLangFrom;
-    UITableViewCell* cell = (UITableViewCell*)self.textFieldLangFrom.superview.superview;
-    cell.backgroundColor = [self greenColor];
+    
+    if (shortLangFrom ) {
+        UITableViewCell* cell = (UITableViewCell*)self.textFieldLangFrom.superview.superview;
+        cell.backgroundColor = [self greenColor];
+    }
 }
 
 #pragma mark - NVLangToVCProtocol
 -(void) refreshDataLangToWithText:(NSString*) text shortLangTo:(NSString*) shortLangTo {
     self.textFieldLangTo.text = text;
     self.langToShort = shortLangTo;
-    UITableViewCell* cell = (UITableViewCell*)self.textFieldLangTo.superview.superview;
-    cell.backgroundColor = [self greenColor];
+    if (shortLangTo) {
+        UITableViewCell* cell = (UITableViewCell*)self.textFieldLangTo.superview.superview;
+        cell.backgroundColor = [self greenColor];
+    }
+    
 }
 
  #pragma mark - NVChooseThemeVCProtocol
 -(void) refreshDataThemeWithTemplate:(NVTemplates*) templ{
     self.textFieldDictTheme.text = templ.name;
     self.templateForDict = templ;
-    UITableViewCell* cell = (UITableViewCell*)self.textFieldDictTheme.superview.superview;
-    cell.backgroundColor = [self greenColor];
+    
+    if (templ) {
+        UITableViewCell* cell = (UITableViewCell*)self.textFieldDictTheme.superview.superview;
+        cell.backgroundColor = [self greenColor];
+    }
 }
 
 -(UIColor*) greenColor{
@@ -86,10 +95,6 @@
             vc.curTemplate = self.templateForDict;
         }
     }
-}
-- (IBAction)buttonCancel:(UIBarButtonItem *)sender {
-    [self.managedObjectContext rollback];
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)buttonSave:(UIBarButtonItem *)sender {

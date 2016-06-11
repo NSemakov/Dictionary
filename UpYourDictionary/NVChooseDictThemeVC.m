@@ -24,8 +24,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"AddOwnWords"]) {
         NVCreateTemplateVC* vc = segue.destinationViewController;
@@ -92,6 +90,15 @@
     
     return _fetchedResultsController;
 }
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    //переопределяем, потому что не нужно сохранять контекст. Потенциально ведет к ошибке.
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+    }
+}
+
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -107,7 +114,6 @@
         if (oldCell.accessoryType == UITableViewCellAccessoryCheckmark) {
             oldCell.accessoryType = UITableViewCellAccessoryNone;
         }
-        
     }
     
     UITableViewCell *newCell = [tableView cellForRowAtIndexPath:indexPath];
@@ -120,9 +126,9 @@
 #pragma mark - actions
 
 - (IBAction)buttonAddOwnWords:(UIBarButtonItem *)sender {
-    self.alertCtrl=[UIAlertController alertControllerWithTitle:@"Input template name" message:@"please" preferredStyle:UIAlertControllerStyleAlert];
+    self.alertCtrl=[UIAlertController alertControllerWithTitle:NSLocalizedString(@"Input template name", @"Input template name") message:nil preferredStyle:UIAlertControllerStyleAlert];
     [self.alertCtrl addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder=@"New template name";
+        textField.placeholder = NSLocalizedString(@"New template name",@"New template name");
     }];
     __weak NVChooseDictThemeVC* weakSelf = self;
     UIAlertAction* okAction=[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
@@ -130,7 +136,7 @@
         //[self handleNameOfNewFolder:field.text];
         [self performSegueWithIdentifier:@"AddOwnWords" sender:field.text];
     }];
-    UIAlertAction* cancelAction=[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+    UIAlertAction* cancelAction=[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel",nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         [weakSelf dismissViewControllerAnimated:YES completion:nil];
     }];
     [self.alertCtrl addAction:okAction];

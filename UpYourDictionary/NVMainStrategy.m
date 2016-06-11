@@ -7,8 +7,7 @@
 //
 
 #import "NVMainStrategy.h"
-static const NSInteger numberOfWords = 10;
-static const NSInteger countAim = 10;
+
 @implementation NVMainStrategy
 
 +(NVMainStrategy*) sharedManager{

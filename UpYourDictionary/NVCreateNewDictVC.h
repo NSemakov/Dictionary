@@ -32,7 +32,6 @@
 @property (strong, nonatomic) NSString *langFromShort;
 @property (strong, nonatomic) NSString *langToShort;
 
-- (IBAction)buttonCancel:(UIBarButtonItem *)sender;
 - (IBAction)buttonSave:(UIBarButtonItem *)sender;
 - (IBAction)actionBackButton:(UIBarButtonItem *)sender;
 -(void) refreshDataWithText:(NSString*) text shortLangFrom:(NSString*) shortLangFrom;

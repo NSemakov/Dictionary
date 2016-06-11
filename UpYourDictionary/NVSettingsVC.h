@@ -13,6 +13,7 @@
 @interface NVSettingsVC : UITableViewController
 @property (weak, nonatomic) IBOutlet UILabel *labelTimeToPush;
 @property (weak, nonatomic) IBOutlet UILabel *labelNumberOfWords;
+@property (weak, nonatomic) IBOutlet UILabel *labelInfo;
 @property (weak, nonatomic) IBOutlet UISlider *sliderTimeToPush;
 @property (weak, nonatomic) IBOutlet UISlider *sliderNumberOfWords;
 - (IBAction)sliderActionTimeToPush:(UISlider *)sender;

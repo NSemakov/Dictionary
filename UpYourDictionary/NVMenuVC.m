@@ -19,7 +19,6 @@
     // Do any additional setup after loading the view.
     NVMainStrategy* manager = [NVMainStrategy sharedManager];
     manager.delegate = self;
-    NSLog(@"menuVC viewDidLoad");
 }
 
 - (void)didReceiveMemoryWarning {

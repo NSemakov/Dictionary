@@ -1,0 +1,102 @@
+/* Class = "UILabel"; text = "Language to"; ObjectID = "0It-qe-PKW"; */
+"0It-qe-PKW.text" = "На какой язык";
+
+/* Class = "UIBarButtonItem"; title = "Add own words"; ObjectID = "4oe-KP-zUr"; */
+"4oe-KP-zUr.title" = "Add own words";
+
+/* Class = "UILabel"; text = "List of words"; ObjectID = "5Xw-03-ti4"; */
+"5Xw-03-ti4.text" = "List of words";
+
+/* Class = "UIBarButtonItem"; title = "Снять выбор"; ObjectID = "6ec-G9-Ceb"; */
+"6ec-G9-Ceb.title" = "Снять выбор";
+
+/* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "8nn-8R-9KG"; */
+"8nn-8R-9KG.title" = "Save";
+
+/* Class = "UITextField"; placeholder = "Type your word"; ObjectID = "AGI-6n-fQd"; */
+"AGI-6n-fQd.placeholder" = "Type your word";
+
+/* Class = "UILabel"; text = "Time to Push"; ObjectID = "B7M-ib-ODM"; */
+"B7M-ib-ODM.text" = "Интервал времени";
+
+/* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "BoU-II-Nwh"; */
+"BoU-II-Nwh.title" = "Cancel";
+
+/* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "CdD-hc-8sl"; */
+"CdD-hc-8sl.title" = "Save";
+
+/* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "Cng-VH-61F"; */
+"Cng-VH-61F.title" = "Save";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "DJc-CW-kYn"; */
+"DJc-CW-kYn.title" = "Settings";
+
+/* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "En3-ht-jnP"; */
+"En3-ht-jnP.title" = "Cancel";
+
+/* Class = "UIButton"; normalTitle = "Settings"; ObjectID = "GvJ-MV-83v"; */
+"GvJ-MV-83v.normalTitle" = "Settings";
+
+/* Class = "UITableViewController"; title = "Create new with my words"; ObjectID = "Hcq-SV-ZHo"; */
+"Hcq-SV-ZHo.title" = "Create new with my words";
+
+/* Class = "UIBarButtonItem"; title = "Ok"; ObjectID = "IOC-CG-BzW"; */
+"IOC-CG-BzW.title" = "Ok";
+
+/* Class = "UIBarButtonItem"; title = "Add word"; ObjectID = "VoL-VK-sH7"; */
+"VoL-VK-sH7.title" = "Add word";
+
+/* Class = "UITableViewController"; title = "Choose dictionary theme"; ObjectID = "Xit-mw-II1"; */
+"Xit-mw-II1.title" = "Choose dictionary theme";
+
+/* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "cp5-9p-vwp"; */
+"cp5-9p-vwp.title" = "Save";
+
+/* Class = "UINavigationItem"; title = "Choose list of words"; ObjectID = "e7V-0p-Q0K"; */
+"e7V-0p-Q0K.title" = "Choose list of words";
+
+/* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "l7B-FO-ATI"; */
+"l7B-FO-ATI.title" = "Cancel";
+
+/* Class = "UILabel"; text = "Not selected"; ObjectID = "mI2-cS-vRD"; */
+"mI2-cS-vRD.text" = "Not selected";
+
+/* Class = "UILabel"; text = "Not selected"; ObjectID = "ncI-EF-UV6"; */
+"ncI-EF-UV6.text" = "Not selected";
+
+/* Class = "UIButton"; normalTitle = "Choose dictionary"; ObjectID = "poj-iQ-bVH"; */
+"poj-iQ-bVH.normalTitle" = "Choose dictionary";
+
+/* Class = "UILabel"; text = "Number of words"; ObjectID = "qca-Hb-ubJ"; */
+"qca-Hb-ubJ.text" = "Number of words";
+
+/* Class = "UILabel"; text = "Word"; ObjectID = "rWo-aU-bdg"; */
+"rWo-aU-bdg.text" = "Word";
+
+/* Class = "UILabel"; text = "Not selected"; ObjectID = "rmA-8Q-bK7"; */
+"rmA-8Q-bK7.text" = "Not selected";
+
+/* Class = "UINavigationItem"; title = "Choose Language To"; ObjectID = "sdu-WR-7QH"; */
+"sdu-WR-7QH.title" = "Choose Language To";
+
+/* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "te1-x6-dy4"; */
+"te1-x6-dy4.title" = "Cancel";
+
+/* Class = "UITableViewController"; title = "Choose active dictionary"; ObjectID = "uQE-7S-cJx"; */
+"uQE-7S-cJx.title" = "Choose active dictionary";
+
+/* Class = "UINavigationItem"; title = "Create new list"; ObjectID = "uuy-pF-yOm"; */
+"uuy-pF-yOm.title" = "Creation of new list of words";
+
+/* Class = "UINavigationItem"; title = "Choose Language From"; ObjectID = "v2x-Km-VFS"; */
+"v2x-Km-VFS.title" = "Choose Language From";
+
+/* Class = "UILabel"; text = "Language from"; ObjectID = "v7W-XS-Zdb"; */
+"v7W-XS-Zdb.text" = "Language from";
+
+/* Class = "UINavigationItem"; title = "Choose dictionary"; ObjectID = "xU2-ke-FkU"; */
+"xU2-ke-FkU.title" = "Choose dictionary";
+
+/* Class = "UINavigationItem"; title = "New dictionary"; ObjectID = "xUz-UR-3uT"; */
+"xUz-UR-3uT.title" = "New dictionary";
+

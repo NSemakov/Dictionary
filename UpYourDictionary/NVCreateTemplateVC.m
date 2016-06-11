@@ -57,17 +57,30 @@
     if (!cell) {
         cell=[[NVCreateTemplateCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
-    cell.labelLeft.text =[NSString stringWithFormat:@"%d. Word:",indexPath.row+1];
+    NSString* string1stPart = [NSString stringWithFormat:@"%d. ",indexPath.row+1];
+    NSString* string2ndPart = NSLocalizedString(@"Word:", @"word in russian");
+    cell.labelLeft.text =[string1stPart stringByAppendingString:string2ndPart];
     cell.textField.delegate = self;
     cell.textField.text = (NSString*)[[self.tempWordsSet objectAtIndex:indexPath.row] word];
     return cell;
 }
 #pragma mark - UITextFieldDelegate
-- (void)textFieldDidEndEditing:(UITextField *)textField{
+/*- (void)textFieldDidEndEditing:(UITextField *)textField{
     NVCreateTemplateCell* cell = (NVCreateTemplateCell*)[[textField superview] superview];
     NSIndexPath* indexPath =  [self.tableView indexPathForCell:cell];
     NVWords* word = [self.tempWordsSet objectAtIndex:indexPath.row];
     word.word = textField.text;
+}*/
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    NVCreateTemplateCell* cell = (NVCreateTemplateCell*)[[textField superview] superview];
+    NSIndexPath* indexPath =  [self.tableView indexPathForCell:cell];
+    NVWords* word = [self.tempWordsSet objectAtIndex:indexPath.row];
+    word.word = string;
+    return YES;
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
 }
 #pragma mark - Actions
 
@@ -122,12 +135,14 @@
 
 }
 -(void) showWarning:(NSMutableArray*) arrayOfWrongObjects{
-    NSString* errorString = [NSString stringWithFormat:@"Words can't be empty. Please fill words in next rows: "];
+    
+    NSString* errorString = NSLocalizedString(@"Words can't be empty. Please fill words in next rows: ",@"");
+    
     for (NSNumber *num in arrayOfWrongObjects) {
         NSString* stringToAdd = [NSString stringWithFormat:@" %@; ",num];
         errorString = [errorString stringByAppendingString:stringToAdd];
     }
-    UIAlertController* alertCtrl=[UIAlertController alertControllerWithTitle:@"Attention" message:errorString preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController* alertCtrl=[UIAlertController alertControllerWithTitle: NSLocalizedString(@"Attention", @"attention") message:errorString preferredStyle:UIAlertControllerStyleAlert];
     
     
     UIAlertAction* okAction=[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
