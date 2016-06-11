@@ -424,7 +424,7 @@
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Choose list of words" id="e7V-0p-Q0K">
+                    <navigationItem key="navigationItem" title="List of words" id="e7V-0p-Q0K">
                         <barButtonItem key="rightBarButtonItem" title="Add own words" id="4oe-KP-zUr">
                             <connections>
                                 <action selector="buttonAddOwnWords:" destination="Xit-mw-II1" id="BlP-i7-Ncl"/>
@@ -577,7 +577,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="95"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time interval to show words" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7M-ib-ODM">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time interval to show words" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7M-ib-ODM">
                                                     <rect key="frame" x="8" y="11" width="584" height="21"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -611,7 +611,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="95"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of words in one time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qca-Hb-ubJ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of words in one time" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qca-Hb-ubJ">
                                                     <rect key="frame" x="8" y="11" width="584" height="21"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -632,8 +632,8 @@
                                                 <constraint firstAttribute="leadingMargin" secondItem="m8t-Zy-Ghp" secondAttribute="leading" id="7Tf-JD-slW"/>
                                                 <constraint firstItem="qca-Hb-ubJ" firstAttribute="top" secondItem="XdT-xh-qhu" secondAttribute="topMargin" constant="3" id="Hch-ja-6B4"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="qca-Hb-ubJ" secondAttribute="leading" id="oaY-A0-z2W"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="m8t-Zy-Ghp" secondAttribute="bottom" constant="5" id="qMD-He-2Qg"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="qca-Hb-ubJ" secondAttribute="trailing" id="qbi-pd-BK3"/>
-                                                <constraint firstItem="m8t-Zy-Ghp" firstAttribute="top" secondItem="qca-Hb-ubJ" secondAttribute="bottom" constant="20" id="sDt-w1-bGM"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>

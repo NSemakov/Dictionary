@@ -70,12 +70,12 @@
 /* Begin PBXFileReference section */
 		84037B9D1D0A2EFF005EBCAD /* NVTouchedNotifyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVTouchedNotifyVC.h; sourceTree = "<group>"; };
 		84037B9E1D0A2EFF005EBCAD /* NVTouchedNotifyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVTouchedNotifyVC.m; sourceTree = "<group>"; };
-		840DC0671D0B8A2A009C04E8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		840DC0681D0B8A2A009C04E8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		840DC06C1D0B9179009C04E8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		840DC0711D0B917A009C04E8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		840DC0761D0B917D009C04E8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		840DC07B1D0B917F009C04E8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		840DC07E1D0BA9FD009C04E8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		843BCB6B1CEDE034000F30A3 /* NVCreateTemplateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVCreateTemplateCell.h; sourceTree = "<group>"; };
 		843BCB6C1CEDE034000F30A3 /* NVCreateTemplateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVCreateTemplateCell.m; sourceTree = "<group>"; };
 		8446307E1CEB977A004E0994 /* NVDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVDataManager.h; sourceTree = "<group>"; };
@@ -436,6 +436,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 845894261CE8BC3800D4FE35;
 			productRefGroup = 845894301CE8BC3800D4FE35 /* Products */;
@@ -644,7 +645,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				8462CDE01CEA4D0B00E742AC /* Base */,
-				840DC0671D0B8A2A009C04E8 /* ru */,
+				840DC07E1D0BA9FD009C04E8 /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

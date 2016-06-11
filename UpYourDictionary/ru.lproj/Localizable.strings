@@ -1,1 +1,27 @@
-/* No Localized Strings */
+/* attention */
+"Attention" = "Внимание";
+
+/* No comment provided by engineer. */
+"Cancel" = "Отмена";
+
+/* No comment provided by engineer. */
+"Info. With these settings you will know any 50 words in: %d day(s)" = "Инфо. С этими настройками Вы выучите любые 50 слов за : %d дн";
+
+/* Input template name */
+"Input template name" = "Задайте имя для списка слов";
+
+/* New template name */
+"New template name" = "Имя списка";
+
+/* No comment provided by engineer. */
+"Number of words in one time: %d" = "Количество слов для показа за один раз: %d";
+
+/* No comment provided by engineer. */
+"Time interval to show words: %d hour(s)" = "Частота показа слов в часах: %d";
+
+/* word in russian */
+"Word:" = "Слово";
+
+/* No comment provided by engineer. */
+"Words can't be empty. Please fill words in next rows: " = "Слова не должны быть пустыми. Пожалуйста заполните следующие строки: ";
+
