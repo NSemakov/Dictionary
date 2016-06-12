@@ -25,7 +25,7 @@
     UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
     [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
     NSLog(@"did finish launching with options");
-
+    [[NVNotificationManager sharedManager] refreshProgressOfDictionary];
     return YES;
 }
 -(void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings{
@@ -50,6 +50,8 @@
         [vc refreshTableWithNotify:notification];
         [lastStackVC.navigationController showViewController:vc sender:nil];
     }
+    [[NVNotificationManager sharedManager] refreshProgressOfDictionary];
+    [[NVNotificationManager sharedManager] addNewNotificationToFullSet];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -65,10 +67,12 @@
 }
 - (void)applicationWillEnterForeground:(UIApplication *)application {
 
+
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [[NVNotificationManager sharedManager] refreshProgressOfDictionary];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

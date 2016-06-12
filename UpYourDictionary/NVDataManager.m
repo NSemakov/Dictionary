@@ -49,11 +49,25 @@
     // Create the coordinator and store
     
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"UpYourDictionary.sqlite"];
+    NSString* curSystemLang = [[[NSBundle mainBundle] preferredLocalizations] objectAtIndex:0];
+    NSURL *storeURL;
+    if ([curSystemLang isEqualToString:@"ru"]) {
+        storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"UpYourDictionaryRu.sqlite"];
+    } else {
+        storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"UpYourDictionaryEn.sqlite"];
+    }
+    
     /*start from Ray*/
     
     if (![[NSFileManager defaultManager] fileExistsAtPath:[storeURL path]]) {
-        NSURL *preloadURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"UpYourDictionary" ofType:@"sqlite"]];
+        NSString* dbName;
+        if ([curSystemLang isEqualToString:@"ru"]) {
+            dbName = @"UpYourDictionaryRu";
+        } else {
+            dbName = @"UpYourDictionaryEn";
+        }
+
+        NSURL *preloadURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:dbName ofType:@"sqlite"]];
         NSError* err = nil;
         
         if (![[NSFileManager defaultManager] copyItemAtURL:preloadURL toURL:storeURL error:&err]) {
@@ -123,7 +137,7 @@
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
+            //abort();
         }
     }
 }

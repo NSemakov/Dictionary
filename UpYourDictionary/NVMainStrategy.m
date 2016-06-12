@@ -256,8 +256,8 @@
     } else {
         return nil;
     }
-    
 }
+
 - (NSArray*) fetchedAllowedWords{
     /*if (_fetchedAllowedWords != nil) {
         return _fetchedAllowedWords;
@@ -417,6 +417,85 @@
         return nil;
     }
 }
+- (NVDicts*) activeDictByUser
+{
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"NVDicts" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+
+    // Edit the sort key as appropriate.
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"from" ascending:YES];
+    NSArray *sortDescriptors = @[sortDescriptor];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+
+    NSPredicate* predicate=[NSPredicate predicateWithFormat:@"(isActive = %@)",@(YES)];
+    [fetchRequest setPredicate:predicate];
+    NSError* error = nil;
+    NSArray* resultArray= [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (!error) {
+        if ([resultArray count]>0) {
+            return [resultArray firstObject];
+        }
+    } else {
+        NSLog(@"error isActiveDictByUser: %@, local description: %@",error.userInfo, error.localizedDescription);
+    }
+    return nil;
+}
+- (NSInteger) countProgressOfDictionary
+{
+    if (self.activeDict) {
+       
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"NVContent" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    // Edit the sort key as appropriate.
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"counter" ascending:YES];
+    NSArray *sortDescriptors = @[sortDescriptor];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+
+    NSPredicate* predicate=[NSPredicate predicateWithFormat:@"dict =%@ AND counter >= %@",self.activeDict, @(countAim)];
+    [fetchRequest setPredicate:predicate];
+    // Edit the section name key path and cache name if appropriate.
+    // nil for section name key path means "no sections".
+    NSError* error = nil;
+    NSInteger doneWordsCount = [self.managedObjectContext countForFetchRequest:fetchRequest error:&error];
+    if (error) {
+        NSLog(@"error: %@, local description: %@",error.userInfo, error.localizedDescription);
+        doneWordsCount = 0;
+    }
+    
+    /*-----------*/
+    
+    fetchRequest = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    entity = [NSEntityDescription entityForName:@"NVWords" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    // Edit the sort key as appropriate.
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"word" ascending:YES];
+    sortDescriptors = @[sortDescriptor];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+
+    NSSet* set1 = [NSSet setWithObject:self.activeDict.template1];
+    predicate=[NSPredicate predicateWithFormat:@"(ANY template1 IN %@)",set1];
+    //NSPredicate*  predicate = [NSComparisonPredicate predicateWithLeftExpression:[NSExpression expressionForKeyPath:@"template1"] rightExpression:[NSExpression expressionForConstantValue:array1] modifier:NSDirectPredicateModifier type:NSInPredicateOperatorType options:0];
+    [fetchRequest setPredicate:predicate];
+    error = nil;
+    NSInteger allWordsCount = [self.managedObjectContext countForFetchRequest:fetchRequest error:&error];
+    if (error) {
+        NSLog(@"error: %@, local description: %@",error.userInfo, error.localizedDescription);
+        allWordsCount = 0;
+    }
+        //NSLog(@"count:%d, %f",(doneWordsCount *100/ allWordsCount) , (doneWordsCount * 1.0 / allWordsCount) * 100);
+    return (doneWordsCount *100 / allWordsCount) ;
+} else {
+    return 0;
+}
+}
 - (NSManagedObjectContext*) managedObjectContext{
     if (!_managedObjectContext) {
         _managedObjectContext=[[NVDataManager sharedManager] privateManagedObjectContext];
@@ -424,45 +503,4 @@
     return _managedObjectContext;
 }
 
-
-/*-(void) takeWordTranslateAdd{
- //берем любое слово из источника, проверяем, не взято ли оно уже для перевода. переводим, добавляем в контент и .
- NSSet* set = [NSSet setWithArray:self.fetchedAllowedWords];
- NVWords* newWord = [set anyObject];
- if ([self.setOfTempTakenWords containsObject:newWord]) {
- return;
- } else {
- [self.setOfTempTakenWords addObject:newWord];
- }
- NSString* wordToTranslate = newWord.word;
- NSString* fromLangShort = self.activeDict.fromShort;
- NSString* toLangShort = self.activeDict.toShort;
- __weak NVMainStrategy* weakSelf = self;
- dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
- [[NVServerManager sharedManager] POSTTranslatePhrase:wordToTranslate fromLang:fromLangShort toLang:toLangShort OnSuccess:^(NSString* translation) {
- //все оставшиеся действия надо делать здесь.
- if (weakSelf.managedObjectContext) {
- NVContent* newContent=[NSEntityDescription insertNewObjectForEntityForName:@"NVContent" inManagedObjectContext:weakSelf.managedObjectContext];
- newContent.word = newWord.word;
- newContent.translation = translation;
- newContent.counter = @(0);
- newContent.dict = weakSelf.activeDict;
- 
- NSError* error = nil;
- 
- if ([weakSelf.managedObjectContext save:&error]) {
- [weakSelf resetFetchedProperties];
- [self.setOfTempTakenWords removeObject:newWord];
- } else {
- NSLog(@"error: %@\n userInfo:%@",error.localizedDescription,error.userInfo);
- }
- dispatch_semaphore_signal(semaphore);
- //[weakSelf performAlgo];
- }
- 
- } onFailure:^(NSString *error) {
- dispatch_semaphore_signal(semaphore);
- }];
- dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
- }*/
 @end

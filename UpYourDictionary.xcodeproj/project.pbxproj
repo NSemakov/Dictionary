@@ -13,6 +13,8 @@
 		840DC0701D0B917A009C04E8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 840DC0721D0B917A009C04E8 /* InfoPlist.strings */; };
 		840DC0751D0B917D009C04E8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 840DC0771D0B917D009C04E8 /* InfoPlist.strings */; };
 		840DC07A1D0B917F009C04E8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 840DC07C1D0B917F009C04E8 /* Localizable.strings */; };
+		843910A41D0CC95600309FBF /* UpYourDictionaryEn.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 843910A21D0CC95600309FBF /* UpYourDictionaryEn.sqlite */; settings = {ASSET_TAGS = (); }; };
+		843910A51D0CC95600309FBF /* UpYourDictionaryRu.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 843910A31D0CC95600309FBF /* UpYourDictionaryRu.sqlite */; settings = {ASSET_TAGS = (); }; };
 		843BCB6D1CEDE034000F30A3 /* NVCreateTemplateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843BCB6C1CEDE034000F30A3 /* NVCreateTemplateCell.m */; settings = {ASSET_TAGS = (); }; };
 		844630801CEB977A004E0994 /* NVDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8446307F1CEB977A004E0994 /* NVDataManager.m */; settings = {ASSET_TAGS = (); }; };
 		8446309C1CEBAC32004E0994 /* NVParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8446309B1CEBAC32004E0994 /* NVParentViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -45,7 +47,6 @@
 		845E96571D0B3E7E0011856C /* NVCreateDictCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 845E96561D0B3E7E0011856C /* NVCreateDictCell.m */; settings = {ASSET_TAGS = (); }; };
 		8462CDE11CEA4D0B00E742AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8462CDDF1CEA4D0B00E742AC /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
 		84F2FDB21CEE619B00714DF0 /* NVMainStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F2FDB11CEE619B00714DF0 /* NVMainStrategy.m */; settings = {ASSET_TAGS = (); }; };
-		84F3976F1CFB96CF00720199 /* UpYourDictionary.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 84F3976E1CFB96CF00720199 /* UpYourDictionary.sqlite */; settings = {ASSET_TAGS = (); }; };
 		84F6A3C01CEFCCC2001F3CAC /* NVDicts+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F6A3BF1CEFCCC2001F3CAC /* NVDicts+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
 		84F6A3C31CEFCFF6001F3CAC /* NVMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F6A3C21CEFCFF6001F3CAC /* NVMenuVC.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -76,6 +77,8 @@
 		840DC0761D0B917D009C04E8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		840DC07B1D0B917F009C04E8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		840DC07E1D0BA9FD009C04E8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		843910A21D0CC95600309FBF /* UpYourDictionaryEn.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = UpYourDictionaryEn.sqlite; sourceTree = "<group>"; };
+		843910A31D0CC95600309FBF /* UpYourDictionaryRu.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = UpYourDictionaryRu.sqlite; sourceTree = "<group>"; };
 		843BCB6B1CEDE034000F30A3 /* NVCreateTemplateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVCreateTemplateCell.h; sourceTree = "<group>"; };
 		843BCB6C1CEDE034000F30A3 /* NVCreateTemplateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVCreateTemplateCell.m; sourceTree = "<group>"; };
 		8446307E1CEB977A004E0994 /* NVDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVDataManager.h; sourceTree = "<group>"; };
@@ -141,7 +144,6 @@
 		84F2FDB01CEE619B00714DF0 /* NVMainStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVMainStrategy.h; sourceTree = "<group>"; };
 		84F2FDB11CEE619B00714DF0 /* NVMainStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVMainStrategy.m; sourceTree = "<group>"; };
 		84F2FDB31CEE621F00714DF0 /* NVStrategyProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVStrategyProtocol.h; sourceTree = "<group>"; };
-		84F3976E1CFB96CF00720199 /* UpYourDictionary.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = UpYourDictionary.sqlite; sourceTree = SOURCE_ROOT; };
 		84F6A3BE1CEFCCC2001F3CAC /* NVDicts+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NVDicts+CoreDataProperties.h"; sourceTree = "<group>"; };
 		84F6A3BF1CEFCCC2001F3CAC /* NVDicts+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NVDicts+CoreDataProperties.m"; sourceTree = "<group>"; };
 		84F6A3C11CEFCFF6001F3CAC /* NVMenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVMenuVC.h; sourceTree = "<group>"; };
@@ -281,7 +283,8 @@
 			children = (
 				840DC07C1D0B917F009C04E8 /* Localizable.strings */,
 				840DC0771D0B917D009C04E8 /* InfoPlist.strings */,
-				84F3976E1CFB96CF00720199 /* UpYourDictionary.sqlite */,
+				843910A21D0CC95600309FBF /* UpYourDictionaryEn.sqlite */,
+				843910A31D0CC95600309FBF /* UpYourDictionaryRu.sqlite */,
 				844FCFAC1CF475C100DCCA8A /* NVNotificationManager.h */,
 				844FCFAD1CF475C100DCCA8A /* NVNotificationManager.m */,
 				8456915D1CE9EDBB005E4AE1 /* NVServerManager.h */,
@@ -455,11 +458,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				843910A41D0CC95600309FBF /* UpYourDictionaryEn.sqlite in Resources */,
 				8462CDE11CEA4D0B00E742AC /* Main.storyboard in Resources */,
 				840DC07A1D0B917F009C04E8 /* Localizable.strings in Resources */,
-				84F3976F1CFB96CF00720199 /* UpYourDictionary.sqlite in Resources */,
 				845894451CE8BC3800D4FE35 /* LaunchScreen.storyboard in Resources */,
 				845894421CE8BC3800D4FE35 /* Assets.xcassets in Resources */,
+				843910A51D0CC95600309FBF /* UpYourDictionaryRu.sqlite in Resources */,
 				840DC0751D0B917D009C04E8 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

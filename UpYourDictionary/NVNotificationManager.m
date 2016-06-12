@@ -18,8 +18,8 @@
     return manager;
 }
 -(void) addNewNotificationToFullSet{
-   //create local notifications in background
 
+[self.managedObjectContext performBlock:^{
     NSInteger notifyLeft = [[UIApplication sharedApplication].scheduledLocalNotifications count];
     NSDate* lastNofityFireDate = [[UIApplication sharedApplication].scheduledLocalNotifications lastObject].fireDate;
     NSInteger settingsWords = [[NSUserDefaults standardUserDefaults] integerForKey:NVNumberOfWordsToShow];
@@ -43,7 +43,43 @@
             //интервал из настроек и перевод его из часов в секунды
             
         }
+}];
+}
+-(void) refreshProgressOfDictionary {
+    [self.managedObjectContext performBlock:^{
+        //прогресс из первой нотификации устанавливаем в текущий прогресс словаря при заходе в приложение.
+        /* Есть 2 варианта: еще есть нотификации в списке, тогда их проверяем. Нет нотификаций. Это возможно либо если не было интернета, чтобы загрузить следующие, либо конец словаря.
+         
+         */
+        BOOL flagFirstOptionIsOK = NO;
+        UIApplication* app =[UIApplication sharedApplication];
+        NSArray* arrayOfScheduledNotification = [app scheduledLocalNotifications];
+        NSInteger initialCount = [arrayOfScheduledNotification count];
+        if (initialCount > 0) {
+            UILocalNotification* firstNotify = [arrayOfScheduledNotification firstObject];
+            NSDate* firstNotifyFireDate = firstNotify.fireDate;
+            NVNotifyInUse* notifyInUse = [self fetchedNotifyWithDate:firstNotifyFireDate];
 
+            if (notifyInUse) {
+                [NVMainStrategy sharedManager].activeDict.progress = notifyInUse.progressOfDict;
+                NSError* error = nil;
+                [self.managedObjectContext save:&error];
+                if (error) {
+                    NSLog(@"error refreshProgress: %@, userInfo: %@",error.localizedDescription,error.userInfo);
+                } else {
+                    flagFirstOptionIsOK = YES;
+                }
+            } else {
+                [self.managedObjectContext rollback];
+            }
+        }
+        
+        if (!flagFirstOptionIsOK) {//2й вариант, т.к. первый не сработал.
+            if (! [NVMainStrategy sharedManager].activeDict && [NVMainStrategy sharedManager].activeDictByUser) {
+                [NVMainStrategy sharedManager].activeDictByUser.progress = @(100);
+            }
+        }
+    }];
 }
 -(void) cancelNotificationsCompleteWay{
     [self.managedObjectContext performBlockAndWait:^{
@@ -51,6 +87,13 @@
     UIApplication* app =[UIApplication sharedApplication];
     NSArray* arrayOfScheduledNotification = [app scheduledLocalNotifications];
     NSInteger initialCount = [arrayOfScheduledNotification count];
+        /*отдельно включаем активность словаря, если он был в нотификациях выключен по окончании*/
+        UILocalNotification* lastNotify = [arrayOfScheduledNotification firstObject];
+        NSDate* lastNotifyFireDate = lastNotify.fireDate;
+        NVNotifyInUse* notifyInUse = [self fetchedNotifyWithDate:lastNotifyFireDate];
+        NVContent* content = [notifyInUse.content anyObject];
+        content.dict.isActiveProgram = @(YES);
+        /**/
     for (NSInteger i = initialCount; i>0; i--) {
         /*if (initialCount!= [[app scheduledLocalNotifications] count]) {
             //если в процессе отката вызвалась нотификация по времени и их стало меньше, тогда перевызовем этот метод еще раз
@@ -58,7 +101,7 @@
         }*/
         UILocalNotification* lastNotify = [arrayOfScheduledNotification objectAtIndex:i-1];
         NSDate* lastNotifyFireDate = lastNotify.fireDate;
-        //NSMutableArray* userInfoArray = ;
+
         NVNotifyInUse* notifyInUse = [self fetchedNotifyWithDate:lastNotifyFireDate];
         
         for (NVContent* content in notifyInUse.content) {//отменяем каждое слово в нотификации
@@ -125,16 +168,10 @@
 
 }
 -(void) putUserInfoInCoreData:(NSSet*) userInfoSet onFireDate:(NSDate*) fireDate{
-    /*NSMutableDictionary* userInfoDict = [NSMutableDictionary dictionaryWithObject:userInfoArray forKey:fireDate];
-    NSMutableDictionary* containerDict = [[NSUserDefaults standardUserDefaults] objectForKey:NVNotifyKey];
-    if (!containerDict) {//если не существует, создаем
-        containerDict = [NSMutableDictionary new];
-    }
-    [containerDict setObject:userInfoDict forKey:fireDate];//добавляем в контейнер
-    [[NSUserDefaults standardUserDefaults] setObject:containerDict forKey:NVNotifyKey];//добавляем сам контейнер*/
+
     NVNotifyInUse* newNotify= [NSEntityDescription insertNewObjectForEntityForName:@"NVNotifyInUse" inManagedObjectContext:self.managedObjectContext];
     newNotify.fireDate = fireDate;
-    //newNotify.content = userInfoSet;
+    newNotify.progressOfDict = @([[NVMainStrategy sharedManager] countProgressOfDictionary]);
     [newNotify addContent:userInfoSet];
     NSError* error = nil;
     [self.managedObjectContext save:&error];
@@ -183,8 +220,6 @@
         [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
         NSLog(@"from nvnotman. localNot body:%@",localNotification.alertBody);
     }
-    
-    
     }
 }
 

@@ -72,10 +72,12 @@
     word.word = textField.text;
 }*/
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    NSString * proposedNewString = [[textField text] stringByReplacingCharactersInRange:range withString:string];
     NVCreateTemplateCell* cell = (NVCreateTemplateCell*)[[textField superview] superview];
     NSIndexPath* indexPath =  [self.tableView indexPathForCell:cell];
     NVWords* word = [self.tempWordsSet objectAtIndex:indexPath.row];
-    word.word = string;
+    word.word = proposedNewString;
+    
     return YES;
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{

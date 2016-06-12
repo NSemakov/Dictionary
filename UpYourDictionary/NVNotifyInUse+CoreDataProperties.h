@@ -2,7 +2,7 @@
 //  NVNotifyInUse+CoreDataProperties.h
 //  UpYourDictionary
 //
-//  Created by Admin on 26/05/16.
+//  Created by Admin on 12/06/16.
 //  Copyright © 2016 Admin. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NVNotifyInUse (CoreDataProperties)
 
 @property (nullable, nonatomic, retain) NSDate *fireDate;
+@property (nullable, nonatomic, retain) NSNumber *progressOfDict;
 @property (nullable, nonatomic, retain) NSSet<NVContent *> *content;
 
 @end

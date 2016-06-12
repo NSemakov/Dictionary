@@ -32,6 +32,9 @@
 @property (strong,nonatomic) id <NVMainStrategyProtocol> delegate;
 @property (strong, nonatomic) NSMutableSet* setOfTempTakenWords;
 -(NVContent*) performAlgo;
+- (NSInteger) countProgressOfDictionary;
 -(void) pauseAlgo;
+- (NVDicts*) activeDictByUser;
 +(NVMainStrategy*) sharedManager;
+
 @end

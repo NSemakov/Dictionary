@@ -20,4 +20,5 @@
 -(void) cancelNotificationsCompleteWay;
 -(void) addNewNotificationToFullSet;
 -(NVNotifyInUse*) fetchedNotifyWithDate:(NSDate*) fireDate;
+-(void) refreshProgressOfDictionary;
 @end

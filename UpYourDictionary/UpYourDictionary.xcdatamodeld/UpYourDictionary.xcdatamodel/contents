@@ -21,6 +21,7 @@
     </entity>
     <entity name="NVNotifyInUse" representedClassName="NVNotifyInUse" syncable="YES">
         <attribute name="fireDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="progressOfDict" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="content" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NVContent" inverseName="notify" inverseEntity="NVContent" syncable="YES"/>
     </entity>
     <entity name="NVTemplates" representedClassName="NVTemplates" syncable="YES">
@@ -37,7 +38,7 @@
     <elements>
         <element name="NVContent" positionX="-10656" positionY="-4273" width="128" height="133"/>
         <element name="NVDicts" positionX="-11117" positionY="-4318" width="128" height="178"/>
-        <element name="NVNotifyInUse" positionX="-11106" positionY="-4057" width="128" height="73"/>
+        <element name="NVNotifyInUse" positionX="-11106" positionY="-4057" width="128" height="88"/>
         <element name="NVTemplates" positionX="-10775" positionY="-4138" width="128" height="118"/>
         <element name="NVWords" positionX="-10586" positionY="-4123" width="119" height="73"/>
     </elements>
