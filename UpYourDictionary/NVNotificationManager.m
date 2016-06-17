@@ -132,7 +132,7 @@
     }];
 }
 
--(void) generateNewNotifications{
+-(void) generateNewNotificationsWithSemaphor:(dispatch_semaphore_t) semaphore{
     //__weak NVNotificationManager* weakSelf = self;
     
     //create local notifications in background
@@ -157,13 +157,15 @@
                 NSInteger x = settingsWords-(j-1)*wordsInOneNotify;
                 NSInteger n = (x>wordsInOneNotify)? wordsInOneNotify : x;
                 //формируем конкретную нотификацию в зависимости от кол-ва слов.
-                NSDate* fireDate= [NSDate dateWithTimeIntervalSinceNow:20+i*timeToPush*60*60];
+                NSDate* fireDate = [NSDate dateWithTimeIntervalSinceNow:20+i*timeToPush*60*60];
                 [self startFireAlertAtDate:fireDate numberOfWords:n iteration:j];
                 
             }
-            NSLog(@"created N:%d",i);
+            NSLog(@"created N:%ld",i);
         }
-
+        if (semaphore) {
+            dispatch_semaphore_signal(semaphore);
+        }
     }];
 
 }

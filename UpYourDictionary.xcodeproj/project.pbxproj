@@ -45,6 +45,7 @@
 		845894501CE8BC3800D4FE35 /* UpYourDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8458944F1CE8BC3800D4FE35 /* UpYourDictionaryTests.m */; };
 		8458945B1CE8BC3800D4FE35 /* UpYourDictionaryUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8458945A1CE8BC3800D4FE35 /* UpYourDictionaryUITests.m */; };
 		845E96571D0B3E7E0011856C /* NVCreateDictCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 845E96561D0B3E7E0011856C /* NVCreateDictCell.m */; settings = {ASSET_TAGS = (); }; };
+		8461C64E1D1423F2007F7532 /* NVContainerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8461C64D1D1423F2007F7532 /* NVContainerVC.m */; settings = {ASSET_TAGS = (); }; };
 		8462CDE11CEA4D0B00E742AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8462CDDF1CEA4D0B00E742AC /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
 		84F2FDB21CEE619B00714DF0 /* NVMainStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F2FDB11CEE619B00714DF0 /* NVMainStrategy.m */; settings = {ASSET_TAGS = (); }; };
 		84F6A3C01CEFCCC2001F3CAC /* NVDicts+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F6A3BF1CEFCCC2001F3CAC /* NVDicts+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
@@ -140,6 +141,8 @@
 		8458945C1CE8BC3800D4FE35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		845E96551D0B3E7E0011856C /* NVCreateDictCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVCreateDictCell.h; sourceTree = "<group>"; };
 		845E96561D0B3E7E0011856C /* NVCreateDictCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVCreateDictCell.m; sourceTree = "<group>"; };
+		8461C64C1D1423F2007F7532 /* NVContainerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVContainerVC.h; sourceTree = "<group>"; };
+		8461C64D1D1423F2007F7532 /* NVContainerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVContainerVC.m; sourceTree = "<group>"; };
 		8462CDE01CEA4D0B00E742AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84F2FDB01CEE619B00714DF0 /* NVMainStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVMainStrategy.h; sourceTree = "<group>"; };
 		84F2FDB11CEE619B00714DF0 /* NVMainStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVMainStrategy.m; sourceTree = "<group>"; };
@@ -252,6 +255,8 @@
 				8446309B1CEBAC32004E0994 /* NVParentViewController.m */,
 				84037B9D1D0A2EFF005EBCAD /* NVTouchedNotifyVC.h */,
 				84037B9E1D0A2EFF005EBCAD /* NVTouchedNotifyVC.m */,
+				8461C64C1D1423F2007F7532 /* NVContainerVC.h */,
+				8461C64D1D1423F2007F7532 /* NVContainerVC.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -416,6 +421,7 @@
 				TargetAttributes = {
 					8458942E1CE8BC3800D4FE35 = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = 89TQ2GF24K;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -540,6 +546,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				845691661CE9F8B2005E4AE1 /* NVChooseLangVC.m in Sources */,
+				8461C64E1D1423F2007F7532 /* NVContainerVC.m in Sources */,
 				844630C01CEBCAD3004E0994 /* NVWords+CoreDataProperties.m in Sources */,
 				844630A51CEBBB9A004E0994 /* NVCreateTemplateVC.m in Sources */,
 				84F6A3C01CEFCCC2001F3CAC /* NVDicts+CoreDataProperties.m in Sources */,
@@ -693,7 +700,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -731,7 +738,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -744,8 +751,9 @@
 			baseConfigurationReference = A34005371E3A80E4C5532B92 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = UpYourDictionary/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Gain.UpYourDictionary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -757,8 +765,9 @@
 			baseConfigurationReference = DDD93336E2697EA394E75826 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = UpYourDictionary/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Gain.UpYourDictionary;
 				PRODUCT_NAME = "$(TARGET_NAME)";

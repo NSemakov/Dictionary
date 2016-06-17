@@ -16,7 +16,7 @@
 @interface NVNotificationManager : NSObject
 +(NVNotificationManager*) sharedManager;
 @property (strong,nonatomic) NSManagedObjectContext* managedObjectContext;
--(void) generateNewNotifications;
+-(void) generateNewNotificationsWithSemaphor:(dispatch_semaphore_t) semaphore;
 -(void) cancelNotificationsCompleteWay;
 -(void) addNewNotificationToFullSet;
 -(NVNotifyInUse*) fetchedNotifyWithDate:(NSDate*) fireDate;

@@ -14,9 +14,23 @@
 
 @implementation NVChooseActiveDictVC
 @synthesize fetchedResultsController=_fetchedResultsController;
-- (void)viewDidLoad {
+
+//- (UITableView*)tableView { return self.tableViewReference; }
+//- (UIView*)view { return self.viewReference; }
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    // instantiate the new self.view, similar to the tableview
+/*    self.viewReference = [[UIView alloc] initWithFrame:self.tableViewReference.frame];
+    [self.viewReference setBackgroundColor:self.tableViewReference.backgroundColor];
+    self.viewReference.autoresizingMask = self.tableViewReference.autoresizingMask;
+    // add it as a subview
+    [self.viewReference addSubview:self.tableViewReference];
+*/
+    /* remainder of viewDidLoad */
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -107,6 +121,14 @@
     
     return _fetchedResultsController;
 }
+#pragma mark - helpers
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"segueShowDownLoadingScreen"]) {
+        NVContainerVC* vc = segue.destinationViewController;
+        vc.stringToSet = NSLocalizedString(@"Preparing dictionary for first use. Please wait about 20 sec. On success this message will disapper.", nil);
+        self.loadingVC = vc;
+    }
+}
 #pragma mark - actions
 - (IBAction)buttonAdd:(UIBarButtonItem *)sender {
 }
@@ -129,8 +151,10 @@
             if (![self.managedObjectContext save:&error]) {
                 NSLog(@"error buttonSave: %@, user info: %@", error.localizedDescription,error.userInfo);
             } else {
-                [[NVNotificationManager sharedManager] generateNewNotifications];
-                [self.navigationController popViewControllerAnimated:YES];
+                [self performSegueWithIdentifier:@"segueShowDownLoadingScreen" sender:nil];
+
+                [self.loadingVC generateNotifiesAndRefreshAfterWithText:NSLocalizedString(@"Preparing is done! Now you can push app to background and just read arriving notification with translation.", nil)];
+               // [self.navigationController popViewControllerAnimated:YES];
             }
         }
     } else if (self.curDict && !self.activeDict){//не было активного словаря, ставим галочку в первый раз
@@ -140,8 +164,10 @@
         if (![self.managedObjectContext save:&error]) {
             NSLog(@"error buttonSave: %@, user info: %@", error.localizedDescription,error.userInfo);
         } else {
-            [[NVNotificationManager sharedManager] generateNewNotifications];
-            [self.navigationController popViewControllerAnimated:YES];
+            [self performSegueWithIdentifier:@"segueShowDownLoadingScreen" sender:nil];
+
+            [self.loadingVC generateNotifiesAndRefreshAfterWithText:NSLocalizedString(@"Preparing is done! Now you can push app to background and just read arriving notification with translation.", nil)];
+            //[self.navigationController popViewControllerAnimated:YES];
         }
     } else if (!self.curDict && self.activeDict){//был активный словарь, активность сняли
         self.activeDict.isActive=@(false);

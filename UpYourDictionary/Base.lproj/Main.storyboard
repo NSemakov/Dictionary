@@ -81,6 +81,73 @@
             </objects>
             <point key="canvasLocation" x="368" y="397"/>
         </scene>
+        <!--Preparing-->
+        <scene sceneID="hYu-7u-i9V">
+            <objects>
+                <viewController storyboardIdentifier="NVContainerVC" id="qgm-It-9i1" customClass="NVContainerVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="z8X-7M-Vbg"/>
+                        <viewControllerLayoutGuide type="bottom" id="2V6-yE-auJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5aR-na-Zck">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yMz-qh-LQw">
+                                <rect key="frame" x="20" y="236" width="560" height="128"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B6K-n4-kMc">
+                                        <rect key="frame" x="0.0" y="37" width="560" height="25"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ojG-Jp-ihJ">
+                                        <rect key="frame" x="270" y="70" width="20" height="20"/>
+                                        <animations/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="B6K-n4-kMc" firstAttribute="top" secondItem="yMz-qh-LQw" secondAttribute="top" constant="37" id="0nf-XZ-cPb"/>
+                                    <constraint firstAttribute="bottom" secondItem="ojG-Jp-ihJ" secondAttribute="bottom" constant="38" id="EbP-0e-DlV"/>
+                                    <constraint firstItem="ojG-Jp-ihJ" firstAttribute="top" secondItem="B6K-n4-kMc" secondAttribute="bottom" constant="8" id="JLb-xY-WWV"/>
+                                    <constraint firstItem="B6K-n4-kMc" firstAttribute="leading" secondItem="yMz-qh-LQw" secondAttribute="leading" id="NG3-BG-ig0"/>
+                                    <constraint firstItem="ojG-Jp-ihJ" firstAttribute="centerX" secondItem="yMz-qh-LQw" secondAttribute="centerX" id="jU8-eV-ZO6"/>
+                                    <constraint firstAttribute="trailing" secondItem="B6K-n4-kMc" secondAttribute="trailing" id="q3q-W6-EnM"/>
+                                    <constraint firstItem="B6K-n4-kMc" firstAttribute="centerX" secondItem="yMz-qh-LQw" secondAttribute="centerX" id="u5K-Ha-Lc0"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="leadingMargin" secondItem="yMz-qh-LQw" secondAttribute="leading" id="JbV-FP-2gV"/>
+                            <constraint firstItem="yMz-qh-LQw" firstAttribute="centerY" secondItem="5aR-na-Zck" secondAttribute="centerY" id="YSg-hf-TlO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yMz-qh-LQw" secondAttribute="trailing" id="ewd-yq-kPQ"/>
+                            <constraint firstItem="yMz-qh-LQw" firstAttribute="centerX" secondItem="5aR-na-Zck" secondAttribute="centerX" id="yfO-aF-FvQ"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Preparing" id="viI-AO-vLn">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="ahQ-xb-ob8">
+                            <connections>
+                                <action selector="buttonCancel:" destination="qgm-It-9i1" id="YVV-Ze-pW5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="buttonCancelProperty" destination="ahQ-xb-ob8" id="ZHi-jX-tPi"/>
+                        <outlet property="indicator" destination="ojG-Jp-ihJ" id="dzP-tH-y4j"/>
+                        <outlet property="labelOfViewLoading" destination="B6K-n4-kMc" id="XqY-jI-odH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yS9-pK-ywH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1758" y="888"/>
+        </scene>
         <!--Choose active dictionary-->
         <scene sceneID="rnj-ZU-Icc">
             <objects>
@@ -133,6 +200,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="qgm-It-9i1" kind="show" identifier="segueShowDownLoadingScreen" id="lup-2f-fER"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8DA-pV-UoS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -551,7 +621,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem title="Powered by Yandex.Translate" width="267" id="yXZ-TY-AIM"/>
+                        <barButtonItem title="Powered by Yandex.Translate" width="577" id="yXZ-TY-AIM"/>
                     </toolbarItems>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F3M-Z5-dWg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -690,6 +760,7 @@
                         <outlet property="labelTimeToPush" destination="B7M-ib-ODM" id="JJ9-zT-W2M"/>
                         <outlet property="sliderNumberOfWords" destination="m8t-Zy-Ghp" id="Jve-7O-VYt"/>
                         <outlet property="sliderTimeToPush" destination="DlV-KJ-VR8" id="0EZ-Ct-T7J"/>
+                        <segue destination="qgm-It-9i1" kind="show" identifier="segueShowDownLoadingScreen2" id="R9t-98-XaR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Fy-1F-eKk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -697,4 +768,7 @@
             <point key="canvasLocation" x="1045" y="879"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="lup-2f-fER"/>
+    </inferredMetricsTieBreakers>
 </document>

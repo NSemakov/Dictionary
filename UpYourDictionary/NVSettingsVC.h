@@ -10,12 +10,14 @@
 #import "Constants.h"
 //#import "NVMainStrategy.h"
 #import "NVNotificationManager.h"
+#import "NVContainerVC.h"
 @interface NVSettingsVC : UITableViewController
 @property (weak, nonatomic) IBOutlet UILabel *labelTimeToPush;
 @property (weak, nonatomic) IBOutlet UILabel *labelNumberOfWords;
 @property (weak, nonatomic) IBOutlet UILabel *labelInfo;
 @property (weak, nonatomic) IBOutlet UISlider *sliderTimeToPush;
 @property (weak, nonatomic) IBOutlet UISlider *sliderNumberOfWords;
+@property (strong, nonatomic) NVContainerVC* loadingVC;
 - (IBAction)sliderActionTimeToPush:(UISlider *)sender;
 - (IBAction)sliderActionNumberOfWords:(UISlider *)sender;
 - (IBAction)buttonSave:(UIBarButtonItem *)sender;

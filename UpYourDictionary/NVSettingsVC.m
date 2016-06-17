@@ -57,6 +57,14 @@
     return 3;
 }
 #pragma mark - helper methods
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"segueShowDownLoadingScreen2"]) {
+        NVContainerVC* vc = segue.destinationViewController;
+        vc.stringToSet = NSLocalizedString(@"Changing settings in all dictionaries. Please wait about 20 sec. On success this message will disapper.", nil);
+        self.loadingVC = vc;
+    }
+}
 -(void) calculateInfo{
     NSInteger daysToKnowDict = (50 * countAim / lroundf(self.sliderNumberOfWords.value) * lroundf(self.sliderTimeToPush.value)) / 24 + 1;
     
@@ -89,17 +97,30 @@
 
 - (IBAction)buttonSave:(UIBarButtonItem *)sender {
 
+    //get initial values
+    int timeToPush = [[[NSUserDefaults standardUserDefaults] valueForKey:NVTimeToPush] integerValue];
+    int numberOfWordsToShow = [[[NSUserDefaults standardUserDefaults] valueForKey:NVNumberOfWordsToShow] integerValue];
     // save slider's value
-    int sliderValue;
-    sliderValue = self.sliderTimeToPush.value;
-    [[NSUserDefaults standardUserDefaults] setInteger:sliderValue forKey:NVTimeToPush];
-    
-    sliderValue = self.sliderNumberOfWords.value;
-    [[NSUserDefaults standardUserDefaults] setInteger:sliderValue forKey:NVNumberOfWordsToShow];
+    int sliderValueTime;
+    sliderValueTime = self.sliderTimeToPush.value;
+    int sliderValueNumberOfWords;
+    sliderValueNumberOfWords = self.sliderNumberOfWords.value;
+    if (sliderValueTime == timeToPush && sliderValueNumberOfWords == numberOfWordsToShow) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        [[NSUserDefaults standardUserDefaults] setInteger:sliderValueTime forKey:NVTimeToPush];
+        [[NSUserDefaults standardUserDefaults] setInteger:sliderValueNumberOfWords forKey:NVNumberOfWordsToShow];
         //create local notifications in background
-    [[NVNotificationManager sharedManager] generateNewNotifications];
+        [self performSegueWithIdentifier:@"segueShowDownLoadingScreen2" sender:nil];
+        [self.loadingVC generateNotifiesAndRefreshAfterWithText:NSLocalizedString(@"Settings are saved!", nil)];
+    }
+    
+    //
+    
+    
         
-    [self.navigationController popViewControllerAnimated:YES];
+    
+
 }
 
 - (IBAction)buttonCancel:(UIBarButtonItem *)sender {
