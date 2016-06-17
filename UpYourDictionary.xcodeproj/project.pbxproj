@@ -46,6 +46,7 @@
 		8458945B1CE8BC3800D4FE35 /* UpYourDictionaryUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8458945A1CE8BC3800D4FE35 /* UpYourDictionaryUITests.m */; };
 		845E96571D0B3E7E0011856C /* NVCreateDictCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 845E96561D0B3E7E0011856C /* NVCreateDictCell.m */; settings = {ASSET_TAGS = (); }; };
 		8461C64E1D1423F2007F7532 /* NVContainerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8461C64D1D1423F2007F7532 /* NVContainerVC.m */; settings = {ASSET_TAGS = (); }; };
+		8461C6511D146654007F7532 /* NVTouchedNotifyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8461C6501D146654007F7532 /* NVTouchedNotifyCell.m */; settings = {ASSET_TAGS = (); }; };
 		8462CDE11CEA4D0B00E742AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8462CDDF1CEA4D0B00E742AC /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
 		84F2FDB21CEE619B00714DF0 /* NVMainStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F2FDB11CEE619B00714DF0 /* NVMainStrategy.m */; settings = {ASSET_TAGS = (); }; };
 		84F6A3C01CEFCCC2001F3CAC /* NVDicts+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F6A3BF1CEFCCC2001F3CAC /* NVDicts+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
@@ -143,6 +144,8 @@
 		845E96561D0B3E7E0011856C /* NVCreateDictCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVCreateDictCell.m; sourceTree = "<group>"; };
 		8461C64C1D1423F2007F7532 /* NVContainerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVContainerVC.h; sourceTree = "<group>"; };
 		8461C64D1D1423F2007F7532 /* NVContainerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVContainerVC.m; sourceTree = "<group>"; };
+		8461C64F1D146654007F7532 /* NVTouchedNotifyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVTouchedNotifyCell.h; sourceTree = "<group>"; };
+		8461C6501D146654007F7532 /* NVTouchedNotifyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVTouchedNotifyCell.m; sourceTree = "<group>"; };
 		8462CDE01CEA4D0B00E742AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84F2FDB01CEE619B00714DF0 /* NVMainStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVMainStrategy.h; sourceTree = "<group>"; };
 		84F2FDB11CEE619B00714DF0 /* NVMainStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVMainStrategy.m; sourceTree = "<group>"; };
@@ -198,6 +201,8 @@
 				843BCB6C1CEDE034000F30A3 /* NVCreateTemplateCell.m */,
 				845E96551D0B3E7E0011856C /* NVCreateDictCell.h */,
 				845E96561D0B3E7E0011856C /* NVCreateDictCell.m */,
+				8461C64F1D146654007F7532 /* NVTouchedNotifyCell.h */,
+				8461C6501D146654007F7532 /* NVTouchedNotifyCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -570,6 +575,7 @@
 				844B6EEE1CF72E5B00B093FA /* NVNotifyInUse+CoreDataProperties.m in Sources */,
 				84F2FDB21CEE619B00714DF0 /* NVMainStrategy.m in Sources */,
 				844FCFAE1CF475C100DCCA8A /* NVNotificationManager.m in Sources */,
+				8461C6511D146654007F7532 /* NVTouchedNotifyCell.m in Sources */,
 				844E4EA91CEA508A0012AB04 /* NVLangFromVC.m in Sources */,
 				8456915F1CE9EDBB005E4AE1 /* NVServerManager.m in Sources */,
 				845691621CE9F741005E4AE1 /* NVCreateNewDictVC.m in Sources */,

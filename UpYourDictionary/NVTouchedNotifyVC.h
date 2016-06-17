@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "NVNotifyInUse.h"
 #import "NVNotificationManager.h"
+#import "NVTouchedNotifyCell.h"
 @interface NVTouchedNotifyVC : UITableViewController
 @property (strong, nonatomic) NSMutableArray* arrayOfWords;
 -(void) refreshTableWithNotify:(UILocalNotification*) notify;
+- (IBAction)buttonCancel:(UIBarButtonItem *)sender;
 @end

@@ -604,15 +604,33 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="ufq-gu-lYF">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="ufq-gu-lYF" customClass="NVTouchedNotifyCell">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ufq-gu-lYF" id="9j3-kv-PTP">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hke-z1-r5J">
+                                            <rect key="frame" x="8" y="11" width="584" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                     <animations/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Hke-z1-r5J" secondAttribute="bottom" constant="3" id="eGr-Tz-gqN"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Hke-z1-r5J" secondAttribute="trailing" id="pkx-bs-8jb"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="Hke-z1-r5J" secondAttribute="leading" id="q1L-n7-WNT"/>
+                                        <constraint firstItem="Hke-z1-r5J" firstAttribute="top" secondItem="9j3-kv-PTP" secondAttribute="topMargin" constant="3" id="rnz-zt-wMg"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <connections>
+                                    <outlet property="labelMain" destination="Hke-z1-r5J" id="uWh-Gz-nRu"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -621,8 +639,17 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem title="Powered by Yandex.Translate" width="577" id="yXZ-TY-AIM"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="joP-lE-dRE"/>
+                        <barButtonItem title="Powered by Yandex.Translate" id="yXZ-TY-AIM"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="2Ov-cA-05e"/>
                     </toolbarItems>
+                    <navigationItem key="navigationItem" id="G9m-AZ-Nhn">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="EuF-CV-dMN">
+                            <connections>
+                                <action selector="buttonCancel:" destination="HdV-eB-APq" id="kym-kW-qm0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F3M-Z5-dWg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

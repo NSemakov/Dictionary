@@ -48,7 +48,7 @@ onFailure:(void(^)(NSString* error)) onFailure{
         //NSLog(@"%@",error.localizedDescription);
        // NSLog(@"error %@ code %ld",error,operation.error.code);
         if (onFailure) {
-            NSString* returnString=[NSString stringWithFormat:@"error %@ code %d",error,operation.error.code];
+            NSString* returnString=[NSString stringWithFormat:@"error %@ code %ld",error,operation.error.code];
             onFailure(returnString);
         }
     }];
@@ -68,7 +68,7 @@ onFailure:(void(^)(NSString* error)) onFailure{
                               nil];
     
     [self.manager POST:@"lookup" parameters:dictionary progress:nil success:^(NSURLSessionTask *operation, id responseObject) {
-        NSLog(@"coming lookup %@",responseObject);
+        //NSLog(@"coming lookup %@",responseObject);
         
         /*for (NSDictionary* obj in [[responseObject objectForKey:@"response"] objectForKey:@"items"]){
          
@@ -95,9 +95,9 @@ onFailure:(void(^)(NSString* error)) onFailure{
         NSString* ErrorResponse = [[NSString alloc] initWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] encoding:NSUTF8StringEncoding];
         NSLog(@"%@",ErrorResponse);
         NSLog(@"%@",error.localizedDescription);
-        NSLog(@"error %@ code %d",error,operation.error.code);
+        NSLog(@"error %@ code %ld",error,operation.error.code);
         if (onFailure) {
-            NSString* returnString=[NSString stringWithFormat:@"error %@ code %d",error,operation.error.code];
+            NSString* returnString=[NSString stringWithFormat:@"error %@ code %ld",error,operation.error.code];
             onFailure(returnString);
         }
     }];
@@ -117,7 +117,7 @@ onFailure:(void(^)(NSString* error)) onFailure{
     //NSParameterAssert(self.manager); // prevent infinite loop
     
     [self.manager POST:@"translate" parameters:dictionary progress:nil success:^(NSURLSessionTask *operation, id responseObject) {
-        NSLog(@"coming %@",responseObject);
+        //NSLog(@"coming %@",responseObject);
         
         /*for (NSDictionary* obj in [[responseObject objectForKey:@"response"] objectForKey:@"items"]){
          
@@ -131,9 +131,9 @@ onFailure:(void(^)(NSString* error)) onFailure{
         NSString* ErrorResponse = [[NSString alloc] initWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] encoding:NSUTF8StringEncoding];
         NSLog(@"%@",ErrorResponse);
         NSLog(@"%@",error.localizedDescription);
-        NSLog(@"error %@ code %d",error,operation.error.code);
+        NSLog(@"error %@ code %ld",error,operation.error.code);
         if (onFailure) {
-            NSString* returnString=[NSString stringWithFormat:@"error %@ code %d",error,operation.error.code];
+            NSString* returnString=[NSString stringWithFormat:@"error %@ code %ld",error,operation.error.code];
             onFailure(returnString);
         }
     }];
@@ -153,36 +153,4 @@ onFailure:(void(^)(NSString* error)) onFailure{
     
     return canReach;
 }
-/*-(void) POSTTranslatePhrase:(NSString*) phrase fromLang:(NSString*) fromLang toLang:(NSString*) toLang OnSuccess:(void(^)(NSString* translation)) onSuccess
-                       onFailure:(void(^)(NSString* error)) onFailure{
-    
-    NSURL* baseURL=[NSURL URLWithString:@"https://translate.yandex.net/api/v1.5/tr.json"];
-    self.manager =[[AFHTTPSessionManager alloc]initWithBaseURL:baseURL];
-    NSString* direction = [NSString stringWithFormat:@"%@-%@",fromLang,toLang];
-    NSDictionary* dictionary=[NSDictionary dictionaryWithObjectsAndKeys:
-                              APIKey, @"key",
-                              phrase, @"text",
-                               direction, @"lang",
-                              nil];
-    [self.manager POST:@"translate" parameters:dictionary progress:nil success:^(NSURLSessionTask *operation, id responseObject) {
-        //NSLog(@"coming %@",responseObject);
-        
-
-        NSString* translation = [[responseObject objectForKey:@"text"] firstObject];
-        if (onSuccess) {
-            onSuccess(translation);
-        }
-        
-    } failure:^(NSURLSessionTask *operation, NSError *error) {
-        NSString* ErrorResponse = [[NSString alloc] initWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] encoding:NSUTF8StringEncoding];
-        NSLog(@"%@",ErrorResponse);
-        NSLog(@"%@",error.localizedDescription);
-         NSLog(@"error %@ code %d",error,operation.error.code);
-        if (onFailure) {
-            NSString* returnString=[NSString stringWithFormat:@"error %@ code %d",error,operation.error.code];
-            onFailure(returnString);
-        }
-    }];
-}
-*/
 @end
