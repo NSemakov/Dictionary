@@ -13,12 +13,21 @@
 #import "NVContent.h"
 #import "Constants.h"
 #import "NVNotifyInUse.h"
+@protocol NVNotificationManagerRefreshProgressBarProtocol <NSObject>
+
+- (void) refreshProgressBar;
+
+@end
+
 @interface NVNotificationManager : NSObject
-+(NVNotificationManager*) sharedManager;
+
 @property (strong,nonatomic) NSManagedObjectContext* managedObjectContext;
--(void) generateNewNotificationsWithSemaphor:(dispatch_semaphore_t) semaphore;
--(void) cancelNotificationsCompleteWay;
+@property (strong,nonatomic) id <NVNotificationManagerRefreshProgressBarProtocol> delegateToRefresh;
+-(void) generateNewNotificationsWithCallback:(void(^)(void))callback;
+-(void) cancelNotificationsCompleteWayWithCallback:(void(^)(void)) callback;
 -(void) addNewNotificationToFullSet;
 -(NVNotifyInUse*) fetchedNotifyWithDate:(NSDate*) fireDate;
--(void) refreshProgressOfDictionary;
+-(void) refreshProgressOfDictionaryWithCallback:(void(^)(void))callback;
++(NVNotificationManager*) sharedManager;
+
 @end

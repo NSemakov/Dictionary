@@ -97,8 +97,8 @@
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yMz-qh-LQw">
                                 <rect key="frame" x="20" y="236" width="560" height="128"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B6K-n4-kMc">
-                                        <rect key="frame" x="0.0" y="37" width="560" height="25"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B6K-n4-kMc">
+                                        <rect key="frame" x="0.0" y="37" width="560" height="22"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -108,17 +108,24 @@
                                         <rect key="frame" x="270" y="70" width="20" height="20"/>
                                         <animations/>
                                     </activityIndicatorView>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Au7-bg-k0G">
+                                        <rect key="frame" x="8" y="98" width="544" height="2"/>
+                                        <animations/>
+                                    </progressView>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="B6K-n4-kMc" firstAttribute="top" secondItem="yMz-qh-LQw" secondAttribute="top" constant="37" id="0nf-XZ-cPb"/>
-                                    <constraint firstAttribute="bottom" secondItem="ojG-Jp-ihJ" secondAttribute="bottom" constant="38" id="EbP-0e-DlV"/>
+                                    <constraint firstItem="Au7-bg-k0G" firstAttribute="centerX" secondItem="yMz-qh-LQw" secondAttribute="centerX" id="1O1-bA-pGP"/>
+                                    <constraint firstItem="Au7-bg-k0G" firstAttribute="top" secondItem="ojG-Jp-ihJ" secondAttribute="bottom" constant="8" id="ANL-7s-RVF"/>
                                     <constraint firstItem="ojG-Jp-ihJ" firstAttribute="top" secondItem="B6K-n4-kMc" secondAttribute="bottom" constant="8" id="JLb-xY-WWV"/>
                                     <constraint firstItem="B6K-n4-kMc" firstAttribute="leading" secondItem="yMz-qh-LQw" secondAttribute="leading" id="NG3-BG-ig0"/>
+                                    <constraint firstItem="Au7-bg-k0G" firstAttribute="leading" secondItem="yMz-qh-LQw" secondAttribute="leadingMargin" id="XS9-7G-6n0"/>
                                     <constraint firstItem="ojG-Jp-ihJ" firstAttribute="centerX" secondItem="yMz-qh-LQw" secondAttribute="centerX" id="jU8-eV-ZO6"/>
                                     <constraint firstAttribute="trailing" secondItem="B6K-n4-kMc" secondAttribute="trailing" id="q3q-W6-EnM"/>
                                     <constraint firstItem="B6K-n4-kMc" firstAttribute="centerX" secondItem="yMz-qh-LQw" secondAttribute="centerX" id="u5K-Ha-Lc0"/>
+                                    <constraint firstAttribute="bottom" secondItem="Au7-bg-k0G" secondAttribute="bottom" constant="28" id="xdJ-xs-S9O"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -143,6 +150,7 @@
                         <outlet property="buttonCancelProperty" destination="ahQ-xb-ob8" id="ZHi-jX-tPi"/>
                         <outlet property="indicator" destination="ojG-Jp-ihJ" id="dzP-tH-y4j"/>
                         <outlet property="labelOfViewLoading" destination="B6K-n4-kMc" id="XqY-jI-odH"/>
+                        <outlet property="progressView" destination="Au7-bg-k0G" id="FPM-Jy-3Uz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yS9-pK-ywH" userLabel="First Responder" sceneMemberID="firstResponder"/>

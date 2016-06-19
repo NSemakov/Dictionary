@@ -16,11 +16,14 @@
 #import "NVTemplates.h"
 #import "NVWords.h"
 #import "Constants.h"
+#import "NVContainerVC.h"
+
 @protocol NVMainStrategyProtocol <NSObject>
 
 -(void) showWord:(NSString*) word translation:(NSString*) translation;
 
 @end
+
 @interface NVMainStrategy : NSObject <NVStrategyProtocol>
 @property (strong,nonatomic) NSManagedObjectContext* managedObjectContext;
 @property (strong,nonatomic) NSArray*  fetchedDict;
@@ -30,10 +33,11 @@
 @property (strong,nonatomic) NVDicts* activeDict;
 @property (strong,nonatomic) NVTemplates* activeTemplate;
 @property (strong,nonatomic) id <NVMainStrategyProtocol> delegate;
+
 @property (strong, nonatomic) NSMutableSet* setOfTempTakenWords;
 -(NVContent*) performAlgo;
 - (NSInteger) countProgressOfDictionary;
--(void) pauseAlgo;
+- (void) pauseAlgo;
 - (NVDicts*) activeDictByUser;
 +(NVMainStrategy*) sharedManager;
 

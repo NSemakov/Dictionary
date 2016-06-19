@@ -45,7 +45,7 @@
         }
 }];
 }
--(void) refreshProgressOfDictionary {
+-(void) refreshProgressOfDictionaryWithCallback:(void(^)(void))callback {
     [self.managedObjectContext performBlock:^{
         //прогресс из первой нотификации устанавливаем в текущий прогресс словаря при заходе в приложение.
         /* Есть 2 варианта: еще есть нотификации в списке, тогда их проверяем. Нет нотификаций. Это возможно либо если не было интернета, чтобы загрузить следующие, либо конец словаря.
@@ -80,9 +80,12 @@
             }
         }
     }];
+    if (callback) {
+        callback();
+    }
 }
--(void) cancelNotificationsCompleteWay{
-    [self.managedObjectContext performBlockAndWait:^{
+-(void) cancelNotificationsCompleteWayWithCallback:(void(^)(void)) callback{
+    [self.managedObjectContext performBlock:^{
     //отмена нотификаций, а также откат алгоритма
     UIApplication* app =[UIApplication sharedApplication];
     NSArray* arrayOfScheduledNotification = [app scheduledLocalNotifications];
@@ -105,7 +108,7 @@
         NVNotifyInUse* notifyInUse = [self fetchedNotifyWithDate:lastNotifyFireDate];
         
         for (NVContent* content in notifyInUse.content) {//отменяем каждое слово в нотификации
-            NSLog(@"content to cancel: %@, counter before: %@, fireDate:%@",content.word,content.counter,notifyInUse.fireDate);
+            //NSLog(@"content to cancel: %@, counter before: %@, fireDate:%@",content.word,content.counter,notifyInUse.fireDate);
             content.counter = @([content.counter integerValue]-1);
             if ([content.counter isEqual:@(0)]) {//если счетчик стал 0, значит удаляем из активной таблицы
                 [self.managedObjectContext deleteObject:content];
@@ -128,45 +131,48 @@
         [self.managedObjectContext deleteObject:notify];
     }
     NSError* error = nil;
-    [self.managedObjectContext save:&error];
+        if ([self.managedObjectContext save:&error]){
+            if (callback) {
+                callback();
+            }
+        }
     }];
 }
 
--(void) generateNewNotificationsWithSemaphor:(dispatch_semaphore_t) semaphore{
-    //__weak NVNotificationManager* weakSelf = self;
-    
-    //create local notifications in background
-    /*dispatch_queue_t queue = dispatch_queue_create("com.UpYourDictionary.multithreading.queue", DISPATCH_QUEUE_SERIAL);
-    dispatch_async(queue, ^{
-            });*/
+-(void) generateNewNotificationsWithCallback:(void(^)(void))callback{
 
     [self.managedObjectContext performBlock:^{
         //cancel all notifications
-        [self cancelNotificationsCompleteWay];
-        
-        NSInteger settingsWords = [[NSUserDefaults standardUserDefaults] integerForKey:NVNumberOfWordsToShow];
-        if (settingsWords == 0) {
-            settingsWords = 1;}
-        NSInteger numberOfNotifies = (int) (settingsWords/wordsInOneNotify) + (((settingsWords % wordsInOneNotify)>0) ? 1:0);  //кол-во нотификаций
-        NSInteger timeToPush = [[NSUserDefaults standardUserDefaults] integerForKey:NVTimeToPush];
-        if (timeToPush == 0) {
-            timeToPush = 2;}
-        
-        for (NSInteger i = 0; i<62; i=i+numberOfNotifies) {
-            for (NSInteger j=1; j<=numberOfNotifies; j++) {//формируем пачку нотификаций, если в одну не помещается
-                NSInteger x = settingsWords-(j-1)*wordsInOneNotify;
-                NSInteger n = (x>wordsInOneNotify)? wordsInOneNotify : x;
-                //формируем конкретную нотификацию в зависимости от кол-ва слов.
-                NSDate* fireDate = [NSDate dateWithTimeIntervalSinceNow:20+i*timeToPush*60*60];
-                [self startFireAlertAtDate:fireDate numberOfWords:n iteration:j];
-                
+        [self cancelNotificationsCompleteWayWithCallback:^{
+            NSInteger settingsWords = [[NSUserDefaults standardUserDefaults] integerForKey:NVNumberOfWordsToShow];
+            if (settingsWords == 0) {
+                settingsWords = 2;}
+            NSInteger numberOfNotifies = (int) (settingsWords/wordsInOneNotify) + (((settingsWords % wordsInOneNotify)>0) ? 1:0);  //кол-во нотификаций
+            NSInteger timeToPush = [[NSUserDefaults standardUserDefaults] integerForKey:NVTimeToPush];
+            if (timeToPush == 0) {
+                timeToPush = 2;}
+            
+            for (NSInteger i = 0; i<62; i=i+numberOfNotifies) {
+                for (NSInteger j=1; j<=numberOfNotifies; j++) {//формируем пачку нотификаций, если в одну не помещается
+                    NSInteger x = settingsWords-(j-1)*wordsInOneNotify;
+                    NSInteger n = (x>wordsInOneNotify)? wordsInOneNotify : x;
+                    //формируем конкретную нотификацию в зависимости от кол-ва слов.
+                    NSDate* fireDate = [NSDate dateWithTimeIntervalSinceNow:300+i*timeToPush*60*60];
+                    [self startFireAlertAtDate:fireDate numberOfWords:n iteration:j];
+                    
+                }
+                if (self.delegateToRefresh) {
+                    [self.delegateToRefresh refreshProgressBar];
+                }
+                NSLog(@"created N:%ld",i);
             }
-            NSLog(@"created N:%ld",i);
-        }
-        if (semaphore) {
-            dispatch_semaphore_signal(semaphore);
-        }
-    }];
+            if (callback) {
+                callback();
+            }
+
+        }];
+        
+   }];
 
 }
 -(void) putUserInfoInCoreData:(NSSet*) userInfoSet onFireDate:(NSDate*) fireDate{

@@ -238,6 +238,7 @@
     self.activeTemplate = nil;
 }
 -(NVContent*) algoResultHandler {
+    
     //stringToReturn = @"Dictionary is done! Choose another one or disable it";
     //NSString* stringToReturn = nil;
     NVContent* result = nil;

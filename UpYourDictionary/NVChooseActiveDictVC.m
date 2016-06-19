@@ -171,7 +171,7 @@
         }
     } else if (!self.curDict && self.activeDict){//был активный словарь, активность сняли
         self.activeDict.isActive=@(false);
-        [[NVNotificationManager sharedManager] cancelNotificationsCompleteWay];
+        [[NVNotificationManager sharedManager] cancelNotificationsCompleteWayWithCallback:nil];
         //save context
         NSError* error = nil;
         if (![self.managedObjectContext save:&error]) {
@@ -180,7 +180,7 @@
             //cancel local notifications in background
             //dispatch_queue_t queue = dispatch_queue_create("com.UpYourDictionary.multithreading.queue", DISPATCH_QUEUE_CONCURRENT);
              //dispatch_async(queue, ^{
-                 [[NVNotificationManager sharedManager] cancelNotificationsCompleteWay];
+                 [[NVNotificationManager sharedManager] cancelNotificationsCompleteWayWithCallback:nil];
              //});
             
             [self.navigationController popViewControllerAnimated:YES];
