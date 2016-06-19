@@ -33,7 +33,7 @@ onFailure:(void(^)(NSString* error)) onFailure{
                               lang, @"ui",
                               nil];
     [self.manager POST:@"getLangs" parameters:dictionary progress:nil success:^(NSURLSessionTask *operation, id responseObject) {
-        //NSLog(@"coming %@",responseObject);
+        NSLog(@"coming %@",responseObject);
        
         /*for (NSDictionary* obj in [[responseObject objectForKey:@"response"] objectForKey:@"items"]){
             
@@ -43,7 +43,7 @@ onFailure:(void(^)(NSString* error)) onFailure{
         }
         
     } failure:^(NSURLSessionTask *operation, NSError *error) {
-        //NSString* ErrorResponse = [[NSString alloc] initWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] encoding:NSUTF8StringEncoding];
+        NSString* ErrorResponse = [[NSString alloc] initWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] encoding:NSUTF8StringEncoding];
         //NSLog(@"%@",ErrorResponse);
         //NSLog(@"%@",error.localizedDescription);
        // NSLog(@"error %@ code %ld",error,operation.error.code);
@@ -68,7 +68,7 @@ onFailure:(void(^)(NSString* error)) onFailure{
                               nil];
     
     [self.manager POST:@"lookup" parameters:dictionary progress:nil success:^(NSURLSessionTask *operation, id responseObject) {
-        //NSLog(@"coming lookup %@",responseObject);
+        NSLog(@"coming lookup %@",responseObject);
         
         /*for (NSDictionary* obj in [[responseObject objectForKey:@"response"] objectForKey:@"items"]){
          

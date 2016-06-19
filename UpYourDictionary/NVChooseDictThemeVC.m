@@ -126,6 +126,8 @@
 #pragma mark - actions
 
 - (IBAction)buttonAddOwnWords:(UIBarButtonItem *)sender {
+    if ([UIAlertController class]){
+        // ios 8 or higher
     self.alertCtrl=[UIAlertController alertControllerWithTitle:NSLocalizedString(@"Input template name", @"Input template name") message:nil preferredStyle:UIAlertControllerStyleAlert];
     [self.alertCtrl addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = NSLocalizedString(@"New template name",@"New template name");
@@ -142,8 +144,29 @@
     [self.alertCtrl addAction:okAction];
     [self.alertCtrl addAction:cancelAction];
     [self presentViewController:self.alertCtrl animated:YES completion:nil];
+    } else { //ios 7 and lower
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Input template name", @"Input template name") message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
+        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        [alert show];
+    }
 }
-
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    switch (buttonIndex) {
+        case 0:{
+            break;
+        }
+        case 1:{
+            NSString* name = [[alertView textFieldAtIndex:0] text];
+            //[self handleNameOfNewFolder:field.text];
+            [self performSegueWithIdentifier:@"AddOwnWords" sender:name];
+        }
+            break;
+        default:
+            break;
+    }
+    
+}
 - (IBAction)buttonOk:(UIBarButtonItem *)sender {
     [self.delegate refreshDataThemeWithTemplate:self.curTemplate];
     [self.navigationController popViewControllerAnimated:YES];

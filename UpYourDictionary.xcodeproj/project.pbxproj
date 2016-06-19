@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		01083E3F95C3BACEF2DE4B0A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8E645F75A1AF8B9A7B2E2DB /* libPods.a */; };
 		84037B9F1D0A2EFF005EBCAD /* NVTouchedNotifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84037B9E1D0A2EFF005EBCAD /* NVTouchedNotifyVC.m */; settings = {ASSET_TAGS = (); }; };
+		84050DB41D148DFD00692347 /* NVYandexWebViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84050DB31D148DFD00692347 /* NVYandexWebViewVC.m */; settings = {ASSET_TAGS = (); }; };
 		840DC06B1D0B9179009C04E8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 840DC06D1D0B9179009C04E8 /* InfoPlist.strings */; };
 		840DC0701D0B917A009C04E8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 840DC0721D0B917A009C04E8 /* InfoPlist.strings */; };
 		840DC0751D0B917D009C04E8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 840DC0771D0B917D009C04E8 /* InfoPlist.strings */; };
@@ -73,6 +74,8 @@
 /* Begin PBXFileReference section */
 		84037B9D1D0A2EFF005EBCAD /* NVTouchedNotifyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVTouchedNotifyVC.h; sourceTree = "<group>"; };
 		84037B9E1D0A2EFF005EBCAD /* NVTouchedNotifyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVTouchedNotifyVC.m; sourceTree = "<group>"; };
+		84050DB21D148DFD00692347 /* NVYandexWebViewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVYandexWebViewVC.h; sourceTree = "<group>"; };
+		84050DB31D148DFD00692347 /* NVYandexWebViewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVYandexWebViewVC.m; sourceTree = "<group>"; };
 		840DC0681D0B8A2A009C04E8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		840DC06C1D0B9179009C04E8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		840DC0711D0B917A009C04E8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -262,6 +265,8 @@
 				84037B9E1D0A2EFF005EBCAD /* NVTouchedNotifyVC.m */,
 				8461C64C1D1423F2007F7532 /* NVContainerVC.h */,
 				8461C64D1D1423F2007F7532 /* NVContainerVC.m */,
+				84050DB21D148DFD00692347 /* NVYandexWebViewVC.h */,
+				84050DB31D148DFD00692347 /* NVYandexWebViewVC.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -555,6 +560,7 @@
 				844630C01CEBCAD3004E0994 /* NVWords+CoreDataProperties.m in Sources */,
 				844630A51CEBBB9A004E0994 /* NVCreateTemplateVC.m in Sources */,
 				84F6A3C01CEFCCC2001F3CAC /* NVDicts+CoreDataProperties.m in Sources */,
+				84050DB41D148DFD00692347 /* NVYandexWebViewVC.m in Sources */,
 				844630BE1CEBCAD3004E0994 /* NVTemplates+CoreDataProperties.m in Sources */,
 				844630C31CEBCAD3004E0994 /* NVContent.m in Sources */,
 				844E4EAC1CEA50A90012AB04 /* NVLangToVC.m in Sources */,
@@ -759,9 +765,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = UpYourDictionary/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Gain.UpYourDictionary;
+				PRODUCT_BUNDLE_IDENTIFIER = Gain.UpYourDictionary1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -773,9 +779,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = UpYourDictionary/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Gain.UpYourDictionary;
+				PRODUCT_BUNDLE_IDENTIFIER = Gain.UpYourDictionary1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

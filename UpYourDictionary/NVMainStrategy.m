@@ -87,7 +87,7 @@
     
 }
 -(NVContent*) routineWork {
-    //работаем - извлекаем с наим. счетчиком, показываем пушем, увеличиваем счетчик и кладем обратно.
+    //работаем - извлекаем с наим. счетчиком, но с особенностью при переходе через 0. Если есть 0 и 9, то 0 пока не показываем. Затем показываем пушем, увеличиваем счетчик и кладем обратно.
 
     NVContent* contentToShow = self.fetchedWordsAllowedToShow.firstObject;
 
@@ -301,10 +301,26 @@
     if (!error) {
         _fetchedWordsAllowedToShow = resultArray;
         //NSLog(@"resultArray: %@",resultArray);
+
+         //если есть 2 счетчика  со значениями 0 и 9, тогда слово с нулевым значением в конец массива путем сортировки массива по убыванию.
+        NSArray *arrayOfCounters = [resultArray valueForKeyPath:@"counter"];
+        if ([arrayOfCounters containsObject:@(0)] && [arrayOfCounters containsObject:@(numberOfWords-1)]) {
+            resultArray = [resultArray sortedArrayUsingComparator:^NSComparisonResult(NVContent* obj1, NVContent* obj2) {
+                if ([obj1.counter integerValue] > [obj2.counter integerValue]) {
+                    return (NSComparisonResult)NSOrderedAscending;
+                }
+                
+                if ([obj1.counter integerValue] < [obj2.counter integerValue]) {
+                    return (NSComparisonResult)NSOrderedDescending;
+                }
+                
+                return (NSComparisonResult)NSOrderedSame;
+            }];
+        }
         /*for (NVContent* content in resultArray) {
             NSLog(@"word:%@,counter:%@",content.word,content.counter);
-        }
-         */
+            //NSLog(@"Running on %@ thread", [NSThread currentThread]);
+        }*/
         return resultArray;
     } else {
         NSLog(@"error: %@, local description: %@",error.userInfo, error.localizedDescription);

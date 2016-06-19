@@ -21,9 +21,16 @@
 
     // Override point for customization after application launch.
     [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
-    UIUserNotificationType types = UIUserNotificationTypeAlert;
-    UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
-    [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
+    if([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)])
+    {
+        UIUserNotificationType types = UIUserNotificationTypeAlert;
+        UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
+    }
+    else {
+        
+    }
+    
     NSLog(@"did finish launching with options");
     [[NVNotificationManager sharedManager] refreshProgressOfDictionary];
     return YES;
@@ -32,7 +39,7 @@
 
 }
 -(void) application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
-    //NSLog(@"received:body %@, date %@",notification.alertBody,notification.fireDate);
+    NSLog(@"received:body %@, date %@",notification.alertBody,notification.fireDate);
     
     [[self window] makeKeyAndVisible];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -48,7 +55,12 @@
         //если это не контроллер нотификаций, значит это первое нажатие на нотифай
         vc = [storyboard instantiateViewControllerWithIdentifier:@"NVTouchedNotifyVC"];
         [vc refreshTableWithNotify:notification];
-        [lastStackVC.navigationController showViewController:vc sender:nil];
+        if([lastStackVC.navigationController respondsToSelector:@selector(showViewController:sender:)])
+        {
+            [lastStackVC.navigationController showViewController:vc sender:nil];
+        } else {
+            [lastStackVC.navigationController pushViewController:vc animated:YES];
+        }
     }
     [[NVNotificationManager sharedManager] refreshProgressOfDictionary];
     [[NVNotificationManager sharedManager] addNewNotificationToFullSet];

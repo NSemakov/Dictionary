@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "NVNotificationManager.h"
+#import "NVDataManager.h"
 @interface NVContainerVC : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *labelOfViewLoading;
