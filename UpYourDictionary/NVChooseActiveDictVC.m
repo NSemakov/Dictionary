@@ -55,6 +55,28 @@
         }
     }
 }
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+        
+        NVDicts *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        if ([object.isActive boolValue]) {
+            self.activeDict = nil;
+            self.curDict = nil;
+            object.isActive = @(NO);
+            
+        }
+        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+        
+        NSError *error = nil;
+        if (![context save:&error]) {
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        } else {
+            [[NVNotificationManager sharedManager] cancelNotificationsCompleteWayWithCallback:nil];
+        }
+    }
+}
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

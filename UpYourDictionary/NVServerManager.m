@@ -33,7 +33,7 @@ onFailure:(void(^)(NSString* error)) onFailure{
                               lang, @"ui",
                               nil];
     [self.manager POST:@"getLangs" parameters:dictionary progress:nil success:^(NSURLSessionTask *operation, id responseObject) {
-        NSLog(@"coming %@",responseObject);
+        //NSLog(@"coming %@",responseObject);
        
         /*for (NSDictionary* obj in [[responseObject objectForKey:@"response"] objectForKey:@"items"]){
             

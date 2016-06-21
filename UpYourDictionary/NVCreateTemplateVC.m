@@ -17,6 +17,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //UIToolbar* toolbar = self.navigationController.toolbar;
+    //[toolbar sizeToFit];
+}
+- (void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+- (void) viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    self.navigationController.toolbar.frame = CGRectMake(0,
+                                                         self.view.bounds.size.height - self.navigationController.toolbar.bounds.size.height,
+                                                         self.navigationController.toolbar.bounds.size.width,
+                                                         self.navigationController.toolbar.bounds.size.height);
 }
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
@@ -40,7 +55,46 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark - keyboard notifications handlers
+- (void)keyboardWillShow:(NSNotification*)aNotification
+{
+    NSDictionary* info = [aNotification userInfo];
+    NSNumber *durationValue = info[UIKeyboardAnimationDurationUserInfoKey];
+    NSNumber *curveValue = info[UIKeyboardAnimationCurveUserInfoKey];
+    NSValue *endFrame = info[UIKeyboardFrameEndUserInfoKey];
+    
+    [UIView animateWithDuration:durationValue.doubleValue
+                          delay:0
+                        options:(curveValue.intValue << 16)
+                     animations:^{
+                         self.navigationController.toolbar.frame = CGRectMake(0,
+                                                                              [endFrame CGRectValue].origin.y - self.navigationController.toolbar.bounds.size.height,
+                                                                              self.navigationController.toolbar.bounds.size.width,
+                                                                              self.navigationController.toolbar.bounds.size.height);
+                     }
+                     completion:nil];
+}
 
+- (void)keyboardWillHide:(NSNotification*)aNotification
+{
+    NSDictionary* info = [aNotification userInfo];
+    NSNumber *durationValue = info[UIKeyboardAnimationDurationUserInfoKey];
+    NSNumber *curveValue = info[UIKeyboardAnimationCurveUserInfoKey];
+    
+    [UIView animateWithDuration:durationValue.doubleValue
+                          delay:0
+                        options:(curveValue.intValue << 16)
+                     animations:^{
+                         self.navigationController.toolbar.frame = CGRectMake(0,
+                                                                              self.view.bounds.size.height - self.navigationController.toolbar.bounds.size.height,
+                                                                              self.navigationController.toolbar.bounds.size.width,
+                                                                              self.navigationController.toolbar.bounds.size.height);
+                     }
+                     completion:nil];
+}
+- (void) dealloc {
+ 
+}
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -94,6 +148,8 @@
     [self.tempWordsSet addObject:newWord];
     NSIndexPath * indexPath = [NSIndexPath indexPathForRow:[self.tempWordsSet count]-1 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+    NVCreateTemplateCell * cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    [cell.textField becomeFirstResponder];
 }
 
 - (IBAction)buttonSaveTemplate:(UIButton *)sender {

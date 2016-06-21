@@ -20,8 +20,6 @@
 - (IBAction)buttonDisableChoise:(UIBarButtonItem *)sender;
 @property (strong,nonatomic) NVDicts* curDict;
 @property (strong,nonatomic) NVDicts* activeDict;
-//@property (nonatomic) IBOutlet UITableView *tableViewReference; // to keep a reference to the tableview
-//@property (strong,nonatomic) UIView *viewReference; // a reference to the new background view
 @property (strong,nonatomic) UIView* loadingView;
 @property (strong,nonatomic) NVContainerVC* loadingVC;
 @end
