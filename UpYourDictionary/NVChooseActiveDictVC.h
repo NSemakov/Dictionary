@@ -13,6 +13,7 @@
 #import "Constants.h"
 #import "NVNotificationManager.h"
 #import "NVContainerVC.h"
+#import "NVChooseActiveDictCell.h"
 @interface NVChooseActiveDictVC : NVParentViewController
 - (IBAction)buttonAdd:(UIBarButtonItem *)sender;
 - (IBAction)buttonSave:(UIBarButtonItem *)sender;

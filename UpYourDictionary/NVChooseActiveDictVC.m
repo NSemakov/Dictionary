@@ -40,18 +40,23 @@
 
 #pragma mark - overriden methods
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    cell.accessoryType = UITableViewCellAccessoryNone;
+    NVChooseActiveDictCell* cellMain = (NVChooseActiveDictCell*) cell;
+    cellMain.accessoryType = UITableViewCellAccessoryNone;
     NVDicts *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
     if ([object.isActive boolValue]) {
         self.activeDict = object;
         self.curDict = object;
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@ %@ %@",object.template1.name,object.from,object.to,object.progress];
+    cellMain.labelTheme.text = [NSString stringWithFormat:NSLocalizedString(@"Theme: %@", nil), object.template1.name];
+    cellMain.labelLangFrom.text = [NSString stringWithFormat:NSLocalizedString(@"From: %@", nil), object.from];
+    cellMain.labelLangTo.text = [NSString stringWithFormat:NSLocalizedString(@"To: %@", nil), object.to];
+    cellMain.labelProgress.text = [NSString stringWithFormat:NSLocalizedString(@"Progress: %@ %%", nil), object.progress];
+    //cell.textLabel.text = [NSString stringWithFormat:@"%@ %@ %@ %@",object.template1.name,object.from,object.to,object.progress];
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][0];
     if (self.curDict) {
         NSInteger catIndex = [[sectionInfo objects] indexOfObject:self.curDict];
         if (catIndex==indexPath.row) {
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            cellMain.accessoryType = UITableViewCellAccessoryCheckmark;
         }
     }
 }

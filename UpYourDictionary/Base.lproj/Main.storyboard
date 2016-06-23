@@ -161,21 +161,72 @@
         <scene sceneID="rnj-ZU-Icc">
             <objects>
                 <tableViewController title="Choose active dictionary" id="uQE-7S-cJx" customClass="NVChooseActiveDictVC" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="d0a-nD-L3t">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="87" sectionHeaderHeight="28" sectionFooterHeight="28" id="d0a-nD-L3t">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="opJ-3r-QBB">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="87" id="opJ-3r-QBB" customClass="NVChooseActiveDictCell">
+                                <rect key="frame" x="0.0" y="92" width="600" height="87"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="opJ-3r-QBB" id="OxS-6b-TrB">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="86"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ThemeLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N8q-O8-BQw">
+                                            <rect key="frame" x="8" y="0.0" width="584" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LanguageFromLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D1U-HO-yDK">
+                                            <rect key="frame" x="8" y="19" width="584" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LanguageToLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zaN-lB-8lG">
+                                            <rect key="frame" x="8" y="39" width="584" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ProgressLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ehr-1m-BK6">
+                                            <rect key="frame" x="8" y="60" width="584" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                     <animations/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="ehr-1m-BK6" secondAttribute="bottom" constant="-3" id="7lE-3V-uTJ"/>
+                                        <constraint firstItem="ehr-1m-BK6" firstAttribute="top" secondItem="zaN-lB-8lG" secondAttribute="bottom" id="8xd-Zg-9zZ"/>
+                                        <constraint firstItem="N8q-O8-BQw" firstAttribute="leading" secondItem="OxS-6b-TrB" secondAttribute="leading" constant="8" id="Ce1-QR-YZg"/>
+                                        <constraint firstAttribute="trailing" secondItem="ehr-1m-BK6" secondAttribute="trailing" constant="8" id="F45-MV-IML"/>
+                                        <constraint firstItem="ehr-1m-BK6" firstAttribute="leading" secondItem="OxS-6b-TrB" secondAttribute="leading" constant="8" id="FdL-PO-PFZ"/>
+                                        <constraint firstAttribute="trailing" secondItem="D1U-HO-yDK" secondAttribute="trailing" constant="8" id="FzV-VG-lBb"/>
+                                        <constraint firstItem="D1U-HO-yDK" firstAttribute="top" secondItem="N8q-O8-BQw" secondAttribute="bottom" constant="-2" id="MIv-gV-goJ"/>
+                                        <constraint firstItem="zaN-lB-8lG" firstAttribute="leading" secondItem="OxS-6b-TrB" secondAttribute="leading" constant="8" id="Ua8-Xw-STx"/>
+                                        <constraint firstItem="zaN-lB-8lG" firstAttribute="top" secondItem="D1U-HO-yDK" secondAttribute="bottom" constant="-1" id="WAI-HT-JyT"/>
+                                        <constraint firstAttribute="trailing" secondItem="zaN-lB-8lG" secondAttribute="trailing" constant="8" id="Zev-ip-VpN"/>
+                                        <constraint firstAttribute="trailing" secondItem="N8q-O8-BQw" secondAttribute="trailing" constant="8" id="o1V-cM-n8e"/>
+                                        <constraint firstItem="D1U-HO-yDK" firstAttribute="leading" secondItem="OxS-6b-TrB" secondAttribute="leading" constant="8" id="pnt-kk-XJE"/>
+                                        <constraint firstItem="N8q-O8-BQw" firstAttribute="top" secondItem="OxS-6b-TrB" secondAttribute="topMargin" constant="-8" id="uRr-xV-5P5"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <connections>
+                                    <outlet property="labelLangFrom" destination="D1U-HO-yDK" id="Qhb-WD-akP"/>
+                                    <outlet property="labelLangTo" destination="zaN-lB-8lG" id="CCK-PN-ywe"/>
+                                    <outlet property="labelProgress" destination="ehr-1m-BK6" id="vGa-7q-qgd"/>
+                                    <outlet property="labelTheme" destination="N8q-O8-BQw" id="IW9-uv-fpR"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

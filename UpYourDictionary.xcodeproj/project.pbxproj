@@ -10,6 +10,7 @@
 		01083E3F95C3BACEF2DE4B0A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8E645F75A1AF8B9A7B2E2DB /* libPods.a */; };
 		84037B9F1D0A2EFF005EBCAD /* NVTouchedNotifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84037B9E1D0A2EFF005EBCAD /* NVTouchedNotifyVC.m */; settings = {ASSET_TAGS = (); }; };
 		84050DB41D148DFD00692347 /* NVYandexWebViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84050DB31D148DFD00692347 /* NVYandexWebViewVC.m */; settings = {ASSET_TAGS = (); }; };
+		840B0BC81D1C1A68007D3C47 /* NVChooseActiveDictCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B0BC71D1C1A68007D3C47 /* NVChooseActiveDictCell.m */; settings = {ASSET_TAGS = (); }; };
 		840DC06B1D0B9179009C04E8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 840DC06D1D0B9179009C04E8 /* InfoPlist.strings */; };
 		840DC0701D0B917A009C04E8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 840DC0721D0B917A009C04E8 /* InfoPlist.strings */; };
 		840DC0751D0B917D009C04E8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 840DC0771D0B917D009C04E8 /* InfoPlist.strings */; };
@@ -89,6 +90,8 @@
 		84037B9E1D0A2EFF005EBCAD /* NVTouchedNotifyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVTouchedNotifyVC.m; sourceTree = "<group>"; };
 		84050DB21D148DFD00692347 /* NVYandexWebViewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVYandexWebViewVC.h; sourceTree = "<group>"; };
 		84050DB31D148DFD00692347 /* NVYandexWebViewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVYandexWebViewVC.m; sourceTree = "<group>"; };
+		840B0BC61D1C1A68007D3C47 /* NVChooseActiveDictCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVChooseActiveDictCell.h; sourceTree = "<group>"; };
+		840B0BC71D1C1A68007D3C47 /* NVChooseActiveDictCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVChooseActiveDictCell.m; sourceTree = "<group>"; };
 		840DC0681D0B8A2A009C04E8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		840DC06C1D0B9179009C04E8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		840DC0711D0B917A009C04E8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -232,6 +235,8 @@
 				845E96561D0B3E7E0011856C /* NVCreateDictCell.m */,
 				8461C64F1D146654007F7532 /* NVTouchedNotifyCell.h */,
 				8461C6501D146654007F7532 /* NVTouchedNotifyCell.m */,
+				840B0BC61D1C1A68007D3C47 /* NVChooseActiveDictCell.h */,
+				840B0BC71D1C1A68007D3C47 /* NVChooseActiveDictCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -637,6 +642,7 @@
 				844630C11CEBCAD3004E0994 /* NVWords.m in Sources */,
 				843BCB6D1CEDE034000F30A3 /* NVCreateTemplateCell.m in Sources */,
 				844B6EEF1CF72E5B00B093FA /* NVNotifyInUse.m in Sources */,
+				840B0BC81D1C1A68007D3C47 /* NVChooseActiveDictCell.m in Sources */,
 				844630A21CEBBB1E004E0994 /* NVChooseDictThemeVC.m in Sources */,
 				844630BD1CEBCAD3004E0994 /* NVDicts.m in Sources */,
 				845894371CE8BC3800D4FE35 /* AppDelegate.m in Sources */,
