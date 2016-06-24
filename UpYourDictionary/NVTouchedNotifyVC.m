@@ -19,17 +19,41 @@
     self.tableView.estimatedRowHeight = 80;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     NSLog(@"NVTouchedNotifyVC");
+    
+    //yandex button with dynamic font size
+    UIButton *myButton = [UIButton buttonWithType: UIButtonTypeRoundedRect];
+    [myButton setTitle:NSLocalizedString(@"Powered by Yandex.Translate", nil) forState:UIControlStateNormal];
+    [myButton setFrame: CGRectMake(0, 0, 300, self.navigationController.toolbar.frame.size.height)];
+    
+    [myButton.titleLabel setFont: [UIFont boldSystemFontOfSize:100.0]];
+    [myButton addTarget:self action:@selector(buttonYandexSender:) forControlEvents:UIControlEventTouchUpInside];
+    myButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+    myButton.titleLabel.minimumScaleFactor = 0.05;
+    myButton.titleLabel.numberOfLines = 1;
+    myButton.titleLabel.lineBreakMode = NSLineBreakByClipping;
+    myButton.titleLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+    myButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    UIBarButtonItem *button = [[UIBarButtonItem alloc]
+                               initWithCustomView:myButton];
+    UIBarButtonItem *buttonLeftFlex = [[UIBarButtonItem alloc]
+                                       initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem *buttonRightFlex = [[UIBarButtonItem alloc]
+                                        initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    [self setToolbarItems:@[buttonLeftFlex, button, buttonRightFlex] animated:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+#pragma mark - helpers 
+-(void) buttonYandexSender:(UIButton*) sender {
+    [self performSegueWithIdentifier:@"segueYandexVC" sender:sender];
+}
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
     return 1;
 }
 

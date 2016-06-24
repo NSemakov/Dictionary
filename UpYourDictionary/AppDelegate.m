@@ -19,7 +19,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-    // Override point for customization after application launch.
     [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
     if([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)])
     {
@@ -30,7 +29,16 @@
     else {
         
     }
-    
+    //if app is launched after local notify tap
+    UILocalNotification *notification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    if (notification) {
+        [self actionAfterLocalNotificationArrived:notification];
+    }
+    //Check if its first time. if first, cancel all previous notifies
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:NVIsFirstTimeLaunched]) {
+        [application cancelAllLocalNotifications]; // Restart the Local Notifications list
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:NVIsFirstTimeLaunched];
+    }
     NSLog(@"did finish launching with options");
     [[NVNotificationManager sharedManager] refreshProgressOfDictionaryWithCallback:nil];
     return YES;
@@ -40,7 +48,14 @@
 }
 -(void) application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
     NSLog(@"received:body %@, date %@",notification.alertBody,notification.fireDate);
+    [self actionAfterLocalNotificationArrived:notification];
     
+    [[NVNotificationManager sharedManager] refreshProgressOfDictionaryWithCallback:^{
+        [[NVNotificationManager sharedManager] addNewNotificationToFullSet];
+    }];
+    
+}
+- (void)actionAfterLocalNotificationArrived:(UILocalNotification*) notification{
     [[self window] makeKeyAndVisible];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
@@ -62,12 +77,7 @@
             [lastStackVC.navigationController pushViewController:vc animated:YES];
         }
     }
-    [[NVNotificationManager sharedManager] refreshProgressOfDictionaryWithCallback:^{
-        [[NVNotificationManager sharedManager] addNewNotificationToFullSet];
-    }];
-    
 }
-
 - (void)applicationWillResignActive:(UIApplication *)application {
 
 }

@@ -14,4 +14,5 @@ static NSInteger const wordsInOneNotify = 3;
 static NSString * const NVNotifyKey = @"NVNotifyKey";
 static NSInteger const numberOfWords = 10;
 static NSInteger const countAim = 10;
+static NSString * const NVIsFirstTimeLaunched = @"NVIsFirstTimeLaunched";
 #endif /* Constants_h */

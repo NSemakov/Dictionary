@@ -19,18 +19,33 @@
     // Do any additional setup after loading the view.
     NVMainStrategy* manager = [NVMainStrategy sharedManager];
     manager.delegate = self;
+    
+
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+  
+
+}
+-(void)viewWillAppear:(BOOL)animated{
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-/*- (IBAction)buttonTestAlgo:(UIButton *)sender {
-    //[[NVMainStrategy sharedManager] performAlgo];
-    //[[NVMainStrategy sharedManager] startFireAlert];
-}*/
 -(void) showWord:(NSString*) word translation:(NSString*) translation{
     //self.textFieldTest.text = [NSString stringWithFormat:@"%@ - %@",word,translation];
 }
+/*- (CGRect)adjustedRectForLabel:(UILabel *)label {
+ CGRect rect =
+ [label.attributedText boundingRectWithSize:CGSizeMake(200.f, CGFLOAT_MAX)
+ options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading|NSStringDrawingTruncatesLastVisibleLine)
+ context:nil];
+ //CGFloat adjustedFontSize = label.font.pointSize * context.actualScaleFactor;
+ rect = CGRectIntegral(rect);
+ return rect;
+ 
+ }*/
 @end
