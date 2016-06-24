@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.labelAbout.text = NSLocalizedString(@"1. Choose dictionary or make it from your own words. Any language is supported! \n2. Push app to background. From this moment notifications with word and translation will be shown. Time interval and number of word you could set in settings. \n3. When notification is arrived, just read it 2-3 times and remove. Eventually each word will be shown 10 times for several days. So you will do learn any words!", "about");
+    self.labelAbout.text = NSLocalizedString(@"1. Choose dictionary or make it from your own words. Any language is supported! \n2. Push app to background. From this moment notifications with words and translation will be shown. Time interval and number of word you could set in settings. \n3. When notification is arrived, just read it 2-3 times and remove. Eventually each word will be shown 10 times for several days. So you will do learn any words in calm and relaxed way!", "about");
 }
 
 - (void)didReceiveMemoryWarning {
