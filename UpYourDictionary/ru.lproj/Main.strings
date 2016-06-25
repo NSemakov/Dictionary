@@ -11,19 +11,25 @@
 "6ec-G9-Ceb.title" = "Снять выбор";
 
 /* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "8nn-8R-9KG"; */
-"8nn-8R-9KG.title" = "ОК";
+"8nn-8R-9KG.title" = "Сохранить";
 
 /* Class = "UITextField"; placeholder = "Type your word"; ObjectID = "AGI-6n-fQd"; */
 "AGI-6n-fQd.placeholder" = "Введите слово";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "B6K-n4-kMc"; */
+"B6K-n4-kMc.text" = "";
 
 /* Class = "UILabel"; text = "Time interval to show words"; ObjectID = "B7M-ib-ODM"; */
 "B7M-ib-ODM.text" = "Частота показа слов";
 
 /* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "CdD-hc-8sl"; */
-"CdD-hc-8sl.title" = "ОК";
+"CdD-hc-8sl.title" = "Сохранить";
 
 /* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "Cng-VH-61F"; */
-"Cng-VH-61F.title" = "ОК";
+"Cng-VH-61F.title" = "Сохранить";
+
+/* Class = "UILabel"; text = "LanguageFromLabel"; ObjectID = "D1U-HO-yDK"; */
+"D1U-HO-yDK.text" = "";
 
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "DJc-CW-kYn"; */
 "DJc-CW-kYn.title" = "Настройки";
@@ -31,11 +37,17 @@
 /* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "En3-ht-jnP"; */
 "En3-ht-jnP.title" = "Отмена";
 
+/* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "EuF-CV-dMN"; */
+"EuF-CV-dMN.title" = "Отмена";
+
 /* Class = "UILabel"; text = "You will know 50 words in "; ObjectID = "EyL-Yp-7Vl"; */
 "EyL-Yp-7Vl.text" = "Вы выучите 50 слов за ";
 
 /* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "GJd-vH-zhG"; */
-"GJd-vH-zhG.title" = "ОК";
+"GJd-vH-zhG.title" = "Сохранить";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "GfC-BT-hBu"; */
+"GfC-BT-hBu.title" = " ";
 
 /* Class = "UIButton"; normalTitle = "Settings"; ObjectID = "GvJ-MV-83v"; */
 "GvJ-MV-83v.normalTitle" = "Настройки";
@@ -43,11 +55,23 @@
 /* Class = "UITableViewController"; title = "Create new with my words"; ObjectID = "Hcq-SV-ZHo"; */
 "Hcq-SV-ZHo.title" = "Новый список";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "Hke-z1-r5J"; */
+"Hke-z1-r5J.text" = "";
+
 /* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "IOC-CG-BzW"; */
-"IOC-CG-BzW.title" = "ОК";
+"IOC-CG-BzW.title" = "Сохранить";
+
+/* Class = "UINavigationItem"; title = "How it works"; ObjectID = "LxX-2y-h0a"; */
+"LxX-2y-h0a.title" = "Как это работает";
+
+/* Class = "UILabel"; text = "ThemeLabel"; ObjectID = "N8q-O8-BQw"; */
+"N8q-O8-BQw.text" = "";
+
+/* Class = "UIButton"; normalTitle = "How it works"; ObjectID = "OB8-0b-Yb4"; */
+"OB8-0b-Yb4.normalTitle" = "Как это работает";
 
 /* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "UMW-2g-xxF"; */
-"UMW-2g-xxF.title" = "ОК";
+"UMW-2g-xxF.title" = "Сохранить";
 
 /* Class = "UIBarButtonItem"; title = "Add word"; ObjectID = "VoL-VK-sH7"; */
 "VoL-VK-sH7.title" = "Добавить";
@@ -55,11 +79,17 @@
 /* Class = "UITableViewController"; title = "Choose dictionary theme"; ObjectID = "Xit-mw-II1"; */
 "Xit-mw-II1.title" = "Список слов";
 
+/* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "ahQ-xb-ob8"; */
+"ahQ-xb-ob8.title" = "Отмена";
+
 /* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "cp5-9p-vwp"; */
-"cp5-9p-vwp.title" = "ОК";
+"cp5-9p-vwp.title" = "Сохранить";
 
 /* Class = "UINavigationItem"; title = "List of words"; ObjectID = "e7V-0p-Q0K"; */
-"e7V-0p-Q0K.title" = "Выберите список слов";
+"e7V-0p-Q0K.title" = "Списки слов";
+
+/* Class = "UILabel"; text = "ProgressLabel"; ObjectID = "ehr-1m-BK6"; */
+"ehr-1m-BK6.text" = "";
 
 /* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "l7B-FO-ATI"; */
 "l7B-FO-ATI.title" = "Отмена";
@@ -103,12 +133,18 @@
 /* Class = "UILabel"; text = "Language \"from\""; ObjectID = "v7W-XS-Zdb"; */
 "v7W-XS-Zdb.text" = "С какого языка";
 
+/* Class = "UINavigationItem"; title = "Preparing"; ObjectID = "viI-AO-vLn"; */
+"viI-AO-vLn.title" = "Подготовка";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "x3N-z1-XBN"; */
+"x3N-z1-XBN.text" = "";
+
 /* Class = "UINavigationItem"; title = "Dictionary"; ObjectID = "xU2-ke-FkU"; */
 "xU2-ke-FkU.title" = "Словарь";
 
 /* Class = "UINavigationItem"; title = "New dictionary"; ObjectID = "xUz-UR-3uT"; */
 "xUz-UR-3uT.title" = "Новый словарь";
 
-/* Class = "UIBarButtonItem"; title = "Powered by Yandex.Translate"; ObjectID = "yXZ-TY-AIM"; */
-"yXZ-TY-AIM.title" = "Переведено сервисом Яндекс.Переводчик";
+/* Class = "UILabel"; text = "LanguageToLabel"; ObjectID = "zaN-lB-8lG"; */
+"zaN-lB-8lG.text" = "";
 
