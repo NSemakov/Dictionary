@@ -742,7 +742,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
-                            <tableViewSection id="3aT-2R-PIa">
+                            <tableViewSection id="vT6-J4-D7X">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="timeToPush" rowHeight="96" id="ld3-Lb-xgO">
                                         <rect key="frame" x="0.0" y="64" width="600" height="96"/>
@@ -761,6 +761,7 @@
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="1" maxValue="12" translatesAutoresizingMaskIntoConstraints="NO" id="DlV-KJ-VR8">
                                                     <rect key="frame" x="6" y="49" width="588" height="31"/>
                                                     <animations/>
+                                                    <color key="thumbTintColor" red="0.0" green="0.46666666666666667" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
                                                         <action selector="sliderActionTimeToPush:" destination="DSt-dp-HgC" eventType="valueChanged" id="agS-ON-cIZ"/>
                                                     </connections>
@@ -795,6 +796,7 @@
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="1" maxValue="15" translatesAutoresizingMaskIntoConstraints="NO" id="m8t-Zy-Ghp">
                                                     <rect key="frame" x="6" y="52" width="588" height="31"/>
                                                     <animations/>
+                                                    <color key="thumbTintColor" red="0.0" green="0.46666666666666667" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
                                                         <action selector="sliderActionNumberOfWords:" destination="DSt-dp-HgC" eventType="valueChanged" id="x4c-HS-kff"/>
                                                     </connections>
@@ -812,8 +814,32 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Info" rowHeight="96" id="bJs-hT-44j">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="dayTime" rowHeight="96" id="5NE-et-Mb2">
                                         <rect key="frame" x="0.0" y="256" width="600" height="96"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5NE-et-Mb2" id="svI-pj-k1I">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="95"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time when notifications arrive" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dlz-fI-45n">
+                                                    <rect key="frame" x="8" y="8" width="584" height="21"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstItem="Dlz-fI-45n" firstAttribute="leading" secondItem="svI-pj-k1I" secondAttribute="leadingMargin" id="Jul-zJ-xet"/>
+                                                <constraint firstItem="Dlz-fI-45n" firstAttribute="top" secondItem="svI-pj-k1I" secondAttribute="topMargin" id="ZBA-JT-07V"/>
+                                                <constraint firstItem="Dlz-fI-45n" firstAttribute="trailing" secondItem="svI-pj-k1I" secondAttribute="trailingMargin" id="vZ3-WI-hjw"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Info" rowHeight="96" id="bJs-hT-44j">
+                                        <rect key="frame" x="0.0" y="352" width="600" height="96"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bJs-hT-44j" id="pJ6-Q4-7cy">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="95"/>
@@ -860,6 +886,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cellForDayTimeSlider" destination="5NE-et-Mb2" id="dSb-7m-zid"/>
+                        <outlet property="labelArriveNotifies" destination="Dlz-fI-45n" id="LcC-aD-n28"/>
                         <outlet property="labelInfo" destination="EyL-Yp-7Vl" id="ghN-aL-Oi0"/>
                         <outlet property="labelNumberOfWords" destination="qca-Hb-ubJ" id="gjr-B0-QnF"/>
                         <outlet property="labelTimeToPush" destination="B7M-ib-ODM" id="JJ9-zT-W2M"/>
@@ -972,6 +1000,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="lup-2f-fER"/>
+        <segue reference="R9t-98-XaR"/>
     </inferredMetricsTieBreakers>
 </document>

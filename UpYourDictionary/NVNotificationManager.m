@@ -153,25 +153,29 @@
 }
 - (void) createNotificationInCycleTimeToPush:(NSInteger) timeToPush numberOfNotifies:(NSInteger) numberOfNotifies settingsWords:(NSInteger) settingsWords prevDate:(NSDate*) prevDate maxIter:(NSInteger) maxIter{
     NSInteger i = 0;
+    NSInteger minDayTimeValue = [[NSUserDefaults standardUserDefaults] integerForKey:NVMinimumDayTimeAllowedForNotification];
+    NSInteger maxDayTimeValue = [[NSUserDefaults standardUserDefaults] integerForKey:NVMaximumDayTimeAllowedForNotification];
+
+
     while (i<maxIter) {
         NSDate* fireDate = [NSDate dateWithTimeInterval:timeToPush*60*60 sinceDate:prevDate];
-        NSLog(@"start date: %@",fireDate);
+        //NSLog(@"start date: %@",fireDate);
         NSCalendar *theCalendar = [NSCalendar currentCalendar];
         NSDateComponents* components = [theCalendar components:NSCalendarUnitHour fromDate:fireDate];
         NSInteger newHour = components.hour;
-        if (newHour < 6) {
+        if (newHour < minDayTimeValue) {
             NSDateComponents* componentsForModify = [theCalendar components:NSCalendarUnitYear|NSCalendarUnitMonth| NSCalendarUnitDay | NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond  fromDate:fireDate];
-            componentsForModify.hour = 6;
+            componentsForModify.hour = minDayTimeValue;
             fireDate = [theCalendar dateFromComponents:componentsForModify];
-        } else if (newHour > 23) {
+        } else if (newHour > maxDayTimeValue) {
             NSDateComponents* componentsForModify = [theCalendar components:NSCalendarUnitYear|NSCalendarUnitMonth| NSCalendarUnitDay| NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond  fromDate:fireDate];
             componentsForModify.day ++;
-            componentsForModify.hour = 6;
+            componentsForModify.hour = minDayTimeValue;
             fireDate = [theCalendar dateFromComponents:componentsForModify];
         } else {
             //usual work
         }
-        NSLog(@"end date: %@",fireDate);
+        //NSLog(@"end date: %@",fireDate);
         
         for (NSInteger j=1; j<=numberOfNotifies; j++) {//формируем пачку нотификаций, если в одну не помещается
             NSInteger x = settingsWords-(j-1)*wordsInOneNotify;

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		01083E3F95C3BACEF2DE4B0A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8E645F75A1AF8B9A7B2E2DB /* libPods.a */; };
 		84037B9F1D0A2EFF005EBCAD /* NVTouchedNotifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84037B9E1D0A2EFF005EBCAD /* NVTouchedNotifyVC.m */; settings = {ASSET_TAGS = (); }; };
 		84050DB41D148DFD00692347 /* NVYandexWebViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84050DB31D148DFD00692347 /* NVYandexWebViewVC.m */; settings = {ASSET_TAGS = (); }; };
 		840B0BC81D1C1A68007D3C47 /* NVChooseActiveDictCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B0BC71D1C1A68007D3C47 /* NVChooseActiveDictCell.m */; settings = {ASSET_TAGS = (); }; };
@@ -63,10 +62,12 @@
 		8461C64E1D1423F2007F7532 /* NVContainerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8461C64D1D1423F2007F7532 /* NVContainerVC.m */; settings = {ASSET_TAGS = (); }; };
 		8461C6511D146654007F7532 /* NVTouchedNotifyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8461C6501D146654007F7532 /* NVTouchedNotifyCell.m */; settings = {ASSET_TAGS = (); }; };
 		8462CDE11CEA4D0B00E742AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8462CDDF1CEA4D0B00E742AC /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
+		8479EDB21D22EC260072D8BE /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 8479EDB11D22EC260072D8BE /* Images */; settings = {ASSET_TAGS = (); }; };
 		84D436131D1DB2FA00FB3F80 /* NVHowItWorksVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D436121D1DB2FA00FB3F80 /* NVHowItWorksVC.m */; settings = {ASSET_TAGS = (); }; };
 		84F2FDB21CEE619B00714DF0 /* NVMainStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F2FDB11CEE619B00714DF0 /* NVMainStrategy.m */; settings = {ASSET_TAGS = (); }; };
 		84F6A3C01CEFCCC2001F3CAC /* NVDicts+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F6A3BF1CEFCCC2001F3CAC /* NVDicts+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
 		84F6A3C31CEFCFF6001F3CAC /* NVMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F6A3C21CEFCFF6001F3CAC /* NVMenuVC.m */; settings = {ASSET_TAGS = (); }; };
+		EE9F8948D606212E771292C3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A34EF9EF8378CB4094847D2F /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -180,6 +181,7 @@
 		8461C64F1D146654007F7532 /* NVTouchedNotifyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVTouchedNotifyCell.h; sourceTree = "<group>"; };
 		8461C6501D146654007F7532 /* NVTouchedNotifyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVTouchedNotifyCell.m; sourceTree = "<group>"; };
 		8462CDE01CEA4D0B00E742AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8479EDB11D22EC260072D8BE /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
 		84D436111D1DB2FA00FB3F80 /* NVHowItWorksVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVHowItWorksVC.h; sourceTree = "<group>"; };
 		84D436121D1DB2FA00FB3F80 /* NVHowItWorksVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVHowItWorksVC.m; sourceTree = "<group>"; };
 		84F2FDB01CEE619B00714DF0 /* NVMainStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVMainStrategy.h; sourceTree = "<group>"; };
@@ -190,7 +192,7 @@
 		84F6A3C11CEFCFF6001F3CAC /* NVMenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVMenuVC.h; sourceTree = "<group>"; };
 		84F6A3C21CEFCFF6001F3CAC /* NVMenuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVMenuVC.m; sourceTree = "<group>"; };
 		A34005371E3A80E4C5532B92 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		B8E645F75A1AF8B9A7B2E2DB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A34EF9EF8378CB4094847D2F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD93336E2697EA394E75826 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -199,7 +201,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01083E3F95C3BACEF2DE4B0A /* libPods.a in Frameworks */,
+				EE9F8948D606212E771292C3 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +361,7 @@
 		845894311CE8BC3800D4FE35 /* UpYourDictionary */ = {
 			isa = PBXGroup;
 			children = (
+				8479EDB11D22EC260072D8BE /* Images */,
 				843BDE121D1C110D00F3FBB4 /* LaunchImages */,
 				843BDDEB1D1C078B00F3FBB4 /* Icons */,
 				840DC07C1D0B917F009C04E8 /* Localizable.strings */,
@@ -420,7 +423,7 @@
 		C51CC3DAA544B20D22FEF19C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B8E645F75A1AF8B9A7B2E2DB /* libPods.a */,
+				A34EF9EF8378CB4094847D2F /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -555,6 +558,7 @@
 				843BDE171D1C112A00F3FBB4 /* LaunchImageUpYourDict640x960.png in Resources */,
 				843BDE101D1C0EAA00F3FBB4 /* iconsUpYourDict152.png in Resources */,
 				845894421CE8BC3800D4FE35 /* Assets.xcassets in Resources */,
+				8479EDB21D22EC260072D8BE /* Images in Resources */,
 				843910A51D0CC95600309FBF /* UpYourDictionaryRu.sqlite in Resources */,
 				840DC0751D0B917D009C04E8 /* InfoPlist.strings in Resources */,
 				843BDE091D1C0EAA00F3FBB4 /* iconsUpYourDict29.png in Resources */,

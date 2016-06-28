@@ -11,16 +11,21 @@
 //#import "NVMainStrategy.h"
 #import "NVNotificationManager.h"
 #import "NVContainerVC.h"
-@interface NVSettingsVC : UITableViewController
+#import "TTRangeSlider.h"
+@interface NVSettingsVC : UITableViewController <TTRangeSliderDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *labelTimeToPush;
 @property (weak, nonatomic) IBOutlet UILabel *labelNumberOfWords;
 @property (weak, nonatomic) IBOutlet UILabel *labelInfo;
+@property (weak, nonatomic) IBOutlet UILabel *labelArriveNotifies;
 @property (weak, nonatomic) IBOutlet UISlider *sliderTimeToPush;
 @property (weak, nonatomic) IBOutlet UISlider *sliderNumberOfWords;
 @property (strong, nonatomic) NVContainerVC* loadingVC;
+@property (strong, nonatomic) TTRangeSlider *sliderDayTime;
+@property (weak, nonatomic) IBOutlet UITableViewCell *cellForDayTimeSlider;
 - (IBAction)sliderActionTimeToPush:(UISlider *)sender;
 - (IBAction)sliderActionNumberOfWords:(UISlider *)sender;
 - (IBAction)buttonSave:(UIBarButtonItem *)sender;
 - (IBAction)buttonCancel:(UIBarButtonItem *)sender;
+
 
 @end

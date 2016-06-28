@@ -10,6 +10,8 @@
 #define Constants_h
 static NSString * const NVNumberOfWordsToShow = @"numberOfWords";
 static NSString * const NVTimeToPush = @"timeToPush";
+static NSString * const NVMinimumDayTimeAllowedForNotification = @"NVMinimumDayTimeAllowedForNotification";
+static NSString * const NVMaximumDayTimeAllowedForNotification = @"NVMaximumDayTimeAllowedForNotification";
 static NSInteger const wordsInOneNotify = 3;
 static NSString * const NVNotifyKey = @"NVNotifyKey";
 static NSInteger const numberOfWords = 10;

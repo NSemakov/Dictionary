@@ -43,6 +43,8 @@
         //initial settings
         [[NSUserDefaults standardUserDefaults] setInteger:2 forKey:NVTimeToPush];
         [[NSUserDefaults standardUserDefaults] setInteger:3 forKey:NVNumberOfWordsToShow];
+        [[NSUserDefaults standardUserDefaults] setInteger:6 forKey:NVMinimumDayTimeAllowedForNotification];
+        [[NSUserDefaults standardUserDefaults] setInteger:23 forKey:NVMaximumDayTimeAllowedForNotification];
     }
     NSLog(@"did finish launching with options");
     [[NVNotificationManager sharedManager] refreshProgressOfDictionaryWithCallback:nil];
