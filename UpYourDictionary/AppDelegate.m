@@ -36,8 +36,13 @@
     }
     //Check if its first time. if first, cancel all previous notifies
     if (![[NSUserDefaults standardUserDefaults] objectForKey:NVIsFirstTimeLaunched]) {
-        [application cancelAllLocalNotifications]; // Restart the Local Notifications list
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:NVIsFirstTimeLaunched];
+        
+        [application cancelAllLocalNotifications]; // Restart the Local Notifications list
+        
+        //initial settings
+        [[NSUserDefaults standardUserDefaults] setInteger:2 forKey:NVTimeToPush];
+        [[NSUserDefaults standardUserDefaults] setInteger:3 forKey:NVNumberOfWordsToShow];
     }
     NSLog(@"did finish launching with options");
     [[NVNotificationManager sharedManager] refreshProgressOfDictionaryWithCallback:nil];

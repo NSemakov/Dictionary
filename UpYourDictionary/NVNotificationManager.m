@@ -27,22 +27,7 @@
     NSInteger timeToPush = [[NSUserDefaults standardUserDefaults] integerForKey:NVTimeToPush];
     if (timeToPush == 0) {
         timeToPush = 2;}
-        for (NSInteger i = 0; i<62-notifyLeft; i=i+numberOfNotifies) {//max 64 нотификации. с запасом - 62.
-            for (NSInteger j=1; j<=numberOfNotifies; j++) {//формируем пачку нотификаций, если в одну не помещается
-                NSInteger x = settingsWords-(j-1)*wordsInOneNotify;
-                NSInteger n = (x>wordsInOneNotify)? wordsInOneNotify : x;
-                //формируем конкретную нотификацию в зависимости от кол-ва слов.
-                //NSDate* fireDate= [NSDate dateWithTimeIntervalSinceNow:20+i*timeToPush*60*60];
-                NSDateComponents *hourComponent = [[NSDateComponents alloc] init];
-                hourComponent.hour = i*timeToPush;
-                
-                NSCalendar *theCalendar = [NSCalendar currentCalendar];
-                NSDate *fireDate = [theCalendar dateByAddingComponents:hourComponent toDate:lastNofityFireDate options:0];
-                [self startFireAlertAtDate:fireDate numberOfWords:n iteration:j];
-            }
-            //интервал из настроек и перевод его из часов в секунды
-            
-        }
+    [self createNotificationInCycleTimeToPush:timeToPush numberOfNotifies:numberOfNotifies settingsWords:settingsWords prevDate:lastNofityFireDate maxIter:62-notifyLeft];
 }];
 }
 -(void) refreshProgressOfDictionaryWithCallback:(void(^)(void))callback {
@@ -98,10 +83,6 @@
         content.dict.isActiveProgram = @(YES);
         /**/
     for (NSInteger i = initialCount; i>0; i--) {
-        /*if (initialCount!= [[app scheduledLocalNotifications] count]) {
-            //если в процессе отката вызвалась нотификация по времени и их стало меньше, тогда перевызовем этот метод еще раз
-            [self cancelNotificationsCompleteWay];
-        }*/
         UILocalNotification* lastNotify = [arrayOfScheduledNotification objectAtIndex:i-1];
         NSDate* lastNotifyFireDate = lastNotify.fireDate;
 
@@ -151,30 +132,61 @@
             NSInteger timeToPush = [[NSUserDefaults standardUserDefaults] integerForKey:NVTimeToPush];
             if (timeToPush == 0) {
                 timeToPush = 2;}
+            /*------*/
+            NSDate* prevDate = [NSDate date];
             
-            for (NSInteger i = 0; i<62; i=i+numberOfNotifies) {
-                for (NSInteger j=1; j<=numberOfNotifies; j++) {//формируем пачку нотификаций, если в одну не помещается
-                    NSInteger x = settingsWords-(j-1)*wordsInOneNotify;
-                    NSInteger n = (x>wordsInOneNotify)? wordsInOneNotify : x;
-                    //формируем конкретную нотификацию в зависимости от кол-ва слов.
-                    NSDate* fireDate = [NSDate dateWithTimeIntervalSinceNow:300+i*timeToPush*60*60];
-                    [self startFireAlertAtDate:fireDate numberOfWords:n iteration:j];
-                    
-                }
-                if (self.delegateToRefresh) {
-                    [self.delegateToRefresh refreshProgressBar];
-                }
-                NSLog(@"created N:%ld",i);
+            /*form first notification after 300 sec*/
+            for (NSInteger j=1; j<=numberOfNotifies; j++) {//формируем пачку нотификаций, если в одну не помещается
+                NSInteger x = settingsWords-(j-1)*wordsInOneNotify;
+                NSInteger n = (x>wordsInOneNotify)? wordsInOneNotify : x;
+                //формируем конкретную нотификацию в зависимости от кол-ва слов.
+                [self startFireAlertAtDate:[NSDate dateWithTimeInterval:300 sinceDate:prevDate] numberOfWords:n iteration:j];
             }
+            /*-----end of form first notification after 300 sec*/
+            [self createNotificationInCycleTimeToPush:timeToPush numberOfNotifies:numberOfNotifies settingsWords:settingsWords prevDate:prevDate maxIter:62];
+
             if (callback) {
                 callback();
             }
-
         }];
-        
    }];
-
 }
+- (void) createNotificationInCycleTimeToPush:(NSInteger) timeToPush numberOfNotifies:(NSInteger) numberOfNotifies settingsWords:(NSInteger) settingsWords prevDate:(NSDate*) prevDate maxIter:(NSInteger) maxIter{
+    NSInteger i = 0;
+    while (i<maxIter) {
+        NSDate* fireDate = [NSDate dateWithTimeInterval:timeToPush*60*60 sinceDate:prevDate];
+        NSLog(@"start date: %@",fireDate);
+        NSCalendar *theCalendar = [NSCalendar currentCalendar];
+        NSDateComponents* components = [theCalendar components:NSCalendarUnitHour fromDate:fireDate];
+        NSInteger newHour = components.hour;
+        if (newHour < 6) {
+            NSDateComponents* componentsForModify = [theCalendar components:NSCalendarUnitYear|NSCalendarUnitMonth| NSCalendarUnitDay | NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond  fromDate:fireDate];
+            componentsForModify.hour = 6;
+            fireDate = [theCalendar dateFromComponents:componentsForModify];
+        } else if (newHour > 23) {
+            NSDateComponents* componentsForModify = [theCalendar components:NSCalendarUnitYear|NSCalendarUnitMonth| NSCalendarUnitDay| NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond  fromDate:fireDate];
+            componentsForModify.day ++;
+            componentsForModify.hour = 6;
+            fireDate = [theCalendar dateFromComponents:componentsForModify];
+        } else {
+            //usual work
+        }
+        NSLog(@"end date: %@",fireDate);
+        
+        for (NSInteger j=1; j<=numberOfNotifies; j++) {//формируем пачку нотификаций, если в одну не помещается
+            NSInteger x = settingsWords-(j-1)*wordsInOneNotify;
+            NSInteger n = (x>wordsInOneNotify)? wordsInOneNotify : x;
+            //формируем конкретную нотификацию в зависимости от кол-ва слов.
+            [self startFireAlertAtDate:fireDate numberOfWords:n iteration:j];
+        }
+        if (self.delegateToRefresh) {
+            [self.delegateToRefresh refreshProgressBar];
+        }
+        prevDate = fireDate;
+        i=i+numberOfNotifies;
+    }
+}
+
 -(void) putUserInfoInCoreData:(NSSet*) userInfoSet onFireDate:(NSDate*) fireDate{
 
     NVNotifyInUse* newNotify= [NSEntityDescription insertNewObjectForEntityForName:@"NVNotifyInUse" inManagedObjectContext:self.managedObjectContext];
@@ -373,6 +385,74 @@
  localNotification.soundName= UILocalNotificationDefaultSoundName;
  localNotification.userInfo =[NSDictionary dictionaryWithObjectsAndKeys:contentToShow,@"contentToShow", nil];
  [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+ }
+ 
+ 
+ -(void) addNewNotificationToFullSet{
+ 
+ [self.managedObjectContext performBlock:^{
+ NSInteger notifyLeft = [[UIApplication sharedApplication].scheduledLocalNotifications count];
+ NSDate* lastNofityFireDate = [[UIApplication sharedApplication].scheduledLocalNotifications lastObject].fireDate;
+ NSInteger settingsWords = [[NSUserDefaults standardUserDefaults] integerForKey:NVNumberOfWordsToShow];
+ NSInteger numberOfNotifies = (int) (settingsWords/wordsInOneNotify) + (((settingsWords % wordsInOneNotify)>0) ? 1:0);  //кол-во нотификаций
+ NSInteger timeToPush = [[NSUserDefaults standardUserDefaults] integerForKey:NVTimeToPush];
+ if (timeToPush == 0) {
+ timeToPush = 2;}
+ [self createNotificationInCycleTimeToPush:timeToPush numberOfNotifies:numberOfNotifies settingsWords:settingsWords prevDate:lastNofityFireDate maxIter:62-notifyLeft];
+ for (NSInteger i = 0; i<62-notifyLeft; i=i+numberOfNotifies) {//max 64 нотификации. с запасом - 62.
+ for (NSInteger j=1; j<=numberOfNotifies; j++) {//формируем пачку нотификаций, если в одну не помещается
+ NSInteger x = settingsWords-(j-1)*wordsInOneNotify;
+ NSInteger n = (x>wordsInOneNotify)? wordsInOneNotify : x;
+ //формируем конкретную нотификацию в зависимости от кол-ва слов.
+ //NSDate* fireDate= [NSDate dateWithTimeIntervalSinceNow:20+i*timeToPush*60*60];
+ NSDateComponents *hourComponent = [[NSDateComponents alloc] init];
+ hourComponent.hour = i*timeToPush;
+ 
+ NSCalendar *theCalendar = [NSCalendar currentCalendar];
+ NSDate *fireDate = [theCalendar dateByAddingComponents:hourComponent toDate:lastNofityFireDate options:0];
+ [self startFireAlertAtDate:fireDate numberOfWords:n iteration:j];
+ }
+ //интервал из настроек и перевод его из часов в секунды
+ }
+}];
+}
+ */
+/*
+ -(void) generateNewNotificationsWithCallback:(void(^)(void))callback{
+ 
+ [self.managedObjectContext performBlock:^{
+ //cancel all notifications
+ [self cancelNotificationsCompleteWayWithCallback:^{
+ NSInteger settingsWords = [[NSUserDefaults standardUserDefaults] integerForKey:NVNumberOfWordsToShow];
+ if (settingsWords == 0) {
+ settingsWords = 2;}
+ NSInteger numberOfNotifies = (int) (settingsWords/wordsInOneNotify) + (((settingsWords % wordsInOneNotify)>0) ? 1:0);  //кол-во нотификаций
+ NSInteger timeToPush = [[NSUserDefaults standardUserDefaults] integerForKey:NVTimeToPush];
+ if (timeToPush == 0) {
+ timeToPush = 2;}
+ 
+ for (NSInteger i = 0; i<62; i=i+numberOfNotifies) {
+ for (NSInteger j=1; j<=numberOfNotifies; j++) {//формируем пачку нотификаций, если в одну не помещается
+ NSInteger x = settingsWords-(j-1)*wordsInOneNotify;
+ NSInteger n = (x>wordsInOneNotify)? wordsInOneNotify : x;
+ //формируем конкретную нотификацию в зависимости от кол-ва слов.
+ NSDate* fireDate = [NSDate dateWithTimeIntervalSinceNow:300+i*timeToPush*60*60];
+ [self startFireAlertAtDate:fireDate numberOfWords:n iteration:j];
+ 
+ }
+ if (self.delegateToRefresh) {
+ [self.delegateToRefresh refreshProgressBar];
+ }
+ NSLog(@"created N:%ld",i);
+ }
+ if (callback) {
+ callback();
+ }
+ 
+ }];
+ 
+ }];
+ 
  }
  */
 @end

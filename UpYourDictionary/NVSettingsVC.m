@@ -39,7 +39,7 @@
         self.labelNumberOfWords.text = [self formatWordNumberSettingString:sliderValue];
     }
     [self calculateInfo];
-    
+    self.tableView.allowsSelection = NO;
 }
 
 - (void)didReceiveMemoryWarning {
