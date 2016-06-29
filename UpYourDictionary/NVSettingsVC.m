@@ -17,10 +17,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.allowsSelection = NO;
+    self.tableView.scrollEnabled = NO;
 }
 -(void)viewWillAppear:(BOOL)animated{
-    /*time to push and number of words*/
-    
+    /*time to push and number of words*/    
     int sliderValue;
     NSInteger timeToPush = [[NSUserDefaults standardUserDefaults] integerForKey:NVTimeToPush];
     if (timeToPush != 0) {
@@ -76,7 +76,7 @@
                                                                         metrics:nil
                                                                           views:viewsDictionary];
     
-    NSArray *constraint_POS_H = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[sliderDayTime]-|"
+    NSArray *constraint_POS_H = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(10)-[sliderDayTime]-(10)-|"
                                                                         options:0
                                                                         metrics:nil
                                                                           views:viewsDictionary];
@@ -86,6 +86,7 @@
     
     [self calculateInfo];
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -168,7 +169,7 @@
     sliderDayTimeMinValue = self.sliderDayTime.selectedMinimum;
     int sliderDayTimeMaxValue;
     sliderDayTimeMaxValue = self.sliderDayTime.selectedMaximum;
-    NSLog(@"min value saved: %ld, min value selected: %d, max value saved: %ld, max value selected: %d",(long)savedDayTimeMinValue, sliderDayTimeMinValue,(long)savedDayTimeMaxValue,  sliderDayTimeMaxValue);
+    //NSLog(@"min value saved: %ld, min value selected: %d, max value saved: %ld, max value selected: %d",(long)savedDayTimeMinValue, sliderDayTimeMinValue,(long)savedDayTimeMaxValue,  sliderDayTimeMaxValue);
     if (sliderValueTime == timeToPush &&
         sliderValueNumberOfWords == numberOfWordsToShow &&
         sliderDayTimeMinValue == savedDayTimeMinValue &&
@@ -183,8 +184,6 @@
         [self performSegueWithIdentifier:@"segueShowDownLoadingScreen2" sender:nil];
         [self.loadingVC generateNotifiesAndRefreshAfterWithText:NSLocalizedString(@"Settings are saved!", nil)];
     }
-    
-    //
 }
 
 - (IBAction)buttonCancel:(UIBarButtonItem *)sender {

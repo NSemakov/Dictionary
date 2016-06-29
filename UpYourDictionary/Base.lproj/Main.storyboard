@@ -758,23 +758,23 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="1" maxValue="12" translatesAutoresizingMaskIntoConstraints="NO" id="DlV-KJ-VR8">
-                                                    <rect key="frame" x="6" y="49" width="588" height="31"/>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="1" maxValue="12" translatesAutoresizingMaskIntoConstraints="NO" id="att-eD-Jcq">
+                                                    <rect key="frame" x="6" y="50" width="588" height="31"/>
                                                     <animations/>
-                                                    <color key="thumbTintColor" red="0.0" green="0.46666666666666667" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="thumbTintColor" red="0.0" green="0.46666666670000001" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
-                                                        <action selector="sliderActionTimeToPush:" destination="DSt-dp-HgC" eventType="valueChanged" id="agS-ON-cIZ"/>
+                                                        <action selector="sliderActionTimeToPush:" destination="DSt-dp-HgC" eventType="valueChanged" id="8w4-ZQ-G9e"/>
                                                     </connections>
                                                 </slider>
                                             </subviews>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="DlV-KJ-VR8" secondAttribute="trailing" id="519-rj-ysD"/>
                                                 <constraint firstItem="B7M-ib-ODM" firstAttribute="top" secondItem="iO8-rD-k4w" secondAttribute="topMargin" constant="3" id="CwO-eb-lpe"/>
-                                                <constraint firstAttribute="leadingMargin" secondItem="DlV-KJ-VR8" secondAttribute="leading" id="sQB-LL-MCR"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="B7M-ib-ODM" secondAttribute="leading" id="tAm-im-VSR"/>
-                                                <constraint firstItem="DlV-KJ-VR8" firstAttribute="top" secondItem="B7M-ib-ODM" secondAttribute="bottom" constant="17" id="voM-Cl-dAe"/>
+                                                <constraint firstItem="att-eD-Jcq" firstAttribute="leading" secondItem="iO8-rD-k4w" secondAttribute="leadingMargin" id="wdt-LJ-YCL"/>
+                                                <constraint firstItem="att-eD-Jcq" firstAttribute="trailing" secondItem="iO8-rD-k4w" secondAttribute="trailingMargin" id="xQ1-bd-Iwo"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="B7M-ib-ODM" secondAttribute="trailing" id="z65-Q5-dwb"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="att-eD-Jcq" secondAttribute="bottom" constant="7" id="zvc-bM-QjZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
@@ -798,7 +798,7 @@
                                                     <animations/>
                                                     <color key="thumbTintColor" red="0.0" green="0.46666666666666667" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
-                                                        <action selector="sliderActionNumberOfWords:" destination="DSt-dp-HgC" eventType="valueChanged" id="x4c-HS-kff"/>
+                                                        <action selector="sliderActionNumberOfWords:" destination="DSt-dp-HgC" eventType="valueChanged" id="S6c-my-35I"/>
                                                     </connections>
                                                 </slider>
                                             </subviews>
@@ -887,12 +887,14 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cellForDayTimeSlider" destination="5NE-et-Mb2" id="dSb-7m-zid"/>
+                        <outlet property="cellNumberOfWords" destination="hdX-Q1-8Y8" id="EcT-SP-TNE"/>
+                        <outlet property="cellTimeToPush" destination="ld3-Lb-xgO" id="MCI-zb-c1d"/>
                         <outlet property="labelArriveNotifies" destination="Dlz-fI-45n" id="LcC-aD-n28"/>
                         <outlet property="labelInfo" destination="EyL-Yp-7Vl" id="ghN-aL-Oi0"/>
                         <outlet property="labelNumberOfWords" destination="qca-Hb-ubJ" id="gjr-B0-QnF"/>
                         <outlet property="labelTimeToPush" destination="B7M-ib-ODM" id="JJ9-zT-W2M"/>
                         <outlet property="sliderNumberOfWords" destination="m8t-Zy-Ghp" id="Jve-7O-VYt"/>
-                        <outlet property="sliderTimeToPush" destination="DlV-KJ-VR8" id="0EZ-Ct-T7J"/>
+                        <outlet property="sliderTimeToPush" destination="att-eD-Jcq" id="QVc-Vd-8df"/>
                         <segue destination="qgm-It-9i1" kind="show" identifier="segueShowDownLoadingScreen2" id="R9t-98-XaR"/>
                     </connections>
                 </tableViewController>

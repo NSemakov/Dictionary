@@ -48,6 +48,7 @@
 		844E4EAC1CEA50A90012AB04 /* NVLangToVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 844E4EAB1CEA50A90012AB04 /* NVLangToVC.m */; settings = {ASSET_TAGS = (); }; };
 		844FCFAE1CF475C100DCCA8A /* NVNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 844FCFAD1CF475C100DCCA8A /* NVNotificationManager.m */; settings = {ASSET_TAGS = (); }; };
 		8451201B1CF3B620007759F7 /* NVSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8451201A1CF3B620007759F7 /* NVSettingsVC.m */; settings = {ASSET_TAGS = (); }; };
+		845481EF1D2341DE00D90640 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 845481EE1D2341DE00D90640 /* GoogleService-Info.plist */; settings = {ASSET_TAGS = (); }; };
 		8456915F1CE9EDBB005E4AE1 /* NVServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8456915E1CE9EDBB005E4AE1 /* NVServerManager.m */; settings = {ASSET_TAGS = (); }; };
 		845691621CE9F741005E4AE1 /* NVCreateNewDictVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 845691611CE9F741005E4AE1 /* NVCreateNewDictVC.m */; settings = {ASSET_TAGS = (); }; };
 		845691661CE9F8B2005E4AE1 /* NVChooseLangVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 845691651CE9F8B2005E4AE1 /* NVChooseLangVC.m */; settings = {ASSET_TAGS = (); }; };
@@ -154,6 +155,7 @@
 		845120191CF3B620007759F7 /* NVSettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVSettingsVC.h; sourceTree = "<group>"; };
 		8451201A1CF3B620007759F7 /* NVSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVSettingsVC.m; sourceTree = "<group>"; };
 		8451201C1CF3BE31007759F7 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		845481EE1D2341DE00D90640 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8456915D1CE9EDBB005E4AE1 /* NVServerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVServerManager.h; sourceTree = "<group>"; };
 		8456915E1CE9EDBB005E4AE1 /* NVServerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVServerManager.m; sourceTree = "<group>"; };
 		845691601CE9F741005E4AE1 /* NVCreateNewDictVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVCreateNewDictVC.h; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 		845894311CE8BC3800D4FE35 /* UpYourDictionary */ = {
 			isa = PBXGroup;
 			children = (
+				845481EE1D2341DE00D90640 /* GoogleService-Info.plist */,
 				8479EDB11D22EC260072D8BE /* Images */,
 				843BDE121D1C110D00F3FBB4 /* LaunchImages */,
 				843BDDEB1D1C078B00F3FBB4 /* Icons */,
@@ -561,6 +564,7 @@
 				8479EDB21D22EC260072D8BE /* Images in Resources */,
 				843910A51D0CC95600309FBF /* UpYourDictionaryRu.sqlite in Resources */,
 				840DC0751D0B917D009C04E8 /* InfoPlist.strings in Resources */,
+				845481EF1D2341DE00D90640 /* GoogleService-Info.plist in Resources */,
 				843BDE091D1C0EAA00F3FBB4 /* iconsUpYourDict29.png in Resources */,
 				843BDE191D1C112A00F3FBB4 /* LaunchImageUpYourDict768x1024.png in Resources */,
 			);
@@ -852,7 +856,7 @@
 				INFOPLIST_FILE = UpYourDictionary/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Gain.UpYourDictionary1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Gain.UpYourDictionary1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -867,7 +871,7 @@
 				INFOPLIST_FILE = UpYourDictionary/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Gain.UpYourDictionary1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Gain.UpYourDictionary1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

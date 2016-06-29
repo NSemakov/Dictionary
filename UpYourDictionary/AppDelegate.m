@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+@import Firebase;
 @interface AppDelegate ()
 
 
@@ -18,6 +18,13 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [FIRApp configure];
+    FIRDatabaseReference *rootRef= [[FIRDatabase database] reference];
+    [rootRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        //NSLog(@"%@ -> %@", snapshot.key, snapshot.value);
+        [NVServerManager sharedManager].APIDictKey = [snapshot.value objectForKey:@"APIDictKey"];
+        [NVServerManager sharedManager].APITranslatorKey = [snapshot.value objectForKey:@"APITranslatorKey"];
+    }];
 
     [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
     if([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)])

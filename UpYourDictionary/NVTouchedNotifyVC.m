@@ -23,7 +23,7 @@
     //yandex button with dynamic font size
     UIButton *myButton = [UIButton buttonWithType: UIButtonTypeRoundedRect];
     [myButton setTitle:NSLocalizedString(@"Powered by Yandex.Translate", nil) forState:UIControlStateNormal];
-    [myButton setFrame: CGRectMake(0, 0, 300, self.navigationController.toolbar.frame.size.height)];
+    [myButton setFrame: CGRectMake(0, 0, 400, self.navigationController.toolbar.frame.size.height)];
     
     [myButton.titleLabel setFont: [UIFont boldSystemFontOfSize:100.0]];
     [myButton addTarget:self action:@selector(buttonYandexSender:) forControlEvents:UIControlEventTouchUpInside];

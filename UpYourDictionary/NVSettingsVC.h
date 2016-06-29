@@ -20,9 +20,12 @@
 @property (weak, nonatomic) IBOutlet UISlider *sliderTimeToPush;
 @property (weak, nonatomic) IBOutlet UISlider *sliderNumberOfWords;
 @property (strong, nonatomic) NVContainerVC* loadingVC;
+@property (weak, nonatomic) IBOutlet UITableViewCell *cellTimeToPush;
+@property (weak, nonatomic) IBOutlet UITableViewCell *cellNumberOfWords;
 @property (strong, nonatomic) TTRangeSlider *sliderDayTime;
 @property (weak, nonatomic) IBOutlet UITableViewCell *cellForDayTimeSlider;
 - (IBAction)sliderActionTimeToPush:(UISlider *)sender;
+
 - (IBAction)sliderActionNumberOfWords:(UISlider *)sender;
 - (IBAction)buttonSave:(UIBarButtonItem *)sender;
 - (IBAction)buttonCancel:(UIBarButtonItem *)sender;

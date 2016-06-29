@@ -29,7 +29,7 @@ onFailure:(void(^)(NSString* error)) onFailure{
     self.manager =[[AFHTTPSessionManager alloc]initWithBaseURL:baseURL];
     
     NSDictionary* dictionary=[NSDictionary dictionaryWithObjectsAndKeys:
-                              APIKey, @"key",
+                              self.APITranslatorKey ? self.APITranslatorKey:APIKey, @"key",
                               lang, @"ui",
                               nil];
     [self.manager POST:@"getLangs" parameters:dictionary progress:nil success:^(NSURLSessionTask *operation, id responseObject) {
@@ -61,14 +61,14 @@ onFailure:(void(^)(NSString* error)) onFailure{
     self.manager =[[AFHTTPSessionManager alloc]initWithBaseURL:baseURL];
     NSString* direction = [NSString stringWithFormat:@"%@-%@",fromLang,toLang];
     NSDictionary* dictionary=[NSDictionary dictionaryWithObjectsAndKeys:
-                              DictAPIKey, @"key",
+                              self.APIDictKey ? self.APIDictKey:DictAPIKey, @"key",
                               phrase, @"text",
                               direction, @"lang",
                               @"ru", @"ui",
                               nil];
     
     [self.manager POST:@"lookup" parameters:dictionary progress:nil success:^(NSURLSessionTask *operation, id responseObject) {
-        NSLog(@"coming lookup %@",responseObject);
+        //NSLog(@"coming lookup %@",responseObject);
         
         /*for (NSDictionary* obj in [[responseObject objectForKey:@"response"] objectForKey:@"items"]){
          
@@ -110,7 +110,7 @@ onFailure:(void(^)(NSString* error)) onFailure{
     self.manager =[[AFHTTPSessionManager alloc]initWithBaseURL:baseURL];
     NSString* direction = [NSString stringWithFormat:@"%@-%@",fromLang,toLang];
     NSDictionary* dictionary=[NSDictionary dictionaryWithObjectsAndKeys:
-                              APIKey, @"key",
+                              self.APITranslatorKey ? self.APITranslatorKey:APIKey , @"key",
                               phrase, @"text",
                               direction, @"lang",
                               nil];
@@ -138,6 +138,39 @@ onFailure:(void(^)(NSString* error)) onFailure{
         }
     }];
     
+}
+-(void) POSTRefreshKeysOnSuccess:(void(^)(void)) onSuccess
+                       onFailure:(void(^)(NSString* error)) onFailure{
+    /*NSURL* baseURL=[NSURL URLWithString:@"https://translate.yandex.net/api/v1.5/tr.json"];
+    self.manager =[[AFHTTPSessionManager alloc]initWithBaseURL:baseURL];
+    NSString* direction = [NSString stringWithFormat:@"%@-%@",fromLang,toLang];
+    NSDictionary* dictionary=[NSDictionary dictionaryWithObjectsAndKeys:
+                              APIKey, @"key",
+                              phrase, @"text",
+                              direction, @"lang",
+                              nil];
+    
+    [self.manager POST:@"translate" parameters:dictionary progress:nil success:^(NSURLSessionTask *operation, id responseObject) {
+        //NSLog(@"coming %@",responseObject);
+        
+        
+        NSString* translation = [[responseObject objectForKey:@"text"] firstObject];
+        if (onSuccess) {
+            onSuccess();
+        }
+        
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
+        NSString* ErrorResponse = [[NSString alloc] initWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] encoding:NSUTF8StringEncoding];
+        NSLog(@"%@",ErrorResponse);
+        NSLog(@"%@",error.localizedDescription);
+        NSLog(@"error %@ code %ld",error,operation.error.code);
+        if (onFailure) {
+            NSString* returnString=[NSString stringWithFormat:@"error %@ code %ld",error,operation.error.code];
+            onFailure(returnString);
+        }
+    }];
+    */
+
 }
 -(bool)isNetworkAvailable
 {

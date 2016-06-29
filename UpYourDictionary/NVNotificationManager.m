@@ -135,16 +135,16 @@
             /*------*/
             NSDate* prevDate = [NSDate date];
             
-            /*form first notification after 300 sec*/
+
+            [self createNotificationInCycleTimeToPush:timeToPush numberOfNotifies:numberOfNotifies settingsWords:settingsWords prevDate:prevDate maxIter:62];
+            /*form first notification after 30 sec*/
             for (NSInteger j=1; j<=numberOfNotifies; j++) {//формируем пачку нотификаций, если в одну не помещается
                 NSInteger x = settingsWords-(j-1)*wordsInOneNotify;
                 NSInteger n = (x>wordsInOneNotify)? wordsInOneNotify : x;
                 //формируем конкретную нотификацию в зависимости от кол-ва слов.
-                [self startFireAlertAtDate:[NSDate dateWithTimeInterval:300 sinceDate:prevDate] numberOfWords:n iteration:j];
+                [self startFireAlertAtDate:[NSDate dateWithTimeInterval:30 sinceDate:[NSDate date]] numberOfWords:n iteration:j];
             }
             /*-----end of form first notification after 300 sec*/
-            [self createNotificationInCycleTimeToPush:timeToPush numberOfNotifies:numberOfNotifies settingsWords:settingsWords prevDate:prevDate maxIter:62];
-
             if (callback) {
                 callback();
             }
@@ -155,8 +155,10 @@
     NSInteger i = 0;
     NSInteger minDayTimeValue = [[NSUserDefaults standardUserDefaults] integerForKey:NVMinimumDayTimeAllowedForNotification];
     NSInteger maxDayTimeValue = [[NSUserDefaults standardUserDefaults] integerForKey:NVMaximumDayTimeAllowedForNotification];
-
-
+    if ([[NVServerManager sharedManager] isNetworkAvailable]){
+        //get the right API Key once. Here. Now - it's automatic with FireBase
+        
+        /*---*/
     while (i<maxIter) {
         NSDate* fireDate = [NSDate dateWithTimeInterval:timeToPush*60*60 sinceDate:prevDate];
         //NSLog(@"start date: %@",fireDate);
@@ -189,6 +191,7 @@
         prevDate = fireDate;
         i=i+numberOfNotifies;
     }
+    }
 }
 
 -(void) putUserInfoInCoreData:(NSSet*) userInfoSet onFireDate:(NSDate*) fireDate{
@@ -207,7 +210,7 @@
     }
 }
 -(void) startFireAlertAtDate:(NSDate*) fireDate numberOfWords:(NSInteger)numberWords iteration:(NSInteger) iteration{
-    if ([[NVServerManager sharedManager] isNetworkAvailable]){
+    
         
     NSDateComponents *secComponent = [[NSDateComponents alloc] init];
     secComponent.second = iteration;
@@ -242,9 +245,9 @@
         localNotification.soundName= UILocalNotificationDefaultSoundName;
         localNotification.userInfo = nil;
         [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-        NSLog(@"from nvnotman. localNot body:%@",localNotification.alertBody);
+        //NSLog(@"from nvnotman. localNot body:%@",localNotification.alertBody);
     }
-    }
+    
 }
 
 -(NVNotifyInUse*) fetchedNotifyWithDate:(NSDate*) fireDate
