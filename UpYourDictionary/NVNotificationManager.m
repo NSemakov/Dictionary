@@ -27,7 +27,7 @@
     NSInteger timeToPush = [[NSUserDefaults standardUserDefaults] integerForKey:NVTimeToPush];
     if (timeToPush == 0) {
         timeToPush = 2;}
-    [self createNotificationInCycleTimeToPush:timeToPush numberOfNotifies:numberOfNotifies settingsWords:settingsWords prevDate:lastNofityFireDate maxIter:62-notifyLeft];
+    [self createNotificationInCycleTimeToPush:timeToPush numberOfNotifies:numberOfNotifies settingsWords:settingsWords prevDate:lastNofityFireDate maxIter:(60-notifyLeft)/numberOfNotifies+1];
 }];
 }
 -(void) refreshProgressOfDictionaryWithCallback:(void(^)(void))callback {
@@ -76,11 +76,14 @@
     NSArray* arrayOfScheduledNotification = [app scheduledLocalNotifications];
     NSInteger initialCount = [arrayOfScheduledNotification count];
         /*отдельно включаем активность словаря, если он был в нотификациях выключен по окончании*/
-        UILocalNotification* lastNotify = [arrayOfScheduledNotification firstObject];
-        NSDate* lastNotifyFireDate = lastNotify.fireDate;
-        NVNotifyInUse* notifyInUse = [self fetchedNotifyWithDate:lastNotifyFireDate];
-        NVContent* content = [notifyInUse.content anyObject];
-        content.dict.isActiveProgram = @(YES);
+        if (initialCount) {
+            UILocalNotification* lastNotify = [arrayOfScheduledNotification firstObject];
+            NSDate* lastNotifyFireDate = lastNotify.fireDate;
+            NVNotifyInUse* notifyInUse = [self fetchedNotifyWithDate:lastNotifyFireDate];
+            NVContent* content = [notifyInUse.content anyObject];
+            content.dict.isActiveProgram = @(YES);
+        }
+        
         /**/
     for (NSInteger i = initialCount; i>0; i--) {
         UILocalNotification* lastNotify = [arrayOfScheduledNotification objectAtIndex:i-1];
@@ -116,11 +119,13 @@
             if (callback) {
                 callback();
             }
+        } else {
+            NSLog(@"error: %@, locDescription: %@",error.userInfo, error.localizedDescription);
         }
     }];
 }
 
--(void) generateNewNotificationsWithCallback:(void(^)(void))callback{
+-(void) generateNewNotificationsWithCallback:(void(^)(NSInteger counter))callback{
 
     [self.managedObjectContext performBlock:^{
         //cancel all notifications
@@ -136,22 +141,25 @@
             NSDate* prevDate = [NSDate date];
             
 
-            [self createNotificationInCycleTimeToPush:timeToPush numberOfNotifies:numberOfNotifies settingsWords:settingsWords prevDate:prevDate maxIter:62];
+            NSInteger numberOfScheduledNotifications = [self createNotificationInCycleTimeToPush:timeToPush numberOfNotifies:numberOfNotifies settingsWords:settingsWords prevDate:prevDate maxIter:(60/numberOfNotifies)+1];
             /*form first notification after 30 sec*/
+            if ([[NVServerManager sharedManager] isNetworkAvailable]){
             for (NSInteger j=1; j<=numberOfNotifies; j++) {//формируем пачку нотификаций, если в одну не помещается
                 NSInteger x = settingsWords-(j-1)*wordsInOneNotify;
                 NSInteger n = (x>wordsInOneNotify)? wordsInOneNotify : x;
                 //формируем конкретную нотификацию в зависимости от кол-ва слов.
                 [self startFireAlertAtDate:[NSDate dateWithTimeInterval:30 sinceDate:[NSDate date]] numberOfWords:n iteration:j];
             }
+            }
             /*-----end of form first notification after 300 sec*/
             if (callback) {
-                callback();
+                callback(numberOfScheduledNotifications);
             }
         }];
    }];
 }
-- (void) createNotificationInCycleTimeToPush:(NSInteger) timeToPush numberOfNotifies:(NSInteger) numberOfNotifies settingsWords:(NSInteger) settingsWords prevDate:(NSDate*) prevDate maxIter:(NSInteger) maxIter{
+- (NSInteger) createNotificationInCycleTimeToPush:(NSInteger) timeToPush numberOfNotifies:(NSInteger) numberOfNotifies settingsWords:(NSInteger) settingsWords prevDate:(NSDate*) prevDate maxIter:(NSInteger) maxIter{
+    NSInteger numberOfScheduledNotifications = 0;
     NSInteger i = 0;
     NSInteger minDayTimeValue = [[NSUserDefaults standardUserDefaults] integerForKey:NVMinimumDayTimeAllowedForNotification];
     NSInteger maxDayTimeValue = [[NSUserDefaults standardUserDefaults] integerForKey:NVMaximumDayTimeAllowedForNotification];
@@ -183,7 +191,9 @@
             NSInteger x = settingsWords-(j-1)*wordsInOneNotify;
             NSInteger n = (x>wordsInOneNotify)? wordsInOneNotify : x;
             //формируем конкретную нотификацию в зависимости от кол-ва слов.
-            [self startFireAlertAtDate:fireDate numberOfWords:n iteration:j];
+            if ([self startFireAlertAtDate:fireDate numberOfWords:n iteration:j]) {
+                numberOfScheduledNotifications++;
+            }
         }
         if (self.delegateToRefresh) {
             [self.delegateToRefresh refreshProgressBar];
@@ -192,6 +202,7 @@
         i=i+numberOfNotifies;
     }
     }
+    return numberOfScheduledNotifications;
 }
 
 -(void) putUserInfoInCoreData:(NSSet*) userInfoSet onFireDate:(NSDate*) fireDate{
@@ -209,9 +220,9 @@
     
     }
 }
--(void) startFireAlertAtDate:(NSDate*) fireDate numberOfWords:(NSInteger)numberWords iteration:(NSInteger) iteration{
+-(BOOL) startFireAlertAtDate:(NSDate*) fireDate numberOfWords:(NSInteger)numberWords iteration:(NSInteger) iteration{
     
-        
+    BOOL didScheduled = NO;
     NSDateComponents *secComponent = [[NSDateComponents alloc] init];
     secComponent.second = iteration;
     
@@ -224,7 +235,7 @@
         
         NVContent* contentToShow = [[NVMainStrategy sharedManager] algoResultHandler];
         if (!contentToShow) { //не работаем без активного словаря
-            return;
+            return didScheduled;
         }
         //NSLog(@"word:%@     translation:%@",contentToShow.word,contentToShow.translation);
         NSString* stringToShowTemp = [NSString stringWithFormat:@" %@ - %@;",contentToShow.word,contentToShow.translation];
@@ -245,9 +256,10 @@
         localNotification.soundName= UILocalNotificationDefaultSoundName;
         localNotification.userInfo = nil;
         [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        didScheduled = YES;
         //NSLog(@"from nvnotman. localNot body:%@",localNotification.alertBody);
     }
-    
+    return didScheduled;
 }
 
 -(NVNotifyInUse*) fetchedNotifyWithDate:(NSDate*) fireDate

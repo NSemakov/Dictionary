@@ -9,13 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <AFNetworking/AFNetworking.h>
 #import <SystemConfiguration/SCNetworkReachability.h>
-
+#import "Constants.h"
 @interface NVServerManager : NSObject
 @property (strong,nonatomic) NSString* APIDictKey;
 @property (strong,nonatomic) NSString* APITranslatorKey;
 @property (strong,nonatomic) AFHTTPSessionManager* manager;
 +(NVServerManager*) sharedManager;
-- (bool) isNetworkAvailable;
+- (BOOL) isNetworkAvailable;
 -(void) POSTListOfDirectionsOnLang:(NSString*) lang OnSuccess:(void(^)(NSDictionary* languages)) onSuccess
                          onFailure:(void(^)(NSString* error)) onFailure;
 -(void) POSTTranslatePhrase:(NSString*) phrase fromLang:(NSString*) fromLang toLang:(NSString*) toLang OnSuccess:(void(^)(NSString* translation)) onSuccess onFailure:(void(^)(NSString* error)) onFailure;

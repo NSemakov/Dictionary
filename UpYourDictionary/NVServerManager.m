@@ -21,7 +21,23 @@ static const NSString *DictAPIKey = @"dict.1.1.20160529T231224Z.83fb051c8f95bf0d
     });
     return manager;
 }
-
+#pragma mark - accessors
+-(void)setAPIDictKey:(NSString *)APIDictKey{
+    [[NSUserDefaults standardUserDefaults] setValue:APIDictKey forKey:NVDictionaryAPIKey];
+}
+-(void)setAPITranslatorKey:(NSString *)APITranslatorKey{
+    [[NSUserDefaults standardUserDefaults] setValue:APITranslatorKey forKey:NVTranslatorAPIKey];
+}
+-(NSString *)APIDictKey{
+    NSString* key = [[NSUserDefaults standardUserDefaults] objectForKey:NVDictionaryAPIKey];
+    //NSLog(@"key api dict:%@",key);
+    return [key length] > 0 ? key:DictAPIKey;
+}
+-(NSString *)APITranslatorKey{
+    NSString* key = [[NSUserDefaults standardUserDefaults] objectForKey:NVTranslatorAPIKey];
+    //NSLog(@"APITranslatorKey:%@",key);
+    return [key length] > 0 ? key:APIKey;
+}
 -(void) POSTListOfDirectionsOnLang:(NSString*) lang OnSuccess:(void(^)(NSDictionary* languages)) onSuccess
 onFailure:(void(^)(NSString* error)) onFailure{
 
@@ -29,7 +45,7 @@ onFailure:(void(^)(NSString* error)) onFailure{
     self.manager =[[AFHTTPSessionManager alloc]initWithBaseURL:baseURL];
     
     NSDictionary* dictionary=[NSDictionary dictionaryWithObjectsAndKeys:
-                              self.APITranslatorKey ? self.APITranslatorKey:APIKey, @"key",
+                              self.APITranslatorKey, @"key",
                               lang, @"ui",
                               nil];
     [self.manager POST:@"getLangs" parameters:dictionary progress:nil success:^(NSURLSessionTask *operation, id responseObject) {
@@ -61,7 +77,7 @@ onFailure:(void(^)(NSString* error)) onFailure{
     self.manager =[[AFHTTPSessionManager alloc]initWithBaseURL:baseURL];
     NSString* direction = [NSString stringWithFormat:@"%@-%@",fromLang,toLang];
     NSDictionary* dictionary=[NSDictionary dictionaryWithObjectsAndKeys:
-                              self.APIDictKey ? self.APIDictKey:DictAPIKey, @"key",
+                              self.APIDictKey, @"key",
                               phrase, @"text",
                               direction, @"lang",
                               @"ru", @"ui",
@@ -110,7 +126,7 @@ onFailure:(void(^)(NSString* error)) onFailure{
     self.manager =[[AFHTTPSessionManager alloc]initWithBaseURL:baseURL];
     NSString* direction = [NSString stringWithFormat:@"%@-%@",fromLang,toLang];
     NSDictionary* dictionary=[NSDictionary dictionaryWithObjectsAndKeys:
-                              self.APITranslatorKey ? self.APITranslatorKey:APIKey , @"key",
+                              self.APITranslatorKey, @"key",
                               phrase, @"text",
                               direction, @"lang",
                               nil];
@@ -172,8 +188,8 @@ onFailure:(void(^)(NSString* error)) onFailure{
     */
 
 }
--(bool)isNetworkAvailable
-{
+-(BOOL)isNetworkAvailable
+{/*
     SCNetworkReachabilityFlags flags;
     SCNetworkReachabilityRef address;
     address = SCNetworkReachabilityCreateWithName(NULL, "ya.ru" );
@@ -185,5 +201,18 @@ onFailure:(void(^)(NSString* error)) onFailure{
     && (flags & kSCNetworkReachabilityFlagsReachable);
     
     return canReach;
+    */
+    
+    NSURL *scriptUrl = [NSURL URLWithString:@"https://www.google.com/m"];
+    NSData *data = [NSData dataWithContentsOfURL:scriptUrl];
+    if (data)
+        return YES;
+    else
+        return NO;
+        //NSLog(@"Device is not connected to the Internet");
+    
+    /*
+    return [AFNetworkReachabilityManager sharedManager].reachable;
+*/
 }
 @end

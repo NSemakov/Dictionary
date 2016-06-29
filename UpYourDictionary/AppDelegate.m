@@ -18,6 +18,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    //[[AFNetworkReachabilityManager sharedManager] startMonitoring];
     [FIRApp configure];
     FIRDatabaseReference *rootRef= [[FIRDatabase database] reference];
     [rootRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {

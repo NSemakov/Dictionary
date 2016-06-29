@@ -47,14 +47,23 @@
     dispatch_queue_t queue = dispatch_queue_create("com.UpYourDictionary.multithreading.queue", DISPATCH_QUEUE_CONCURRENT);
     dispatch_async(queue/*dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)*/, ^{
         //dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-        [[NVNotificationManager sharedManager] generateNewNotificationsWithCallback:^{
+        
+        [[NVNotificationManager sharedManager] generateNewNotificationsWithCallback:^(NSInteger counter) {
             dispatch_async(dispatch_get_main_queue(), ^{
+                if (counter == 0) {
+                    [weakSelf isDownloadEndWithText:NSLocalizedString(@"Oops. It's look like translation server is unavailable. Please check your internet connection or if it's ok, give us one more chance little bit later", nil)];
+                } else if (counter > 0 && counter < 50) {
+                    [weakSelf isDownloadEndWithText:NSLocalizedString(@"Oops. It's look like we can only partially prepare dictionary, cause translation server has become unavailable. Please check your internet connection or if it's ok, give us one more chance little bit later", nil)];
+                } else {
+                    [weakSelf isDownloadEndWithText:text];
+                }
                 weakSelf.indicatorHidden = YES;
-                [weakSelf isDownloadEndWithText:text];
+                
                 weakSelf.navigationItem.leftBarButtonItem.title = @"Back";
                 [NVNotificationManager sharedManager].delegateToRefresh = nil;
             });
         }];
+        
         //dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
 
         /*dispatch_async(dispatch_get_main_queue(), ^{

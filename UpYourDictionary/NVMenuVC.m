@@ -20,7 +20,6 @@
     NVMainStrategy* manager = [NVMainStrategy sharedManager];
     manager.delegate = self;
     
-
 }
 
 -(void)viewDidAppear:(BOOL)animated{

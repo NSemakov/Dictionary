@@ -16,6 +16,7 @@
     dispatch_once(&onceToken, ^{
         manager=[[NVMainStrategy alloc]init];
         manager.setOfTempTakenWords = [[NSMutableSet alloc]init];
+        manager.isYandexAvailable = YES;
     });
     return manager;
 }
@@ -128,6 +129,8 @@
         } else {
             NSLog(@"error takeWordTranslateAdd: %@\n userInfo:%@",error.localizedDescription,error.userInfo);
         }
+    } else {
+        self.isYandexAvailable = NO;
     }
     
 }
@@ -176,10 +179,6 @@
                 }];
                 dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
             }
-            
-        
-        
-        
     }
     return isSuccess;
 }
@@ -242,13 +241,13 @@
     //stringToReturn = @"Dictionary is done! Choose another one or disable it";
     //NSString* stringToReturn = nil;
     NVContent* result = nil;
-    if (self.activeDict) {
+    if (self.activeDict && self.isYandexAvailable) {
         result = [self performAlgo];
         if (!result) {
             result = [self algoResultHandler];
         }
     }
-    
+    self.isYandexAvailable = YES;
     return result;
 }
 - (NVDicts*) activeDict{
