@@ -23,8 +23,19 @@
     FIRDatabaseReference *rootRef= [[FIRDatabase database] reference];
     [rootRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         //NSLog(@"%@ -> %@", snapshot.key, snapshot.value);
-        [NVServerManager sharedManager].APIDictKey = [snapshot.value objectForKey:@"APIDictKey"];
-        [NVServerManager sharedManager].APITranslatorKey = [snapshot.value objectForKey:@"APITranslatorKey"];
+        NSString* APIDictKey = [[snapshot.value objectForKey:@"APIKeys"] objectForKey:@"APIDictKey"];
+        if (APIDictKey.length > 0) {
+            [NVServerManager sharedManager].APIDictKey = APIDictKey;
+        }
+        NSString* APITranslatorKey = [[snapshot.value objectForKey:@"APIKeys"] objectForKey:@"APITranslatorKey"];
+        if (APITranslatorKey.length > 0) {
+            [NVServerManager sharedManager].APITranslatorKey = APITranslatorKey;
+        }
+        NSArray* productIdentifiers = [[snapshot.value objectForKey:@"ProductIdentifiers"] allValues];
+        if (productIdentifiers) {
+            [RMStore defaultStore].productIdentifiers = productIdentifiers;
+        }
+        
     }];
 
     [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];

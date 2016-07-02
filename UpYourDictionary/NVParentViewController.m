@@ -17,6 +17,7 @@
 - (NSManagedObjectContext*) managedObjectContext{
     if (!_managedObjectContext) {
         _managedObjectContext=[[NVDataManager sharedManager] managedObjectContext];
+        //_managedObjectContext=[[NVDataManager sharedManager] privateManagedObjectContext];
     }
     return _managedObjectContext;
 }

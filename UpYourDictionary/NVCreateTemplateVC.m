@@ -36,7 +36,8 @@
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
     NSManagedObjectContext *childContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-    childContext.parentContext = [[NVDataManager sharedManager] managedObjectContext] ;
+    childContext.persistentStoreCoordinator = [[NVDataManager sharedManager] persistentStoreCoordinator];
+    //childContext.parentContext = [[NVDataManager sharedManager] managedObjectContext] ;
     self.childContext = childContext;
     //use of child context
     self.managedObjectContext=[[NVDataManager sharedManager] managedObjectContext];

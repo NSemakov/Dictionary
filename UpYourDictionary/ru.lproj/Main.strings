@@ -1,7 +1,7 @@
 /* Class = "UILabel"; text = "Language \"to\""; ObjectID = "0It-qe-PKW"; */
 "0It-qe-PKW.text" = "На какой язык";
 
-/* Class = "UIBarButtonItem"; title = "Add own words"; ObjectID = "4oe-KP-zUr"; */
+/* Class = "UIBarButtonItem"; title = "Add new list"; ObjectID = "4oe-KP-zUr"; */
 "4oe-KP-zUr.title" = "Создать свой";
 
 /* Class = "UILabel"; text = "List of words"; ObjectID = "5Xw-03-ti4"; */
@@ -33,6 +33,9 @@
 
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "DJc-CW-kYn"; */
 "DJc-CW-kYn.title" = "Настройки";
+
+/* Class = "UILabel"; text = "Time when notifications arrive"; ObjectID = "Dlz-fI-45n"; */
+"Dlz-fI-45n.text" = "";
 
 /* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "En3-ht-jnP"; */
 "En3-ht-jnP.title" = "Отмена";
@@ -81,6 +84,12 @@
 
 /* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "ahQ-xb-ob8"; */
 "ahQ-xb-ob8.title" = "Отмена";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "aoZ-Dg-Z52"; */
+"aoZ-Dg-Z52.text" = "";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "c4I-9J-uAn"; */
+"c4I-9J-uAn.text" = "";
 
 /* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "cp5-9p-vwp"; */
 "cp5-9p-vwp.title" = "Сохранить";

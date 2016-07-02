@@ -11,7 +11,7 @@
 #import "NVCreateTemplateVC.h"
 @protocol NVChooseDictThemeVCProtocol;
 
-@interface NVChooseDictThemeVC : NVParentViewController
+@interface NVChooseDictThemeVC : NVParentViewController <UIActionSheetDelegate>
 @property (strong,nonatomic) id<NVChooseDictThemeVCProtocol> delegate;
 @property (strong,nonatomic) NVTemplates* curTemplate;
 @property (strong,nonatomic) UIAlertController* alertCtrl;

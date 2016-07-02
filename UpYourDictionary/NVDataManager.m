@@ -141,4 +141,39 @@
         }
     }
 }
+#pragma mark - saving downloaded content
+- (void) addDataToDb:(NSArray*) templateArray withName:(NSString*) templateName langShort:(NSString*) langShort{
+    NSManagedObjectContext* moc = [[NSManagedObjectContext alloc]initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    moc.persistentStoreCoordinator = self.persistentStoreCoordinator;
+    
+    NVTemplates *newTemplate = [NSEntityDescription
+                                insertNewObjectForEntityForName:@"NVTemplates"
+                                inManagedObjectContext:moc];
+    newTemplate.name = templateName;
+    if (langShort) {
+        if ([langShort isEqualToString:@"ru"]) {
+            newTemplate.lang = @"Russian";
+            newTemplate.langShort = @"ru";
+        } else if ([langShort isEqualToString:@"en"]){
+            newTemplate.lang = @"English";
+            newTemplate.langShort = @"en";
+        }
+    }
+    
+    for (NSString* str in templateArray) {
+        NVWords *newWord = [NSEntityDescription
+                            insertNewObjectForEntityForName:@"NVWords"
+                            inManagedObjectContext:moc];
+        newWord.word = str;
+        NSMutableSet* wordsFromTemplate = [NSMutableSet setWithSet:newTemplate.word];
+        
+        [wordsFromTemplate addObject:newWord];
+        [newTemplate setWord:wordsFromTemplate];
+        NSError *error;
+        if (![moc save:&error]) {
+            NSLog(@"Whoops, couldn't save: %@, user info :%@", error.localizedDescription, error.userInfo);
+        }
+    }
+}
+
 @end

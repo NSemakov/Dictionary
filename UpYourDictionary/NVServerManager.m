@@ -72,6 +72,7 @@ onFailure:(void(^)(NSString* error)) onFailure{
 
 -(void) POSTLookUpDictionary:(NSString*) phrase fromLang:(NSString*) fromLang toLang:(NSString*) toLang OnSuccess:(void(^)(NSString* translation)) onSuccess
                   onFailure:(void(^)(NSString* error)) onFailure{
+    //NSLog(@"from lang %@, to lang %@, phrase %@",fromLang, toLang, phrase);
     //https:// dictionary.yandex.net/api/v1/dicservice.json/ lookup?key= API-ключ&lang=en-ru&text=time
     NSURL* baseURL=[NSURL URLWithString:@"https://dictionary.yandex.net/api/v1/dicservice.json"];
     self.manager =[[AFHTTPSessionManager alloc]initWithBaseURL:baseURL];
@@ -121,7 +122,7 @@ onFailure:(void(^)(NSString* error)) onFailure{
 }
 -(void) POSTTranslatePhrase:(NSString*) phrase fromLang:(NSString*) fromLang toLang:(NSString*) toLang OnSuccess:(void(^)(NSString* translation)) onSuccess
                   onFailure:(void(^)(NSString* error)) onFailure{
-    
+    //NSLog(@"from lang %@, to lang %@, phrase %@",fromLang, toLang, phrase);
     NSURL* baseURL=[NSURL URLWithString:@"https://translate.yandex.net/api/v1.5/tr.json"];
     self.manager =[[AFHTTPSessionManager alloc]initWithBaseURL:baseURL];
     NSString* direction = [NSString stringWithFormat:@"%@-%@",fromLang,toLang];

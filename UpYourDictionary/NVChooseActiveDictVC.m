@@ -14,7 +14,7 @@
 
 @implementation NVChooseActiveDictVC
 @synthesize fetchedResultsController=_fetchedResultsController;
-
+//@synthesize managedObjectContext=_managedObjectContext;
 //- (UITableView*)tableView { return self.tableViewReference; }
 //- (UIView*)view { return self.viewReference; }
 
@@ -179,35 +179,38 @@
                 NSLog(@"error buttonSave: %@, user info: %@", error.localizedDescription,error.userInfo);
             } else {
                 [self performSegueWithIdentifier:@"segueShowDownLoadingScreen" sender:nil];
-
-                [self.loadingVC generateNotifiesAndRefreshAfterWithText:NSLocalizedString(@"Preparing is done! Now you can push app to background and just read arriving notification with translation.", nil)];
+                [self.loadingVC generateNotifiesAndRefreshAfterWithText:NSLocalizedString(@"Preparing is done! Now you can push app to background and just read arriving notification with translation.", nil) withDict:self.curDict sender:self];
                // [self.navigationController popViewControllerAnimated:YES];
             }
         }
     } else if (self.curDict && !self.activeDict){//не было активного словаря, ставим галочку в первый раз
         self.curDict.isActive = @(true);
         //save context
+        
         NSError* error = nil;
         if (![self.managedObjectContext save:&error]) {
             NSLog(@"error buttonSave: %@, user info: %@", error.localizedDescription,error.userInfo);
         } else {
             [self performSegueWithIdentifier:@"segueShowDownLoadingScreen" sender:nil];
 
-            [self.loadingVC generateNotifiesAndRefreshAfterWithText:NSLocalizedString(@"Preparing is done! Now you can push app to background and just read arriving notification with translation.", nil)];
+            [self.loadingVC generateNotifiesAndRefreshAfterWithText:NSLocalizedString(@"Preparing is done! Now you can push app to background and just read arriving notification with translation.", nil) withDict:self.curDict sender:self];
             //[self.navigationController popViewControllerAnimated:YES];
         }
     } else if (!self.curDict && self.activeDict){//был активный словарь, активность сняли
         self.activeDict.isActive=@(false);
-        [[NVNotificationManager sharedManager] cancelNotificationsCompleteWayWithCallback:nil];
+        //[[NVNotificationManager sharedManager] cancelNotificationsCompleteWayWithCallback:nil];
         //save context
         NSError* error = nil;
+         NSLog(@"lanf from %@, lang to %@", self.activeDict.fromShort,self.activeDict.toShort);
         if (![self.managedObjectContext save:&error]) {
             NSLog(@"error buttonSave: %@, user info: %@", error.localizedDescription,error.userInfo);
         } else {
             //cancel local notifications in background
             //dispatch_queue_t queue = dispatch_queue_create("com.UpYourDictionary.multithreading.queue", DISPATCH_QUEUE_CONCURRENT);
              //dispatch_async(queue, ^{
-                 [[NVNotificationManager sharedManager] cancelNotificationsCompleteWayWithCallback:nil];
+                 [[NVNotificationManager sharedManager] cancelNotificationsCompleteWayWithCallback:^{
+                     NSLog(@"lanf from %@, lang to %@", self.activeDict.fromShort,self.activeDict.toShort);
+                 }];
              //});
             
             [self.navigationController popViewControllerAnimated:YES];
@@ -232,6 +235,13 @@
         oldCell.accessoryType = UITableViewCellAccessoryNone;
         self.curDict=nil;
     }
-    
 }
+
+/*- (NSManagedObjectContext*) managedObjectContext{
+    if (!_managedObjectContext) {
+        _managedObjectContext=[[NVDataManager sharedManager] privateManagedObjectContext];
+        
+    }
+    return _managedObjectContext;
+}*/
 @end

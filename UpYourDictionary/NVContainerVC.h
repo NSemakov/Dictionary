@@ -10,6 +10,10 @@
 #import "NVNotificationManager.h"
 #import "NVDataManager.h"
 #import "NVMainStrategy.h"
+//#import "NVSettingsVC.h"
+//#import "NVChooseActiveDictVC.h"
+//@class NVSettingsVC;
+//@class NVChooseActiveDictVC;
 @protocol NVNotificationManagerRefreshProgressBarProtocol;
 @interface NVContainerVC : UIViewController <NVNotificationManagerRefreshProgressBarProtocol>
 
@@ -21,7 +25,8 @@
 @property (strong, nonatomic) NSString* stringToSet;
 - (IBAction)buttonCancel:(UIBarButtonItem *)sender;
 - (void) isDownloadEndWithText:(NSString*) text;
-- (void) generateNotifiesAndRefreshAfterWithText:(NSString*) text;
+//- (void) generateNotifiesAndRefreshAfterWithText:(NSString*) text;
+- (void) generateNotifiesAndRefreshAfterWithText:(NSString*) text withDict:(NVDicts*) dict sender:(id)sender;
 - (void)setIndicatorHidden:(BOOL)newHidden;
 - (void) refreshProgressBar;
 @end

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "NVTemplates.h"
+#import "NVWords.h"
 @interface NVDataManager : NSObject
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectContext *privateManagedObjectContext;
@@ -16,5 +18,6 @@
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
-+(NVDataManager*) sharedManager;
+- (void) addDataToDb:(NSArray*) templateArray withName:(NSString*) templateName langShort:(NSString*) langShort;
++ (NVDataManager*) sharedManager;
 @end

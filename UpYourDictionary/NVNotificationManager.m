@@ -27,7 +27,7 @@
     NSInteger timeToPush = [[NSUserDefaults standardUserDefaults] integerForKey:NVTimeToPush];
     if (timeToPush == 0) {
         timeToPush = 2;}
-    [self createNotificationInCycleTimeToPush:timeToPush numberOfNotifies:numberOfNotifies settingsWords:settingsWords prevDate:lastNofityFireDate maxIter:(60-notifyLeft)/numberOfNotifies+1];
+    [self createNotificationInCycleTimeToPush:timeToPush numberOfNotifies:numberOfNotifies settingsWords:settingsWords prevDate:lastNofityFireDate maxIter:(62-notifyLeft*settingsWords)];
 }];
 }
 -(void) refreshProgressOfDictionaryWithCallback:(void(^)(void))callback {
@@ -125,9 +125,13 @@
     }];
 }
 
--(void) generateNewNotificationsWithCallback:(void(^)(NSInteger counter))callback{
-
+-(void) generateNewNotificationsForDict:(NVDicts*) dict withCallback:(void(^)(NSInteger counter))callback{
+//dict необходим для того, чтобы его извлечь в другом контексте по objectID, хотя он явно будет иметь одно свойство не сохраненное. Принудительно быстрее его сохраняем в своем контексте (в итоге с двух контекстов записываем один и тот же объект)
     [self.managedObjectContext performBlock:^{
+        if (dict) {
+            [self fetchDictWithDict:dict];
+        }
+        
         //cancel all notifications
         [self cancelNotificationsCompleteWayWithCallback:^{
             NSInteger settingsWords = [[NSUserDefaults standardUserDefaults] integerForKey:NVNumberOfWordsToShow];
@@ -141,7 +145,7 @@
             NSDate* prevDate = [NSDate date];
             
 
-            NSInteger numberOfScheduledNotifications = [self createNotificationInCycleTimeToPush:timeToPush numberOfNotifies:numberOfNotifies settingsWords:settingsWords prevDate:prevDate maxIter:(60/numberOfNotifies)+1];
+            NSInteger numberOfScheduledNotifications = [self createNotificationInCycleTimeToPush:timeToPush numberOfNotifies:numberOfNotifies settingsWords:settingsWords prevDate:prevDate maxIter:(62-settingsWords)];
             /*form first notification after 30 sec*/
             if ([[NVServerManager sharedManager] isNetworkAvailable]){
             for (NSInteger j=1; j<=numberOfNotifies; j++) {//формируем пачку нотификаций, если в одну не помещается
@@ -191,13 +195,15 @@
             NSInteger x = settingsWords-(j-1)*wordsInOneNotify;
             NSInteger n = (x>wordsInOneNotify)? wordsInOneNotify : x;
             //формируем конкретную нотификацию в зависимости от кол-ва слов.
+           // NSLog(@"before startFireAlert");
             if ([self startFireAlertAtDate:fireDate numberOfWords:n iteration:j]) {
                 numberOfScheduledNotifications++;
+                if (self.delegateToRefresh) {
+                    [self.delegateToRefresh refreshProgressBar];
+                }
             }
         }
-        if (self.delegateToRefresh) {
-            [self.delegateToRefresh refreshProgressBar];
-        }
+        
         prevDate = fireDate;
         i=i+numberOfNotifies;
     }
@@ -234,14 +240,15 @@
     for (NSInteger m = 1 ; m<=numberWords; m++){
         
         NVContent* contentToShow = [[NVMainStrategy sharedManager] algoResultHandler];
-        if (!contentToShow) { //не работаем без активного словаря
-            return didScheduled;
+        if (contentToShow) { //не работаем без активного словаря
+            //return didScheduled;
+            NSString* stringToShowTemp = [NSString stringWithFormat:@" %@ - %@;",contentToShow.word,contentToShow.translation];
+            stringToShow = [stringToShow stringByAppendingString:stringToShowTemp];
+            [userInfoSet addObject:contentToShow];//несколько словарей в нотификации, т.к. несколько слов
+            //save to user defaults temp userInfo
         }
         //NSLog(@"word:%@     translation:%@",contentToShow.word,contentToShow.translation);
-        NSString* stringToShowTemp = [NSString stringWithFormat:@" %@ - %@;",contentToShow.word,contentToShow.translation];
-        stringToShow = [stringToShow stringByAppendingString:stringToShowTemp];
-        [userInfoSet addObject:contentToShow];//несколько словарей в нотификации, т.к. несколько слов
-        //save to user defaults temp userInfo
+        
         
 
     }
@@ -257,7 +264,7 @@
         localNotification.userInfo = nil;
         [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
         didScheduled = YES;
-        //NSLog(@"from nvnotman. localNot body:%@",localNotification.alertBody);
+        NSLog(@"from nvnotman. localNot body:%@",localNotification.alertBody);
     }
     return didScheduled;
 }
@@ -328,8 +335,36 @@
 - (NSManagedObjectContext*) managedObjectContext{
     if (!_managedObjectContext) {
         _managedObjectContext=[[NVDataManager sharedManager] privateManagedObjectContext];
+        //_managedObjectContext=[[NVDataManager sharedManager] managedObjectContext];
     }
     return _managedObjectContext;
+}
+#pragma mark - helpers
+- (void) fetchDictWithDict:(NVDicts*) dict{
+    NSManagedObjectID* objectID = [dict objectID];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"NVDicts" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    NSPredicate* predicate=[NSPredicate predicateWithFormat:@"(SELF = %@)",objectID];
+    [fetchRequest setPredicate:predicate];
+    
+    NSError* error = nil;
+    NSArray* resultArray= [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (!error) {
+        if ([resultArray count]) {
+            NVDicts* dict = [resultArray firstObject];
+            NSLog(@"isActive = %@, isActiveProgram = %@", dict.isActive, dict.isActiveProgram);
+            if (![dict.isActive boolValue]) {
+                dict.isActive = @(YES);
+                [self.managedObjectContext save:nil];
+            }
+            
+        }
+    } else {
+        NSLog(@"error: %@, local description: %@",error.userInfo, error.localizedDescription);
+        
+    }
+    
 }
 /*
 -(NVContent*) fetchedContentWithContent:(NVContent*) contentToFind

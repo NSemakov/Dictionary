@@ -60,7 +60,7 @@
     sliderDayTimeChoice.minDistance = 1;
     sliderDayTimeChoice.enableStep = YES;
     sliderDayTimeChoice.step = 1;
-    //sliderDayTimeChoice.handleImage =[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Images/sliderHandler" ofType:@"png"]];
+    //sliderDayTimeChoice.handleImage =[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Images/Handler" ofType:@"png"]];
     sliderDayTimeChoice.handleDiameter = 29.f;
     sliderDayTimeChoice.handleColor = [UIColor colorWithRed:0/255.f  green:119/255.f  blue:250/255.f alpha:1];
     sliderDayTimeChoice.selectedHandleDiameterMultiplier = 1.f;
@@ -182,7 +182,7 @@
         [[NSUserDefaults standardUserDefaults] setInteger:sliderDayTimeMaxValue forKey:NVMaximumDayTimeAllowedForNotification];
         //create local notifications in background
         [self performSegueWithIdentifier:@"segueShowDownLoadingScreen2" sender:nil];
-        [self.loadingVC generateNotifiesAndRefreshAfterWithText:NSLocalizedString(@"Settings are saved!", nil)];
+        [self.loadingVC generateNotifiesAndRefreshAfterWithText:NSLocalizedString(@"Settings are saved!", nil) withDict:nil sender:self];
     }
 }
 

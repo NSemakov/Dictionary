@@ -9,6 +9,7 @@
 #import "NVParentViewController.h"
 #import "NVDicts.h"
 #import "NVTemplates.h"
+#import "NVDataManager.h"
 //#import "NVMainStrategy.h"
 #import "Constants.h"
 #import "NVNotificationManager.h"

@@ -71,11 +71,12 @@
     newWord.word = @"!";
     NVContent* newContent=[NSEntityDescription insertNewObjectForEntityForName:@"NVContent" inManagedObjectContext:self.managedObjectContext];
     newContent.word = newWord.word;
-    newContent.translation = @"Dictionary is done! Please, choose another one.";
+    newContent.translation = NSLocalizedString(@"Dictionary is done! Please, choose another one.", nil);
     newContent.counter = @(1);
     newContent.dict = self.activeDict;
-    newContent.originalWord =@"Dictionary is done! Please, choose another one.";
+    newContent.originalWord = NSLocalizedString(@"Dictionary is done! Please, choose another one.", nil);
     self.activeDict.isActiveProgram = @(NO);
+    //NSLog(@" performLastStep isActive = %@, isActiveProgram = %@",self.activeDict.isActive,self.activeDict.isActiveProgram);
     NSError* error = nil;
     
     if ([self.managedObjectContext save:&error]) {
@@ -146,6 +147,7 @@
         
             dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
             __block BOOL flag = false;
+        //NSLog(@"tranlsateToSourceLangText. lang from %@, lang to %@", self.activeTemplate.langShort,self.activeDict.fromShort);
             [[NVServerManager sharedManager] POSTLookUpDictionary:text fromLang:self.activeTemplate.langShort toLang:self.activeDict.fromShort OnSuccess:^(NSString* translation) {
                 //все оставшиеся действия надо делать здесь.
                 if (weakSelf.managedObjectContext) {
@@ -192,6 +194,7 @@
 
             dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
             __block BOOL flag = false;
+       // NSLog(@"translateToEndLangText. lang from %@, lang to %@", self.activeTemplate.langShort,self.activeDict.toShort);
             [[NVServerManager sharedManager] POSTLookUpDictionary:text fromLang:self.activeTemplate.langShort toLang:self.activeDict.toShort OnSuccess:^(NSString* translation)
              {
                 //все оставшиеся действия надо делать здесь.
@@ -220,10 +223,7 @@
                     dispatch_semaphore_signal(semaphore);
                 }];
                 dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-            }
-        
-        
-        
+            }    
     }
     return isSuccess;
 }
@@ -237,7 +237,6 @@
     self.activeTemplate = nil;
 }
 -(NVContent*) algoResultHandler {
-    
     //stringToReturn = @"Dictionary is done! Choose another one or disable it";
     //NSString* stringToReturn = nil;
     NVContent* result = nil;
@@ -259,9 +258,7 @@
 }
 
 - (NSArray*) fetchedAllowedWords{
-    /*if (_fetchedAllowedWords != nil) {
-        return _fetchedAllowedWords;
-    }*/
+    
     NSMutableArray* array =[NSMutableArray array];
     //NSArray* sourceArray = [self.activeDict.contentUnit allObjects];
     for (NVContent* contentUnit in self.activeDict.contentUnit) {
@@ -346,23 +343,15 @@
     NSArray *sortDescriptors = @[sortDescriptor];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
-    
-    //NSManagedObjectID *moID=[self.person objectID];
-    //NSArray* forbiddenWords1 = [NSArray arrayWithObjects:@"one",@"two", nil];
+
     NSSet* set1 = [NSSet setWithObject:self.activeTemplate];
     NSPredicate* predicate=[NSPredicate predicateWithFormat:@"(ANY template1 IN %@) && NOT (word IN %@)",set1, forbiddenWords];
     //NSPredicate*  predicate = [NSComparisonPredicate predicateWithLeftExpression:[NSExpression expressionForKeyPath:@"template1"] rightExpression:[NSExpression expressionForConstantValue:array1] modifier:NSDirectPredicateModifier type:NSInPredicateOperatorType options:0];
     [fetchRequest setPredicate:predicate];
-    // Edit the section name key path and cache name if appropriate.
-    // nil for section name key path means "no sections".
+
     NSError* error = nil;
     NSArray* resultArray= [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     if (!error) {
-        //_fetchedAllowedWords = resultArray;
-        /**for (NVWords* word in resultArray) {
-            //NSLog(@"fetchedAllowedWordsWhereNotAllowed. allowed words:%@",word.word);
-        }*/
-        
         return resultArray;
     } else {
         NSLog(@"error: %@, local description: %@",error.userInfo, error.localizedDescription);
@@ -515,6 +504,7 @@
 - (NSManagedObjectContext*) managedObjectContext{
     if (!_managedObjectContext) {
         _managedObjectContext=[[NVDataManager sharedManager] privateManagedObjectContext];
+        //_managedObjectContext=[[NVDataManager sharedManager] managedObjectContext];
     }
     return _managedObjectContext;
 }

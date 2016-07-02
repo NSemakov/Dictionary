@@ -13,6 +13,7 @@
 #import "Constants.h"
 #import "NVTouchedNotifyVC.h"
 #import "NVMenuVC.h"
+#import "RMStore.h"
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

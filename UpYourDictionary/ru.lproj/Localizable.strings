@@ -3,10 +3,16 @@
 2. Push app to background. From this moment notifications with words and translation will be shown. Time interval and number of word you could set in settings. 
 3. When notification is arrived, just read it 2-3 times and remove. Eventually each word will be shown 10 times for several days. So you will do learn any words in calm and relaxed way!" = "1. Выберите словарь или создайте новый со своими словами. Поддерживаются все языки!
 2. Сверните приложение, нажав на кнопку Home. С этого момента будут приходить уведомления со словом и его переводом. Интервал времени и число показываемых слов можно установить в настройках.
-3. Когда показывается уведомление, просто прочитайте его 2-3 раза и удалите. В итоге каждое слово будет показано 10 раз вместе с другими словами в течение нескольких дней. Вы просто читаете и запоминаете слова, не открывая приложение!";
+3. Когда приходит уведомление, просто прочитайте его 2-3 раза и удалите. В итоге каждое слово будет показано 10 раз вместе с другими словами в течение нескольких дней. Вы просто читаете и запоминаете слова, не открывая приложение!";
+
+/* No comment provided by engineer. */
+"Add own words" = "Добавить свои слова";
 
 /* attention */
 "Attention" = "Внимание";
+
+/* No comment provided by engineer. */
+"Buy ready lists" = "Купить готовые списки";
 
 /* No comment provided by engineer. */
 "Cancel" = "Отмена";
@@ -23,6 +29,9 @@
 /* Input template name */
 "Input template name" = "Задайте имя для списка слов";
 
+/* No comment provided by engineer. */
+"New list of words" = "Новый список слов";
+
 /* New template name */
 "New template name" = "Имя списка";
 
@@ -31,6 +40,15 @@
 
 /* No comment provided by engineer. */
 "OK" = "ОК";
+
+/* No comment provided by engineer. */
+"Oops. It's look like translation server is unavailable. Please check your internet connection or if it's ok, give us one more chance little bit later" = "Что-то пошло не так, сервер недоступен. Пожалуйста, проверьте интернет соединение, а если оно есть, попробуйте чуть позже.";
+
+/* No comment provided by engineer. */
+"Oops. It's look like we can only partially prepare dictionary, cause translation server has become unavailable. Please check your internet connection or if it's ok, give us one more chance little bit later" = "Похоже, что мы смогли только частично подготовить словарь, т.к. связь с сервером пропала. Пожалуйста, проверьте интернет соединение, а если оно есть, попробуйте чуть позже.";
+
+/* No comment provided by engineer. */
+"Payment Transaction Failed" = "Платеж не удался";
 
 /* No comment provided by engineer. */
 "Powered by Yandex.Translate" = "Переведено сервисом Яндекс.Переводчик";
@@ -42,22 +60,31 @@
 "Preparing is done! Now you can push app to background and just read arriving notification with translation." = "Подготовка завершена! Теперь можно свернуть приложение, нажав кнопку Home и просто читать приходящие уведомления с переводом.";
 
 /* No comment provided by engineer. */
+"Products Request Failed" = "Не удалось получить список продуктов";
+
+/* No comment provided by engineer. */
 "Progress: %@ %%" = "Прогресс: %@ %%";
 
 /* No comment provided by engineer. */
 "Settings are saved!" = "Настройки сохранены!";
 
 /* No comment provided by engineer. */
+"Store" = "Магазин";
+
+/* No comment provided by engineer. */
 "Theme: %@" = "Тема: %@";
 
 /* No comment provided by engineer. */
-"Time interval to show words: %d hour(s)" = "Частота показа слов в часах: %d";
+"Time interval to show words: %d hour(s)" = "Интервал времени между приходом уведомлений (в часах): %d";
+
+/* No comment provided by engineer. */
+"Time when notifications arrive: %@:00-%@:00" = "Время, когда приходят уведомления: %1$@:00-%2$@:00 ";
 
 /* No comment provided by engineer. */
 "To: %@" = "Куда: %@";
 
 /* word in russian */
-"Word:" = "Слово";
+"Word:" = "Слово:";
 
 /* No comment provided by engineer. */
 "Words can't be empty. Please fill words in next rows: " = "Слова не должны быть пустыми. Пожалуйста заполните следующие строки: ";

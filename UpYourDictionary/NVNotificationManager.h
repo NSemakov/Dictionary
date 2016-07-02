@@ -23,7 +23,8 @@
 
 @property (strong,nonatomic) NSManagedObjectContext* managedObjectContext;
 @property (strong,nonatomic) id <NVNotificationManagerRefreshProgressBarProtocol> delegateToRefresh;
--(void) generateNewNotificationsWithCallback:(void(^)(NSInteger counter))callback;
+//-(void) generateNewNotificationsWithCallback:(void(^)(NSInteger counter))callback;
+-(void) generateNewNotificationsForDict:(NVDicts*) dict withCallback:(void(^)(NSInteger counter))callback;
 -(void) cancelNotificationsCompleteWayWithCallback:(void(^)(void)) callback;
 -(void) addNewNotificationToFullSet;
 -(NVNotifyInUse*) fetchedNotifyWithDate:(NSDate*) fireDate;

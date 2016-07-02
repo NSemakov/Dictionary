@@ -7,7 +7,8 @@
 //
 
 #import "NVContainerVC.h"
-
+#import "NVSettingsVC.h"
+#import "NVChooseActiveDictVC.h"
 @interface NVContainerVC ()
 
 @end
@@ -30,30 +31,24 @@
     [self.indicator stopAnimating];
     _indicatorHidden = newHidden;
 }
-- (void) generateNotifiesAndRefreshAfterWithText:(NSString*) text{
-    /*[[[NVDataManager sharedManager] managedObjectContext] performBlock:^{
-        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-        [[NVNotificationManager sharedManager] generateNewNotificationsWithSemaphor:semaphore];
-        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.indicatorHidden = YES;
-            [self isDownloadEndWithText:text];
-            self.navigationItem.leftBarButtonItem.title = @"Back";
-        });
-    }];*/
+- (void) generateNotifiesAndRefreshAfterWithText:(NSString*) text withDict:(NVDicts*) dict sender:(id)sender {
     __weak NVContainerVC* weakSelf = self;
     [NVNotificationManager sharedManager].delegateToRefresh = weakSelf;
     //__weak NVContainerVC* weakSelf = self;
     dispatch_queue_t queue = dispatch_queue_create("com.UpYourDictionary.multithreading.queue", DISPATCH_QUEUE_CONCURRENT);
     dispatch_async(queue/*dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)*/, ^{
         //dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-        
-        [[NVNotificationManager sharedManager] generateNewNotificationsWithCallback:^(NSInteger counter) {
+        [[NVNotificationManager sharedManager] generateNewNotificationsForDict:dict withCallback:^(NSInteger counter) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (counter == 0) {
-                    [weakSelf isDownloadEndWithText:NSLocalizedString(@"Oops. It's look like translation server is unavailable. Please check your internet connection or if it's ok, give us one more chance little bit later", nil)];
-                } else if (counter > 0 && counter < 50) {
-                    [weakSelf isDownloadEndWithText:NSLocalizedString(@"Oops. It's look like we can only partially prepare dictionary, cause translation server has become unavailable. Please check your internet connection or if it's ok, give us one more chance little bit later", nil)];
+                   if ([sender isKindOfClass:[NVChooseActiveDictVC class]]) {
+                        [weakSelf isDownloadEndWithText:NSLocalizedString(@"Oops. It's look like translation server is unavailable. Please check your internet connection or if it's ok, give us one more chance little bit later", nil)];
+                    } else if ([sender isKindOfClass:[NVSettingsVC class]]){
+                        //из настроек допустимо, чтобы количество нотификаций было равно 0.
+                        [weakSelf isDownloadEndWithText:text];
+                    }
+                } else if (counter > 0 && counter < 2) {//=1
+                    /*[weakSelf isDownloadEndWithText:NSLocalizedString(@"Oops. It's look like we can only partially prepare dictionary, cause translation server has become unavailable. Please check your internet connection or if it's ok, give us one more chance little bit later", nil)];*/
                 } else {
                     [weakSelf isDownloadEndWithText:text];
                 }
@@ -61,17 +56,8 @@
                 
                 weakSelf.navigationItem.leftBarButtonItem.title = @"Back";
                 [NVNotificationManager sharedManager].delegateToRefresh = nil;
-            });
+                });
         }];
-        
-        //dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-
-        /*dispatch_async(dispatch_get_main_queue(), ^{
-            self.indicatorHidden = YES;
-            [self isDownloadEndWithText:text];
-            self.navigationItem.leftBarButtonItem.title = @"Back";
-        });*/
-        
     });
 }
 - (void) dealloc {

@@ -47,7 +47,12 @@
 		844E4EA91CEA508A0012AB04 /* NVLangFromVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 844E4EA81CEA508A0012AB04 /* NVLangFromVC.m */; settings = {ASSET_TAGS = (); }; };
 		844E4EAC1CEA50A90012AB04 /* NVLangToVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 844E4EAB1CEA50A90012AB04 /* NVLangToVC.m */; settings = {ASSET_TAGS = (); }; };
 		844FCFAE1CF475C100DCCA8A /* NVNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 844FCFAD1CF475C100DCCA8A /* NVNotificationManager.m */; settings = {ASSET_TAGS = (); }; };
+		844FE2681D2698950020215A /* NVStoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 844FE2671D2698950020215A /* NVStoreCell.m */; settings = {ASSET_TAGS = (); }; };
+		844FE26B1D26A9A50020215A /* RMStore.strings in Resources */ = {isa = PBXBuildFile; fileRef = 844FE26D1D26A9A50020215A /* RMStore.strings */; };
 		8451201B1CF3B620007759F7 /* NVSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8451201A1CF3B620007759F7 /* NVSettingsVC.m */; settings = {ASSET_TAGS = (); }; };
+		84524A1A1D2558640099D587 /* RMStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 84524A151D2558640099D587 /* RMStore.m */; settings = {ASSET_TAGS = (); }; };
+		84524A1C1D2558640099D587 /* RMStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84524A191D2558640099D587 /* RMStoreViewController.m */; settings = {ASSET_TAGS = (); }; };
+		84524A1F1D255B9F0099D587 /* NVStoreVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84524A1E1D255B9F0099D587 /* NVStoreVC.m */; settings = {ASSET_TAGS = (); }; };
 		845481EF1D2341DE00D90640 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 845481EE1D2341DE00D90640 /* GoogleService-Info.plist */; settings = {ASSET_TAGS = (); }; };
 		8456915F1CE9EDBB005E4AE1 /* NVServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8456915E1CE9EDBB005E4AE1 /* NVServerManager.m */; settings = {ASSET_TAGS = (); }; };
 		845691621CE9F741005E4AE1 /* NVCreateNewDictVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 845691611CE9F741005E4AE1 /* NVCreateNewDictVC.m */; settings = {ASSET_TAGS = (); }; };
@@ -152,9 +157,18 @@
 		844E4EAB1CEA50A90012AB04 /* NVLangToVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVLangToVC.m; sourceTree = "<group>"; };
 		844FCFAC1CF475C100DCCA8A /* NVNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVNotificationManager.h; sourceTree = "<group>"; };
 		844FCFAD1CF475C100DCCA8A /* NVNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVNotificationManager.m; sourceTree = "<group>"; };
+		844FE2661D2698950020215A /* NVStoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVStoreCell.h; sourceTree = "<group>"; };
+		844FE2671D2698950020215A /* NVStoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVStoreCell.m; sourceTree = "<group>"; };
+		844FE26C1D26A9A50020215A /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/RMStore.strings; sourceTree = "<group>"; };
 		845120191CF3B620007759F7 /* NVSettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVSettingsVC.h; sourceTree = "<group>"; };
 		8451201A1CF3B620007759F7 /* NVSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVSettingsVC.m; sourceTree = "<group>"; };
 		8451201C1CF3BE31007759F7 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		84524A141D2558640099D587 /* RMStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMStore.h; sourceTree = "<group>"; };
+		84524A151D2558640099D587 /* RMStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMStore.m; sourceTree = "<group>"; };
+		84524A181D2558640099D587 /* RMStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMStoreViewController.h; sourceTree = "<group>"; };
+		84524A191D2558640099D587 /* RMStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMStoreViewController.m; sourceTree = "<group>"; };
+		84524A1D1D255B9F0099D587 /* NVStoreVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVStoreVC.h; sourceTree = "<group>"; };
+		84524A1E1D255B9F0099D587 /* NVStoreVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVStoreVC.m; sourceTree = "<group>"; };
 		845481EE1D2341DE00D90640 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8456915D1CE9EDBB005E4AE1 /* NVServerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVServerManager.h; sourceTree = "<group>"; };
 		8456915E1CE9EDBB005E4AE1 /* NVServerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVServerManager.m; sourceTree = "<group>"; };
@@ -302,6 +316,21 @@
 			name = CoreDataModels;
 			sourceTree = "<group>";
 		};
+		84524A131D2558250099D587 /* InAppPurchases */ = {
+			isa = PBXGroup;
+			children = (
+				84524A141D2558640099D587 /* RMStore.h */,
+				84524A151D2558640099D587 /* RMStore.m */,
+				84524A181D2558640099D587 /* RMStoreViewController.h */,
+				84524A191D2558640099D587 /* RMStoreViewController.m */,
+				84524A1D1D255B9F0099D587 /* NVStoreVC.h */,
+				84524A1E1D255B9F0099D587 /* NVStoreVC.m */,
+				844FE2661D2698950020215A /* NVStoreCell.h */,
+				844FE2671D2698950020215A /* NVStoreCell.m */,
+			);
+			name = InAppPurchases;
+			sourceTree = "<group>";
+		};
 		845691631CE9F74D005E4AE1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -363,6 +392,8 @@
 		845894311CE8BC3800D4FE35 /* UpYourDictionary */ = {
 			isa = PBXGroup;
 			children = (
+				844FE26D1D26A9A50020215A /* RMStore.strings */,
+				84524A131D2558250099D587 /* InAppPurchases */,
 				845481EE1D2341DE00D90640 /* GoogleService-Info.plist */,
 				8479EDB11D22EC260072D8BE /* Images */,
 				843BDE121D1C110D00F3FBB4 /* LaunchImages */,
@@ -547,6 +578,7 @@
 			files = (
 				843BDE0D1D1C0EAA00F3FBB4 /* iconsUpYourDict80.png in Resources */,
 				843910A41D0CC95600309FBF /* UpYourDictionaryEn.sqlite in Resources */,
+				844FE26B1D26A9A50020215A /* RMStore.strings in Resources */,
 				8462CDE11CEA4D0B00E742AC /* Main.storyboard in Resources */,
 				840DC07A1D0B917F009C04E8 /* Localizable.strings in Resources */,
 				843BDE1A1D1C112A00F3FBB4 /* LaunchImageUpYourDict1536x2048.png in Resources */,
@@ -649,6 +681,7 @@
 				84050DB41D148DFD00692347 /* NVYandexWebViewVC.m in Sources */,
 				844630BE1CEBCAD3004E0994 /* NVTemplates+CoreDataProperties.m in Sources */,
 				844630C31CEBCAD3004E0994 /* NVContent.m in Sources */,
+				84524A1A1D2558640099D587 /* RMStore.m in Sources */,
 				844E4EAC1CEA50A90012AB04 /* NVLangToVC.m in Sources */,
 				8451201B1CF3B620007759F7 /* NVSettingsVC.m in Sources */,
 				844630BF1CEBCAD3004E0994 /* NVTemplates.m in Sources */,
@@ -658,12 +691,14 @@
 				840B0BC81D1C1A68007D3C47 /* NVChooseActiveDictCell.m in Sources */,
 				844630A21CEBBB1E004E0994 /* NVChooseDictThemeVC.m in Sources */,
 				844630BD1CEBCAD3004E0994 /* NVDicts.m in Sources */,
+				844FE2681D2698950020215A /* NVStoreCell.m in Sources */,
 				845894371CE8BC3800D4FE35 /* AppDelegate.m in Sources */,
 				845E96571D0B3E7E0011856C /* NVCreateDictCell.m in Sources */,
 				84D436131D1DB2FA00FB3F80 /* NVHowItWorksVC.m in Sources */,
 				8446309C1CEBAC32004E0994 /* NVParentViewController.m in Sources */,
 				845894341CE8BC3800D4FE35 /* main.m in Sources */,
 				844630801CEB977A004E0994 /* NVDataManager.m in Sources */,
+				84524A1C1D2558640099D587 /* RMStoreViewController.m in Sources */,
 				8446309F1CEBAE22004E0994 /* NVChooseActiveDictVC.m in Sources */,
 				844630C21CEBCAD3004E0994 /* NVContent+CoreDataProperties.m in Sources */,
 				844B6EEE1CF72E5B00B093FA /* NVNotifyInUse+CoreDataProperties.m in Sources */,
@@ -673,6 +708,7 @@
 				844E4EA91CEA508A0012AB04 /* NVLangFromVC.m in Sources */,
 				8456915F1CE9EDBB005E4AE1 /* NVServerManager.m in Sources */,
 				845691621CE9F741005E4AE1 /* NVCreateNewDictVC.m in Sources */,
+				84524A1F1D255B9F0099D587 /* NVStoreVC.m in Sources */,
 				845894401CE8BC3800D4FE35 /* UpYourDictionary.xcdatamodeld in Sources */,
 				84037B9F1D0A2EFF005EBCAD /* NVTouchedNotifyVC.m in Sources */,
 				84F6A3C31CEFCFF6001F3CAC /* NVMenuVC.m in Sources */,
@@ -741,6 +777,14 @@
 				840DC07B1D0B917F009C04E8 /* ru */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		844FE26D1D26A9A50020215A /* RMStore.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				844FE26C1D26A9A50020215A /* ru */,
+			);
+			name = RMStore.strings;
 			sourceTree = "<group>";
 		};
 		845894431CE8BC3800D4FE35 /* LaunchScreen.storyboard */ = {
