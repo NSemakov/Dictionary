@@ -264,7 +264,7 @@
         localNotification.userInfo = nil;
         [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
         didScheduled = YES;
-        NSLog(@"from nvnotman. localNot body:%@",localNotification.alertBody);
+        //NSLog(@"from nvnotman. localNot body:%@",localNotification.alertBody);
     }
     return didScheduled;
 }
@@ -353,7 +353,7 @@
     if (!error) {
         if ([resultArray count]) {
             NVDicts* dict = [resultArray firstObject];
-            NSLog(@"isActive = %@, isActiveProgram = %@", dict.isActive, dict.isActiveProgram);
+            //NSLog(@"isActive = %@, isActiveProgram = %@", dict.isActive, dict.isActiveProgram);
             if (![dict.isActive boolValue]) {
                 dict.isActive = @(YES);
                 [self.managedObjectContext save:nil];

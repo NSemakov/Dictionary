@@ -177,7 +177,7 @@
         [self presentViewController:alertCtrl animated:YES completion:nil];
     } else { //ios 7 and lower
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Please write in all fields", @"") message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil];
-        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        alert.alertViewStyle = UIAlertViewStyleDefault;
         [alert show];
     }
 

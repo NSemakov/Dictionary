@@ -130,9 +130,16 @@
     return [NSString stringWithFormat:NSLocalizedString(@"Number of words in one time: %d", nil), value];
 }
 -(NSString*) formatTimeOfNotifiesArrivingSettingString:(NSInteger) valueFrom valueTo:(NSInteger) valueTo{
-    NSString* stringValueFrom = (valueFrom < 10) ? [NSString stringWithFormat:@"0%ld",valueFrom] : [NSString stringWithFormat:@"%ld",valueFrom];
-    NSString* stringValueTo = (valueTo < 10) ? [NSString stringWithFormat:@"0%ld",valueTo] : [NSString stringWithFormat:@"%ld",valueTo];
-    return [NSString stringWithFormat:NSLocalizedString(@"Time when notifications arrive: %@:00-%@:00", nil), stringValueFrom, stringValueTo];
+    NSString* stringValueFrom = (valueFrom < 10) ? [NSString stringWithFormat:@"0%ld:00",valueFrom] : [NSString stringWithFormat:@"%ld:00",valueFrom];
+    
+    NSString* stringValueTo;
+    if (valueTo == 24) {
+        stringValueTo = [NSString stringWithFormat:@"23:59"];
+    } else {
+        stringValueTo = (valueTo < 10) ? [NSString stringWithFormat:@"0%ld:00",valueTo] : [NSString stringWithFormat:@"%ld:00",valueTo];
+    }
+    
+    return [NSString stringWithFormat:NSLocalizedString(@"Time when notifications arrive: %@-%@", nil), stringValueFrom, stringValueTo];
 }
 #pragma mark - actions
 - (IBAction)sliderActionTimeToPush:(UISlider *)sender {
