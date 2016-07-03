@@ -14,6 +14,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         manager=[[NVNotificationManager alloc]init];
+        manager.queue = [[NSOperationQueue alloc]init];
     });
     return manager;
 }
@@ -134,6 +135,13 @@
         
         //cancel all notifications
         [self cancelNotificationsCompleteWayWithCallback:^{
+            
+            NSBlockOperation *blockOperation=[[NSBlockOperation alloc]init];
+            self.operation = blockOperation;
+            //__weak NSBlockOperation* weakOperation=blockOperation;
+            [blockOperation addExecutionBlock:^{
+                
+            
             NSInteger settingsWords = [[NSUserDefaults standardUserDefaults] integerForKey:NVNumberOfWordsToShow];
             if (settingsWords == 0) {
                 settingsWords = 2;}
@@ -159,6 +167,9 @@
             if (callback) {
                 callback(numberOfScheduledNotifications);
             }
+            
+            }];
+            [self.queue addOperation:blockOperation];
         }];
    }];
 }
@@ -229,6 +240,10 @@
 -(BOOL) startFireAlertAtDate:(NSDate*) fireDate numberOfWords:(NSInteger)numberWords iteration:(NSInteger) iteration{
     
     BOOL didScheduled = NO;
+    if (self.operation.isCancelled) {
+        NSLog(@"this operation was cancelled");
+        return didScheduled;
+    }
     NSDateComponents *secComponent = [[NSDateComponents alloc] init];
     secComponent.second = iteration;
     
@@ -237,7 +252,7 @@
     //fireDate= [NSDate dateWithTimeIntervalSinceNow:iteration];//нотификации в пачке друг за другом идут, с периодом 1с
     NSString* stringToShow=@"";
     NSMutableSet* userInfoSet = [NSMutableSet new];
-    for (NSInteger m = 1 ; m<=numberWords; m++){
+    for (NSInteger m = 1 ; m <= numberWords; m++){
         
         NVContent* contentToShow = [[NVMainStrategy sharedManager] algoResultHandler];
         if (contentToShow) { //не работаем без активного словаря
@@ -264,7 +279,7 @@
         localNotification.userInfo = nil;
         [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
         didScheduled = YES;
-        //NSLog(@"from nvnotman. localNot body:%@",localNotification.alertBody);
+        NSLog(@"from nvnotman. localNot body:%@",localNotification.alertBody);
     }
     return didScheduled;
 }

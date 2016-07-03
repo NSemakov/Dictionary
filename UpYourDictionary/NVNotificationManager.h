@@ -22,7 +22,9 @@
 @interface NVNotificationManager : NSObject
 
 @property (strong,nonatomic) NSManagedObjectContext* managedObjectContext;
-@property (strong,nonatomic) id <NVNotificationManagerRefreshProgressBarProtocol> delegateToRefresh;
+@property (weak,nonatomic) id <NVNotificationManagerRefreshProgressBarProtocol> delegateToRefresh;
+@property (strong,nonatomic) NSOperationQueue* queue;
+@property (strong,nonatomic) NSBlockOperation* operation;
 //-(void) generateNewNotificationsWithCallback:(void(^)(NSInteger counter))callback;
 -(void) generateNewNotificationsForDict:(NVDicts*) dict withCallback:(void(^)(NSInteger counter))callback;
 -(void) cancelNotificationsCompleteWayWithCallback:(void(^)(void)) callback;

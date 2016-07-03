@@ -33,35 +33,37 @@
 }
 - (void) generateNotifiesAndRefreshAfterWithText:(NSString*) text withDict:(NVDicts*) dict sender:(id)sender {
     __weak NVContainerVC* weakSelf = self;
+    __weak typeof(sender) weakSender = sender;
     [NVNotificationManager sharedManager].delegateToRefresh = weakSelf;
     //__weak NVContainerVC* weakSelf = self;
     dispatch_queue_t queue = dispatch_queue_create("com.UpYourDictionary.multithreading.queue", DISPATCH_QUEUE_CONCURRENT);
-    dispatch_async(queue/*dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)*/, ^{
+    dispatch_async(queue, ^{
         //dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
         [[NVNotificationManager sharedManager] generateNewNotificationsForDict:dict withCallback:^(NSInteger counter) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (counter == 0) {
-                   if ([sender isKindOfClass:[NVChooseActiveDictVC class]]) {
-                        [weakSelf isDownloadEndWithText:NSLocalizedString(@"Oops. It's look like translation server is unavailable. Please check your internet connection or if it's ok, give us one more chance little bit later", nil)];
-                    } else if ([sender isKindOfClass:[NVSettingsVC class]]){
+                   if ([weakSender isKindOfClass:[NVChooseActiveDictVC class]]) {
+                        //[weakSelf isDownloadEndWithText:NSLocalizedString(@"Oops. It's look like translation server is unavailable. Please check your internet connection or if it's ok, give us one more chance little bit later", nil)];
+                    } else if ([weakSender isKindOfClass:[NVSettingsVC class]]){
                         //из настроек допустимо, чтобы количество нотификаций было равно 0.
-                        [weakSelf isDownloadEndWithText:text];
+                        //[weakSelf isDownloadEndWithText:text];
                     }
                 } else if (counter > 0 && counter < 2) {//=1
-                    /*[weakSelf isDownloadEndWithText:NSLocalizedString(@"Oops. It's look like we can only partially prepare dictionary, cause translation server has become unavailable. Please check your internet connection or if it's ok, give us one more chance little bit later", nil)];*/
+                    //[weakSelf isDownloadEndWithText:NSLocalizedString(@"Oops. It's look like we can only partially prepare dictionary, cause translation server has become unavailable. Please check your internet connection or if it's ok, give us one more chance little bit later", nil)]
                 } else {
-                    [weakSelf isDownloadEndWithText:text];
+                    //[weakSelf isDownloadEndWithText:text];
                 }
                 weakSelf.indicatorHidden = YES;
                 
-                weakSelf.navigationItem.leftBarButtonItem.title = @"Back";
-                [NVNotificationManager sharedManager].delegateToRefresh = nil;
+                weakSelf.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"Back", nil);
+                //[NVNotificationManager sharedManager].delegateToRefresh = nil;
                 });
         }];
     });
 }
 - (void) dealloc {
-    [NVNotificationManager sharedManager].delegateToRefresh = nil;
+    NSLog(@"dealloc NVContainerVC");
+    //[NVNotificationManager sharedManager].delegateToRefresh = nil;
 }
 - (void) refreshProgressBar{
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -74,6 +76,8 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)buttonCancel:(UIBarButtonItem *)sender {
+    [NVNotificationManager sharedManager].delegateToRefresh = nil;
+    [[NVNotificationManager sharedManager].queue cancelAllOperations];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
