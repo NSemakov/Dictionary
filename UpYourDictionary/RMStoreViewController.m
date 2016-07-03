@@ -42,13 +42,23 @@
         _productsRequestFinished = YES;
         [self.tableView reloadData];
     } failure:^(NSError *error) {
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Products Request Failed", @"")
-                                                           message:error.localizedDescription
-                                                          delegate:nil
-                                                 cancelButtonTitle:NSLocalizedString(@"OK", @"")
-                                                 otherButtonTitles:nil];
-        [alertView show];
+        if ([UIAlertController class]) {
+            UIAlertController* alertCtrl=[UIAlertController alertControllerWithTitle: NSLocalizedString(@"Products Request Failed", @"") message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+            
+            
+            UIAlertAction* okAction=[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"") style:UIAlertActionStyleDefault handler:nil];
+            [alertCtrl addAction:okAction];
+            [self presentViewController:alertCtrl animated:YES completion:nil];
+        } else {
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Products Request Failed", @"")
+                                                                message:error.localizedDescription
+                                                               delegate:nil
+                                                      cancelButtonTitle:NSLocalizedString(@"OK", @"")
+                                                      otherButtonTitles:nil];
+            [alertView show];
+        }
+        
     }];
 }
 

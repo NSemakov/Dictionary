@@ -2,7 +2,7 @@
 //  NVTemplates+CoreDataProperties.h
 //  UpYourDictionary
 //
-//  Created by Admin on 28/05/16.
+//  Created by Admin on 03/07/16.
 //  Copyright © 2016 Admin. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -15,9 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NVTemplates (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSString *name;
 @property (nullable, nonatomic, retain) NSString *lang;
 @property (nullable, nonatomic, retain) NSString *langShort;
+@property (nullable, nonatomic, retain) NSString *name;
+@property (nullable, nonatomic, retain) NSString *productID;
 @property (nullable, nonatomic, retain) NSSet<NVDicts *> *dict;
 @property (nullable, nonatomic, retain) NSSet<NVWords *> *word;
 

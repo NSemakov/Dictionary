@@ -165,6 +165,11 @@
         [self showWarning:arrayOfWrongObjects];
     }
 }
+- (IBAction)buttonCancel:(UIButton *)sender {
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+#pragma mark - helpers
 -(NSMutableArray*) validateWords{
     NSMutableArray* arrayOfWrongObjects = [NSMutableArray array];
     for (NVWords* word in self.tempWordsSet) {
@@ -201,16 +206,24 @@
         NSString* stringToAdd = [NSString stringWithFormat:@" %@; ",num];
         errorString = [errorString stringByAppendingString:stringToAdd];
     }
-    UIAlertController* alertCtrl=[UIAlertController alertControllerWithTitle: NSLocalizedString(@"Attention", @"attention") message:errorString preferredStyle:UIAlertControllerStyleAlert];
+    NSString* titleString = NSLocalizedString(@"Attention", @"attention");
     
+    [self showAlertWithTitle:titleString message:errorString sender:self];
     
-    UIAlertAction* okAction=[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-    [alertCtrl addAction:okAction];
-    [self presentViewController:alertCtrl animated:YES completion:nil];
 }
-- (IBAction)buttonCancel:(UIButton *)sender {
-    
-    [self.navigationController popViewControllerAnimated:YES];
+-(void) showAlertWithTitle:(NSString*) titleString message:(NSString*) messageString sender:(id) sender{
+    if ([UIAlertController class]){
+        // ios 8 or higher
+        UIAlertController* alertCtrl=[UIAlertController alertControllerWithTitle: titleString message:messageString preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* okAction=[UIAlertAction actionWithTitle:NSLocalizedString(@"OK",nil) style:UIAlertActionStyleDefault handler:nil];
+        [alertCtrl addAction:okAction];
+        [sender presentViewController:alertCtrl animated:YES completion:nil];
+    } else { //ios 7 and lower
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:titleString message:messageString delegate:sender cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil];
+        alert.alertViewStyle = UIAlertViewStyleDefault;
+        [alert show];
+    }
 }
+
      
 @end

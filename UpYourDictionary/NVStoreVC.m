@@ -37,19 +37,29 @@
         //weakSelf.products = products;
         [weakSelf.tableView reloadData];
     } failure:^(NSError *error) {
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Products Request Failed", @"")
-                                                            message:error.localizedDescription
-                                                           delegate:nil
-                                                  cancelButtonTitle:NSLocalizedString(@"OK", @"")
-                                                  otherButtonTitles:nil];
-        [alertView show];
+        if ([UIAlertController class]) {
+            UIAlertController* alertCtrl=[UIAlertController alertControllerWithTitle: NSLocalizedString(@"Products Request Failed", @"") message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+            
+            
+            UIAlertAction* okAction=[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"") style:UIAlertActionStyleDefault handler:nil];
+            [alertCtrl addAction:okAction];
+            [self presentViewController:alertCtrl animated:YES completion:nil];
+        } else {
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Products Request Failed", @"")
+                                                                message:error.localizedDescription
+                                                               delegate:nil
+                                                      cancelButtonTitle:NSLocalizedString(@"OK", @"")
+                                                      otherButtonTitles:nil];
+            [alertView show];
+        }
+        
     }];
-    
+    self.tableView.allowsSelection = NO;
     self.tableView.estimatedRowHeight = 80;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
-#pragma mark - when download finished
+#pragma mark - RMStoreObserver
 - (void)storeDownloadFinished:(NSNotification*)notification{
     NSString* path =  [notification.rm_storeDownload.contentURL path];
     path = [path stringByAppendingPathComponent:@"Contents"];
@@ -60,9 +70,83 @@
     
     NSString *productID = notification.rm_storeDownload.contentIdentifier;
     SKProduct *product = [[RMStore defaultStore] productForIdentifier:productID];
-    [self addNewTemplate:fullPathSrc templateName:[product.localizedTitle stringByAppendingString:@"222"] langShort:@"en"];
+    BOOL success = [self addNewTemplate:fullPathSrc templateName:product.localizedTitle langShort:@"en" productID:productID];
+    NVStoreCell* cell = [self cellForProductIDFromNotification:notification];
+    cell.progressDownloading.hidden = YES;
+    //cell.labelDownloadIsEnd.hidden = NO;
+    if (!success) {//все добавлено в базу
+        //cell.labelDownloadIsEnd.text = @"Error in processing content";
+    } else {
+        [cell.buttonBuyOutlet setTitle:NSLocalizedString(@"Purchased!", nil) forState:UIControlStateNormal];
+        cell.buttonBuyOutlet.enabled = NO;
+    }
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:[productID stringByAppendingString:NVPostFixThatAddedToShowThisIsContent]];
+
+    
+}
+- (void)storeDownloadUpdated:(NSNotification*)notification {
+    
+    float progress =  notification.rm_downloadProgress;
+    NVStoreCell* cell = [self cellForProductIDFromNotification:notification];
+    cell.progressDownloading.hidden = NO;
+    cell.progressDownloading.progress = progress;
+    
+}
+-(void)storeRestoreTransactionsFinished:(NSNotification *)notification{
+    NSString* titleString = NSLocalizedString(@"Purchased items have been successfully restored", @"");
+    NSString* messageString = nil;
+    [self showAlertWithTitle:titleString message:messageString sender:self];
+}
+-(void)storeRestoreTransactionsFailed:(NSNotification *)notification{
+    [self showAlertWithTitle:NSLocalizedString(@"Restore Transactions Failed", @"") message:notification.rm_storeError.localizedDescription sender:self];
 }
 
+#pragma mark - helpers
+
+- (NVStoreCell*) cellForProductIDFromNotification:(NSNotification*) notification {
+    NSString *productID = notification.rm_productIdentifier;
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[_products indexOfObject:productID] inSection:0];
+    return [self.tableView cellForRowAtIndexPath:indexPath];
+}
+-(void) showAlertWithTitle:(NSString*) titleString message:(NSString*) messageString sender:(id) sender{
+    if ([UIAlertController class]){
+        // ios 8 or higher
+        UIAlertController* alertCtrl=[UIAlertController alertControllerWithTitle: titleString message:messageString preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* okAction=[UIAlertAction actionWithTitle:NSLocalizedString(@"OK",nil) style:UIAlertActionStyleDefault handler:nil];
+        [alertCtrl addAction:okAction];
+        [sender presentViewController:alertCtrl animated:YES completion:nil];
+    } else { //ios 7 and lower
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:titleString message:messageString delegate:sender cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil];
+        alert.alertViewStyle = UIAlertViewStyleDefault;
+        [alert show];
+    }
+}
+- (void) buttonBuyCustomAction:(NVButton*) button {
+
+    if (![RMStore canMakePayments]) return;
+    
+    NSString *productID = button.userData;
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [[RMStore defaultStore] addPayment:productID success:^(SKPaymentTransaction *transaction) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:productID];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    } failure:^(SKPaymentTransaction *transaction, NSError *error) {
+        if ([UIAlertController class]) {
+            UIAlertController* alertCtrl=[UIAlertController alertControllerWithTitle: NSLocalizedString(@"Payment Transaction Failed", @"") message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction* okAction=[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"") style:UIAlertActionStyleDefault handler:nil];
+            [alertCtrl addAction:okAction];
+            [self presentViewController:alertCtrl animated:YES completion:nil];
+        } else {
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Payment Transaction Failed", @"")
+                                                               message:error.localizedDescription
+                                                              delegate:nil
+                                                     cancelButtonTitle:NSLocalizedString(@"OK", @"")
+                                                     otherButtonTitles:nil];
+            [alerView show];
+        }
+    }];
+}
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -74,38 +158,24 @@
 {
     static NSString *CellIdentifier = @"Cell";
     NVStoreCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    /*if (cell == nil)
-    {
-        cell = [[NVStoreCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
-    }*/
+    [cell.buttonBuyOutlet addTarget:self action:@selector(buttonBuyCustomAction:) forControlEvents:UIControlEventTouchUpInside];
+
     NSString *productID = _products[indexPath.row];
     SKProduct *product = [[RMStore defaultStore] productForIdentifier:productID];
     cell.labelTitle.text = [[product.localizedTitle stringByAppendingString:@". "] stringByAppendingString:product.localizedDescription];
     cell.labelPrice.text = [RMStore localizedPriceOfProduct:product];
+    /*transfer product id with titleLabel property*/
+    cell.buttonBuyOutlet.userData = productID;
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:productID]) {
+        //cell.labelDownloadIsEnd.text = @"Purchased!";
+        //cell.buttonBuyOutlet.titleLabel.text = @"Purchased!";
+        [cell.buttonBuyOutlet setTitle:NSLocalizedString(@"Purchased!", nil) forState:UIControlStateNormal];
+        cell.buttonBuyOutlet.enabled = NO;
+    }
     return cell;
 }
 
-#pragma mark Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (![RMStore canMakePayments]) return;
-    
-    NSString *productID = _products[indexPath.row];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [[RMStore defaultStore] addPayment:productID success:^(SKPaymentTransaction *transaction) {
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    } failure:^(SKPaymentTransaction *transaction, NSError *error) {
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Payment Transaction Failed", @"")
-                                                           message:error.localizedDescription
-                                                          delegate:nil
-                                                 cancelButtonTitle:NSLocalizedString(@"OK", @"")
-                                                 otherButtonTitles:nil];
-        [alerView show];
-    }];
-}
+#pragma mark UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat height = 0;
@@ -119,7 +189,7 @@
     
     //its not possible to get the cell label width since this method is called before cellForRow so best we can do
     //is get the table width and subtract the default extra space on either side of the label.
-    CGSize constraintSize = CGSizeMake(tableView.frame.size.width - 30, MAXFLOAT);
+    CGSize constraintSize = CGSizeMake(tableView.frame.size.width - 100, MAXFLOAT);
     
     CGRect rect = [attributedString boundingRectWithSize:constraintSize options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
     
@@ -143,7 +213,7 @@
     return (height < 44 ? 44 : height);
 }
 
-- (void) addNewTemplate:(NSString*)dataPath templateName:(NSString*)templateName langShort:(NSString*) langShort {
+- (BOOL) addNewTemplate:(NSString*)dataPath templateName:(NSString*)templateName langShort:(NSString*) langShort productID:(NSString*) productID{
     NSError* err = nil;
     NSString *string = [[NSString alloc] initWithContentsOfFile:dataPath encoding:NSUTF8StringEncoding error:&err];
     //NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -156,14 +226,20 @@
         }
     }
     //NSLog(@"%@, errorUserIfo: %@\n errorDescr: %@",array, err.userInfo,err.description);
-    for (NSString* str in clearArray){
+    /*for (NSString* str in clearArray){
         NSLog(@"%@",str);
-    }
-    [[NVDataManager sharedManager] addDataToDb:clearArray withName:templateName langShort:langShort];
+    }*/
+    return [[NVDataManager sharedManager] addDataToDb:clearArray withName:templateName langShort:langShort productID:productID];
 
 }
 
 -(void)dealloc{
     [[RMStore defaultStore]removeStoreObserver:self];
 }
+#pragma mark - actions
+- (IBAction)buttonRestorePurchases:(UIBarButtonItem *)sender {
+    NSArray* arrayOfProductIds = [[NVDataManager sharedManager] fetchTemplatesForNonNilProductIds];
+    [[RMStore defaultStore] restoreTransactionsBySkipReDownloadProductID:arrayOfProductIds OnSuccess:nil failure:nil];
+}
+
 @end

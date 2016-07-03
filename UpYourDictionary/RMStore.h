@@ -114,6 +114,13 @@ extern NSInteger const RMStoreErrorCodeUnableToCompleteVerification;
                         onSuccess:(void (^)(NSArray *transactions))successBlock
                           failure:(void (^)(NSError *error))failureBlock __attribute__((availability(ios,introduced=7.0)));
 
+/** Request to restore previously completed purchases without downloading spectified content by its ProductId. `successBlock` will be called if the restore transactions request is successful, `failureBlock` if it isn't.
+ @param successBlock The block to be called if the restore transactions request is sucessful. Can be `nil`.
+ @param failureBlock The block to be called if the restore transactions request fails. Can be `nil`.
+ */
+- (void)restoreTransactionsBySkipReDownloadProductID:(NSArray *)skipReDownloadProductIDs
+                                           OnSuccess:(void (^)(NSArray *transactions))successBlock
+                                             failure:(void (^)(NSError *error))failureBlock;
 #pragma mark Receipt
 ///---------------------------------------------
 /// @name Getting the receipt

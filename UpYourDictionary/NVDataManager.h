@@ -18,6 +18,7 @@
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
-- (void) addDataToDb:(NSArray*) templateArray withName:(NSString*) templateName langShort:(NSString*) langShort;
+- (BOOL) addDataToDb:(NSArray*) templateArray withName:(NSString*) templateName langShort:(NSString*) langShort productID:(NSString*) productID;
+- (NSArray*) fetchTemplatesForNonNilProductIds;
 + (NVDataManager*) sharedManager;
 @end

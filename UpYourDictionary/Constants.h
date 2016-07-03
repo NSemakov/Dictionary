@@ -14,6 +14,8 @@ static NSString * const NVMinimumDayTimeAllowedForNotification = @"NVMinimumDayT
 static NSString * const NVMaximumDayTimeAllowedForNotification = @"NVMaximumDayTimeAllowedForNotification";
 static NSString * const NVDictionaryAPIKey = @"NVDictionaryAPIKey";
 static NSString * const NVTranslatorAPIKey = @"NVTranslatorAPIKey";
+static NSString * const NVPostFixThatAddedToShowThisIsContent = @"NVPostFixThatAddedToShowThisIsContent";
+
 static NSInteger const wordsInOneNotify = 3;
 static NSString * const NVNotifyKey = @"NVNotifyKey";
 static NSInteger const numberOfWords = 10;

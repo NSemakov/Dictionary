@@ -1,14 +1,14 @@
 //
-//  NVStoreCell.m
+//  NVChooseDictThemeCell.m
 //  UpYourDictionary
 //
-//  Created by Admin on 01/07/16.
+//  Created by Admin on 04/07/16.
 //  Copyright © 2016 Admin. All rights reserved.
 //
 
-#import "NVStoreCell.h"
+#import "NVChooseDictThemeCell.h"
 
-@implementation NVStoreCell
+@implementation NVChooseDictThemeCell
 
 - (void)awakeFromNib {
     // Initialization code
@@ -19,6 +19,5 @@
 
     // Configure the view for the selected state
 }
-
 
 @end

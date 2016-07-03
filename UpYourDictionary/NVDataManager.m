@@ -66,7 +66,7 @@
         } else {
             dbName = @"UpYourDictionaryEn";
         }
-
+        NSLog(@"path:%@",[[NSBundle mainBundle] pathForResource:dbName ofType:@"sqlite"]);
         NSURL *preloadURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:dbName ofType:@"sqlite"]];
         NSError* err = nil;
         
@@ -142,13 +142,15 @@
     }
 }
 #pragma mark - saving downloaded content
-- (void) addDataToDb:(NSArray*) templateArray withName:(NSString*) templateName langShort:(NSString*) langShort{
+- (BOOL) addDataToDb:(NSArray*) templateArray withName:(NSString*) templateName langShort:(NSString*) langShort productID:(NSString*) productID{
+    BOOL isSuccessful = NO;
     NSManagedObjectContext* moc = [[NSManagedObjectContext alloc]initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     moc.persistentStoreCoordinator = self.persistentStoreCoordinator;
     
     NVTemplates *newTemplate = [NSEntityDescription
                                 insertNewObjectForEntityForName:@"NVTemplates"
                                 inManagedObjectContext:moc];
+    newTemplate.productID = productID;
     newTemplate.name = templateName;
     if (langShort) {
         if ([langShort isEqualToString:@"ru"]) {
@@ -172,8 +174,35 @@
         NSError *error;
         if (![moc save:&error]) {
             NSLog(@"Whoops, couldn't save: %@, user info :%@", error.localizedDescription, error.userInfo);
+        } else{
+            isSuccessful = YES;
         }
     }
+    return isSuccessful;
 }
 
+#pragma mark - fetching
+- (NSArray*) fetchTemplatesForNonNilProductIds{
+    NSManagedObjectContext* moc = [[NSManagedObjectContext alloc]initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    moc.persistentStoreCoordinator = self.persistentStoreCoordinator;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"NVTemplates" inManagedObjectContext:moc];
+    [fetchRequest setEntity:entity];
+    NSPredicate* predicate=[NSPredicate predicateWithFormat:@"(productID != nil)"];
+    [fetchRequest setPredicate:predicate];
+    
+    NSError* error = nil;
+    NSArray* resultArray= [moc executeFetchRequest:fetchRequest error:&error];
+    if (!error) {
+        NSMutableArray* arrayOfProductIds = [[NSMutableArray alloc]init];
+        for (NVTemplates* templ in resultArray) {
+            NSLog(@"NVDataManager. Template productID: %@",templ.productID);
+            [arrayOfProductIds addObject:templ.productID];
+        }
+        return arrayOfProductIds;
+    } else {
+        NSLog(@"error: %@, local description: %@",error.userInfo, error.localizedDescription);
+        return nil;
+    }
+}
 @end

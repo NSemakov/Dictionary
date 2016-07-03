@@ -9,6 +9,7 @@
 #import "NVParentViewController.h"
 #import "NVTemplates.h"
 #import "NVCreateTemplateVC.h"
+#import "NVChooseDictThemeCell.h"
 @protocol NVChooseDictThemeVCProtocol;
 
 @interface NVChooseDictThemeVC : NVParentViewController <UIActionSheetDelegate>

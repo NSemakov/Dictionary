@@ -138,7 +138,7 @@ typedef void (^RMStoreSuccessBlock)();
     
     NSInteger _pendingRestoredTransactionsCount;
     BOOL _restoredCompletedTransactionsFinished;
-    
+    NSArray* _restoreSkipReDownloadProductIDs;//added
     SKReceiptRefreshRequest *_refreshReceiptRequest;
     void (^_refreshReceiptFailureBlock)(NSError* error);
     void (^_refreshReceiptSuccessBlock)();
@@ -249,7 +249,7 @@ typedef void (^RMStoreSuccessBlock)();
 {
     [self restoreTransactionsOnSuccess:nil failure:nil];
 }
-
+/*
 - (void)restoreTransactionsOnSuccess:(void (^)(NSArray *transactions))successBlock
                              failure:(void (^)(NSError *error))failureBlock
 {
@@ -259,8 +259,26 @@ typedef void (^RMStoreSuccessBlock)();
     _restoreTransactionsSuccessBlock = successBlock;
     _restoreTransactionsFailureBlock = failureBlock;
     [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
+}*/
+- (void)restoreTransactionsOnSuccess:(void (^)(NSArray *transactions))successBlock
+                             failure:(void (^)(NSError *error))failureBlock
+{
+    [self restoreTransactionsBySkipReDownloadProductID: nil
+                                             OnSuccess: successBlock
+                                               failure: failureBlock];
 }
-
+- (void)restoreTransactionsBySkipReDownloadProductID:(NSArray *)skipReDownloadProductIDs
+                                           OnSuccess:(void (^)(NSArray *transactions))successBlock
+                                             failure:(void (^)(NSError *error))failureBlock;
+{
+    _restoreSkipReDownloadProductIDs = skipReDownloadProductIDs;
+    _restoredCompletedTransactionsFinished = NO;
+    _pendingRestoredTransactionsCount = 0;
+    _restoredTransactions = [NSMutableArray array];
+    _restoreTransactionsSuccessBlock = successBlock;
+    _restoreTransactionsFailureBlock = failureBlock;
+    [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
+}
 - (void)restoreTransactionsOfUser:(NSString*)userIdentifier
                         onSuccess:(void (^)(NSArray *transactions))successBlock
                           failure:(void (^)(NSError *error))failureBlock
@@ -614,7 +632,7 @@ typedef void (^RMStoreSuccessBlock)();
     }
 }
 
-- (void)didDownloadSelfHostedContentForTransaction:(SKPaymentTransaction *)transaction queue:(SKPaymentQueue*)queue
+/*- (void)didDownloadSelfHostedContentForTransaction:(SKPaymentTransaction *)transaction queue:(SKPaymentQueue*)queue
 {
     NSArray *downloads = [transaction respondsToSelector:@selector(downloads)] ? transaction.downloads : @[];
     if (downloads.count > 0)
@@ -624,6 +642,29 @@ typedef void (^RMStoreSuccessBlock)();
     }
     else
     {
+        [self finishTransaction:transaction queue:queue];
+    }
+}*/
+- (void)didDownloadSelfHostedContentForTransaction:(SKPaymentTransaction *)transaction queue:(SKPaymentQueue*)queue
+{
+    NSArray *downloads = transaction.downloads;
+    
+    NSMutableArray *realyDownloads = [@[] mutableCopy];
+    
+    if (downloads.count > 0)
+    {
+        for (SKDownload *download in downloads) {
+            if ([_restoreSkipReDownloadProductIDs containsObject: download.contentIdentifier]) {
+                [self finishTransaction:transaction queue:queue];
+            } else {
+                [realyDownloads addObject: download];
+            }
+        }
+        
+        RMStoreLog(@"starting downloads for product %@ started", realyDownloads);
+        
+        [queue startDownloads:realyDownloads];
+    } else {
         [self finishTransaction:transaction queue:queue];
     }
 }

@@ -45,14 +45,18 @@
 #pragma mark - overriden methods
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    NVChooseDictThemeCell* cell1 = (NVChooseDictThemeCell*)cell;
     NVTemplates *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    cell.textLabel.text = object.name;
+    cell1.labelTitle.text = [object.name stringByAppendingString:[NSString stringWithFormat:NSLocalizedString(@" (words: %d)", nil),[object.word count]]];
+    if (object.productID) {
+        cell1.labelTitle.text = [cell1.labelTitle.text stringByAppendingString:NSLocalizedString(@" Purchased!", nil)];
+    }
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][0];
     if (self.curTemplate) {
        NSInteger catIndex = [[sectionInfo objects] indexOfObject:self.curTemplate];
         if (catIndex==indexPath.row) {
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            cell1.accessoryType = UITableViewCellAccessoryCheckmark;
         } 
     }
 }
@@ -66,7 +70,7 @@
     // Edit the entity name as appropriate.
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"NVTemplates" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
-    //[fetchRequest setRelationshipKeyPathsForPrefetching:@[@"coursesAsStudent",@"coursesAsTeacher"]];
+    [fetchRequest setRelationshipKeyPathsForPrefetching:@[@"word"]];
     
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
@@ -100,12 +104,19 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     //переопределяем, потому что не нужно сохранять контекст. Потенциально ведет к ошибке.
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
-        NSError* error;
-        if (![context save:&error]) {
-            NSLog(@"error:%@, locDesc:%@",error.userInfo,error.localizedDescription);
+        NVTemplates* curTemplate = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        if (curTemplate.productID) {
+            [self showAlertWithTitle:NSLocalizedString(@"Attention", nil) message:NSLocalizedString(@"Purchased items cannot be deleted", nil) sender:self];
+            
+        } else {
+            NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+            [context deleteObject:curTemplate];
+            NSError* error;
+            if (![context save:&error]) {
+                NSLog(@"error:%@, locDesc:%@",error.userInfo,error.localizedDescription);
+            }
         }
+        
     }
 }
 
@@ -162,6 +173,19 @@
     }
 }
 #pragma mark - helpers
+-(void) showAlertWithTitle:(NSString*) titleString message:(NSString*) messageString sender:(id) sender{
+    if ([UIAlertController class]){
+        // ios 8 or higher
+        UIAlertController* alertCtrl=[UIAlertController alertControllerWithTitle: titleString message:messageString preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* okAction=[UIAlertAction actionWithTitle:NSLocalizedString(@"OK",nil) style:UIAlertActionStyleDefault handler:nil];
+        [alertCtrl addAction:okAction];
+        [sender presentViewController:alertCtrl animated:YES completion:nil];
+    } else { //ios 7 and lower
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:titleString message:messageString delegate:sender cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil];
+        alert.alertViewStyle = UIAlertViewStyleDefault;
+        [alert show];
+    }
+}
 - (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
     switch (popup.tag) {
         case 1: {

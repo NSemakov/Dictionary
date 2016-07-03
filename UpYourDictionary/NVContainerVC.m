@@ -43,15 +43,15 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (counter == 0) {
                    if ([weakSender isKindOfClass:[NVChooseActiveDictVC class]]) {
-                        //[weakSelf isDownloadEndWithText:NSLocalizedString(@"Oops. It's look like translation server is unavailable. Please check your internet connection or if it's ok, give us one more chance little bit later", nil)];
+                        [weakSelf isDownloadEndWithText:NSLocalizedString(@"Oops. It's look like translation server is unavailable. Please check your internet connection or if it's ok, give us one more chance little bit later", nil)];
                     } else if ([weakSender isKindOfClass:[NVSettingsVC class]]){
                         //из настроек допустимо, чтобы количество нотификаций было равно 0.
-                        //[weakSelf isDownloadEndWithText:text];
+                        [weakSelf isDownloadEndWithText:text];
                     }
                 } else if (counter > 0 && counter < 2) {//=1
-                    //[weakSelf isDownloadEndWithText:NSLocalizedString(@"Oops. It's look like we can only partially prepare dictionary, cause translation server has become unavailable. Please check your internet connection or if it's ok, give us one more chance little bit later", nil)]
+                    //[weakSelf isDownloadEndWithText:NSLocalizedString(@"Oops. It's look like we can only partially prepare dictionary, cause translation server has become unavailable. Please check your internet connection or if it's ok, give us one more chance little bit later", nil)];
                 } else {
-                    //[weakSelf isDownloadEndWithText:text];
+                    [weakSelf isDownloadEndWithText:text];
                 }
                 weakSelf.indicatorHidden = YES;
                 

@@ -167,13 +167,7 @@
         UIAlertController* alertCtrl=[UIAlertController alertControllerWithTitle:NSLocalizedString(@"Please write in all fields", nil) message:nil preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction* okAction=[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         }];
-        /*
-         UIAlertAction* cancelAction=[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel",nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            [weakSelf dismissViewControllerAnimated:YES completion:nil];
-        }];
-         */
         [alertCtrl addAction:okAction];
-        //[self.alertCtrl addAction:cancelAction];
         [self presentViewController:alertCtrl animated:YES completion:nil];
     } else { //ios 7 and lower
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Please write in all fields", @"") message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil];

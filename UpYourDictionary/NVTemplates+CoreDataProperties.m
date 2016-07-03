@@ -2,7 +2,7 @@
 //  NVTemplates+CoreDataProperties.m
 //  UpYourDictionary
 //
-//  Created by Admin on 28/05/16.
+//  Created by Admin on 03/07/16.
 //  Copyright © 2016 Admin. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -13,9 +13,10 @@
 
 @implementation NVTemplates (CoreDataProperties)
 
-@dynamic name;
 @dynamic lang;
 @dynamic langShort;
+@dynamic name;
+@dynamic productID;
 @dynamic dict;
 @dynamic word;
 

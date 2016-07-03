@@ -8,14 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		84037B9F1D0A2EFF005EBCAD /* NVTouchedNotifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84037B9E1D0A2EFF005EBCAD /* NVTouchedNotifyVC.m */; settings = {ASSET_TAGS = (); }; };
+		840404FF1D29C03800BEFAEE /* UpYourDictionaryEn.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 840404FD1D29C03800BEFAEE /* UpYourDictionaryEn.sqlite */; settings = {ASSET_TAGS = (); }; };
+		840405001D29C03800BEFAEE /* UpYourDictionaryRu.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 840404FE1D29C03800BEFAEE /* UpYourDictionaryRu.sqlite */; settings = {ASSET_TAGS = (); }; };
+		840405031D29C65E00BEFAEE /* NVButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 840405021D29C65E00BEFAEE /* NVButton.m */; settings = {ASSET_TAGS = (); }; };
+		840405061D29CB8C00BEFAEE /* NVChooseDictThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840405051D29CB8C00BEFAEE /* NVChooseDictThemeCell.m */; settings = {ASSET_TAGS = (); }; };
 		84050DB41D148DFD00692347 /* NVYandexWebViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84050DB31D148DFD00692347 /* NVYandexWebViewVC.m */; settings = {ASSET_TAGS = (); }; };
 		840B0BC81D1C1A68007D3C47 /* NVChooseActiveDictCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B0BC71D1C1A68007D3C47 /* NVChooseActiveDictCell.m */; settings = {ASSET_TAGS = (); }; };
 		840DC06B1D0B9179009C04E8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 840DC06D1D0B9179009C04E8 /* InfoPlist.strings */; };
 		840DC0701D0B917A009C04E8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 840DC0721D0B917A009C04E8 /* InfoPlist.strings */; };
 		840DC0751D0B917D009C04E8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 840DC0771D0B917D009C04E8 /* InfoPlist.strings */; };
 		840DC07A1D0B917F009C04E8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 840DC07C1D0B917F009C04E8 /* Localizable.strings */; };
-		843910A41D0CC95600309FBF /* UpYourDictionaryEn.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 843910A21D0CC95600309FBF /* UpYourDictionaryEn.sqlite */; settings = {ASSET_TAGS = (); }; };
-		843910A51D0CC95600309FBF /* UpYourDictionaryRu.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 843910A31D0CC95600309FBF /* UpYourDictionaryRu.sqlite */; settings = {ASSET_TAGS = (); }; };
 		843BCB6D1CEDE034000F30A3 /* NVCreateTemplateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843BCB6C1CEDE034000F30A3 /* NVCreateTemplateCell.m */; settings = {ASSET_TAGS = (); }; };
 		843BDE091D1C0EAA00F3FBB4 /* iconsUpYourDict29.png in Resources */ = {isa = PBXBuildFile; fileRef = 843BDE001D1C0EAA00F3FBB4 /* iconsUpYourDict29.png */; settings = {ASSET_TAGS = (); }; };
 		843BDE0A1D1C0EAA00F3FBB4 /* iconsUpYourDict40.png in Resources */ = {isa = PBXBuildFile; fileRef = 843BDE011D1C0EAA00F3FBB4 /* iconsUpYourDict40.png */; settings = {ASSET_TAGS = (); }; };
@@ -96,6 +98,12 @@
 /* Begin PBXFileReference section */
 		84037B9D1D0A2EFF005EBCAD /* NVTouchedNotifyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVTouchedNotifyVC.h; sourceTree = "<group>"; };
 		84037B9E1D0A2EFF005EBCAD /* NVTouchedNotifyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVTouchedNotifyVC.m; sourceTree = "<group>"; };
+		840404FD1D29C03800BEFAEE /* UpYourDictionaryEn.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = UpYourDictionaryEn.sqlite; sourceTree = "<group>"; };
+		840404FE1D29C03800BEFAEE /* UpYourDictionaryRu.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = UpYourDictionaryRu.sqlite; sourceTree = "<group>"; };
+		840405011D29C65E00BEFAEE /* NVButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVButton.h; sourceTree = "<group>"; };
+		840405021D29C65E00BEFAEE /* NVButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVButton.m; sourceTree = "<group>"; };
+		840405041D29CB8C00BEFAEE /* NVChooseDictThemeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVChooseDictThemeCell.h; sourceTree = "<group>"; };
+		840405051D29CB8C00BEFAEE /* NVChooseDictThemeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVChooseDictThemeCell.m; sourceTree = "<group>"; };
 		84050DB21D148DFD00692347 /* NVYandexWebViewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVYandexWebViewVC.h; sourceTree = "<group>"; };
 		84050DB31D148DFD00692347 /* NVYandexWebViewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVYandexWebViewVC.m; sourceTree = "<group>"; };
 		840B0BC61D1C1A68007D3C47 /* NVChooseActiveDictCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVChooseActiveDictCell.h; sourceTree = "<group>"; };
@@ -106,8 +114,6 @@
 		840DC0761D0B917D009C04E8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		840DC07B1D0B917F009C04E8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		840DC07E1D0BA9FD009C04E8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
-		843910A21D0CC95600309FBF /* UpYourDictionaryEn.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = UpYourDictionaryEn.sqlite; sourceTree = "<group>"; };
-		843910A31D0CC95600309FBF /* UpYourDictionaryRu.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = UpYourDictionaryRu.sqlite; sourceTree = "<group>"; };
 		843BCB6B1CEDE034000F30A3 /* NVCreateTemplateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVCreateTemplateCell.h; sourceTree = "<group>"; };
 		843BCB6C1CEDE034000F30A3 /* NVCreateTemplateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVCreateTemplateCell.m; sourceTree = "<group>"; };
 		843BDE001D1C0EAA00F3FBB4 /* iconsUpYourDict29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconsUpYourDict29.png; sourceTree = "<group>"; };
@@ -258,6 +264,8 @@
 				8461C6501D146654007F7532 /* NVTouchedNotifyCell.m */,
 				840B0BC61D1C1A68007D3C47 /* NVChooseActiveDictCell.h */,
 				840B0BC71D1C1A68007D3C47 /* NVChooseActiveDictCell.m */,
+				840405041D29CB8C00BEFAEE /* NVChooseDictThemeCell.h */,
+				840405051D29CB8C00BEFAEE /* NVChooseDictThemeCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -392,6 +400,8 @@
 		845894311CE8BC3800D4FE35 /* UpYourDictionary */ = {
 			isa = PBXGroup;
 			children = (
+				845894351CE8BC3800D4FE35 /* AppDelegate.h */,
+				845894361CE8BC3800D4FE35 /* AppDelegate.m */,
 				844FE26D1D26A9A50020215A /* RMStore.strings */,
 				84524A131D2558250099D587 /* InAppPurchases */,
 				845481EE1D2341DE00D90640 /* GoogleService-Info.plist */,
@@ -400,19 +410,19 @@
 				843BDDEB1D1C078B00F3FBB4 /* Icons */,
 				840DC07C1D0B917F009C04E8 /* Localizable.strings */,
 				840DC0771D0B917D009C04E8 /* InfoPlist.strings */,
-				843910A21D0CC95600309FBF /* UpYourDictionaryEn.sqlite */,
-				843910A31D0CC95600309FBF /* UpYourDictionaryRu.sqlite */,
+				840404FD1D29C03800BEFAEE /* UpYourDictionaryEn.sqlite */,
+				840404FE1D29C03800BEFAEE /* UpYourDictionaryRu.sqlite */,
 				844FCFAC1CF475C100DCCA8A /* NVNotificationManager.h */,
 				844FCFAD1CF475C100DCCA8A /* NVNotificationManager.m */,
 				8456915D1CE9EDBB005E4AE1 /* NVServerManager.h */,
 				8456915E1CE9EDBB005E4AE1 /* NVServerManager.m */,
-				845894351CE8BC3800D4FE35 /* AppDelegate.h */,
-				845894361CE8BC3800D4FE35 /* AppDelegate.m */,
 				8446307E1CEB977A004E0994 /* NVDataManager.h */,
 				8446307F1CEB977A004E0994 /* NVDataManager.m */,
 				84F2FDB01CEE619B00714DF0 /* NVMainStrategy.h */,
 				84F2FDB11CEE619B00714DF0 /* NVMainStrategy.m */,
 				84F2FDB31CEE621F00714DF0 /* NVStrategyProtocol.h */,
+				840405011D29C65E00BEFAEE /* NVButton.h */,
+				840405021D29C65E00BEFAEE /* NVButton.m */,
 				8451201C1CF3BE31007759F7 /* Constants.h */,
 				845691631CE9F74D005E4AE1 /* ViewControllers */,
 				845894411CE8BC3800D4FE35 /* Assets.xcassets */,
@@ -577,8 +587,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				843BDE0D1D1C0EAA00F3FBB4 /* iconsUpYourDict80.png in Resources */,
-				843910A41D0CC95600309FBF /* UpYourDictionaryEn.sqlite in Resources */,
 				844FE26B1D26A9A50020215A /* RMStore.strings in Resources */,
+				840405001D29C03800BEFAEE /* UpYourDictionaryRu.sqlite in Resources */,
 				8462CDE11CEA4D0B00E742AC /* Main.storyboard in Resources */,
 				840DC07A1D0B917F009C04E8 /* Localizable.strings in Resources */,
 				843BDE1A1D1C112A00F3FBB4 /* LaunchImageUpYourDict1536x2048.png in Resources */,
@@ -587,6 +597,7 @@
 				843BDE111D1C0EAA00F3FBB4 /* iconsUpYourDict180.png in Resources */,
 				843BDE181D1C112A00F3FBB4 /* LaunchImageUpYourDict640x1136.png in Resources */,
 				843BDE0E1D1C0EAA00F3FBB4 /* iconsUpYourDict87.png in Resources */,
+				840404FF1D29C03800BEFAEE /* UpYourDictionaryEn.sqlite in Resources */,
 				843BDE0B1D1C0EAA00F3FBB4 /* iconsUpYourDict58.png in Resources */,
 				843BDE0A1D1C0EAA00F3FBB4 /* iconsUpYourDict40.png in Resources */,
 				845894451CE8BC3800D4FE35 /* LaunchScreen.storyboard in Resources */,
@@ -594,7 +605,6 @@
 				843BDE101D1C0EAA00F3FBB4 /* iconsUpYourDict152.png in Resources */,
 				845894421CE8BC3800D4FE35 /* Assets.xcassets in Resources */,
 				8479EDB21D22EC260072D8BE /* Images in Resources */,
-				843910A51D0CC95600309FBF /* UpYourDictionaryRu.sqlite in Resources */,
 				840DC0751D0B917D009C04E8 /* InfoPlist.strings in Resources */,
 				845481EF1D2341DE00D90640 /* GoogleService-Info.plist in Resources */,
 				843BDE091D1C0EAA00F3FBB4 /* iconsUpYourDict29.png in Resources */,
@@ -681,6 +691,7 @@
 				84050DB41D148DFD00692347 /* NVYandexWebViewVC.m in Sources */,
 				844630BE1CEBCAD3004E0994 /* NVTemplates+CoreDataProperties.m in Sources */,
 				844630C31CEBCAD3004E0994 /* NVContent.m in Sources */,
+				840405061D29CB8C00BEFAEE /* NVChooseDictThemeCell.m in Sources */,
 				84524A1A1D2558640099D587 /* RMStore.m in Sources */,
 				844E4EAC1CEA50A90012AB04 /* NVLangToVC.m in Sources */,
 				8451201B1CF3B620007759F7 /* NVSettingsVC.m in Sources */,
@@ -710,6 +721,7 @@
 				845691621CE9F741005E4AE1 /* NVCreateNewDictVC.m in Sources */,
 				84524A1F1D255B9F0099D587 /* NVStoreVC.m in Sources */,
 				845894401CE8BC3800D4FE35 /* UpYourDictionary.xcdatamodeld in Sources */,
+				840405031D29C65E00BEFAEE /* NVButton.m in Sources */,
 				84037B9F1D0A2EFF005EBCAD /* NVTouchedNotifyVC.m in Sources */,
 				84F6A3C31CEFCFF6001F3CAC /* NVMenuVC.m in Sources */,
 			);
