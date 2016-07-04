@@ -19,6 +19,7 @@
 }
 -(void) configureInitialState{
     [NVCommonManager setupFontsForBars];
+    [NVCommonManager setupTintColorForCell];
 }
 
 + (void)setupFontsForView:(UIView *)view andSubViews:(BOOL)isSubViews
@@ -101,6 +102,9 @@
     //Add back in the extra padding above and below label on table cell.
     rect.size.height = rect.size.height + 30;
     return rect.size.height;
+}
++ (void)setupTintColorForCell{
+    [[UITableViewCell appearance] setTintColor:[UIColor whiteColor]];
 }
 + (void)setupFontsForBars{
     UIColor* commonColor = [UIColor whiteColor];

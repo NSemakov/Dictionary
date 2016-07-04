@@ -124,7 +124,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ojG-Jp-ihJ">
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="ojG-Jp-ihJ">
                                         <rect key="frame" x="270" y="70" width="20" height="20"/>
                                         <animations/>
                                     </activityIndicatorView>
@@ -134,7 +134,7 @@
                                     </progressView>
                                 </subviews>
                                 <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="B6K-n4-kMc" firstAttribute="top" secondItem="yMz-qh-LQw" secondAttribute="top" constant="37" id="0nf-XZ-cPb"/>
                                     <constraint firstItem="Au7-bg-k0G" firstAttribute="centerX" secondItem="yMz-qh-LQw" secondAttribute="centerX" id="1O1-bA-pGP"/>
