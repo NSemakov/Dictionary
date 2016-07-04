@@ -124,7 +124,7 @@
     /*4.*/
     height = height + [NVCommonManager heightForOneLabel:[NSString stringWithFormat:NSLocalizedString(@"Progress: %@ %%", nil), object.progress] width:CGRectGetWidth(tableView.bounds)];
     
-    return (height < 44 ? 44 : height - 90);
+    return (height < 44 ? 44 : height - 110);
 }
 
 - (NSFetchedResultsController *)fetchedResultsController

@@ -60,9 +60,9 @@
     CGFloat height = 0;
     
     /*1.*/
-    height = height + [NVCommonManager heightForOneLabel:@"some words in 1 line for calculate heigth" width:CGRectGetWidth(tableView.bounds)];
+    height = height + [NVCommonManager heightForOneLabel:@"Language   from" width:CGRectGetWidth(tableView.bounds)];
     /*2.*/
-    height = height + [NVCommonManager heightForOneLabel:@"some words in 1 line for calculate heigth" width:CGRectGetWidth(tableView.bounds)];
+    height = height + [NVCommonManager heightForOneLabel:@"Language   from" width:CGRectGetWidth(tableView.bounds)];
     
     return (height < 44 ? 44 : height);
 }

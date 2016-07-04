@@ -155,13 +155,20 @@
 }*/
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     NSString * proposedNewString = [[textField text] stringByReplacingCharactersInRange:range withString:string];
-    NVCreateTemplateCell* cell = (NVCreateTemplateCell*)[[textField superview] superview];
+    //NVCreateTemplateCell* cell = (NVCreateTemplateCell*)[[textField superview] superview];
+    NVCreateTemplateCell* cell =(NVCreateTemplateCell*) [self GetCellFromTableView:self.tableView Sender:textField];
     NSIndexPath* indexPath =  [self.tableView indexPathForCell:cell];
     NVWords* word = [self.tempWordsSet objectAtIndex:indexPath.row];
     word.word = proposedNewString;
-    
+
     return YES;
 }
+-(UITableViewCell*)GetCellFromTableView:(UITableView*)tableView Sender:(id)sender {
+    CGPoint pos = [sender convertPoint:CGPointZero toView:tableView];
+    NSIndexPath *indexPath = [tableView indexPathForRowAtPoint:pos];
+    return [tableView cellForRowAtIndexPath:indexPath];
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
@@ -200,6 +207,7 @@
 -(NSMutableArray*) validateWords{
     NSMutableArray* arrayOfWrongObjects = [NSMutableArray array];
     for (NVWords* word in self.tempWordsSet) {
+        NSLog(@"word: %@",word.word);
         NSInteger row = [self.tempWordsSet indexOfObject:word];
         //NSIndexPath* indexPath = [NSIndexPath indexPathForRow:row inSection:0];
         

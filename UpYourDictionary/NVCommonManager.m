@@ -104,14 +104,25 @@
 }
 + (void)setupFontsForBars{
     UIColor* commonColor = [UIColor whiteColor];
+    CGFloat commonMultiplier = 1;
     UIImage* imageForBars = [UIImage imageNamed:@"board5"];
     [[UINavigationBar appearance] setTintColor:commonColor];
     [[UINavigationBar appearance] setBackgroundImage:imageForBars forBarMetrics:UIBarMetricsDefault];
-    [[UINavigationBar appearance]setTitleTextAttributes:@{NSForegroundColorAttributeName:commonColor,NSFontAttributeName:[NVCommonManager getReadyFontWithMultiplier:1.2]}];
-    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:commonColor, NSForegroundColorAttributeName,[NVCommonManager getReadyFontWithMultiplier:1.2], NSFontAttributeName, nil] forState:UIControlStateNormal];
+    [[UINavigationBar appearance]setTitleTextAttributes:@{NSForegroundColorAttributeName:commonColor,NSFontAttributeName:[NVCommonManager getReadyFontWithMultiplier:commonMultiplier]}];
     
+    if ([UIBarButtonItem instancesRespondToSelector:@selector(appearanceWhenContainedInInstancesOfClasses:)] ) {//ios9 and higher
+        [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UINavigationBar class]]] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:commonColor, NSForegroundColorAttributeName,[NVCommonManager getReadyFontWithMultiplier:commonMultiplier], NSFontAttributeName, nil] forState:UIControlStateNormal];
+    } else {// < ios9
+        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:commonColor, NSForegroundColorAttributeName,[NVCommonManager getReadyFontWithMultiplier:commonMultiplier], NSFontAttributeName, nil] forState:UIControlStateNormal];
+    }
     [[UIToolbar appearance] setBackgroundImage:imageForBars forToolbarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
-    [[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class], nil] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:commonColor, NSForegroundColorAttributeName,[NVCommonManager getReadyFontWithMultiplier:1.2], NSFontAttributeName, nil] forState:UIControlStateNormal];
+    
+    if ([UIBarButtonItem instancesRespondToSelector:@selector(appearanceWhenContainedInInstancesOfClasses:)]/*[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UIToolbar class]]]*/ ) {//ios9 and higher
+        [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UIToolbar class]]] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:commonColor, NSForegroundColorAttributeName,[NVCommonManager getReadyFontWithMultiplier:commonMultiplier], NSFontAttributeName, nil] forState:UIControlStateNormal];
+    } else {// < ios9
+        [[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class], nil] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:commonColor, NSForegroundColorAttributeName,[NVCommonManager getReadyFontWithMultiplier:commonMultiplier], NSFontAttributeName, nil] forState:UIControlStateNormal];
+    }
+    
 }
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];

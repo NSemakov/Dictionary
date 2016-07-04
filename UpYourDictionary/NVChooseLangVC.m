@@ -100,7 +100,17 @@
     }
     
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
+        return UITableViewAutomaticDimension;
+    }
+    CGFloat height = 0;
+    /*1.*/
+    height = height + [NVCommonManager heightForOneLabel:[self.langs objectAtIndex:indexPath.row] width:CGRectGetWidth(tableView.bounds)];
 
+    
+    return (height < 44 ? 44 : height);
+}
 - (IBAction)buttonDone:(UIBarButtonItem *)sender {}
 
 

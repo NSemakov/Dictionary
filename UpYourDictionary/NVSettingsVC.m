@@ -16,12 +16,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView.estimatedRowHeight = 80;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    /*self.tableView.estimatedRowHeight = 80;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;*/
     self.tableView.allowsSelection = NO;
-    self.tableView.scrollEnabled = NO;
+    //self.tableView.scrollEnabled = NO;
     /*set and then adjust font size if user change it*/
-    [NVCommonManager setupFontsForView:self.tableView andSubViews:YES];
+    //[NVCommonManager setupFontsForView:self.view andSubViews:YES];
     [NVCommonManager setupBackgroundImage:self];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didChangePreferredContentSize:)
@@ -93,7 +93,7 @@
     [self.cellForDayTimeSlider.contentView addConstraints:constraint_POS_V];
     [self.cellForDayTimeSlider.contentView addConstraints:constraint_POS_H];
     
-    
+    //[NVCommonManager setupFontsForView:self.view andSubViews:YES];
     [self calculateInfo];
 }
 
@@ -116,22 +116,29 @@
 }
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
+   /* if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
         return UITableViewAutomaticDimension;
+
     }
+    */
     CGFloat height = 0;
     
     /*1.*/
-    height = height + [NVCommonManager heightForOneLabel:@"some words in 1 line for calculate heigth" width:CGRectGetWidth(tableView.bounds)];
+    height = height + [NVCommonManager heightForOneLabel:[self formatTimeOfNotifiesArrivingSettingString:6 valueTo:23] width:CGRectGetWidth(tableView.bounds)];
     /*2.*/
-    height = height + [NVCommonManager heightForOneLabel:@"some words in 1 line for calculate heigth" width:CGRectGetWidth(tableView.bounds)];
+   // height = height + [NVCommonManager heightForOneLabel:@"some words" width:CGRectGetWidth(tableView.bounds)];
     
-    return (height < 44 ? 44 : height + 30);
+    return (height < 44 ? 44 : height +50);
 }
+
+
+
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [NVCommonManager setupFontsForView:cell andSubViews:YES];
     cell.backgroundColor = [UIColor clearColor];
+    
+    [cell layoutSubviews];
 }
 
 

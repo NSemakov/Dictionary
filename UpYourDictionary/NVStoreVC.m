@@ -56,7 +56,7 @@
         
     }];
     self.tableView.allowsSelection = NO;
-    self.tableView.estimatedRowHeight = 80;
+    self.tableView.estimatedRowHeight = 150;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     /*set and then adjust font size if user change it*/
@@ -69,6 +69,7 @@
                                                object:nil];
     /*end of adjusting font*/
 }
+
 #pragma mark - RMStoreObserver
 - (void)storeDownloadFinished:(NSNotification*)notification{
     NSString* path =  [notification.rm_storeDownload.contentURL path];
@@ -168,6 +169,7 @@
     return _productsRequestFinished ? _products.count : 0;
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
@@ -178,14 +180,13 @@
     SKProduct *product = [[RMStore defaultStore] productForIdentifier:productID];
     cell.labelTitle.text = [[product.localizedTitle stringByAppendingString:@". "] stringByAppendingString:product.localizedDescription];
     cell.labelPrice.text = [RMStore localizedPriceOfProduct:product];
-    /*transfer product id with titleLabel property*/
     cell.buttonBuyOutlet.userData = productID;
     if ([[NSUserDefaults standardUserDefaults] boolForKey:productID]) {
-        //cell.labelDownloadIsEnd.text = @"Purchased!";
-        //cell.buttonBuyOutlet.titleLabel.text = @"Purchased!";
         [cell.buttonBuyOutlet setTitle:NSLocalizedString(@"Purchased!", nil) forState:UIControlStateNormal];
         cell.buttonBuyOutlet.enabled = NO;
     }
+    [NVCommonManager setupFontsForView:cell andSubViews:YES];
+    [cell layoutIfNeeded];
     return cell;
 }
 
@@ -193,7 +194,7 @@
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [NVCommonManager setupFontsForView:cell andSubViews:YES];
+    
     cell.backgroundColor = [UIColor clearColor];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -210,7 +211,7 @@
     
     //its not possible to get the cell label width since this method is called before cellForRow so best we can do
     //is get the table width and subtract the default extra space on either side of the label.
-    CGSize constraintSize = CGSizeMake(tableView.frame.size.width - 100, MAXFLOAT);
+    CGSize constraintSize = CGSizeMake(tableView.frame.size.width - 130, MAXFLOAT);
     CGRect rect = [attributedString boundingRectWithSize:constraintSize options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
     //Add back in the extra padding above and below label on table cell.
     height = rect.size.height;
@@ -218,10 +219,10 @@
     text = [RMStore localizedPriceOfProduct:product];
      attributedString = [[NSAttributedString alloc] initWithString:text attributes:
                                         @{ NSFontAttributeName: [NVCommonManager getReadyFont]}];
-    constraintSize = CGSizeMake(tableView.frame.size.width - 100, MAXFLOAT);
+    constraintSize = CGSizeMake(tableView.frame.size.width - 130, MAXFLOAT);
     rect = [attributedString boundingRectWithSize:constraintSize options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
     //Add back in the extra padding above and below label on table cell.
-    rect.size.height = rect.size.height + 30;
+    rect.size.height = rect.size.height + 50;
     height = height + rect.size.height;
     //if height is smaller than a normal row set it to the normal cell height, otherwise return the bigger dynamic height.
     return (height < 44 ? 44 : height);
@@ -244,7 +245,6 @@
         NSLog(@"%@",str);
     }*/
     return [[NVDataManager sharedManager] addDataToDb:clearArray withName:templateName langShort:langShort productID:productID];
-
 }
 
 -(void)dealloc{

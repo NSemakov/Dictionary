@@ -11,7 +11,7 @@
 @interface NVStoreCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *labelTitle;
 @property (weak, nonatomic) IBOutlet UILabel *labelPrice;
-@property (weak, nonatomic) IBOutlet UILabel *labelDownloadIsEnd;
+//@property (weak, nonatomic) IBOutlet UILabel *labelDownloadIsEnd;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressDownloading;
 
 @property (weak, nonatomic) IBOutlet NVButton *buttonBuyOutlet;
