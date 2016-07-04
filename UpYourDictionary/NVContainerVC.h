@@ -10,10 +10,8 @@
 #import "NVNotificationManager.h"
 #import "NVDataManager.h"
 #import "NVMainStrategy.h"
-//#import "NVSettingsVC.h"
-//#import "NVChooseActiveDictVC.h"
-//@class NVSettingsVC;
-//@class NVChooseActiveDictVC;
+#import "NVCommonManager.h"
+
 @protocol NVNotificationManagerRefreshProgressBarProtocol;
 @interface NVContainerVC : UIViewController <NVNotificationManagerRefreshProgressBarProtocol>
 

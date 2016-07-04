@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UpYourDictionary/NVStoreVC.m"
-            timestampString = "489087213.017278"
+            timestampString = "489339467.263236"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "-storeDownloadFinished:"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UpYourDictionary/NVStoreVC.m"
-            timestampString = "489279039.368295"
+            timestampString = "489339467.263236"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
             landmarkName = "-tableView:heightForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UpYourDictionary/NVChooseActiveDictVC.m"
-            timestampString = "489161599.458942"
+            timestampString = "489338151.85594"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "242"
-            endingLineNumber = "242"
+            startingLineNumber = "262"
+            endingLineNumber = "262"
             landmarkName = "@implementation NVChooseActiveDictVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -218,7 +218,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UpYourDictionary/NVChooseActiveDictVC.m"
-            timestampString = "489157226.959504"
+            timestampString = "489327548.011823"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "44"
@@ -362,11 +362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UpYourDictionary/NVContainerVC.m"
-            timestampString = "489239409.985296"
+            timestampString = "489330988.313713"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
             landmarkName = "-refreshProgressBar"
             landmarkType = "5">
          </BreakpointContent>
@@ -410,11 +410,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UpYourDictionary/NVContainerVC.m"
-            timestampString = "489239409.985296"
+            timestampString = "489330988.313713"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "-generateNotifiesAndRefreshAfterWithText:withDict:sender:"
             landmarkType = "5">
          </BreakpointContent>
@@ -426,11 +426,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UpYourDictionary/NVContainerVC.m"
-            timestampString = "489239409.985296"
+            timestampString = "489330988.313713"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "-dealloc"
             landmarkType = "5">
          </BreakpointContent>
@@ -442,11 +442,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UpYourDictionary/NVContainerVC.m"
-            timestampString = "489239409.985296"
+            timestampString = "489330988.313713"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
             landmarkName = "-buttonCancel:"
             landmarkType = "5">
          </BreakpointContent>
@@ -458,11 +458,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UpYourDictionary/NVStoreVC.m"
-            timestampString = "489279039.368295"
+            timestampString = "489339467.263236"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "232"
-            endingLineNumber = "232"
+            startingLineNumber = "246"
+            endingLineNumber = "246"
             landmarkName = "-addNewTemplate:templateName:langShort:productID:"
             landmarkType = "5">
          </BreakpointContent>

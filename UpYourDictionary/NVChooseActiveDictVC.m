@@ -30,7 +30,7 @@
     [self.viewReference addSubview:self.tableViewReference];
 */
     /* remainder of viewDidLoad */
-    
+ 
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,6 +83,7 @@
     }
 }
 #pragma mark - UITableViewDelegate
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
@@ -107,6 +108,25 @@
         self.curDict = [[sectionInfo objects]  objectAtIndex:indexPath.row];
     }
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
+        return UITableViewAutomaticDimension;
+    }
+    CGFloat height = 0;
+    NVDicts *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
+
+    /*1.*/
+    height = height + [NVCommonManager heightForOneLabel:[NSString stringWithFormat:NSLocalizedString(@"Theme: %@", nil), object.template1.name] width:CGRectGetWidth(tableView.bounds)];
+    /*2.*/
+    height = height + [NVCommonManager heightForOneLabel:[NSString stringWithFormat:NSLocalizedString(@"From: %@", nil), object.from] width:CGRectGetWidth(tableView.bounds)];
+    /*3.*/
+    height = height + [NVCommonManager heightForOneLabel:[NSString stringWithFormat:NSLocalizedString(@"To: %@", nil), object.to] width:CGRectGetWidth(tableView.bounds)];
+    /*4.*/
+    height = height + [NVCommonManager heightForOneLabel:[NSString stringWithFormat:NSLocalizedString(@"Progress: %@ %%", nil), object.progress] width:CGRectGetWidth(tableView.bounds)];
+    
+    return (height < 44 ? 44 : height - 90);
+}
+
 - (NSFetchedResultsController *)fetchedResultsController
 {
     if (_fetchedResultsController != nil) {

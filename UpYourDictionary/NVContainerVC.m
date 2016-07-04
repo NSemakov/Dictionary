@@ -26,6 +26,15 @@
     }
     //[NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(isDownloadEnd) userInfo:nil repeats:NO];
     self.progressView.progress=0.1f;
+    
+    /*set and then adjust font size if user change it*/
+    [NVCommonManager setupFontsForView:self.view andSubViews:YES];
+    [NVCommonManager setupBackgroundImage:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didChangePreferredContentSize:)
+                                                 name:UIContentSizeCategoryDidChangeNotification
+                                               object:nil];
+    /*end of adjusting font*/
 }
 - (void)setIndicatorHidden:(BOOL)newHidden{
     [self.indicator stopAnimating];
@@ -62,8 +71,9 @@
     });
 }
 - (void) dealloc {
-    NSLog(@"dealloc NVContainerVC");
+    //NSLog(@"dealloc NVContainerVC");
     //[NVNotificationManager sharedManager].delegateToRefresh = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 - (void) refreshProgressBar{
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -88,4 +98,7 @@
     self.progressView.hidden = YES;
 }
 
+-(void) didChangePreferredContentSize:(NSNotification*) notification {
+    [NVCommonManager setupFontsForView:self.view andSubViews:YES];
+}
 @end

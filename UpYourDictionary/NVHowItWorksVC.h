@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "NVCommonManager.h"
 @interface NVHowItWorksVC : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *labelAbout;
 

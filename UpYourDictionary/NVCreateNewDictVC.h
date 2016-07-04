@@ -13,7 +13,7 @@
 #import "NVDataManager.h"
 #import "NVServerManager.h"
 #import "NVChooseDictThemeVC.h"
-
+#import "NVCommonManager.h"
 #import "NVLangFromVC.h"
 #import "NVLangToVC.h"
 @class NVChooseDictThemeVC;

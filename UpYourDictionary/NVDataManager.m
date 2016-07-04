@@ -66,7 +66,7 @@
         } else {
             dbName = @"UpYourDictionaryEn";
         }
-        NSLog(@"path:%@",[[NSBundle mainBundle] pathForResource:dbName ofType:@"sqlite"]);
+        //NSLog(@"path:%@",[[NSBundle mainBundle] pathForResource:dbName ofType:@"sqlite"]);
         NSURL *preloadURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:dbName ofType:@"sqlite"]];
         NSError* err = nil;
         

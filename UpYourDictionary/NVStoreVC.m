@@ -58,6 +58,16 @@
     self.tableView.allowsSelection = NO;
     self.tableView.estimatedRowHeight = 80;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
+    /*set and then adjust font size if user change it*/
+    [NVCommonManager setupFontsForView:self.tableView andSubViews:YES];
+    [NVCommonManager setupBackgroundImage:self.tableView];
+    [NVCommonManager setupBackgroundImage:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didChangePreferredContentSize:)
+                                                 name:UIContentSizeCategoryDidChangeNotification
+                                               object:nil];
+    /*end of adjusting font*/
 }
 #pragma mark - RMStoreObserver
 - (void)storeDownloadFinished:(NSNotification*)notification{
@@ -147,6 +157,10 @@
         }
     }];
 }
+
+-(void) didChangePreferredContentSize:(NSNotification*) notification {
+    [NVCommonManager setupFontsForView:self.tableView andSubViews:YES];
+}
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -175,37 +189,37 @@
     return cell;
 }
 
-#pragma mark UITableViewDelegate
 
+#pragma mark - UITableViewDelegate
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [NVCommonManager setupFontsForView:cell andSubViews:YES];
+    cell.backgroundColor = [UIColor clearColor];
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
+        return UITableViewAutomaticDimension;
+    }
     CGFloat height = 0;
     NSString *productID = _products[indexPath.row];
     SKProduct *product = [[RMStore defaultStore] productForIdentifier:productID];
     /*1.*/
     NSString* text = [[product.localizedTitle stringByAppendingString:@". "] stringByAppendingString:product.localizedDescription];
-
     NSAttributedString * attributedString = [[NSAttributedString alloc] initWithString:text attributes:
-                                             @{ NSFontAttributeName: [UIFont systemFontOfSize:17]}];
+                                             @{ NSFontAttributeName: [NVCommonManager getReadyFont]}];
     
     //its not possible to get the cell label width since this method is called before cellForRow so best we can do
     //is get the table width and subtract the default extra space on either side of the label.
     CGSize constraintSize = CGSizeMake(tableView.frame.size.width - 100, MAXFLOAT);
-    
     CGRect rect = [attributedString boundingRectWithSize:constraintSize options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
-    
     //Add back in the extra padding above and below label on table cell.
     height = rect.size.height;
     /*2.*/
     text = [RMStore localizedPriceOfProduct:product];
      attributedString = [[NSAttributedString alloc] initWithString:text attributes:
-                                             @{ NSFontAttributeName: [UIFont systemFontOfSize:17]}];
-    
-    //its not possible to get the cell label width since this method is called before cellForRow so best we can do
-    //is get the table width and subtract the default extra space on either side of the label.
-    constraintSize = CGSizeMake(tableView.frame.size.width - 30, MAXFLOAT);
-    
+                                        @{ NSFontAttributeName: [NVCommonManager getReadyFont]}];
+    constraintSize = CGSizeMake(tableView.frame.size.width - 100, MAXFLOAT);
     rect = [attributedString boundingRectWithSize:constraintSize options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
-    
     //Add back in the extra padding above and below label on table cell.
     rect.size.height = rect.size.height + 30;
     height = height + rect.size.height;
@@ -235,6 +249,7 @@
 
 -(void)dealloc{
     [[RMStore defaultStore]removeStoreObserver:self];
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 #pragma mark - actions
 - (IBAction)buttonRestorePurchases:(UIBarButtonItem *)sender {

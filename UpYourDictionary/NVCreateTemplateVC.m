@@ -19,6 +19,14 @@
     // Do any additional setup after loading the view.
     //UIToolbar* toolbar = self.navigationController.toolbar;
     //[toolbar sizeToFit];
+    /*set and then adjust font size if user change it*/
+    [NVCommonManager setupFontsForView:self.tableView andSubViews:YES];
+    [NVCommonManager setupBackgroundImage:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didChangePreferredContentSize:)
+                                                 name:UIContentSizeCategoryDidChangeNotification
+                                               object:nil];
+    /*end of adjusting font*/
 }
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -49,7 +57,12 @@
     newWord.word=@"";
     self.tempWordsSet = [NSMutableArray new];
     [self.tempWordsSet addObject:newWord];
-    [self.tableView reloadData];    
+    
+
+    
+    [self.tableView reloadData];
+    
+    
     
 }
 - (void)didReceiveMemoryWarning {
@@ -94,7 +107,7 @@
                      completion:nil];
 }
 - (void) dealloc {
- 
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 #pragma mark - UITableViewDataSource
 
@@ -112,12 +125,26 @@
     if (!cell) {
         cell=[[NVCreateTemplateCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
-    NSString* string1stPart = [NSString stringWithFormat:@"%d. ",indexPath.row+1];
+    NSString* string1stPart = [NSString stringWithFormat:@"%ld. ",indexPath.row+1];
     NSString* string2ndPart = NSLocalizedString(@"Word:", @"word in russian");
     cell.labelLeft.text =[string1stPart stringByAppendingString:string2ndPart];
     cell.textField.delegate = self;
     cell.textField.text = (NSString*)[[self.tempWordsSet objectAtIndex:indexPath.row] word];
+    UIColor *color = [UIColor whiteColor];
+    
+    cell.textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Type your word", @"") attributes:@{NSForegroundColorAttributeName: color}];
+    cell.textField.layer.borderColor=[[UIColor whiteColor]CGColor];
+    cell.textField.layer.cornerRadius = 5;
+    cell.textField.clipsToBounds = YES;
+    cell.textField.layer.borderWidth=1.0;
     return cell;
+}
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [NVCommonManager setupFontsForView:cell andSubViews:YES];
+    cell.backgroundColor = [UIColor clearColor];
 }
 #pragma mark - UITextFieldDelegate
 /*- (void)textFieldDidEndEditing:(UITextField *)textField{
@@ -225,5 +252,8 @@
     }
 }
 
-     
+
+-(void) didChangePreferredContentSize:(NSNotification*) notification {
+    [NVCommonManager setupFontsForView:self.tableView andSubViews:YES];
+}
 @end

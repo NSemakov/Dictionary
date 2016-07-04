@@ -41,6 +41,14 @@
                                         initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     [self setToolbarItems:@[buttonLeftFlex, button, buttonRightFlex] animated:YES];
     
+    /*set and then adjust font size if user change it*/
+    [NVCommonManager setupFontsForView:self.tableView andSubViews:YES];
+    [NVCommonManager setupBackgroundImage:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didChangePreferredContentSize:)
+                                                 name:UIContentSizeCategoryDidChangeNotification
+                                               object:nil];
+    /*end of adjusting font*/
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,6 +58,12 @@
 #pragma mark - helpers 
 -(void) buttonYandexSender:(UIButton*) sender {
     [self performSegueWithIdentifier:@"segueYandexVC" sender:sender];
+}
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+-(void) didChangePreferredContentSize:(NSNotification*) notification {
+    [NVCommonManager setupFontsForView:self.tableView andSubViews:YES];
 }
 #pragma mark - Table view data source
 
@@ -62,23 +76,7 @@
     return [self.arrayOfWords count];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSString* text = [self.arrayOfWords objectAtIndex:indexPath.row];
-    NSAttributedString * attributedString = [[NSAttributedString alloc] initWithString:text attributes:
-                                             @{ NSFontAttributeName: [UIFont systemFontOfSize:17]}];
-    
-    //its not possible to get the cell label width since this method is called before cellForRow so best we can do
-    //is get the table width and subtract the default extra space on either side of the label.
-    CGSize constraintSize = CGSizeMake(tableView.frame.size.width - 30, MAXFLOAT);
-    
-    CGRect rect = [attributedString boundingRectWithSize:constraintSize options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
-    
-    //Add back in the extra padding above and below label on table cell.
-    rect.size.height = rect.size.height + 23;
-    
-    //if height is smaller than a normal row set it to the normal cell height, otherwise return the bigger dynamic height.
-    return (rect.size.height < 44 ? 44 : rect.size.height);
-}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NVTouchedNotifyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     if (!cell) {
@@ -103,7 +101,24 @@
         [self.tableView insertRowsAtIndexPaths:@[indexPath]withRowAnimation:UITableViewRowAnimationBottom];
     }
 }
-
+#pragma mark - UITableViewDelegate
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [NVCommonManager setupFontsForView:cell andSubViews:YES];
+    cell.backgroundColor = [UIColor clearColor];
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
+        return UITableViewAutomaticDimension;
+    }
+    CGFloat height = 0;
+    
+    /*1.*/
+    height = height + [NVCommonManager heightForOneLabel:[self.arrayOfWords objectAtIndex:indexPath.row] width:CGRectGetWidth(tableView.bounds)];
+    
+    return (height < 44 ? 44 : height);
+}
+#pragma mark - actions
 - (IBAction)buttonCancel:(UIBarButtonItem *)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }

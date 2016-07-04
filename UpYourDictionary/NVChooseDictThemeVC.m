@@ -142,6 +142,18 @@
         self.curTemplate = [[sectionInfo objects]  objectAtIndex:indexPath.row];
     }
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
+        return UITableViewAutomaticDimension;
+    }
+    CGFloat height = 0;
+    NVTemplates *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
+
+    /*1.*/
+    height = height + [NVCommonManager heightForOneLabel:[object.name stringByAppendingString:[NSString stringWithFormat:NSLocalizedString(@" (words: %d)", nil),[object.word count]]] width:CGRectGetWidth(self.tableView.bounds)];
+    
+    return (height < 44 ? 44 : height);
+}
 
 #pragma mark - actions
 

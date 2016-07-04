@@ -12,6 +12,7 @@
 #import "NVNotificationManager.h"
 #import "NVContainerVC.h"
 #import "TTRangeSlider.h"
+#import "NVCommonManager.h"
 @interface NVSettingsVC : UITableViewController <TTRangeSliderDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *labelTimeToPush;
 @property (weak, nonatomic) IBOutlet UILabel *labelNumberOfWords;

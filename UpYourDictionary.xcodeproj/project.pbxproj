@@ -13,6 +13,7 @@
 		840405031D29C65E00BEFAEE /* NVButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 840405021D29C65E00BEFAEE /* NVButton.m */; settings = {ASSET_TAGS = (); }; };
 		840405061D29CB8C00BEFAEE /* NVChooseDictThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840405051D29CB8C00BEFAEE /* NVChooseDictThemeCell.m */; settings = {ASSET_TAGS = (); }; };
 		84050DB41D148DFD00692347 /* NVYandexWebViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84050DB31D148DFD00692347 /* NVYandexWebViewVC.m */; settings = {ASSET_TAGS = (); }; };
+		840986EB1D29EFCD00E15A70 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 840986E91D29EE0A00E15A70 /* Images */; };
 		840B0BC81D1C1A68007D3C47 /* NVChooseActiveDictCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B0BC71D1C1A68007D3C47 /* NVChooseActiveDictCell.m */; settings = {ASSET_TAGS = (); }; };
 		840DC06B1D0B9179009C04E8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 840DC06D1D0B9179009C04E8 /* InfoPlist.strings */; };
 		840DC0701D0B917A009C04E8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 840DC0721D0B917A009C04E8 /* InfoPlist.strings */; };
@@ -46,6 +47,8 @@
 		844630C31CEBCAD3004E0994 /* NVContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 844630BB1CEBCAD3004E0994 /* NVContent.m */; settings = {ASSET_TAGS = (); }; };
 		844B6EEE1CF72E5B00B093FA /* NVNotifyInUse+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B6EEB1CF72E5B00B093FA /* NVNotifyInUse+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
 		844B6EEF1CF72E5B00B093FA /* NVNotifyInUse.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B6EED1CF72E5B00B093FA /* NVNotifyInUse.m */; settings = {ASSET_TAGS = (); }; };
+		844CC0971D2A7BD00091952C /* NVCommonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 844CC0961D2A7BD00091952C /* NVCommonManager.m */; settings = {ASSET_TAGS = (); }; };
+		844CC0981D2AC4D80091952C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 845894411CE8BC3800D4FE35 /* Assets.xcassets */; settings = {ASSET_TAGS = (); }; };
 		844E4EA91CEA508A0012AB04 /* NVLangFromVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 844E4EA81CEA508A0012AB04 /* NVLangFromVC.m */; settings = {ASSET_TAGS = (); }; };
 		844E4EAC1CEA50A90012AB04 /* NVLangToVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 844E4EAB1CEA50A90012AB04 /* NVLangToVC.m */; settings = {ASSET_TAGS = (); }; };
 		844FCFAE1CF475C100DCCA8A /* NVNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 844FCFAD1CF475C100DCCA8A /* NVNotificationManager.m */; settings = {ASSET_TAGS = (); }; };
@@ -62,7 +65,6 @@
 		845894341CE8BC3800D4FE35 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 845894331CE8BC3800D4FE35 /* main.m */; };
 		845894371CE8BC3800D4FE35 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 845894361CE8BC3800D4FE35 /* AppDelegate.m */; };
 		845894401CE8BC3800D4FE35 /* UpYourDictionary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8458943E1CE8BC3800D4FE35 /* UpYourDictionary.xcdatamodeld */; };
-		845894421CE8BC3800D4FE35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 845894411CE8BC3800D4FE35 /* Assets.xcassets */; };
 		845894451CE8BC3800D4FE35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845894431CE8BC3800D4FE35 /* LaunchScreen.storyboard */; };
 		845894501CE8BC3800D4FE35 /* UpYourDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8458944F1CE8BC3800D4FE35 /* UpYourDictionaryTests.m */; };
 		8458945B1CE8BC3800D4FE35 /* UpYourDictionaryUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8458945A1CE8BC3800D4FE35 /* UpYourDictionaryUITests.m */; };
@@ -70,7 +72,6 @@
 		8461C64E1D1423F2007F7532 /* NVContainerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8461C64D1D1423F2007F7532 /* NVContainerVC.m */; settings = {ASSET_TAGS = (); }; };
 		8461C6511D146654007F7532 /* NVTouchedNotifyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8461C6501D146654007F7532 /* NVTouchedNotifyCell.m */; settings = {ASSET_TAGS = (); }; };
 		8462CDE11CEA4D0B00E742AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8462CDDF1CEA4D0B00E742AC /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
-		8479EDB21D22EC260072D8BE /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 8479EDB11D22EC260072D8BE /* Images */; settings = {ASSET_TAGS = (); }; };
 		84D436131D1DB2FA00FB3F80 /* NVHowItWorksVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D436121D1DB2FA00FB3F80 /* NVHowItWorksVC.m */; settings = {ASSET_TAGS = (); }; };
 		84F2FDB21CEE619B00714DF0 /* NVMainStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F2FDB11CEE619B00714DF0 /* NVMainStrategy.m */; settings = {ASSET_TAGS = (); }; };
 		84F6A3C01CEFCCC2001F3CAC /* NVDicts+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F6A3BF1CEFCCC2001F3CAC /* NVDicts+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
@@ -106,6 +107,7 @@
 		840405051D29CB8C00BEFAEE /* NVChooseDictThemeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVChooseDictThemeCell.m; sourceTree = "<group>"; };
 		84050DB21D148DFD00692347 /* NVYandexWebViewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVYandexWebViewVC.h; sourceTree = "<group>"; };
 		84050DB31D148DFD00692347 /* NVYandexWebViewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVYandexWebViewVC.m; sourceTree = "<group>"; };
+		840986E91D29EE0A00E15A70 /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
 		840B0BC61D1C1A68007D3C47 /* NVChooseActiveDictCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVChooseActiveDictCell.h; sourceTree = "<group>"; };
 		840B0BC71D1C1A68007D3C47 /* NVChooseActiveDictCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVChooseActiveDictCell.m; sourceTree = "<group>"; };
 		840DC0681D0B8A2A009C04E8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -157,6 +159,8 @@
 		844B6EEB1CF72E5B00B093FA /* NVNotifyInUse+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NVNotifyInUse+CoreDataProperties.m"; sourceTree = "<group>"; };
 		844B6EEC1CF72E5B00B093FA /* NVNotifyInUse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVNotifyInUse.h; sourceTree = "<group>"; };
 		844B6EED1CF72E5B00B093FA /* NVNotifyInUse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVNotifyInUse.m; sourceTree = "<group>"; };
+		844CC0951D2A7BD00091952C /* NVCommonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVCommonManager.h; sourceTree = "<group>"; };
+		844CC0961D2A7BD00091952C /* NVCommonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVCommonManager.m; sourceTree = "<group>"; };
 		844E4EA71CEA508A0012AB04 /* NVLangFromVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVLangFromVC.h; sourceTree = "<group>"; };
 		844E4EA81CEA508A0012AB04 /* NVLangFromVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVLangFromVC.m; sourceTree = "<group>"; };
 		844E4EAA1CEA50A90012AB04 /* NVLangToVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVLangToVC.h; sourceTree = "<group>"; };
@@ -203,7 +207,6 @@
 		8461C64F1D146654007F7532 /* NVTouchedNotifyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVTouchedNotifyCell.h; sourceTree = "<group>"; };
 		8461C6501D146654007F7532 /* NVTouchedNotifyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVTouchedNotifyCell.m; sourceTree = "<group>"; };
 		8462CDE01CEA4D0B00E742AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8479EDB11D22EC260072D8BE /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
 		84D436111D1DB2FA00FB3F80 /* NVHowItWorksVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVHowItWorksVC.h; sourceTree = "<group>"; };
 		84D436121D1DB2FA00FB3F80 /* NVHowItWorksVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVHowItWorksVC.m; sourceTree = "<group>"; };
 		84F2FDB01CEE619B00714DF0 /* NVMainStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVMainStrategy.h; sourceTree = "<group>"; };
@@ -405,17 +408,19 @@
 				844FE26D1D26A9A50020215A /* RMStore.strings */,
 				84524A131D2558250099D587 /* InAppPurchases */,
 				845481EE1D2341DE00D90640 /* GoogleService-Info.plist */,
-				8479EDB11D22EC260072D8BE /* Images */,
 				843BDE121D1C110D00F3FBB4 /* LaunchImages */,
 				843BDDEB1D1C078B00F3FBB4 /* Icons */,
 				840DC07C1D0B917F009C04E8 /* Localizable.strings */,
 				840DC0771D0B917D009C04E8 /* InfoPlist.strings */,
+				840986E91D29EE0A00E15A70 /* Images */,
 				840404FD1D29C03800BEFAEE /* UpYourDictionaryEn.sqlite */,
 				840404FE1D29C03800BEFAEE /* UpYourDictionaryRu.sqlite */,
 				844FCFAC1CF475C100DCCA8A /* NVNotificationManager.h */,
 				844FCFAD1CF475C100DCCA8A /* NVNotificationManager.m */,
 				8456915D1CE9EDBB005E4AE1 /* NVServerManager.h */,
 				8456915E1CE9EDBB005E4AE1 /* NVServerManager.m */,
+				844CC0951D2A7BD00091952C /* NVCommonManager.h */,
+				844CC0961D2A7BD00091952C /* NVCommonManager.m */,
 				8446307E1CEB977A004E0994 /* NVDataManager.h */,
 				8446307F1CEB977A004E0994 /* NVDataManager.m */,
 				84F2FDB01CEE619B00714DF0 /* NVMainStrategy.h */,
@@ -590,6 +595,7 @@
 				844FE26B1D26A9A50020215A /* RMStore.strings in Resources */,
 				840405001D29C03800BEFAEE /* UpYourDictionaryRu.sqlite in Resources */,
 				8462CDE11CEA4D0B00E742AC /* Main.storyboard in Resources */,
+				844CC0981D2AC4D80091952C /* Assets.xcassets in Resources */,
 				840DC07A1D0B917F009C04E8 /* Localizable.strings in Resources */,
 				843BDE1A1D1C112A00F3FBB4 /* LaunchImageUpYourDict1536x2048.png in Resources */,
 				843BDE0F1D1C0EAA00F3FBB4 /* iconsUpYourDict120.png in Resources */,
@@ -598,13 +604,12 @@
 				843BDE181D1C112A00F3FBB4 /* LaunchImageUpYourDict640x1136.png in Resources */,
 				843BDE0E1D1C0EAA00F3FBB4 /* iconsUpYourDict87.png in Resources */,
 				840404FF1D29C03800BEFAEE /* UpYourDictionaryEn.sqlite in Resources */,
+				840986EB1D29EFCD00E15A70 /* Images in Resources */,
 				843BDE0B1D1C0EAA00F3FBB4 /* iconsUpYourDict58.png in Resources */,
 				843BDE0A1D1C0EAA00F3FBB4 /* iconsUpYourDict40.png in Resources */,
 				845894451CE8BC3800D4FE35 /* LaunchScreen.storyboard in Resources */,
 				843BDE171D1C112A00F3FBB4 /* LaunchImageUpYourDict640x960.png in Resources */,
 				843BDE101D1C0EAA00F3FBB4 /* iconsUpYourDict152.png in Resources */,
-				845894421CE8BC3800D4FE35 /* Assets.xcassets in Resources */,
-				8479EDB21D22EC260072D8BE /* Images in Resources */,
 				840DC0751D0B917D009C04E8 /* InfoPlist.strings in Resources */,
 				845481EF1D2341DE00D90640 /* GoogleService-Info.plist in Resources */,
 				843BDE091D1C0EAA00F3FBB4 /* iconsUpYourDict29.png in Resources */,
@@ -693,6 +698,7 @@
 				844630C31CEBCAD3004E0994 /* NVContent.m in Sources */,
 				840405061D29CB8C00BEFAEE /* NVChooseDictThemeCell.m in Sources */,
 				84524A1A1D2558640099D587 /* RMStore.m in Sources */,
+				844CC0971D2A7BD00091952C /* NVCommonManager.m in Sources */,
 				844E4EAC1CEA50A90012AB04 /* NVLangToVC.m in Sources */,
 				8451201B1CF3B620007759F7 /* NVSettingsVC.m in Sources */,
 				844630BF1CEBCAD3004E0994 /* NVTemplates.m in Sources */,

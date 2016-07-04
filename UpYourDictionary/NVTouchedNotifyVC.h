@@ -10,6 +10,7 @@
 #import "NVNotifyInUse.h"
 #import "NVNotificationManager.h"
 #import "NVTouchedNotifyCell.h"
+#import "NVCommonManager.h"
 @interface NVTouchedNotifyVC : UITableViewController
 @property (strong, nonatomic) NSMutableArray* arrayOfWords;
 -(void) refreshTableWithNotify:(UILocalNotification*) notify;

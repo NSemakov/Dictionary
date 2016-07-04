@@ -11,6 +11,7 @@
 #import "RMStore.h"
 #import "NVDataManager.h"
 #import "Constants.h"
+#import "NVCommonManager.h"
 @interface NVStoreVC : UIViewController <UITableViewDataSource, UITableViewDelegate , RMStoreObserver>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic) NSArray * products;

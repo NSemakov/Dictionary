@@ -16,8 +16,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.estimatedRowHeight = 80;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.allowsSelection = NO;
     self.tableView.scrollEnabled = NO;
+    /*set and then adjust font size if user change it*/
+    [NVCommonManager setupFontsForView:self.tableView andSubViews:YES];
+    [NVCommonManager setupBackgroundImage:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didChangePreferredContentSize:)
+                                                 name:UIContentSizeCategoryDidChangeNotification
+                                               object:nil];
+    /*end of adjusting font*/
 }
 -(void)viewWillAppear:(BOOL)animated{
     /*time to push and number of words*/    
@@ -70,8 +80,8 @@
     sliderDayTimeChoice.translatesAutoresizingMaskIntoConstraints = NO;
     self.sliderDayTime = sliderDayTimeChoice;
     [self.cellForDayTimeSlider.contentView addSubview:self.sliderDayTime];
-    NSDictionary *viewsDictionary = @{@"sliderDayTime":self.sliderDayTime};
-    NSArray *constraint_POS_V = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[sliderDayTime]-(-6)-|"
+    NSDictionary *viewsDictionary = @{@"sliderDayTime":self.sliderDayTime,@"labelArriveNotifies":self.labelArriveNotifies};
+    NSArray *constraint_POS_V = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[labelArriveNotifies]-(10)-[sliderDayTime]-(-6)-|"
                                                                         options:0
                                                                         metrics:nil
                                                                           views:viewsDictionary];
@@ -91,6 +101,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 #pragma mark - Table view data source
 
@@ -101,7 +114,37 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 4;
 }
+#pragma mark - UITableViewDelegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
+        return UITableViewAutomaticDimension;
+    }
+    CGFloat height = 0;
+    
+    /*1.*/
+    height = height + [NVCommonManager heightForOneLabel:@"some words in 1 line for calculate heigth" width:CGRectGetWidth(tableView.bounds)];
+    /*2.*/
+    height = height + [NVCommonManager heightForOneLabel:@"some words in 1 line for calculate heigth" width:CGRectGetWidth(tableView.bounds)];
+    
+    return (height < 44 ? 44 : height + 30);
+}
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [NVCommonManager setupFontsForView:cell andSubViews:YES];
+    cell.backgroundColor = [UIColor clearColor];
+}
 
+
+-(CGFloat) heightForOneLabel:(UILabel*) label tableView:(UITableView*) tableView {
+    NSString* text = label.text;
+    NSAttributedString * attributedString = [[NSAttributedString alloc] initWithString:text attributes:
+                                             @{ NSFontAttributeName: [NVCommonManager getReadyFont]}];
+    CGSize constraintSize = CGSizeMake(tableView.frame.size.width - 100, MAXFLOAT);
+    CGRect rect = [attributedString boundingRectWithSize:constraintSize options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
+    //Add back in the extra padding above and below label on table cell.
+    rect.size.height = rect.size.height + 30;
+    return rect.size.height;
+}
 #pragma mark TTRangeSliderDelegate
 -(void)rangeSlider:(TTRangeSlider *)sender didChangeSelectedMinimumValue:(float)selectedMinimum andMaximumValue:(float)selectedMaximum{
     self.labelArriveNotifies.text = [self formatTimeOfNotifiesArrivingSettingString:selectedMinimum valueTo:selectedMaximum];
@@ -140,6 +183,10 @@
     }
     
     return [NSString stringWithFormat:NSLocalizedString(@"Time when notifications arrive: %@-%@", nil), stringValueFrom, stringValueTo];
+}
+
+-(void) didChangePreferredContentSize:(NSNotification*) notification {
+    [NVCommonManager setupFontsForView:self.view andSubViews:YES];
 }
 #pragma mark - actions
 - (IBAction)sliderActionTimeToPush:(UISlider *)sender {

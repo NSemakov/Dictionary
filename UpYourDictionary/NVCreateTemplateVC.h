@@ -6,7 +6,7 @@
 //  Copyright © 2016 Admin. All rights reserved.
 //
 
-#import "NVParentViewController.h"
+#import "NVCommonManager.h"
 #import "NVTemplates.h"
 #import "NVWords.h"
 #import "NVDataManager.h"

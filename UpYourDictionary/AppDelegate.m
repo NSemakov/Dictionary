@@ -18,7 +18,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    //[[AFNetworkReachabilityManager sharedManager] startMonitoring];
+
+    [[NVCommonManager sharedManager]configureInitialState];
+    
     [RMStore defaultStore];//add observer of storeKit
     [FIRApp configure];
     FIRDatabaseReference *rootRef= [[FIRDatabase database] reference];

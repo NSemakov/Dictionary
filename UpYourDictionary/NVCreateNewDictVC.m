@@ -18,10 +18,25 @@
 //@synthesize fetchedResultsController=_fetchedResultsController;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.estimatedRowHeight = 80;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
     self.isFieldFromCompleted = NO;
+    
     self.isFieldToCompleted = NO;
     self.isFieldTemplateCompleted = NO;
     // Do any additional setup after loading the view.
+    /*set and then adjust font size if user change it*/
+    [NVCommonManager setupFontsForView:self.tableView andSubViews:YES];
+    [NVCommonManager setupBackgroundImage:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didChangePreferredContentSize:)
+                                                 name:UIContentSizeCategoryDidChangeNotification
+                                               object:nil];
+    /*end of adjusting font*/
+    [NVCommonManager setupFontsForView:[[self.textFieldDictTheme superview] superview] andSubViews:YES];
+    [NVCommonManager setupFontsForView:[[self.textFieldLangFrom superview] superview] andSubViews:YES];
+    [NVCommonManager setupFontsForView:[[self.textFieldLangTo superview] superview] andSubViews:YES];
 }
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
@@ -38,7 +53,19 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
+        return UITableViewAutomaticDimension;
+    }
+    CGFloat height = 0;
+    
+    /*1.*/
+    height = height + [NVCommonManager heightForOneLabel:@"some words in 1 line for calculate heigth" width:CGRectGetWidth(tableView.bounds)];
+    /*2.*/
+    height = height + [NVCommonManager heightForOneLabel:@"some words in 1 line for calculate heigth" width:CGRectGetWidth(tableView.bounds)];
+    
+    return (height < 44 ? 44 : height);
+}
 #pragma mark - NVLangFromVCProtocol
 -(void) refreshDataWithText:(NSString*) text shortLangFrom:(NSString*) shortLangFrom {
     if (shortLangFrom ) {
@@ -175,5 +202,12 @@
         [alert show];
     }
 
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+-(void) didChangePreferredContentSize:(NSNotification*) notification {
+    [NVCommonManager setupFontsForView:self.tableView andSubViews:YES];
 }
 @end
