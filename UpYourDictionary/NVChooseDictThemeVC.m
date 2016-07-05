@@ -156,7 +156,10 @@
 }
 
 #pragma mark - actions
-
+- (IBAction)buttonOk:(UIBarButtonItem *)sender {
+    [self.delegate refreshDataThemeWithTemplate:self.curTemplate];
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (IBAction)buttonAddOwnWords:(UIBarButtonItem *)sender {
     NVChooseDictThemeVC* weakSelf = self;
     if ([UIAlertController class]){
@@ -174,14 +177,27 @@
         [alrtCtrl addAction:okAction1];
         [alrtCtrl addAction:okAction2];
         [alrtCtrl addAction:cancelAction];
+        if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+        {
+            alrtCtrl.popoverPresentationController.barButtonItem = sender;
+            alrtCtrl.popoverPresentationController.sourceView = self.view;
+        }
         [self presentViewController:alrtCtrl animated:YES completion:nil];
+        
     } else {//ios 7 and lower
         UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"New list of words", nil) delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
                                 NSLocalizedString(@"Add own words",nil),
                                 NSLocalizedString(@"Buy ready lists",nil),
                                 nil];
         popup.tag = 1;
-        [popup showInView:self.view];
+        if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+        {
+            [popup showFromBarButtonItem:sender animated:YES];
+        } else {
+           [popup showInView:self.view];
+        }
+        
+        
     }
 }
 #pragma mark - helpers
@@ -262,10 +278,7 @@
     }
     
 }
-- (IBAction)buttonOk:(UIBarButtonItem *)sender {
-    [self.delegate refreshDataThemeWithTemplate:self.curTemplate];
-    [self.navigationController popViewControllerAnimated:YES];
-}
+
 
 
 @end

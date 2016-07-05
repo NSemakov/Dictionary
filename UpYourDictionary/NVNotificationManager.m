@@ -154,13 +154,13 @@
             
 
             NSInteger numberOfScheduledNotifications = [self createNotificationInCycleTimeToPush:timeToPush numberOfNotifies:numberOfNotifies settingsWords:settingsWords prevDate:prevDate maxIter:(62-settingsWords)];
-            /*form first notification after 30 sec*/
+            /*form first notification after 20 sec*/
             if ([[NVServerManager sharedManager] isNetworkAvailable]){
             for (NSInteger j=1; j<=numberOfNotifies; j++) {//формируем пачку нотификаций, если в одну не помещается
                 NSInteger x = settingsWords-(j-1)*wordsInOneNotify;
                 NSInteger n = (x>wordsInOneNotify)? wordsInOneNotify : x;
                 //формируем конкретную нотификацию в зависимости от кол-ва слов.
-                [self startFireAlertAtDate:[NSDate dateWithTimeInterval:30 sinceDate:[NSDate date]] numberOfWords:n iteration:j];
+                [self startFireAlertAtDate:[NSDate dateWithTimeInterval:20 sinceDate:[NSDate date]] numberOfWords:n iteration:j];
             }
             }
             /*-----end of form first notification after 300 sec*/
