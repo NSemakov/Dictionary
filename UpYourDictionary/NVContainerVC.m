@@ -85,12 +85,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (IBAction)buttonCancel:(UIBarButtonItem *)sender {
-    [NVNotificationManager sharedManager].delegateToRefresh = nil;
-    [[NVNotificationManager sharedManager].queue cancelAllOperations];
-    [self.navigationController popToRootViewControllerAnimated:YES];
-}
-
 - (void) isDownloadEndWithText:(NSString*) text {
     //[self.navigationController popToRootViewControllerAnimated:YES];
     self.stringToSet = text;
@@ -101,4 +95,12 @@
 -(void) didChangePreferredContentSize:(NSNotification*) notification {
     [NVCommonManager setupFontsForView:self.view andSubViews:YES];
 }
+#pragma mark - actions
+- (IBAction)buttonCancel:(UIBarButtonItem *)sender {
+    [NVNotificationManager sharedManager].delegateToRefresh = nil;
+    [[NVNotificationManager sharedManager].queue cancelAllOperations];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+
 @end

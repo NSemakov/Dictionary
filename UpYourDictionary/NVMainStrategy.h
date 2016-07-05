@@ -16,7 +16,7 @@
 #import "NVTemplates.h"
 #import "NVWords.h"
 #import "Constants.h"
-#import "NVContainerVC.h"
+//#import "NVContainerVC.h"
 
 @protocol NVMainStrategyProtocol <NSObject>
 

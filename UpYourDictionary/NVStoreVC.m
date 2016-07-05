@@ -23,11 +23,6 @@
     self.title = NSLocalizedString(@"Store", @"");
     [[RMStore defaultStore]addStoreObserver:self];
 
-#warning Replace with your product ids.
-    /*_products = @[@"net.robotmedia.test.consumable",
-                  @"net.robotmedia.test.nonconsumable",
-                  @"net.robotmedia.test.nonconsumable.2"];
-    */
     _products = [RMStore defaultStore].productIdentifiers;
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     __weak NVStoreVC* weakSelf = self;
@@ -84,15 +79,18 @@
     BOOL success = [self addNewTemplate:fullPathSrc templateName:product.localizedTitle langShort:@"en" productID:productID];
     NVStoreCell* cell = [self cellForProductIDFromNotification:notification];
     cell.progressDownloading.hidden = YES;
-    //cell.labelDownloadIsEnd.hidden = NO;
     if (!success) {//все добавлено в базу
         //cell.labelDownloadIsEnd.text = @"Error in processing content";
     } else {
         [cell.buttonBuyOutlet setTitle:NSLocalizedString(@"Purchased!", nil) forState:UIControlStateNormal];
         cell.buttonBuyOutlet.enabled = NO;
+        cell.buttonBuyOutlet.backgroundColor = [UIColor lightGrayColor];
     }
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:[productID stringByAppendingString:NVPostFixThatAddedToShowThisIsContent]];
-
+    
+    NSString* titleString = NSLocalizedString(@"Complete. Now you could choose purchased item from list of themes", @"");
+    NSString* messageString = nil;
+    [self showAlertWithTitle:titleString message:messageString sender:self];
     
 }
 - (void)storeDownloadUpdated:(NSNotification*)notification {
@@ -106,9 +104,11 @@
 -(void)storeRestoreTransactionsFinished:(NSNotification *)notification{
     NSString* titleString = NSLocalizedString(@"Purchased items have been successfully restored", @"");
     NSString* messageString = nil;
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
     [self showAlertWithTitle:titleString message:messageString sender:self];
 }
 -(void)storeRestoreTransactionsFailed:(NSNotification *)notification{
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
     [self showAlertWithTitle:NSLocalizedString(@"Restore Transactions Failed", @"") message:notification.rm_storeError.localizedDescription sender:self];
 }
 
@@ -175,7 +175,7 @@
     static NSString *CellIdentifier = @"Cell";
     NVStoreCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     [cell.buttonBuyOutlet addTarget:self action:@selector(buttonBuyCustomAction:) forControlEvents:UIControlEventTouchUpInside];
-
+    
     NSString *productID = _products[indexPath.row];
     SKProduct *product = [[RMStore defaultStore] productForIdentifier:productID];
     cell.labelTitle.text = [[product.localizedTitle stringByAppendingString:@". "] stringByAppendingString:product.localizedDescription];
@@ -184,6 +184,7 @@
     if ([[NSUserDefaults standardUserDefaults] boolForKey:productID]) {
         [cell.buttonBuyOutlet setTitle:NSLocalizedString(@"Purchased!", nil) forState:UIControlStateNormal];
         cell.buttonBuyOutlet.enabled = NO;
+        cell.buttonBuyOutlet.backgroundColor = [UIColor lightGrayColor];
     }
     [NVCommonManager setupFontsForView:cell andSubViews:YES];
     [cell layoutIfNeeded];
@@ -253,6 +254,7 @@
 }
 #pragma mark - actions
 - (IBAction)buttonRestorePurchases:(UIBarButtonItem *)sender {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
     NSArray* arrayOfProductIds = [[NVDataManager sharedManager] fetchTemplatesForNonNilProductIds];
     [[RMStore defaultStore] restoreTransactionsBySkipReDownloadProductID:arrayOfProductIds OnSuccess:nil failure:nil];
 }

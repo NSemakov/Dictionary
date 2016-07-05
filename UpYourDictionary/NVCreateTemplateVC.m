@@ -125,7 +125,7 @@
     if (!cell) {
         cell=[[NVCreateTemplateCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
-    NSString* string1stPart = [NSString stringWithFormat:@"%ld. ",indexPath.row+1];
+    NSString* string1stPart = [NSString stringWithFormat:@"%d. ",indexPath.row+1];
     NSString* string2ndPart = NSLocalizedString(@"Word:", @"word in russian");
     cell.labelLeft.text =[string1stPart stringByAppendingString:string2ndPart];
     cell.textField.delegate = self;

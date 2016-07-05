@@ -18,6 +18,7 @@
     [super viewDidLoad];
     self.tableView.estimatedRowHeight = 80;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.allowsSelection = NO;
     NSLog(@"NVTouchedNotifyVC");
     
     //yandex button with dynamic font size

@@ -21,6 +21,10 @@
 -(void) addNewNotificationToFullSet{
 
 [self.managedObjectContext performBlock:^{
+    NSBlockOperation *blockOperation=[[NSBlockOperation alloc]init];
+    //self.operation = blockOperation;
+    //__weak NSBlockOperation* weakOperation=blockOperation;
+    [blockOperation addExecutionBlock:^{
     NSInteger notifyLeft = [[UIApplication sharedApplication].scheduledLocalNotifications count];
     NSDate* lastNofityFireDate = [[UIApplication sharedApplication].scheduledLocalNotifications lastObject].fireDate;
     NSInteger settingsWords = [[NSUserDefaults standardUserDefaults] integerForKey:NVNumberOfWordsToShow];
@@ -29,6 +33,9 @@
     if (timeToPush == 0) {
         timeToPush = 2;}
     [self createNotificationInCycleTimeToPush:timeToPush numberOfNotifies:numberOfNotifies settingsWords:settingsWords prevDate:lastNofityFireDate maxIter:(62-notifyLeft*settingsWords)];
+        
+    }];
+    [self.queue addOperation:blockOperation];
 }];
 }
 -(void) refreshProgressOfDictionaryWithCallback:(void(^)(void))callback {

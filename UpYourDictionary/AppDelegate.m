@@ -19,10 +19,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-    [[NVCommonManager sharedManager]configureInitialState];
+    [[NVCommonManager sharedManager]configureInitialState];//bar style
     
     [RMStore defaultStore];//add observer of storeKit
-    [FIRApp configure];
+    [FIRApp configure]; //api from fireBase  configure
     FIRDatabaseReference *rootRef= [[FIRDatabase database] reference];
     [rootRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         //NSLog(@"%@ -> %@", snapshot.key, snapshot.value);
@@ -40,7 +40,7 @@
         }
         
     }];
-
+    
     [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
     if([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)])
     {
@@ -56,6 +56,7 @@
     if (notification) {
         [self actionAfterLocalNotificationArrived:notification];
     }
+    
     //Check if its first time. if first, cancel all previous notifies
     if (![[NSUserDefaults standardUserDefaults] objectForKey:NVIsFirstTimeLaunched]) {
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:NVIsFirstTimeLaunched];
@@ -108,11 +109,11 @@
     }
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
-
+    [[NVNotificationManager sharedManager].queue cancelAllOperations];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    //[[NVMainStrategy sharedManager] startFireAlert];
+    [[NVNotificationManager sharedManager].queue cancelAllOperations];
 }
 - (void) application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
     [[NVNotificationManager sharedManager] addNewNotificationToFullSet];
@@ -131,6 +132,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
+    [[NVNotificationManager sharedManager].queue cancelAllOperations];
 }
 
 @end

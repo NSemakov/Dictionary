@@ -45,8 +45,8 @@
 }
 
 + (void)setupBackgroundImage:(id) viewController {
-    //UIImage* image = [UIImage imageNamed:@"board2"];
-    UIImage* image = [UIImage imageNamed:@"board1_24"];
+    UIImage* image = [UIImage imageNamed:@"board2"];
+    //UIImage* image = [UIImage imageNamed:@"board1_24"];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
     if ([viewController isKindOfClass:[UITableViewController class]]) {
         UITableViewController* tableVC = (UITableViewController*) viewController;
@@ -108,11 +108,13 @@
 }
 + (void)setupFontsForBars{
     UIColor* commonColor = [UIColor whiteColor];
-    CGFloat commonMultiplier = 1;
-    UIImage* imageForBars = [UIImage imageNamed:@"board5"];
+    CGFloat commonMultiplier = 0.9;
+    UIImage* imageForBars = [UIImage imageNamed:@"board3"];
+    //UIImage* imageForBars = [UIImage imageNamed:@"board5"];
+    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
     [[UINavigationBar appearance] setTintColor:commonColor];
     [[UINavigationBar appearance] setBackgroundImage:imageForBars forBarMetrics:UIBarMetricsDefault];
-    [[UINavigationBar appearance]setTitleTextAttributes:@{NSForegroundColorAttributeName:commonColor,NSFontAttributeName:[NVCommonManager getReadyFontWithMultiplier:commonMultiplier]}];
+    [[UINavigationBar appearance]setTitleTextAttributes:@{NSForegroundColorAttributeName:commonColor,NSFontAttributeName:[NVCommonManager getReadyFontWithMultiplier:1]}];
     
     if ([UIBarButtonItem instancesRespondToSelector:@selector(appearanceWhenContainedInInstancesOfClasses:)] ) {//ios9 and higher
         [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UINavigationBar class]]] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:commonColor, NSForegroundColorAttributeName,[NVCommonManager getReadyFontWithMultiplier:commonMultiplier], NSFontAttributeName, nil] forState:UIControlStateNormal];
@@ -121,7 +123,7 @@
     }
     [[UIToolbar appearance] setBackgroundImage:imageForBars forToolbarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
     
-    if ([UIBarButtonItem instancesRespondToSelector:@selector(appearanceWhenContainedInInstancesOfClasses:)]/*[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UIToolbar class]]]*/ ) {//ios9 and higher
+    if ([UIBarButtonItem instancesRespondToSelector:@selector(appearanceWhenContainedInInstancesOfClasses:)]) {//ios9 and higher
         [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UIToolbar class]]] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:commonColor, NSForegroundColorAttributeName,[NVCommonManager getReadyFontWithMultiplier:commonMultiplier], NSFontAttributeName, nil] forState:UIControlStateNormal];
     } else {// < ios9
         [[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class], nil] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:commonColor, NSForegroundColorAttributeName,[NVCommonManager getReadyFontWithMultiplier:commonMultiplier], NSFontAttributeName, nil] forState:UIControlStateNormal];

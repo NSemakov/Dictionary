@@ -1,15 +1,24 @@
+/* No comment provided by engineer. */
+" (words: %d)" = " (слов: %d) ";
+
+/* No comment provided by engineer. */
+" Purchased!" = "Куплено!";
+
 /* about */
 "1. Choose dictionary or make it from your own words. Any language is supported! 
 2. Push app to background. From this moment notifications with words and translation will be shown. Time interval and number of word you could set in settings. 
 3. When notification is arrived, just read it 2-3 times and remove. Eventually each word will be shown 10 times for several days. So you will do learn any words in calm and relaxed way!" = "1. Выберите словарь или создайте новый со своими словами. Поддерживаются все языки!
 2. Сверните приложение, нажав на кнопку Home. С этого момента будут приходить уведомления со словом и его переводом. Интервал времени и число показываемых слов можно установить в настройках.
-3. Когда приходит уведомление, просто прочитайте его 2-3 раза и удалите. В итоге каждое слово будет показано 10 раз вместе с другими словами в течение нескольких дней. Вы просто читаете и запоминаете слова, не открывая приложение!";
+3. Когда приходит уведомление, просто прочитайте его 2-3 раза и удалите. В итоге каждое слово будет показано 10 раз вместе с другими словами в течение нескольких дней. Вы просто читаете слова, не открывая приложение и они сами запоминаются!";
 
 /* No comment provided by engineer. */
 "Add own words" = "Добавить свои слова";
 
 /* attention */
 "Attention" = "Внимание";
+
+/* No comment provided by engineer. */
+"Back" = "Назад";
 
 /* No comment provided by engineer. */
 "Buy ready lists" = "Купить готовые списки";
@@ -19,6 +28,12 @@
 
 /* No comment provided by engineer. */
 "Changing settings in all dictionaries. Please wait about 20 sec. On success this message will disapper." = "Изменение настроек для всех словарей. Пожалуйста подождите около 20 секунд. По окончании это сообщение пропадет.";
+
+/* No comment provided by engineer. */
+"Complete. Now you could choose purchased item from list of themes" = "Загрузка завершена. Теперь Вы можете выбрать купленный список слов для использования в словаре.";
+
+/* No comment provided by engineer. */
+"Dictionary is done! Please, choose another one." = "Словарь выучен! Пожалуйста выберите другой словарь.";
 
 /* No comment provided by engineer. */
 "From: %@" = "Откуда: %@ ";
@@ -51,10 +66,13 @@
 "Payment Transaction Failed" = "Платеж не удался";
 
 /* No comment provided by engineer. */
-"Powered by Yandex.Translate" = "Переведено сервисом Яндекс.Переводчик";
+"Please write in all fields" = "Пожалуйста заполните все поля";
 
 /* No comment provided by engineer. */
-"Preparing dictionary for first use. Please wait about 20 sec. On success this message will disapper." = "Подготовка словаря к первому использованию. Подождите около 20 секунд. По окончании это сообщение пропадет.";
+"Powered by Yandex.Translate" = "Powered by Yandex.Translate ";
+
+/* No comment provided by engineer. */
+"Preparing dictionary for first use. Please wait about 20 sec. On success this message will disapper." = "Подготовка словаря к первому использованию. Пожалуйста подождите около 20 секунд. После подготовки это сообщение пропадет.";
 
 /* No comment provided by engineer. */
 "Preparing is done! Now you can push app to background and just read arriving notification with translation." = "Подготовка завершена! Теперь можно свернуть приложение, нажав кнопку Home и просто читать приходящие уведомления с переводом.";
@@ -66,6 +84,18 @@
 "Progress: %@ %%" = "Прогресс: %@ %%";
 
 /* No comment provided by engineer. */
+"Purchased items cannot be deleted" = "Приобретенные слова не могут быть удалены";
+
+/* No comment provided by engineer. */
+"Purchased items have been successfully restored" = "Приобретенные ранее покупки успешно восстановлены";
+
+/* No comment provided by engineer. */
+"Purchased!" = "Куплено!";
+
+/* No comment provided by engineer. */
+"Restore Transactions Failed" = "Не удалось восстановить покупки";
+
+/* No comment provided by engineer. */
 "Settings are saved!" = "Настройки сохранены!";
 
 /* No comment provided by engineer. */
@@ -75,13 +105,16 @@
 "Theme: %@" = "Тема: %@";
 
 /* No comment provided by engineer. */
-"Time interval to show words: %d hour(s)" = "Интервал времени между приходом уведомлений (в часах): %d";
+"Time interval to show words: %d hour(s)" = "Интервал времени между уведомлениями (в часах): %d";
 
 /* No comment provided by engineer. */
-"Time when notifications arrive: %@:00-%@:00" = "Время, когда приходят уведомления: %1$@:00-%2$@:00 ";
+"Time when notifications arrive: %@-%@" = "Время, когда приходят уведомления: %1$@-%2$@ ";
 
 /* No comment provided by engineer. */
 "To: %@" = "Куда: %@";
+
+/* No comment provided by engineer. */
+"Type your word" = "Введите ваше слово";
 
 /* word in russian */
 "Word:" = "Слово:";

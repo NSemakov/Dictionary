@@ -72,9 +72,9 @@
     sliderDayTimeChoice.step = 1;
     //sliderDayTimeChoice.handleImage =[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Images/Handler" ofType:@"png"]];
     sliderDayTimeChoice.handleDiameter = 29.f;
-    sliderDayTimeChoice.handleColor = [UIColor colorWithRed:0/255.f  green:119/255.f  blue:250/255.f alpha:1];
+    sliderDayTimeChoice.handleColor = [UIColor whiteColor];//colorWithRed:0/255.f  green:119/255.f  blue:250/255.f alpha:1];
     sliderDayTimeChoice.selectedHandleDiameterMultiplier = 1.f;
-    sliderDayTimeChoice.tintColorBetweenHandles = [UIColor colorWithRed:0/255.f  green:119/255.f  blue:250/255.f alpha:1];
+    sliderDayTimeChoice.tintColorBetweenHandles = [UIColor whiteColor];//[UIColor colorWithRed:0/255.f  green:119/255.f  blue:250/255.f alpha:1];
     sliderDayTimeChoice.lineHeight = 2.2f;
     sliderDayTimeChoice.tintColor = [UIColor colorWithRed:180/255.f  green:180/255.f  blue:180/255.f  alpha:1];
     sliderDayTimeChoice.translatesAutoresizingMaskIntoConstraints = NO;
@@ -180,13 +180,13 @@
     return [NSString stringWithFormat:NSLocalizedString(@"Number of words in one time: %d", nil), value];
 }
 -(NSString*) formatTimeOfNotifiesArrivingSettingString:(NSInteger) valueFrom valueTo:(NSInteger) valueTo{
-    NSString* stringValueFrom = (valueFrom < 10) ? [NSString stringWithFormat:@"0%ld:00",valueFrom] : [NSString stringWithFormat:@"%ld:00",valueFrom];
+    NSString* stringValueFrom = (valueFrom < 10) ? [NSString stringWithFormat:@"0%ld:00",(long)valueFrom] : [NSString stringWithFormat:@"%ld:00",(long)valueFrom];
     
     NSString* stringValueTo;
     if (valueTo == 24) {
         stringValueTo = [NSString stringWithFormat:@"23:59"];
     } else {
-        stringValueTo = (valueTo < 10) ? [NSString stringWithFormat:@"0%ld:00",valueTo] : [NSString stringWithFormat:@"%ld:00",valueTo];
+        stringValueTo = (valueTo < 10) ? [NSString stringWithFormat:@"0%ld:00",(long)valueTo] : [NSString stringWithFormat:@"%ld:00",(long)valueTo];
     }
     
     return [NSString stringWithFormat:NSLocalizedString(@"Time when notifications arrive: %@-%@", nil), stringValueFrom, stringValueTo];

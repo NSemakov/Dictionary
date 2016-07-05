@@ -2,10 +2,13 @@
 "0It-qe-PKW.text" = "На какой язык";
 
 /* Class = "UIBarButtonItem"; title = "Add new list"; ObjectID = "4oe-KP-zUr"; */
-"4oe-KP-zUr.title" = "Создать свой";
+"4oe-KP-zUr.title" = "Добавить";
 
 /* Class = "UILabel"; text = "List of words"; ObjectID = "5Xw-03-ti4"; */
 "5Xw-03-ti4.text" = "Список слов";
+
+/* Class = "UIButton"; normalTitle = "Buy"; ObjectID = "5kB-c8-Erq"; */
+"5kB-c8-Erq.normalTitle" = "Купить";
 
 /* Class = "UIBarButtonItem"; title = "Uncheck all"; ObjectID = "6ec-G9-Ceb"; */
 "6ec-G9-Ceb.title" = "Снять выбор";
@@ -15,6 +18,9 @@
 
 /* Class = "UITextField"; placeholder = "Type your word"; ObjectID = "AGI-6n-fQd"; */
 "AGI-6n-fQd.placeholder" = "Введите слово";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Ana-fR-PLT"; */
+"Ana-fR-PLT.text" = "";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "B6K-n4-kMc"; */
 "B6K-n4-kMc.text" = "";
@@ -81,6 +87,9 @@
 
 /* Class = "UITableViewController"; title = "Choose dictionary theme"; ObjectID = "Xit-mw-II1"; */
 "Xit-mw-II1.title" = "Список слов";
+
+/* Class = "UIBarButtonItem"; title = "Restore purchases"; ObjectID = "ZVs-fA-sHP"; */
+"ZVs-fA-sHP.title" = "Восстановить покупки";
 
 /* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "ahQ-xb-ob8"; */
 "ahQ-xb-ob8.title" = "Отмена";

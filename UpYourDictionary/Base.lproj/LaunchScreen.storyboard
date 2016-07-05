@@ -17,26 +17,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IU0-cA-AiK">
-                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="board2" translatesAutoresizingMaskIntoConstraints="NO" id="zpv-Ia-gjO">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <animations/>
-                                <items/>
-                            </toolbar>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s0C-f2-TgP">
-                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
-                                <animations/>
-                                <items/>
-                            </toolbar>
+                            </imageView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="IU0-cA-AiK" secondAttribute="trailing" id="Llr-QB-qZz"/>
-                            <constraint firstAttribute="trailing" secondItem="s0C-f2-TgP" secondAttribute="trailing" id="bQk-LN-jFK"/>
-                            <constraint firstItem="IU0-cA-AiK" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="eLO-Hr-TzC"/>
-                            <constraint firstItem="IU0-cA-AiK" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="hE0-on-GOB"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="s0C-f2-TgP" secondAttribute="bottom" id="puy-G4-8vn"/>
-                            <constraint firstItem="s0C-f2-TgP" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="quV-LK-hJU"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="zpv-Ia-gjO" secondAttribute="bottom" id="l6f-KU-IrV"/>
+                            <constraint firstItem="zpv-Ia-gjO" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="lN5-b5-82V"/>
+                            <constraint firstItem="zpv-Ia-gjO" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="mpT-8J-NZQ"/>
+                            <constraint firstAttribute="trailing" secondItem="zpv-Ia-gjO" secondAttribute="trailing" id="z89-Sq-GiB"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -45,4 +37,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="board2" width="1440" height="2560"/>
+    </resources>
 </document>
