@@ -77,8 +77,7 @@
     }
     return cell;
 }
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void) analogTableView:(UITableView*) tableView didSelectRowAtIndexPath:(NSIndexPath*) indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NSInteger catIndex = [self.langs indexOfObject:self.currentLang];
@@ -99,6 +98,9 @@
         oldCell.accessoryType = UITableViewCellAccessoryNone;
     }
     
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self analogTableView:tableView didSelectRowAtIndexPath:indexPath];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {

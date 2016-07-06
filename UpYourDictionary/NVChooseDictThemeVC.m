@@ -141,6 +141,8 @@
         newCell.accessoryType = UITableViewCellAccessoryCheckmark;
         self.curTemplate = [[sectionInfo objects]  objectAtIndex:indexPath.row];
     }
+    
+    [self.delegate refreshDataThemeWithTemplate:self.curTemplate];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
@@ -148,18 +150,21 @@
     }
     CGFloat height = 0;
     NVTemplates *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-
+    NSString* text = [object.name stringByAppendingString:[NSString stringWithFormat:NSLocalizedString(@" (words: %d)", nil),[object.word count]]];
+    if (object.productID) {
+        text = [text stringByAppendingString:NSLocalizedString(@" Purchased!", nil)];
+    }
     /*1.*/
-    height = height + [NVCommonManager heightForOneLabel:[object.name stringByAppendingString:[NSString stringWithFormat:NSLocalizedString(@" (words: %d)", nil),[object.word count]]] width:CGRectGetWidth(self.tableView.bounds)];
+    height = height + [NVCommonManager heightForOneLabel:text width:CGRectGetWidth(self.tableView.bounds)-20];
     
     return (height < 44 ? 44 : height);
 }
 
 #pragma mark - actions
-- (IBAction)buttonOk:(UIBarButtonItem *)sender {
+/*- (IBAction)buttonOk:(UIBarButtonItem *)sender {
     [self.delegate refreshDataThemeWithTemplate:self.curTemplate];
     [self.navigationController popViewControllerAnimated:YES];
-}
+}*/
 - (IBAction)buttonAddOwnWords:(UIBarButtonItem *)sender {
     NVChooseDictThemeVC* weakSelf = self;
     if ([UIAlertController class]){

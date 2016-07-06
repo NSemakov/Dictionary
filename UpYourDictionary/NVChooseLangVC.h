@@ -10,9 +10,10 @@
 #import "NVParentViewController.h"
 
 @interface NVChooseLangVC : NVParentViewController
-- (IBAction)buttonDone:(UIBarButtonItem *)sender;
-
+/*- (IBAction)buttonDone:(UIBarButtonItem *)sender;
+*/
 @property (strong,nonatomic) NSString* currentLang;
 @property (strong,nonatomic) NSString* currentShort;//to or from
 
+- (void) analogTableView:(UITableView*) tableView didSelectRowAtIndexPath:(NSIndexPath*) indexPath;
 @end

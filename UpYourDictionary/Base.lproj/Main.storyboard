@@ -473,13 +473,7 @@
                             <outlet property="delegate" destination="LUf-e9-MdS" id="w65-Tj-nDD"/>
                         </connections>
                     </tableView>
-                    <toolbarItems>
-                        <barButtonItem title="Save" id="GJd-vH-zhG">
-                            <connections>
-                                <action selector="buttonDone:" destination="LUf-e9-MdS" id="45b-bG-pzf"/>
-                            </connections>
-                        </barButtonItem>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Language &quot;From&quot;" id="v2x-Km-VFS"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8pp-01-Njv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -512,13 +506,7 @@
                             <outlet property="delegate" destination="8ld-mN-lLk" id="XgC-Ir-QYo"/>
                         </connections>
                     </tableView>
-                    <toolbarItems>
-                        <barButtonItem title="Save" id="UMW-2g-xxF">
-                            <connections>
-                                <action selector="buttonDone:" destination="8ld-mN-lLk" id="V2k-v0-v7d"/>
-                            </connections>
-                        </barButtonItem>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Language &quot;To&quot;" id="sdu-WR-7QH"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bda-Dl-LEW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -569,13 +557,7 @@
                             <outlet property="delegate" destination="Xit-mw-II1" id="PGO-F7-Bbn"/>
                         </connections>
                     </tableView>
-                    <toolbarItems>
-                        <barButtonItem title="Save" id="IOC-CG-BzW">
-                            <connections>
-                                <action selector="buttonOk:" destination="Xit-mw-II1" id="Emq-f3-ImD"/>
-                            </connections>
-                        </barButtonItem>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="List of words" id="e7V-0p-Q0K">
                         <barButtonItem key="rightBarButtonItem" title="Add new list" id="4oe-KP-zUr">
                             <connections>

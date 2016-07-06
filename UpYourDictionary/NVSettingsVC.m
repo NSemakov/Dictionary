@@ -118,16 +118,11 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
    /* if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
         return UITableViewAutomaticDimension;
-
     }
     */
     CGFloat height = 0;
-    
     /*1.*/
     height = height + [NVCommonManager heightForOneLabel:[self formatTimeOfNotifiesArrivingSettingString:6 valueTo:23] width:CGRectGetWidth(tableView.bounds)];
-    /*2.*/
-   // height = height + [NVCommonManager heightForOneLabel:@"some words" width:CGRectGetWidth(tableView.bounds)];
-    
     return (height < 44 ? 44 : height +50);
 }
 
@@ -137,7 +132,6 @@
 {
     [NVCommonManager setupFontsForView:cell andSubViews:YES];
     cell.backgroundColor = [UIColor clearColor];
-    
     [cell layoutSubviews];
 }
 
@@ -195,6 +189,89 @@
 -(void) didChangePreferredContentSize:(NSNotification*) notification {
     [NVCommonManager setupFontsForView:self.view andSubViews:YES];
 }
+
+
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    switch (buttonIndex) {
+        case 0:{
+            [self.navigationController popViewControllerAnimated:YES];
+            break;
+        }
+        case 1:{
+            [self saveSettings];
+        }
+            break;
+        default:
+            break;
+    }
+    
+}
+#pragma mark - helpers
+- (void) askIfCancelOrSave{
+    if ([UIAlertController class]){
+        // ios 8 or higher
+        UIAlertController *alertCtrl=[UIAlertController alertControllerWithTitle:NSLocalizedString(@"You have changed settings. Cancel without saving?", @"") message:nil preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* okAction=[UIAlertAction actionWithTitle:NSLocalizedString(@"Save",nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self saveSettings];
+        }];
+        UIAlertAction* cancelAction=[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel all changes",nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+        [alertCtrl addAction:okAction];
+        [alertCtrl addAction:cancelAction];
+        [self presentViewController:alertCtrl animated:YES completion:nil];
+    } else { //ios 7 and lower
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Cancel without saving?", @"") message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"Save",nil), nil];
+        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        [alert show];
+    }
+}
+-(void) saveSettings {
+    int sliderValueTime;
+    sliderValueTime = self.sliderTimeToPush.value;
+    int sliderValueNumberOfWords;
+    sliderValueNumberOfWords = self.sliderNumberOfWords.value;
+    int sliderDayTimeMinValue;
+    sliderDayTimeMinValue = self.sliderDayTime.selectedMinimum;
+    int sliderDayTimeMaxValue;
+    sliderDayTimeMaxValue = self.sliderDayTime.selectedMaximum;
+    [[NSUserDefaults standardUserDefaults] setInteger:sliderValueTime forKey:NVTimeToPush];
+    [[NSUserDefaults standardUserDefaults] setInteger:sliderValueNumberOfWords forKey:NVNumberOfWordsToShow];
+    [[NSUserDefaults standardUserDefaults] setInteger:sliderDayTimeMinValue forKey:NVMinimumDayTimeAllowedForNotification];
+    [[NSUserDefaults standardUserDefaults] setInteger:sliderDayTimeMaxValue forKey:NVMaximumDayTimeAllowedForNotification];
+    //create local notifications in background
+    [self performSegueWithIdentifier:@"segueShowDownLoadingScreen2" sender:nil];
+    [self.loadingVC generateNotifiesAndRefreshAfterWithText:NSLocalizedString(@"Settings are saved!", nil) withDict:nil sender:self];
+}
+-(BOOL) areSettingsTheSame{
+    
+    //get initial values
+    NSInteger timeToPush = [[[NSUserDefaults standardUserDefaults] valueForKey:NVTimeToPush] integerValue];
+    NSInteger numberOfWordsToShow = [[[NSUserDefaults standardUserDefaults] valueForKey:NVNumberOfWordsToShow] integerValue];
+    NSInteger savedDayTimeMinValue = [[[NSUserDefaults standardUserDefaults] valueForKey:NVMinimumDayTimeAllowedForNotification] integerValue];
+    NSInteger savedDayTimeMaxValue = [[[NSUserDefaults standardUserDefaults] valueForKey:NVMaximumDayTimeAllowedForNotification] integerValue];
+    // save slider's value
+    int sliderValueTime;
+    sliderValueTime = self.sliderTimeToPush.value;
+    int sliderValueNumberOfWords;
+    sliderValueNumberOfWords = self.sliderNumberOfWords.value;
+    int sliderDayTimeMinValue;
+    sliderDayTimeMinValue = self.sliderDayTime.selectedMinimum;
+    int sliderDayTimeMaxValue;
+    sliderDayTimeMaxValue = self.sliderDayTime.selectedMaximum;
+    //NSLog(@"min value saved: %ld, min value selected: %d, max value saved: %ld, max value selected: %d",(long)savedDayTimeMinValue, sliderDayTimeMinValue,(long)savedDayTimeMaxValue,  sliderDayTimeMaxValue);
+    if (sliderValueTime == timeToPush &&
+        sliderValueNumberOfWords == numberOfWordsToShow &&
+        sliderDayTimeMinValue == savedDayTimeMinValue &&
+        sliderDayTimeMaxValue == savedDayTimeMaxValue) {
+        return YES;
+    } else {
+        return NO;
+    }
+    
+}
 #pragma mark - actions
 - (IBAction)sliderActionTimeToPush:(UISlider *)sender {
     
@@ -215,40 +292,20 @@
 }
 
 - (IBAction)buttonSave:(UIBarButtonItem *)sender {
-
-    //get initial values
-    NSInteger timeToPush = [[[NSUserDefaults standardUserDefaults] valueForKey:NVTimeToPush] integerValue];
-    NSInteger numberOfWordsToShow = [[[NSUserDefaults standardUserDefaults] valueForKey:NVNumberOfWordsToShow] integerValue];
-    NSInteger savedDayTimeMinValue = [[[NSUserDefaults standardUserDefaults] valueForKey:NVMinimumDayTimeAllowedForNotification] integerValue];
-    NSInteger savedDayTimeMaxValue = [[[NSUserDefaults standardUserDefaults] valueForKey:NVMaximumDayTimeAllowedForNotification] integerValue];
-    // save slider's value
-    int sliderValueTime;
-    sliderValueTime = self.sliderTimeToPush.value;
-    int sliderValueNumberOfWords;
-    sliderValueNumberOfWords = self.sliderNumberOfWords.value;
-    int sliderDayTimeMinValue;
-    sliderDayTimeMinValue = self.sliderDayTime.selectedMinimum;
-    int sliderDayTimeMaxValue;
-    sliderDayTimeMaxValue = self.sliderDayTime.selectedMaximum;
-    //NSLog(@"min value saved: %ld, min value selected: %d, max value saved: %ld, max value selected: %d",(long)savedDayTimeMinValue, sliderDayTimeMinValue,(long)savedDayTimeMaxValue,  sliderDayTimeMaxValue);
-    if (sliderValueTime == timeToPush &&
-        sliderValueNumberOfWords == numberOfWordsToShow &&
-        sliderDayTimeMinValue == savedDayTimeMinValue &&
-        sliderDayTimeMaxValue == savedDayTimeMaxValue) {
+    if ([self areSettingsTheSame]) {
         [self.navigationController popViewControllerAnimated:YES];
     } else {
-        [[NSUserDefaults standardUserDefaults] setInteger:sliderValueTime forKey:NVTimeToPush];
-        [[NSUserDefaults standardUserDefaults] setInteger:sliderValueNumberOfWords forKey:NVNumberOfWordsToShow];
-        [[NSUserDefaults standardUserDefaults] setInteger:sliderDayTimeMinValue forKey:NVMinimumDayTimeAllowedForNotification];
-        [[NSUserDefaults standardUserDefaults] setInteger:sliderDayTimeMaxValue forKey:NVMaximumDayTimeAllowedForNotification];
-        //create local notifications in background
-        [self performSegueWithIdentifier:@"segueShowDownLoadingScreen2" sender:nil];
-        [self.loadingVC generateNotifiesAndRefreshAfterWithText:NSLocalizedString(@"Settings are saved!", nil) withDict:nil sender:self];
+        [self saveSettings];
     }
 }
 
 - (IBAction)buttonCancel:(UIBarButtonItem *)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    if ([self areSettingsTheSame]) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        [self askIfCancelOrSave];
+        
+    }
 }
 
 @end

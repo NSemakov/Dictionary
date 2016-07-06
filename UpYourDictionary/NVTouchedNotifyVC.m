@@ -34,6 +34,7 @@
     myButton.titleLabel.lineBreakMode = NSLineBreakByClipping;
     myButton.titleLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
     myButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    
     UIBarButtonItem *button = [[UIBarButtonItem alloc]
                                initWithCustomView:myButton];
     UIBarButtonItem *buttonLeftFlex = [[UIBarButtonItem alloc]

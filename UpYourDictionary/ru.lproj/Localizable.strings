@@ -9,7 +9,7 @@
 2. Push app to background. From this moment notifications with words and translation will be shown. Time interval and number of word you could set in settings. 
 3. When notification is arrived, just read it 2-3 times and remove. Eventually each word will be shown 10 times for several days. So you will do learn any words in calm and relaxed way!" = "1. Выберите словарь или создайте новый со своими словами. Поддерживаются все языки!
 2. Сверните приложение, нажав на кнопку Home. С этого момента будут приходить уведомления со словом и его переводом. Интервал времени и число показываемых слов можно установить в настройках.
-3. Когда приходит уведомление, просто прочитайте его 2-3 раза и удалите. В итоге каждое слово будет показано 10 раз вместе с другими словами в течение нескольких дней. Вы просто читаете слова, не открывая приложение и они сами запоминаются!";
+3. Когда приходит уведомление, просто прочитайте его 2-3 раза и удалите. В итоге каждое слово будет показано 10 раз вместе с другими словами в течение нескольких дней. Вы просто читаете и запоминаете слова, не открывая приложение!";
 
 /* No comment provided by engineer. */
 "Add own words" = "Добавить свои слова";

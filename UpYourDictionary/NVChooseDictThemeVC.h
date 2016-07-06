@@ -18,7 +18,7 @@
 @property (strong,nonatomic) UIAlertController* alertCtrl;
 
 - (IBAction)buttonAddOwnWords:(UIBarButtonItem *)sender;
-- (IBAction)buttonOk:(UIBarButtonItem *)sender;
+/*- (IBAction)buttonOk:(UIBarButtonItem *)sender;*/
 
 
 @end

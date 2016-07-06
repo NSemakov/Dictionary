@@ -132,42 +132,88 @@
 
 - (IBAction)buttonSave:(UIBarButtonItem *)sender {
     //check for filled filds
-    if (self.isFieldFromCompleted && self.isFieldToCompleted && self.isFieldTemplateCompleted) {
-        self.dict.from = self.textFieldLangFrom.text;
-        self.dict.to = self.textFieldLangTo.text;
-        //self.dict.template1 = [self.managedObjectContext objectWithID:[self.templateForDict objectID]];
-        self.dict.template1 = self.templateForDict;
-        self.dict.progress = @(0);
-        self.dict.isActive = @(false);
-        self.dict.fromShort = self.langFromShort;
-        self.dict.toShort = self.langToShort;
-        if (!self.dict.template1.lang) {//если язык шаблона не установлен, значит был создан новый шаблон и ему выставляется язык, который был выбран в поле from
-            self.dict.template1.lang = self.dict.from;
-            self.dict.template1.langShort=self.dict.fromShort;
-        }
-        
-        
-        NSError* error = nil;
-        if (![self.managedObjectContext save:&error]) {
-            NSLog(@"error:%@",error.localizedDescription);
-            NSLog(@"user info:%@",error.userInfo);
-        } else {
-            [self.navigationController popViewControllerAnimated:YES];
-        }
-
+    if ([self checkForCompletionAllFields]) {
+        [self saveNewDictionary];
     } else {
         [self showWarningMessage];
     }
-    
 }
 
 - (IBAction)actionBackButton:(UIBarButtonItem *)sender {
+    if ([self checkForCompletionAllFields]) {
+        [self askIfCancelOrSave];
+    } else {
+        [self.managedObjectContext rollback];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
     
-    [self.managedObjectContext rollback];
-    [NSThread sleepForTimeInterval:.5];
-    [self.navigationController popViewControllerAnimated:YES];
+}
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    switch (buttonIndex) {
+        case 0:{
+            [self.managedObjectContext rollback];
+            [self.navigationController popViewControllerAnimated:YES];
+            break;
+        }
+        case 1:{
+            [self saveNewDictionary];
+        }
+            break;
+        default:
+            break;
+    }
+    
 }
 #pragma mark - helpers
+- (void) askIfCancelOrSave{
+    if ([UIAlertController class]){
+        // ios 8 or higher
+        UIAlertController *alertCtrl=[UIAlertController alertControllerWithTitle:NSLocalizedString(@"Cancel without saving?", @"") message:nil preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* okAction=[UIAlertAction actionWithTitle:NSLocalizedString(@"Save",nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self saveNewDictionary];
+        }];
+        UIAlertAction* cancelAction=[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel all changes",nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self.managedObjectContext rollback];
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+        [alertCtrl addAction:okAction];
+        [alertCtrl addAction:cancelAction];
+        [self presentViewController:alertCtrl animated:YES completion:nil];
+    } else { //ios 7 and lower
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Cancel without saving?", @"") message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"Save",nil), nil];
+        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        [alert show];
+    }
+}
+
+- (BOOL) checkForCompletionAllFields{
+    return self.isFieldFromCompleted && self.isFieldToCompleted && self.isFieldTemplateCompleted;
+}
+- (void) saveNewDictionary{
+    self.dict.from = self.textFieldLangFrom.text;
+    self.dict.to = self.textFieldLangTo.text;
+    //self.dict.template1 = [self.managedObjectContext objectWithID:[self.templateForDict objectID]];
+    self.dict.template1 = self.templateForDict;
+    self.dict.progress = @(0);
+    self.dict.isActive = @(false);
+    self.dict.fromShort = self.langFromShort;
+    self.dict.toShort = self.langToShort;
+    if (!self.dict.template1.lang) {//если язык шаблона не установлен, значит был создан новый шаблон и ему выставляется язык, который был выбран в поле from
+        self.dict.template1.lang = self.dict.from;
+        self.dict.template1.langShort=self.dict.fromShort;
+    }
+    NSError* error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"error:%@",error.localizedDescription);
+        NSLog(@"user info:%@",error.userInfo);
+        
+    } else {
+        
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (NVTemplates*) fetchTemplateWithTemplate:(NVTemplates*) template{
     NSManagedObjectID* objectID = [template objectID];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
