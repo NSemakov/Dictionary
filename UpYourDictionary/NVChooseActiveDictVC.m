@@ -168,6 +168,22 @@
     
     return _fetchedResultsController;
 }
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    switch (buttonIndex) {
+        case 0:{
+            [self.navigationController popViewControllerAnimated:YES];
+            break;
+        }
+        case 1:{
+            [self buttonSave:nil];
+        }
+            break;
+        default:
+            break;
+    }
+    
+}
 #pragma mark - helpers
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"segueShowDownLoadingScreen"]) {
@@ -176,8 +192,29 @@
         self.loadingVC = vc;
     }
 }
+- (void) askIfCancelOrSave{
+    if ([UIAlertController class]){
+        // ios 8 or higher
+        UIAlertController *alertCtrl=[UIAlertController alertControllerWithTitle:NSLocalizedString(@"Cancel without saving?", @"") message:nil preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* okAction=[UIAlertAction actionWithTitle:NSLocalizedString(@"Save",nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self buttonSave:nil];
+        }];
+        UIAlertAction* cancelAction=[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel",nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+        [alertCtrl addAction:okAction];
+        [alertCtrl addAction:cancelAction];
+        [self presentViewController:alertCtrl animated:YES completion:nil];
+    } else { //ios 7 and lower
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Cancel without saving?", @"") message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"Save",nil), nil];
+        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        [alert show];
+    }
+}
 #pragma mark - actions
 - (IBAction)buttonAdd:(UIBarButtonItem *)sender {
+    
 }
 
 - (IBAction)buttonSave:(UIBarButtonItem *)sender {
@@ -241,8 +278,14 @@
 }
 
 - (IBAction)buttonCancel:(UIBarButtonItem *)sender {
-    [self.managedObjectContext rollback];
-    [self.navigationController popViewControllerAnimated:YES];
+    if (![self.curDict isEqual:self.activeDict]) {//smth has changed
+        [self askIfCancelOrSave];
+        
+    } else {
+       [self.managedObjectContext rollback];
+       [self.navigationController popViewControllerAnimated:YES]; 
+    }
+    
 }
 
 - (IBAction)buttonDisableChoise:(UIBarButtonItem *)sender {

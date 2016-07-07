@@ -27,6 +27,12 @@
 "Cancel" = "Отмена";
 
 /* No comment provided by engineer. */
+"Cancel all changes" = "Отменить все изменения";
+
+/* No comment provided by engineer. */
+"Cancel without saving?" = "Отменить не сохраняя?";
+
+/* No comment provided by engineer. */
 "Changing settings in all dictionaries. Please wait about 20 sec. On success this message will disapper." = "Изменение настроек для всех словарей. Пожалуйста подождите около 20 секунд. По окончании это сообщение пропадет.";
 
 /* No comment provided by engineer. */
@@ -96,6 +102,9 @@
 "Restore Transactions Failed" = "Не удалось восстановить покупки";
 
 /* No comment provided by engineer. */
+"Save" = "Сохранить";
+
+/* No comment provided by engineer. */
 "Settings are saved!" = "Настройки сохранены!";
 
 /* No comment provided by engineer. */
@@ -121,4 +130,7 @@
 
 /* No comment provided by engineer. */
 "Words can't be empty. Please fill words in next rows: " = "Слова не должны быть пустыми. Пожалуйста заполните следующие строки: ";
+
+/* No comment provided by engineer. */
+"You have changed settings. Cancel without saving?" = "Вы изменили настройки. Отменить изменения?";
 

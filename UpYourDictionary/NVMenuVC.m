@@ -27,6 +27,12 @@
                                                  name:UIContentSizeCategoryDidChangeNotification
                                                object:nil];
     /*end of adjusting font*/
+    
+    
+    
+    
+    
+   
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -51,4 +57,6 @@
 -(void) didChangePreferredContentSize:(NSNotification*) notification {
     [NVCommonManager setupFontsForView:self.view andSubViews:YES];
 }
+
+
 @end

@@ -21,9 +21,24 @@
     self.tableView.allowsSelection = NO;
     NSLog(@"NVTouchedNotifyVC");
     
+        /*set and then adjust font size if user change it*/
+    [NVCommonManager setupFontsForView:self.tableView andSubViews:YES];
+    [NVCommonManager setupBackgroundImage:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didChangePreferredContentSize:)
+                                                 name:UIContentSizeCategoryDidChangeNotification
+                                               object:nil];
+    /*end of adjusting font*/
+}
+-(void)viewWillAppear:(BOOL)animated{
     //yandex button with dynamic font size
     UIButton *myButton = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    [myButton setTitle:NSLocalizedString(@"Powered by Yandex.Translate", nil) forState:UIControlStateNormal];
+    //[myButton setTitle:NSLocalizedString(@"Powered by Yandex.Translate", nil) forState:UIControlStateNormal];
+    NSDictionary *dict1 = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] init];
+    [attString appendAttributedString:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"Powered by Yandex.Translate", nil)    attributes:dict1]];
+
+    [myButton setAttributedTitle:attString forState:UIControlStateNormal];
     [myButton setFrame: CGRectMake(0, 0, 300, self.navigationController.toolbar.frame.size.height)];
     
     [myButton.titleLabel setFont: [UIFont boldSystemFontOfSize:100.0]];
@@ -34,7 +49,7 @@
     myButton.titleLabel.lineBreakMode = NSLineBreakByClipping;
     myButton.titleLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
     myButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-    
+    [myButton.titleLabel setTextColor:[UIColor whiteColor]];
     UIBarButtonItem *button = [[UIBarButtonItem alloc]
                                initWithCustomView:myButton];
     UIBarButtonItem *buttonLeftFlex = [[UIBarButtonItem alloc]
@@ -43,16 +58,8 @@
                                         initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     [self setToolbarItems:@[buttonLeftFlex, button, buttonRightFlex] animated:YES];
     
-    /*set and then adjust font size if user change it*/
-    [NVCommonManager setupFontsForView:self.tableView andSubViews:YES];
-    [NVCommonManager setupBackgroundImage:self];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didChangePreferredContentSize:)
-                                                 name:UIContentSizeCategoryDidChangeNotification
-                                               object:nil];
-    /*end of adjusting font*/
-}
 
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

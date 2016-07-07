@@ -52,9 +52,6 @@
 /* Class = "UILabel"; text = "You will know 50 words in "; ObjectID = "EyL-Yp-7Vl"; */
 "EyL-Yp-7Vl.text" = "Вы выучите 50 слов за ";
 
-/* (No Commment) */
-"GJd-vH-zhG.title" = "Сохранить";
-
 /* Class = "UIBarButtonItem"; title = " "; ObjectID = "GfC-BT-hBu"; */
 "GfC-BT-hBu.title" = " ";
 
@@ -67,9 +64,6 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "Hke-z1-r5J"; */
 "Hke-z1-r5J.text" = "";
 
-/* (No Commment) */
-"IOC-CG-BzW.title" = "Сохранить";
-
 /* Class = "UINavigationItem"; title = "How it works"; ObjectID = "LxX-2y-h0a"; */
 "LxX-2y-h0a.title" = "Как это работает";
 
@@ -78,9 +72,6 @@
 
 /* Class = "UIButton"; normalTitle = "How it works"; ObjectID = "OB8-0b-Yb4"; */
 "OB8-0b-Yb4.normalTitle" = "Как это работает";
-
-/* (No Commment) */
-"UMW-2g-xxF.title" = "Сохранить";
 
 /* Class = "UIBarButtonItem"; title = "Add word"; ObjectID = "VoL-VK-sH7"; */
 "VoL-VK-sH7.title" = "Добавить";

@@ -22,8 +22,6 @@
 		840154D71D2C2F8200547B83 /* iconsUpYourDict180.png in Resources */ = {isa = PBXBuildFile; fileRef = 840154CD1D2C2F8200547B83 /* iconsUpYourDict180.png */; settings = {ASSET_TAGS = (); }; };
 		840154D81D2C2F8200547B83 /* iconsUpYourDict1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 840154CE1D2C2F8200547B83 /* iconsUpYourDict1024.png */; settings = {ASSET_TAGS = (); }; };
 		84037B9F1D0A2EFF005EBCAD /* NVTouchedNotifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84037B9E1D0A2EFF005EBCAD /* NVTouchedNotifyVC.m */; settings = {ASSET_TAGS = (); }; };
-		840404FF1D29C03800BEFAEE /* UpYourDictionaryEn.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 840404FD1D29C03800BEFAEE /* UpYourDictionaryEn.sqlite */; settings = {ASSET_TAGS = (); }; };
-		840405001D29C03800BEFAEE /* UpYourDictionaryRu.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 840404FE1D29C03800BEFAEE /* UpYourDictionaryRu.sqlite */; settings = {ASSET_TAGS = (); }; };
 		840405031D29C65E00BEFAEE /* NVButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 840405021D29C65E00BEFAEE /* NVButton.m */; settings = {ASSET_TAGS = (); }; };
 		840405061D29CB8C00BEFAEE /* NVChooseDictThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840405051D29CB8C00BEFAEE /* NVChooseDictThemeCell.m */; settings = {ASSET_TAGS = (); }; };
 		84050DB41D148DFD00692347 /* NVYandexWebViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84050DB31D148DFD00692347 /* NVYandexWebViewVC.m */; settings = {ASSET_TAGS = (); }; };
@@ -76,6 +74,8 @@
 		84F2FDB21CEE619B00714DF0 /* NVMainStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F2FDB11CEE619B00714DF0 /* NVMainStrategy.m */; settings = {ASSET_TAGS = (); }; };
 		84F6A3C01CEFCCC2001F3CAC /* NVDicts+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F6A3BF1CEFCCC2001F3CAC /* NVDicts+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
 		84F6A3C31CEFCFF6001F3CAC /* NVMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F6A3C21CEFCFF6001F3CAC /* NVMenuVC.m */; settings = {ASSET_TAGS = (); }; };
+		84FECD921D2E6C0D006D6346 /* UpYourDictionaryEn.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 84FECD901D2E6C0C006D6346 /* UpYourDictionaryEn.sqlite */; settings = {ASSET_TAGS = (); }; };
+		84FECD931D2E6C0D006D6346 /* UpYourDictionaryRu.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 84FECD911D2E6C0D006D6346 /* UpYourDictionaryRu.sqlite */; settings = {ASSET_TAGS = (); }; };
 		EE9F8948D606212E771292C3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A34EF9EF8378CB4094847D2F /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -113,8 +113,6 @@
 		840154CE1D2C2F8200547B83 /* iconsUpYourDict1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconsUpYourDict1024.png; sourceTree = "<group>"; };
 		84037B9D1D0A2EFF005EBCAD /* NVTouchedNotifyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVTouchedNotifyVC.h; sourceTree = "<group>"; };
 		84037B9E1D0A2EFF005EBCAD /* NVTouchedNotifyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVTouchedNotifyVC.m; sourceTree = "<group>"; };
-		840404FD1D29C03800BEFAEE /* UpYourDictionaryEn.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = UpYourDictionaryEn.sqlite; sourceTree = "<group>"; };
-		840404FE1D29C03800BEFAEE /* UpYourDictionaryRu.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = UpYourDictionaryRu.sqlite; sourceTree = "<group>"; };
 		840405011D29C65E00BEFAEE /* NVButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVButton.h; sourceTree = "<group>"; };
 		840405021D29C65E00BEFAEE /* NVButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVButton.m; sourceTree = "<group>"; };
 		840405041D29CB8C00BEFAEE /* NVChooseDictThemeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVChooseDictThemeCell.h; sourceTree = "<group>"; };
@@ -216,6 +214,8 @@
 		84F6A3BF1CEFCCC2001F3CAC /* NVDicts+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NVDicts+CoreDataProperties.m"; sourceTree = "<group>"; };
 		84F6A3C11CEFCFF6001F3CAC /* NVMenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVMenuVC.h; sourceTree = "<group>"; };
 		84F6A3C21CEFCFF6001F3CAC /* NVMenuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVMenuVC.m; sourceTree = "<group>"; };
+		84FECD901D2E6C0C006D6346 /* UpYourDictionaryEn.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = UpYourDictionaryEn.sqlite; sourceTree = "<group>"; };
+		84FECD911D2E6C0D006D6346 /* UpYourDictionaryRu.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = UpYourDictionaryRu.sqlite; sourceTree = "<group>"; };
 		A34005371E3A80E4C5532B92 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A34EF9EF8378CB4094847D2F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD93336E2697EA394E75826 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -409,11 +409,11 @@
 				845481EE1D2341DE00D90640 /* GoogleService-Info.plist */,
 				843BDE121D1C110D00F3FBB4 /* LaunchImages */,
 				843BDDEB1D1C078B00F3FBB4 /* Icons */,
+				84FECD901D2E6C0C006D6346 /* UpYourDictionaryEn.sqlite */,
+				84FECD911D2E6C0D006D6346 /* UpYourDictionaryRu.sqlite */,
 				840DC07C1D0B917F009C04E8 /* Localizable.strings */,
 				840DC0771D0B917D009C04E8 /* InfoPlist.strings */,
 				840986E91D29EE0A00E15A70 /* Images */,
-				840404FD1D29C03800BEFAEE /* UpYourDictionaryEn.sqlite */,
-				840404FE1D29C03800BEFAEE /* UpYourDictionaryRu.sqlite */,
 				844FCFAC1CF475C100DCCA8A /* NVNotificationManager.h */,
 				844FCFAD1CF475C100DCCA8A /* NVNotificationManager.m */,
 				8456915D1CE9EDBB005E4AE1 /* NVServerManager.h */,
@@ -598,7 +598,6 @@
 				840154D51D2C2F8200547B83 /* iconsUpYourDict120.png in Resources */,
 				840154D61D2C2F8200547B83 /* iconsUpYourDict152.png in Resources */,
 				840154D21D2C2F8200547B83 /* iconsUpYourDict76.png in Resources */,
-				840405001D29C03800BEFAEE /* UpYourDictionaryRu.sqlite in Resources */,
 				840154C21D2C29E700547B83 /* LaunchImageUpYourDict640x1136.png in Resources */,
 				840154C41D2C29E700547B83 /* LaunchImageUpYourDict1536x2048.png in Resources */,
 				8462CDE11CEA4D0B00E742AC /* Main.storyboard in Resources */,
@@ -607,12 +606,13 @@
 				840154D71D2C2F8200547B83 /* iconsUpYourDict180.png in Resources */,
 				844CC0981D2AC4D80091952C /* Assets.xcassets in Resources */,
 				840DC07A1D0B917F009C04E8 /* Localizable.strings in Resources */,
-				840404FF1D29C03800BEFAEE /* UpYourDictionaryEn.sqlite in Resources */,
 				840154C11D2C29E700547B83 /* LaunchImageUpYourDict640x960.png in Resources */,
 				840154D41D2C2F8200547B83 /* iconsUpYourDict87.png in Resources */,
 				840986EB1D29EFCD00E15A70 /* Images in Resources */,
+				84FECD931D2E6C0D006D6346 /* UpYourDictionaryRu.sqlite in Resources */,
 				845894451CE8BC3800D4FE35 /* LaunchScreen.storyboard in Resources */,
 				840154D81D2C2F8200547B83 /* iconsUpYourDict1024.png in Resources */,
+				84FECD921D2E6C0D006D6346 /* UpYourDictionaryEn.sqlite in Resources */,
 				840DC0751D0B917D009C04E8 /* InfoPlist.strings in Resources */,
 				845481EF1D2341DE00D90640 /* GoogleService-Info.plist in Resources */,
 			);
@@ -915,6 +915,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "UpYourDictionary/UpYourDict-Prefix.pch";
 				INFOPLIST_FILE = UpYourDictionary/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
@@ -931,6 +932,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "UpYourDictionary/UpYourDict-Prefix.pch";
 				INFOPLIST_FILE = UpYourDictionary/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;

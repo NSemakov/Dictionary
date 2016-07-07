@@ -29,6 +29,12 @@
     [[RMStore defaultStore] requestProducts:[NSSet setWithArray:_products] success:^(NSArray *products, NSArray *invalidProductIdentifiers) {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         _productsRequestFinished = YES;
+        //show only valid products
+        NSMutableArray* arrayTems = [NSMutableArray array];
+        for (SKProduct* product in products) {
+            [arrayTems addObject:product.productIdentifier];
+        }
+        _products = [arrayTems copy];
         //weakSelf.products = products;
         [weakSelf.tableView reloadData];
     } failure:^(NSError *error) {
@@ -76,7 +82,7 @@
     
     NSString *productID = notification.rm_storeDownload.contentIdentifier;
     SKProduct *product = [[RMStore defaultStore] productForIdentifier:productID];
-    BOOL success = [self addNewTemplate:fullPathSrc templateName:product.localizedTitle langShort:@"en" productID:productID];
+    BOOL success = [self addNewTemplate:fullPathSrc templateName:product.localizedTitle langShort:@"ru" productID:productID];
     NVStoreCell* cell = [self cellForProductIDFromNotification:notification];
     cell.progressDownloading.hidden = YES;
     if (!success) {//все добавлено в базу

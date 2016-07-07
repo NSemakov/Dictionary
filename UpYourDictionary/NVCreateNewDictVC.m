@@ -8,6 +8,11 @@
 
 #import "NVCreateNewDictVC.h"
 
+typedef NS_ENUM(NSUInteger, SenderType) {
+    senderTypeSaveButton,
+    senderTypeCancelButton
+};
+
 @interface NVCreateNewDictVC ()
 @property (assign,nonatomic) BOOL isFieldFromCompleted;
 @property (assign,nonatomic) BOOL isFieldToCompleted;
@@ -129,19 +134,19 @@
         }
     }
 }
-
+#pragma mark - actions
 - (IBAction)buttonSave:(UIBarButtonItem *)sender {
     //check for filled filds
     if ([self checkForCompletionAllFields]) {
         [self saveNewDictionary];
     } else {
-        [self showWarningMessage];
+        [self showWarningMessage:senderTypeSaveButton];
     }
 }
 
 - (IBAction)actionBackButton:(UIBarButtonItem *)sender {
     if ([self checkForCompletionAllFields]) {
-        [self askIfCancelOrSave];
+        [self askIfCancelOrSave:senderTypeCancelButton];
     } else {
         [self.managedObjectContext rollback];
         [self.navigationController popViewControllerAnimated:YES];
@@ -150,7 +155,17 @@
 }
 #pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    switch (buttonIndex) {
+    if (alertView.tag == senderTypeSaveButton) {
+        switch (buttonIndex) {
+            case 0:{
+                break;
+            }
+                break;
+            default:
+                break;
+        }
+    } else if (alertView.tag == senderTypeCancelButton) {
+        switch (buttonIndex) {
         case 0:{
             [self.managedObjectContext rollback];
             [self.navigationController popViewControllerAnimated:YES];
@@ -162,11 +177,13 @@
             break;
         default:
             break;
+    } 
     }
+   
     
 }
 #pragma mark - helpers
-- (void) askIfCancelOrSave{
+- (void) askIfCancelOrSave:(SenderType) senderType{
     if ([UIAlertController class]){
         // ios 8 or higher
         UIAlertController *alertCtrl=[UIAlertController alertControllerWithTitle:NSLocalizedString(@"Cancel without saving?", @"") message:nil preferredStyle:UIAlertControllerStyleAlert];
@@ -183,7 +200,8 @@
         [self presentViewController:alertCtrl animated:YES completion:nil];
     } else { //ios 7 and lower
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Cancel without saving?", @"") message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"Save",nil), nil];
-        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        alert.alertViewStyle = UIAlertViewStyleDefault;
+        alert.tag = senderType;
         [alert show];
     }
 }
@@ -234,7 +252,7 @@
     }
     return nil;
 }
--(void) showWarningMessage{
+-(void) showWarningMessage:(SenderType)senderType{
     if ([UIAlertController class]){
         // ios 8 or higher
         UIAlertController* alertCtrl=[UIAlertController alertControllerWithTitle:NSLocalizedString(@"Please write in all fields", nil) message:nil preferredStyle:UIAlertControllerStyleAlert];
@@ -245,6 +263,7 @@
     } else { //ios 7 and lower
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Please write in all fields", @"") message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil];
         alert.alertViewStyle = UIAlertViewStyleDefault;
+        alert.tag = senderType;
         [alert show];
     }
 

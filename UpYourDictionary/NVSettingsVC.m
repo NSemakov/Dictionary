@@ -37,7 +37,7 @@
         self.labelTimeToPush.text =[self formatTimeSettingString:timeToPush];
         [self.sliderTimeToPush setValue:timeToPush animated:YES];
     } else {
-        sliderValue = lroundf(self.sliderTimeToPush.value);
+        sliderValue = (int)lroundf(self.sliderTimeToPush.value);
         self.labelTimeToPush.text = [self formatTimeSettingString:sliderValue];
     }
     
@@ -46,7 +46,7 @@
         self.labelNumberOfWords.text = [self formatWordNumberSettingString:numberOfWords];
         [self.sliderNumberOfWords setValue:numberOfWords animated:YES];
     } else {
-        sliderValue = lroundf(self.sliderNumberOfWords.value);
+        sliderValue = (int)lroundf(self.sliderNumberOfWords.value);
         self.labelNumberOfWords.text = [self formatWordNumberSettingString:sliderValue];
     }
     
@@ -276,7 +276,7 @@
 - (IBAction)sliderActionTimeToPush:(UISlider *)sender {
     
     int sliderValue;
-    sliderValue = lroundf(sender.value);
+    sliderValue = (int)lroundf(sender.value);
     [sender setValue:sliderValue animated:YES];
     self.labelTimeToPush.text = [self formatTimeSettingString:sliderValue];
     [self calculateInfo];
@@ -285,7 +285,7 @@
 - (IBAction)sliderActionNumberOfWords:(UISlider *)sender {
     
     int sliderValue;
-    sliderValue = lroundf(sender.value);
+    sliderValue = (int)lroundf(sender.value);
     [sender setValue:sliderValue animated:YES];
     self.labelNumberOfWords.text = [self formatWordNumberSettingString:sliderValue];
     [self calculateInfo];

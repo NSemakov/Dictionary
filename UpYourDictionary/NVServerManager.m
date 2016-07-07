@@ -64,8 +64,8 @@ onFailure:(void(^)(NSString* error)) onFailure{
         //NSLog(@"%@",error.localizedDescription);
        // NSLog(@"error %@ code %ld",error,operation.error.code);
         if (onFailure) {
-            NSString* returnString=[NSString stringWithFormat:@"error %@ code %ld",error,operation.error.code];
-            onFailure(returnString);
+            //NSString* returnString=[NSString stringWithFormat:@"error %@ code %ld",error,operation.error.code];
+            onFailure(ErrorResponse);
         }
     }];
 }
@@ -114,8 +114,7 @@ onFailure:(void(^)(NSString* error)) onFailure{
         NSLog(@"%@",error.localizedDescription);
         NSLog(@"error %@ code %ld",error,operation.error.code);
         if (onFailure) {
-            NSString* returnString=[NSString stringWithFormat:@"error %@ code %ld",error,operation.error.code];
-            onFailure(returnString);
+            onFailure(ErrorResponse);
         }
     }];
     
@@ -150,8 +149,8 @@ onFailure:(void(^)(NSString* error)) onFailure{
         NSLog(@"%@",error.localizedDescription);
         NSLog(@"error %@ code %ld",error,operation.error.code);
         if (onFailure) {
-            NSString* returnString=[NSString stringWithFormat:@"error %@ code %ld",error,operation.error.code];
-            onFailure(returnString);
+            //NSString* returnString=[NSString stringWithFormat:@"error %@ code %ld",error,operation.error.code];
+            onFailure(ErrorResponse);
         }
     }];
     

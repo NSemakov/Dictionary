@@ -812,21 +812,21 @@
         <scene sceneID="kzy-ia-Tid">
             <objects>
                 <tableViewController storyboardIdentifier="NVTouchedNotifyVC" id="HdV-eB-APq" customClass="NVTouchedNotifyVC" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="1Cg-Ic-gFm">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="59" sectionHeaderHeight="28" sectionFooterHeight="28" id="1Cg-Ic-gFm">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="ufq-gu-lYF" customClass="NVTouchedNotifyCell">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="59" id="ufq-gu-lYF" customClass="NVTouchedNotifyCell">
+                                <rect key="frame" x="0.0" y="92" width="600" height="59"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ufq-gu-lYF" id="9j3-kv-PTP">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="58"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hke-z1-r5J">
-                                            <rect key="frame" x="8" y="11" width="584" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hke-z1-r5J">
+                                            <rect key="frame" x="8" y="19" width="584" height="21"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -838,10 +838,10 @@
                                     </subviews>
                                     <animations/>
                                     <constraints>
-                                        <constraint firstAttribute="bottomMargin" secondItem="Hke-z1-r5J" secondAttribute="bottom" constant="3" id="eGr-Tz-gqN"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Hke-z1-r5J" secondAttribute="bottom" constant="10" id="WeR-DG-WUB"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Hke-z1-r5J" secondAttribute="trailing" id="pkx-bs-8jb"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="Hke-z1-r5J" secondAttribute="leading" id="q1L-n7-WNT"/>
-                                        <constraint firstItem="Hke-z1-r5J" firstAttribute="top" secondItem="9j3-kv-PTP" secondAttribute="topMargin" constant="3" id="rnz-zt-wMg"/>
+                                        <constraint firstItem="Hke-z1-r5J" firstAttribute="top" secondItem="9j3-kv-PTP" secondAttribute="topMargin" constant="11" id="vA8-tn-Bnf"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
