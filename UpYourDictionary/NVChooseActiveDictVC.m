@@ -208,7 +208,7 @@
         [self presentViewController:alertCtrl animated:YES completion:nil];
     } else { //ios 7 and lower
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Cancel without saving?", @"") message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"Save",nil), nil];
-        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        alert.alertViewStyle = UIAlertViewStyleDefault;
         [alert show];
     }
 }

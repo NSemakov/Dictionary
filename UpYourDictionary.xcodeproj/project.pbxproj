@@ -26,6 +26,7 @@
 		840405061D29CB8C00BEFAEE /* NVChooseDictThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840405051D29CB8C00BEFAEE /* NVChooseDictThemeCell.m */; settings = {ASSET_TAGS = (); }; };
 		84050DB41D148DFD00692347 /* NVYandexWebViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84050DB31D148DFD00692347 /* NVYandexWebViewVC.m */; settings = {ASSET_TAGS = (); }; };
 		840986EB1D29EFCD00E15A70 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 840986E91D29EE0A00E15A70 /* Images */; };
+		840A8B5D1D2E87E800DE578E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840A8B5C1D2E87E800DE578E /* StoreKit.framework */; };
 		840B0BC81D1C1A68007D3C47 /* NVChooseActiveDictCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B0BC71D1C1A68007D3C47 /* NVChooseActiveDictCell.m */; settings = {ASSET_TAGS = (); }; };
 		840DC06B1D0B9179009C04E8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 840DC06D1D0B9179009C04E8 /* InfoPlist.strings */; };
 		840DC0701D0B917A009C04E8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 840DC0721D0B917A009C04E8 /* InfoPlist.strings */; };
@@ -120,6 +121,7 @@
 		84050DB21D148DFD00692347 /* NVYandexWebViewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVYandexWebViewVC.h; sourceTree = "<group>"; };
 		84050DB31D148DFD00692347 /* NVYandexWebViewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVYandexWebViewVC.m; sourceTree = "<group>"; };
 		840986E91D29EE0A00E15A70 /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
+		840A8B5C1D2E87E800DE578E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		840B0BC61D1C1A68007D3C47 /* NVChooseActiveDictCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVChooseActiveDictCell.h; sourceTree = "<group>"; };
 		840B0BC71D1C1A68007D3C47 /* NVChooseActiveDictCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVChooseActiveDictCell.m; sourceTree = "<group>"; };
 		840DC0681D0B8A2A009C04E8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE9F8948D606212E771292C3 /* libPods.a in Frameworks */,
+				840A8B5D1D2E87E800DE578E /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,6 +475,7 @@
 		C51CC3DAA544B20D22FEF19C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				840A8B5C1D2E87E800DE578E /* StoreKit.framework */,
 				A34EF9EF8378CB4094847D2F /* libPods.a */,
 			);
 			name = Frameworks;
@@ -551,6 +555,12 @@
 						DevelopmentTeam = 89TQ2GF24K;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -914,7 +924,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Nikita Semakov (ZSC658S2K7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Nikita Semakov (ZSC658S2K7)";
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "UpYourDictionary/UpYourDict-Prefix.pch";
 				INFOPLIST_FILE = UpYourDictionary/Info.plist;
@@ -922,6 +933,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Gain.UpYourDictionary1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "e6627b9f-f6d4-4e60-bcfb-1999f7381f30";
 			};
 			name = Debug;
 		};
@@ -931,7 +943,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Nikita Semakov (89TQ2GF24K)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Nikita Semakov (89TQ2GF24K)";
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "UpYourDictionary/UpYourDict-Prefix.pch";
 				INFOPLIST_FILE = UpYourDictionary/Info.plist;
@@ -939,6 +952,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Gain.UpYourDictionary1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "e6627b9f-f6d4-4e60-bcfb-1999f7381f30";
 			};
 			name = Release;
 		};
