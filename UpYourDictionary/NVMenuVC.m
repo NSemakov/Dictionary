@@ -8,8 +8,9 @@
 
 #import "NVMenuVC.h"
 #import "NVMainStrategy.h"
+#import "NVAnimationNavController.h"
 @interface NVMenuVC ()
-
+@property (strong, nonatomic) NVAnimationNavController *animationC;
 @end
 
 @implementation NVMenuVC
@@ -27,12 +28,12 @@
                                                  name:UIContentSizeCategoryDidChangeNotification
                                                object:nil];
     /*end of adjusting font*/
-    
-    
-    
-    
-    
-   
+    self.navigationController.delegate = self;
+    //UIPanGestureRecognizer* recognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didPan:)];
+    //[self.view addGestureRecognizer:recognizer];
+    NVAnimationNavController* animationC = [[NVAnimationNavController alloc] init];
+    animationC.animator = animationC;
+    self.animationC = animationC;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -51,12 +52,48 @@
     //self.textFieldTest.text = [NSString stringWithFormat:@"%@ - %@",word,translation];
 }
 #pragma mark - helpers 
--(void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
+
 -(void) didChangePreferredContentSize:(NSNotification*) notification {
     [NVCommonManager setupFontsForView:self.view andSubViews:YES];
 }
 
+- (void) didPan:(UIPanGestureRecognizer*) recognizer {
+    switch (recognizer.state) {
+        case UIGestureRecognizerStateBegan:{
+            self.animationC.interactive = YES;
+            [self performSegueWithIdentifier:@"segueChooseDict" sender:nil];
+            break;
+        }
+            
+        default:
+            [self.animationC hanglePan:recognizer];
+            break;
+    }
+}
+#pragma mark - UINavigationControllerDelegate
+- (nullable id <UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
+                                            animationControllerForOperation:(UINavigationControllerOperation)operation
+                                                         fromViewController:(UIViewController *)fromVC
+                                                           toViewController:(UIViewController *)toVC{
+    
+    //NVAnimationNavController* animationC = [[NVAnimationNavController alloc] init];
+    self.animationC.operation = operation;
+   // self.animationC = animationC;
+    
+    
+    return self.animationC;
+}
+- (nullable id <UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController
+                                   interactionControllerForAnimationController:(id <UIViewControllerAnimatedTransitioning>) animationController{
+    if (!self.animationC.interactive){
+        return nil;
+    } else {
+        return self.animationC;
+    }
+    
+}
 
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 @end

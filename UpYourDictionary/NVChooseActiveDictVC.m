@@ -272,13 +272,15 @@
             
             [self.navigationController popViewControllerAnimated:YES];
         }
+    } else {//не было словаря и ничего не изменилось
+        [self.navigationController popViewControllerAnimated:YES];
     }
     
 
 }
 
 - (IBAction)buttonCancel:(UIBarButtonItem *)sender {
-    if (![self.curDict isEqual:self.activeDict]) {//smth has changed
+    if (![self.curDict isEqual:self.activeDict] && (self.curDict || self.activeDict)) {//smth has changed
         [self askIfCancelOrSave];
         
     } else {

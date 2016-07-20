@@ -1108,7 +1108,7 @@
         <!--How it works-->
         <scene sceneID="gNx-B2-4iM">
             <objects>
-                <viewController id="gOl-gN-lxK" customClass="NVHowItWorksVC" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="gOl-gN-lxK" customClass="NVHowItWorksVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sj2-zy-gW0"/>
                         <viewControllerLayoutGuide type="bottom" id="kBM-M3-Oc1"/>

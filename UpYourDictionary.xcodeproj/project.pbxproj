@@ -24,6 +24,7 @@
 		84037B9F1D0A2EFF005EBCAD /* NVTouchedNotifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84037B9E1D0A2EFF005EBCAD /* NVTouchedNotifyVC.m */; settings = {ASSET_TAGS = (); }; };
 		840405031D29C65E00BEFAEE /* NVButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 840405021D29C65E00BEFAEE /* NVButton.m */; settings = {ASSET_TAGS = (); }; };
 		840405061D29CB8C00BEFAEE /* NVChooseDictThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840405051D29CB8C00BEFAEE /* NVChooseDictThemeCell.m */; settings = {ASSET_TAGS = (); }; };
+		8404D6471D403A61004CCAA8 /* AWPercentDrivenInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 8404D6461D403A61004CCAA8 /* AWPercentDrivenInteractiveTransition.m */; settings = {ASSET_TAGS = (); }; };
 		84050DB41D148DFD00692347 /* NVYandexWebViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84050DB31D148DFD00692347 /* NVYandexWebViewVC.m */; settings = {ASSET_TAGS = (); }; };
 		840986EB1D29EFCD00E15A70 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 840986E91D29EE0A00E15A70 /* Images */; };
 		840A8B5D1D2E87E800DE578E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840A8B5C1D2E87E800DE578E /* StoreKit.framework */; };
@@ -58,6 +59,7 @@
 		84524A1A1D2558640099D587 /* RMStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 84524A151D2558640099D587 /* RMStore.m */; settings = {ASSET_TAGS = (); }; };
 		84524A1F1D255B9F0099D587 /* NVStoreVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84524A1E1D255B9F0099D587 /* NVStoreVC.m */; settings = {ASSET_TAGS = (); }; };
 		845481EF1D2341DE00D90640 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 845481EE1D2341DE00D90640 /* GoogleService-Info.plist */; settings = {ASSET_TAGS = (); }; };
+		845668881D3FDA890041D080 /* NVAnimationNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845668871D3FDA890041D080 /* NVAnimationNavController.m */; settings = {ASSET_TAGS = (); }; };
 		8456915F1CE9EDBB005E4AE1 /* NVServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8456915E1CE9EDBB005E4AE1 /* NVServerManager.m */; settings = {ASSET_TAGS = (); }; };
 		845691621CE9F741005E4AE1 /* NVCreateNewDictVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 845691611CE9F741005E4AE1 /* NVCreateNewDictVC.m */; settings = {ASSET_TAGS = (); }; };
 		845691661CE9F8B2005E4AE1 /* NVChooseLangVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 845691651CE9F8B2005E4AE1 /* NVChooseLangVC.m */; settings = {ASSET_TAGS = (); }; };
@@ -118,6 +120,8 @@
 		840405021D29C65E00BEFAEE /* NVButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVButton.m; sourceTree = "<group>"; };
 		840405041D29CB8C00BEFAEE /* NVChooseDictThemeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVChooseDictThemeCell.h; sourceTree = "<group>"; };
 		840405051D29CB8C00BEFAEE /* NVChooseDictThemeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVChooseDictThemeCell.m; sourceTree = "<group>"; };
+		8404D6451D403A61004CCAA8 /* AWPercentDrivenInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWPercentDrivenInteractiveTransition.h; sourceTree = "<group>"; };
+		8404D6461D403A61004CCAA8 /* AWPercentDrivenInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWPercentDrivenInteractiveTransition.m; sourceTree = "<group>"; };
 		84050DB21D148DFD00692347 /* NVYandexWebViewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVYandexWebViewVC.h; sourceTree = "<group>"; };
 		84050DB31D148DFD00692347 /* NVYandexWebViewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVYandexWebViewVC.m; sourceTree = "<group>"; };
 		840986E91D29EE0A00E15A70 /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
@@ -180,6 +184,8 @@
 		84524A1D1D255B9F0099D587 /* NVStoreVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVStoreVC.h; sourceTree = "<group>"; };
 		84524A1E1D255B9F0099D587 /* NVStoreVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVStoreVC.m; sourceTree = "<group>"; };
 		845481EE1D2341DE00D90640 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		845668861D3FDA890041D080 /* NVAnimationNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVAnimationNavController.h; sourceTree = "<group>"; };
+		845668871D3FDA890041D080 /* NVAnimationNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVAnimationNavController.m; sourceTree = "<group>"; };
 		8456915D1CE9EDBB005E4AE1 /* NVServerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVServerManager.h; sourceTree = "<group>"; };
 		8456915E1CE9EDBB005E4AE1 /* NVServerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVServerManager.m; sourceTree = "<group>"; };
 		845691601CE9F741005E4AE1 /* NVCreateNewDictVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVCreateNewDictVC.h; sourceTree = "<group>"; };
@@ -376,6 +382,8 @@
 				84050DB31D148DFD00692347 /* NVYandexWebViewVC.m */,
 				84D436111D1DB2FA00FB3F80 /* NVHowItWorksVC.h */,
 				84D436121D1DB2FA00FB3F80 /* NVHowItWorksVC.m */,
+				845668861D3FDA890041D080 /* NVAnimationNavController.h */,
+				845668871D3FDA890041D080 /* NVAnimationNavController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -409,6 +417,8 @@
 				845894361CE8BC3800D4FE35 /* AppDelegate.m */,
 				844FE26D1D26A9A50020215A /* RMStore.strings */,
 				84524A131D2558250099D587 /* InAppPurchases */,
+				8404D6451D403A61004CCAA8 /* AWPercentDrivenInteractiveTransition.h */,
+				8404D6461D403A61004CCAA8 /* AWPercentDrivenInteractiveTransition.m */,
 				845481EE1D2341DE00D90640 /* GoogleService-Info.plist */,
 				843BDE121D1C110D00F3FBB4 /* LaunchImages */,
 				843BDDEB1D1C078B00F3FBB4 /* Icons */,
@@ -725,10 +735,12 @@
 				84D436131D1DB2FA00FB3F80 /* NVHowItWorksVC.m in Sources */,
 				8446309C1CEBAC32004E0994 /* NVParentViewController.m in Sources */,
 				845894341CE8BC3800D4FE35 /* main.m in Sources */,
+				845668881D3FDA890041D080 /* NVAnimationNavController.m in Sources */,
 				844630801CEB977A004E0994 /* NVDataManager.m in Sources */,
 				8446309F1CEBAE22004E0994 /* NVChooseActiveDictVC.m in Sources */,
 				844630C21CEBCAD3004E0994 /* NVContent+CoreDataProperties.m in Sources */,
 				844B6EEE1CF72E5B00B093FA /* NVNotifyInUse+CoreDataProperties.m in Sources */,
+				8404D6471D403A61004CCAA8 /* AWPercentDrivenInteractiveTransition.m in Sources */,
 				84F2FDB21CEE619B00714DF0 /* NVMainStrategy.m in Sources */,
 				844FCFAE1CF475C100DCCA8A /* NVNotificationManager.m in Sources */,
 				8461C6511D146654007F7532 /* NVTouchedNotifyCell.m in Sources */,
