@@ -143,11 +143,31 @@
         isSuccess = YES;
     } else {//если не совпадает, переводим слово и вставляем в источник
         __weak NVMainStrategy* weakSelf = self;
-
-        
-            dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
             __block BOOL flag = false;
+        //1. изначально поиск в firebase
+        
+        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+        [[NVServerManager sharedManager] POSTSearchInCachedWordsAtFirebase:text fromLang:self.activeTemplate.langShort toLang:self.activeDict.fromShort OnSuccess:^(NSString *translation) {
+            if (weakSelf.managedObjectContext) {
+                if (translation) {
+                    content.word = translation;
+                    isSuccess = YES;
+                    flag = true;
+                }
+                dispatch_semaphore_signal(semaphore);
+            }
+        } onFailure:^(NSString *error) {
+            NSLog(@"error in dict: %@", error);
+            dispatch_semaphore_signal(semaphore);
+        }];
+
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        
+        //2. if there is no word at firebase, look up in dictionary
         //NSLog(@"tranlsateToSourceLangText. lang from %@, lang to %@", self.activeTemplate.langShort,self.activeDict.fromShort);
+        
+        if (!flag){
+            semaphore = dispatch_semaphore_create(0);
             [[NVServerManager sharedManager] POSTLookUpDictionary:text fromLang:self.activeTemplate.langShort toLang:self.activeDict.fromShort OnSuccess:^(NSString* translation) {
                 //все оставшиеся действия надо делать здесь.
                 if (weakSelf.managedObjectContext) {
@@ -155,6 +175,8 @@
                         content.word = translation;
                         isSuccess = YES;
                         flag = true;
+                        //save into remoteDB
+                        [[NVServerManager sharedManager] POSTAddToCachedWordsAtFirebase:text translation:translation fromLang:self.activeTemplate.langShort toLang:self.activeDict.fromShort OnSuccess:nil onFailure:nil];
                     }
                     
                     dispatch_semaphore_signal(semaphore);
@@ -164,17 +186,21 @@
                 dispatch_semaphore_signal(semaphore);
             }];
             dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-            //поиск в переводчике, если в словаре не найдено
-            semaphore = dispatch_semaphore_create(0);
+        }
+        
+            //3.поиск в переводчике, если в словаре не найдено
             
             if (!flag){
+                semaphore = dispatch_semaphore_create(0);
                 [[NVServerManager sharedManager] POSTTranslatePhrase:text fromLang:self.activeTemplate.langShort toLang:self.activeDict.fromShort OnSuccess:^(NSString* translation) {
                     //все оставшиеся действия надо делать здесь.
                     if (weakSelf.managedObjectContext) {
                         content.word = translation;
                         isSuccess = YES;
-                        dispatch_semaphore_signal(semaphore);
+                        //save into remoteDB
+                        [[NVServerManager sharedManager] POSTAddToCachedWordsAtFirebase:text translation:translation fromLang:self.activeTemplate.langShort toLang:self.activeDict.fromShort OnSuccess:nil onFailure:nil];
                     }
+                    dispatch_semaphore_signal(semaphore);
                 } onFailure:^(NSString *error) {
                     NSLog(@"error in translator: %@", error);
                     dispatch_semaphore_signal(semaphore);
@@ -192,23 +218,49 @@
     } else {//если не совпадает, переводим слово и вставляем в перевод
         __weak NVMainStrategy* weakSelf = self;
 
-            dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
             __block BOOL flag = false;
+        //1. изначально поиск в firebase
+        
+        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+        [[NVServerManager sharedManager] POSTSearchInCachedWordsAtFirebase:text fromLang:self.activeTemplate.langShort toLang:self.activeDict.toShort OnSuccess:^(NSString *translation) {
+            if (weakSelf.managedObjectContext) {
+                if (translation) {
+                    content.translation = translation;
+                    isSuccess = YES;
+                    flag = true;
+                }
+                
+                dispatch_semaphore_signal(semaphore);
+            }
+        } onFailure:^(NSString *error) {
+            NSLog(@"error in dict: %@", error);
+            dispatch_semaphore_signal(semaphore);
+        }];
+        
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        
+        
        // NSLog(@"translateToEndLangText. lang from %@, lang to %@", self.activeTemplate.langShort,self.activeDict.toShort);
+        //2. search in dictionary
+        if (!flag){
+            semaphore = dispatch_semaphore_create(0);
             [[NVServerManager sharedManager] POSTLookUpDictionary:text fromLang:self.activeTemplate.langShort toLang:self.activeDict.toShort OnSuccess:^(NSString* translation)
              {
                 //все оставшиеся действия надо делать здесь.
                 if (weakSelf.managedObjectContext) {
                     content.translation = translation;
                     isSuccess = YES;
-                    dispatch_semaphore_signal(semaphore);
+                    flag = true;
+                    //save into remoteDB
+                    [[NVServerManager sharedManager] POSTAddToCachedWordsAtFirebase:text translation:translation fromLang:self.activeTemplate.langShort toLang:self.activeDict.toShort OnSuccess:nil onFailure:nil];
                 }
+                  dispatch_semaphore_signal(semaphore);
             } onFailure:^(NSString *error) {
                 dispatch_semaphore_signal(semaphore);
             }];
             dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-            
-            //поиск в переводчике, если в словаре не найдено
+        }
+            //3. поиск в переводчике, если в словаре не найдено
             semaphore = dispatch_semaphore_create(0);
             
             if (!flag){
@@ -217,8 +269,10 @@
                     if (weakSelf.managedObjectContext) {
                         content.translation = translation;
                         isSuccess = YES;
-                        dispatch_semaphore_signal(semaphore);
+                        //save into remoteDB
+                        [[NVServerManager sharedManager] POSTAddToCachedWordsAtFirebase:text translation:translation fromLang:self.activeTemplate.langShort toLang:self.activeDict.toShort OnSuccess:nil onFailure:nil];
                     }
+                    dispatch_semaphore_signal(semaphore);
                 } onFailure:^(NSString *error) {
                     dispatch_semaphore_signal(semaphore);
                 }];

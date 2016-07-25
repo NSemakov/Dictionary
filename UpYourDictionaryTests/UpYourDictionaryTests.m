@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-
+#import "NVServerManager.h"
 @interface UpYourDictionaryTests : XCTestCase
 
 @end
@@ -35,5 +35,11 @@
         // Put the code you want to measure the time of here.
     }];
 }
-
+- (void)testThatChairIsRetrievedFromFirebase {
+    [[NVServerManager sharedManager] POSTSearchInCachedWordsAtFirebase:@"Стул" fromLang:@"ru" toLang:@"en" OnSuccess:^(NSString *translation) {
+        NSLog(@"all ok");
+    } onFailure:^(NSString *error) {
+        NSLog(@"all wrong");
+    }];
+}
 @end

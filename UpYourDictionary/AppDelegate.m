@@ -22,24 +22,8 @@
     [[NVCommonManager sharedManager]configureInitialState];//bar style
     
     [RMStore defaultStore];//add observer of storeKit
-    [FIRApp configure]; //api from fireBase  configure
-    FIRDatabaseReference *rootRef= [[FIRDatabase database] reference];
-    [rootRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        //NSLog(@"%@ -> %@", snapshot.key, snapshot.value);
-        NSString* APIDictKey = [[snapshot.value objectForKey:@"APIKeys"] objectForKey:@"APIDictKey"];
-        if (APIDictKey.length > 0) {
-            [NVServerManager sharedManager].APIDictKey = APIDictKey;
-        }
-        NSString* APITranslatorKey = [[snapshot.value objectForKey:@"APIKeys"] objectForKey:@"APITranslatorKey"];
-        if (APITranslatorKey.length > 0) {
-            [NVServerManager sharedManager].APITranslatorKey = APITranslatorKey;
-        }
-        NSArray* productIdentifiers = [[snapshot.value objectForKey:@"ProductIdentifiers"] allValues];
-        if (productIdentifiers) {
-            [RMStore defaultStore].productIdentifiers = productIdentifiers;
-        }
-        
-    }];
+    [self setUpFirebaseOnAppDidStart];
+    
     
     [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
     if([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)])
@@ -64,8 +48,8 @@
         [application cancelAllLocalNotifications]; // Restart the Local Notifications list
         
         //initial settings
-        [[NSUserDefaults standardUserDefaults] setInteger:2 forKey:NVTimeToPush];
-        [[NSUserDefaults standardUserDefaults] setInteger:3 forKey:NVNumberOfWordsToShow];
+        [[NSUserDefaults standardUserDefaults] setInteger:4 forKey:NVTimeToPush];
+        [[NSUserDefaults standardUserDefaults] setInteger:9 forKey:NVNumberOfWordsToShow];
         [[NSUserDefaults standardUserDefaults] setInteger:6 forKey:NVMinimumDayTimeAllowedForNotification];
         [[NSUserDefaults standardUserDefaults] setInteger:23 forKey:NVMaximumDayTimeAllowedForNotification];
     }
@@ -135,4 +119,47 @@
     [[NVNotificationManager sharedManager].queue cancelAllOperations];
 }
 
+- (void) setUpFirebaseOnAppDidStart {
+    [FIRApp configure]; //api from fireBase  configure
+    FIRDatabaseReference *rootRef= [[FIRDatabase database] reference];
+    [NVServerManager sharedManager].remoteDB = rootRef;
+    FIRDatabaseReference* childAPIKeys = [rootRef child:@"APIKeys"];
+    [childAPIKeys observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        //NSLog(@"%@ -> %@", snapshot.key, snapshot.value);
+        NSString* APIDictKey = [snapshot.value  objectForKey:@"APIDictKey"];
+        if (APIDictKey.length > 0) {
+            [NVServerManager sharedManager].APIDictKey = APIDictKey;
+        }
+        NSString* APITranslatorKey = [snapshot.value objectForKey:@"APITranslatorKey"];
+        if (APITranslatorKey.length > 0) {
+            [NVServerManager sharedManager].APITranslatorKey = APITranslatorKey;
+        }
+        
+    }];
+    FIRDatabaseReference* childProductIdentifiers = [rootRef child:@"ProductIdentifiers"];
+    [childProductIdentifiers observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+      // NSLog(@"%@ -> %@", snapshot.key, snapshot.value);
+
+        NSArray* productIdentifiers = [snapshot.value allValues];
+        if (productIdentifiers) {
+            //NSLog(@"pr ids %@",productIdentifiers);
+            [RMStore defaultStore].productIdentifiers = productIdentifiers;
+        }
+        
+    }];
+    /*
+    [[NVServerManager sharedManager] POSTSearchInCachedWordsAtFirebase:@"Столer" fromLang:@"ru" toLang:@"en" OnSuccess:^(NSString *translation) {
+        NSLog(@"%@",translation);
+    } onFailure:^(NSString *error) {
+        NSLog(@"%@",error);
+    }];
+     */
+    /*
+    [[NVServerManager sharedManager] POSTAddToCachedWordsAtFirebase:@"Стол" translation:@"Table" fromLang:@"ru" toLang:@"en" OnSuccess:^(NSString *translation) {
+        
+    } onFailure:^(NSString *error) {
+        
+    }];
+     */
+}
 @end

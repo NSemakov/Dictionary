@@ -7,6 +7,8 @@
 //
 
 #import "NVServerManager.h"
+#import <AFNetworking/AFNetworking.h>
+@import Firebase;
 
 static const NSString *APIKey = @"trnsl.1.1.20160515T105554Z.bebe36c462114c01.c2bb5a4b68973e1128a3aed89cbd817e9fb603ab";
 static const NSString *DictAPIKey = @"dict.1.1.20160529T231224Z.83fb051c8f95bf0d.518bafee59b93d53f8728010cbdc3ea7dddef245";
@@ -155,38 +157,30 @@ onFailure:(void(^)(NSString* error)) onFailure{
     }];
     
 }
--(void) POSTRefreshKeysOnSuccess:(void(^)(void)) onSuccess
-                       onFailure:(void(^)(NSString* error)) onFailure{
-    /*NSURL* baseURL=[NSURL URLWithString:@"https://translate.yandex.net/api/v1.5/tr.json"];
-    self.manager =[[AFHTTPSessionManager alloc]initWithBaseURL:baseURL];
-    NSString* direction = [NSString stringWithFormat:@"%@-%@",fromLang,toLang];
-    NSDictionary* dictionary=[NSDictionary dictionaryWithObjectsAndKeys:
-                              APIKey, @"key",
-                              phrase, @"text",
-                              direction, @"lang",
-                              nil];
-    
-    [self.manager POST:@"translate" parameters:dictionary progress:nil success:^(NSURLSessionTask *operation, id responseObject) {
-        //NSLog(@"coming %@",responseObject);
-        
-        
-        NSString* translation = [[responseObject objectForKey:@"text"] firstObject];
-        if (onSuccess) {
-            onSuccess();
-        }
-        
-    } failure:^(NSURLSessionTask *operation, NSError *error) {
-        NSString* ErrorResponse = [[NSString alloc] initWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] encoding:NSUTF8StringEncoding];
-        NSLog(@"%@",ErrorResponse);
-        NSLog(@"%@",error.localizedDescription);
-        NSLog(@"error %@ code %ld",error,operation.error.code);
-        if (onFailure) {
-            NSString* returnString=[NSString stringWithFormat:@"error %@ code %ld",error,operation.error.code];
-            onFailure(returnString);
-        }
-    }];
-    */
+-(void) POSTSearchInCachedWordsAtFirebase:(NSString*) phrase fromLang:(NSString*) fromLang toLang:(NSString*) toLang OnSuccess:(void(^)(NSString* translation)) onSuccess
+                                onFailure:(void(^)(NSString* error)) onFailure{
+    //FIRDatabaseQuery *recentPostsQuery = [[self.remoteDB child:@"posts"] queryStartingAtValue:<#(nullable id)#>];
+   // FIRDatabaseQuery *recentPostsQuery = [[self.remoteDB child:@"posts"] queryLimitedToFirst:1];
+    //FIRDatabaseQuery *recentPostsQuery = [[self.remoteDB child:@"posts"] queryEqualToValue:1];
+    NSString* indexed = [NSString stringWithFormat:@"LangFrom%@LangTo%@OriginalWord%@",fromLang, toLang, phrase];
 
+    FIRDatabaseReference* cachedWordsFromYandexTranslate = [[self.remoteDB child:@"CachedWordsFromYandexTranslate"] child:indexed];
+    
+    [cachedWordsFromYandexTranslate observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        NSLog(@"%@ -> %@", snapshot.key, snapshot.value);
+         NSString* translation = snapshot.value;
+         if (![translation isEqual:[NSNull null]] && translation.length > 0) {
+             onSuccess(translation);
+         } else {
+             onFailure(@"Error: no translation is found in post search");
+         }
+    }];
+}
+-(void) POSTAddToCachedWordsAtFirebase:(NSString*) phrase translation:(NSString*) translation fromLang:(NSString*) fromLang toLang:(NSString*) toLang OnSuccess:(void(^)(NSString* translation)) onSuccess
+                             onFailure:(void(^)(NSString* error)) onFailure{
+    NSString* indexed = [NSString stringWithFormat:@"LangFrom%@LangTo%@OriginalWord%@",fromLang, toLang, phrase];
+    [[[self.remoteDB child:@"CachedWordsFromYandexTranslate"] child:indexed] setValue:translation];
+    NSLog(@"added to firebase word: %@",translation);
 }
 -(BOOL)isNetworkAvailable
 {/*
