@@ -10,8 +10,6 @@
 @import Firebase;
 @interface AppDelegate ()
 
-
-
 @end
 
 @implementation AppDelegate
@@ -84,12 +82,18 @@
         //если это не контроллер нотификаций, значит это первое нажатие на нотифай
         vc = [storyboard instantiateViewControllerWithIdentifier:@"NVTouchedNotifyVC"];
         [vc refreshTableWithNotify:notification];
-        if([lastStackVC.navigationController respondsToSelector:@selector(showViewController:sender:)])
-        {
-            [lastStackVC.navigationController showViewController:vc sender:nil];
-        } else {
-            [lastStackVC.navigationController pushViewController:vc animated:YES];
-        }
+        //if([lastStackVC.navigationController respondsToSelector:@selector(showViewController:sender:)])
+        [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            if ([lastStackVC.navigationController respondsToSelector:@selector(showViewController:sender:)]) {
+                [lastStackVC.navigationController showViewController:vc sender:nil];
+            } else {
+                [lastStackVC.navigationController pushViewController:vc animated:YES];
+            }
+            [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+        });
+        
+        
     }
 }
 - (void)applicationWillResignActive:(UIApplication *)application {

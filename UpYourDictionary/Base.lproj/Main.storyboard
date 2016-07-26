@@ -43,11 +43,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GvJ-MV-83v">
-                                <rect key="frame" x="235" y="227" width="130" height="44"/>
+                                <rect key="frame" x="259" y="278" width="82" height="44"/>
                                 <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="130" id="OgW-8x-024"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="22"/>
                                 <state key="normal" title="Settings">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -57,7 +54,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OB8-0b-Yb4">
-                                <rect key="frame" x="235" y="331" width="130" height="44"/>
+                                <rect key="frame" x="235" y="382" width="130" height="44"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="22"/>
                                 <state key="normal" title="How it works">
@@ -68,7 +65,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="poj-iQ-bVH">
-                                <rect key="frame" x="212" y="123" width="176" height="44"/>
+                                <rect key="frame" x="212" y="174" width="176" height="44"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="22"/>
                                 <state key="normal" title="Choose dictionary">
@@ -83,11 +80,11 @@
                         <color key="backgroundColor" red="0.25098040700000002" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="GvJ-MV-83v" firstAttribute="top" secondItem="poj-iQ-bVH" secondAttribute="bottom" constant="60" id="2jk-Zz-7U0"/>
-                            <constraint firstItem="poj-iQ-bVH" firstAttribute="centerX" secondItem="xNA-Re-zpJ" secondAttribute="centerX" id="AnJ-9u-nz3"/>
-                            <constraint firstItem="OB8-0b-Yb4" firstAttribute="centerX" secondItem="xNA-Re-zpJ" secondAttribute="centerX" id="EnW-e2-bzo"/>
+                            <constraint firstItem="GvJ-MV-83v" firstAttribute="centerY" secondItem="xNA-Re-zpJ" secondAttribute="centerY" id="Ivn-DX-ECA"/>
                             <constraint firstItem="OB8-0b-Yb4" firstAttribute="top" secondItem="GvJ-MV-83v" secondAttribute="bottom" constant="60" id="NaJ-8I-Qft"/>
+                            <constraint firstItem="OB8-0b-Yb4" firstAttribute="centerX" secondItem="GvJ-MV-83v" secondAttribute="centerX" id="VMJ-JA-loC"/>
+                            <constraint firstItem="poj-iQ-bVH" firstAttribute="centerX" secondItem="GvJ-MV-83v" secondAttribute="centerX" id="cVp-xU-Kit"/>
                             <constraint firstItem="GvJ-MV-83v" firstAttribute="centerX" secondItem="xNA-Re-zpJ" secondAttribute="centerX" id="hLp-gU-PGu"/>
-                            <constraint firstItem="poj-iQ-bVH" firstAttribute="top" secondItem="C6j-XM-bDb" secondAttribute="bottom" constant="59" id="ujB-r0-ahh"/>
                         </constraints>
                     </view>
                     <toolbarItems/>

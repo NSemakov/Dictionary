@@ -9,6 +9,7 @@
 #import "NVMenuVC.h"
 #import "NVMainStrategy.h"
 #import "NVAnimationNavController.h"
+//#import "NVNavigationController.h"
 @interface NVMenuVC ()
 @property (strong, nonatomic) NVAnimationNavController *animationC;
 @end
@@ -92,7 +93,21 @@
     }
     
 }
-
+/*
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    NVNavigationController* nav = (NVNavigationController*)navigationController;
+    if ([nav.vcStack count]) {//если в очереди есть контроллер, показываем его
+        NSLog(@"nav ");
+        if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
+            [self.navigationController showViewController:(UIViewController*)[nav.vcStack lastObject] sender:nil];;
+        } else {
+            [self.navigationController pushViewController:(UIViewController*)[nav.vcStack lastObject] animated:YES];
+        }
+        [nav.vcStack removeObject:[nav.vcStack lastObject]];
+    }
+    nav.shouldIgnorePushingViewControllers = NO;
+}
+ */
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

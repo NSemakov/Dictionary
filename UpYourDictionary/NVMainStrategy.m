@@ -157,7 +157,7 @@
                 dispatch_semaphore_signal(semaphore);
             }
         } onFailure:^(NSString *error) {
-            NSLog(@"error in dict: %@", error);
+            NSLog(@"error in firebase search: %@", error);
             dispatch_semaphore_signal(semaphore);
         }];
 
@@ -195,10 +195,13 @@
                 [[NVServerManager sharedManager] POSTTranslatePhrase:text fromLang:self.activeTemplate.langShort toLang:self.activeDict.fromShort OnSuccess:^(NSString* translation) {
                     //все оставшиеся действия надо делать здесь.
                     if (weakSelf.managedObjectContext) {
-                        content.word = translation;
-                        isSuccess = YES;
-                        //save into remoteDB
-                        [[NVServerManager sharedManager] POSTAddToCachedWordsAtFirebase:text translation:translation fromLang:self.activeTemplate.langShort toLang:self.activeDict.fromShort OnSuccess:nil onFailure:nil];
+                        if (translation) {
+                            content.word = translation;
+                            isSuccess = YES;
+                            //save into remoteDB
+                            [[NVServerManager sharedManager] POSTAddToCachedWordsAtFirebase:text translation:translation fromLang:self.activeTemplate.langShort toLang:self.activeDict.fromShort OnSuccess:nil onFailure:nil];
+                        }
+                        
                     }
                     dispatch_semaphore_signal(semaphore);
                 } onFailure:^(NSString *error) {
@@ -248,11 +251,14 @@
              {
                 //все оставшиеся действия надо делать здесь.
                 if (weakSelf.managedObjectContext) {
-                    content.translation = translation;
-                    isSuccess = YES;
-                    flag = true;
-                    //save into remoteDB
-                    [[NVServerManager sharedManager] POSTAddToCachedWordsAtFirebase:text translation:translation fromLang:self.activeTemplate.langShort toLang:self.activeDict.toShort OnSuccess:nil onFailure:nil];
+                    if (translation) {
+                        content.translation = translation;
+                        isSuccess = YES;
+                        flag = true;
+                        //save into remoteDB
+                        [[NVServerManager sharedManager] POSTAddToCachedWordsAtFirebase:text translation:translation fromLang:self.activeTemplate.langShort toLang:self.activeDict.toShort OnSuccess:nil onFailure:nil];
+                    }
+                    
                 }
                   dispatch_semaphore_signal(semaphore);
             } onFailure:^(NSString *error) {

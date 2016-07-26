@@ -135,7 +135,8 @@ onFailure:(void(^)(NSString* error)) onFailure{
     //NSParameterAssert(self.manager); // prevent infinite loop
     
     [self.manager POST:@"translate" parameters:dictionary progress:nil success:^(NSURLSessionTask *operation, id responseObject) {
-        //NSLog(@"coming %@",responseObject);
+        
+        NSLog(@"coming %@",responseObject);
         
         /*for (NSDictionary* obj in [[responseObject objectForKey:@"response"] objectForKey:@"items"]){
          
@@ -149,7 +150,7 @@ onFailure:(void(^)(NSString* error)) onFailure{
         NSString* ErrorResponse = [[NSString alloc] initWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] encoding:NSUTF8StringEncoding];
         NSLog(@"%@",ErrorResponse);
         NSLog(@"%@",error.localizedDescription);
-        NSLog(@"error %@ code %ld",error,operation.error.code);
+        NSLog(@"error %@ code %d",error,operation.error.code);
         if (onFailure) {
             //NSString* returnString=[NSString stringWithFormat:@"error %@ code %ld",error,operation.error.code];
             onFailure(ErrorResponse);

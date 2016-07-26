@@ -69,6 +69,10 @@
                                                  name:UIContentSizeCategoryDidChangeNotification
                                                object:nil];
     /*end of adjusting font*/
+    float systemVersion = [[[UIDevice currentDevice] systemVersion] floatValue];
+    if (systemVersion < 8.0f){
+        self.edgesForExtendedLayout=UIRectEdgeNone;
+    }
 }
 
 #pragma mark - RMStoreObserver
