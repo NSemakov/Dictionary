@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="UpYourDictionary/Base.lproj/LaunchScreen.storyboard" source-language="en" datatype="plaintext" target-language="ru">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.0.1" build-num="7A1001"/>
+    </header>
+    <body/>
+  </file>
+  <file original="UpYourDictionary/Base.lproj/Main.storyboard" source-language="en" datatype="plaintext" target-language="ru">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.0.1" build-num="7A1001"/>
+    </header>
+    <body>
+      <trans-unit id="0It-qe-PKW.text">
+        <source>Language "to"</source>
+        <target>На какой язык</target>
+        <note>Class = "UILabel"; text = "Language \"to\""; ObjectID = "0It-qe-PKW";</note>
+      </trans-unit>
+      <trans-unit id="4oe-KP-zUr.title">
+        <source>Add new list</source>
+        <target>Создать свой</target>
+        <note>Class = "UIBarButtonItem"; title = "Add new list"; ObjectID = "4oe-KP-zUr";</note>
+      </trans-unit>
+      <trans-unit id="5Xw-03-ti4.text">
+        <source>List of words</source>
+        <target>Список слов</target>
+        <note>Class = "UILabel"; text = "List of words"; ObjectID = "5Xw-03-ti4";</note>
+      </trans-unit>
+      <trans-unit id="6ec-G9-Ceb.title">
+        <source>Uncheck all</source>
+        <target>Снять выбор</target>
+        <note>Class = "UIBarButtonItem"; title = "Uncheck all"; ObjectID = "6ec-G9-Ceb";</note>
+      </trans-unit>
+      <trans-unit id="8nn-8R-9KG.title">
+        <source>Save</source>
+        <target>Сохранить</target>
+        <note>Class = "UIBarButtonItem"; title = "Save"; ObjectID = "8nn-8R-9KG";</note>
+      </trans-unit>
+      <trans-unit id="AGI-6n-fQd.placeholder">
+        <source>Type your word</source>
+        <target>Введите слово</target>
+        <note>Class = "UITextField"; placeholder = "Type your word"; ObjectID = "AGI-6n-fQd";</note>
+      </trans-unit>
+      <trans-unit id="B6K-n4-kMc.text">
+        <source>Label</source>
+        <target></target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "B6K-n4-kMc";</note>
+      </trans-unit>
+      <trans-unit id="B7M-ib-ODM.text">
+        <source>Time interval to show words</source>
+        <target>Частота показа слов</target>
+        <note>Class = "UILabel"; text = "Time interval to show words"; ObjectID = "B7M-ib-ODM";</note>
+      </trans-unit>
+      <trans-unit id="CdD-hc-8sl.title">
+        <source>Save</source>
+        <target>Сохранить</target>
+        <note>Class = "UIBarButtonItem"; title = "Save"; ObjectID = "CdD-hc-8sl";</note>
+      </trans-unit>
+      <trans-unit id="Cng-VH-61F.title">
+        <source>Save</source>
+        <target>Сохранить</target>
+        <note>Class = "UIBarButtonItem"; title = "Save"; ObjectID = "Cng-VH-61F";</note>
+      </trans-unit>
+      <trans-unit id="D1U-HO-yDK.text">
+        <source>LanguageFromLabel</source>
+        <target></target>
+        <note>Class = "UILabel"; text = "LanguageFromLabel"; ObjectID = "D1U-HO-yDK";</note>
+      </trans-unit>
+      <trans-unit id="DJc-CW-kYn.title">
+        <source>Settings</source>
+        <target>Настройки</target>
+        <note>Class = "UINavigationItem"; title = "Settings"; ObjectID = "DJc-CW-kYn";</note>
+      </trans-unit>
+      <trans-unit id="Dlz-fI-45n.text">
+        <source>Time when notifications arrive</source>
+        <note>Class = "UILabel"; text = "Time when notifications arrive"; ObjectID = "Dlz-fI-45n";</note>
+      <target></target></trans-unit>
+      <trans-unit id="En3-ht-jnP.title">
+        <source>Cancel</source>
+        <target>Отмена</target>
+        <note>Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "En3-ht-jnP";</note>
+      </trans-unit>
+      <trans-unit id="EuF-CV-dMN.title">
+        <source>Cancel</source>
+        <target>Отмена</target>
+        <note>Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "EuF-CV-dMN";</note>
+      </trans-unit>
+      <trans-unit id="EyL-Yp-7Vl.text">
+        <source>You will know 50 words in </source>
+        <target>Вы выучите 50 слов за </target>
+        <note>Class = "UILabel"; text = "You will know 50 words in "; ObjectID = "EyL-Yp-7Vl";</note>
+      </trans-unit>
+      <trans-unit id="GJd-vH-zhG.title">
+        <source>Save</source>
+        <target>Сохранить</target>
+        <note>Class = "UIBarButtonItem"; title = "Save"; ObjectID = "GJd-vH-zhG";</note>
+      </trans-unit>
+      <trans-unit id="GfC-BT-hBu.title">
+        <source> </source>
+        <target> </target>
+        <note>Class = "UIBarButtonItem"; title = " "; ObjectID = "GfC-BT-hBu";</note>
+      </trans-unit>
+      <trans-unit id="GvJ-MV-83v.normalTitle">
+        <source>Settings</source>
+        <target>Настройки</target>
+        <note>Class = "UIButton"; normalTitle = "Settings"; ObjectID = "GvJ-MV-83v";</note>
+      </trans-unit>
+      <trans-unit id="Hcq-SV-ZHo.title">
+        <source>Create new with my words</source>
+        <target>Новый список</target>
+        <note>Class = "UITableViewController"; title = "Create new with my words"; ObjectID = "Hcq-SV-ZHo";</note>
+      </trans-unit>
+      <trans-unit id="Hke-z1-r5J.text">
+        <source>Label</source>
+        <target></target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "Hke-z1-r5J";</note>
+      </trans-unit>
+      <trans-unit id="IOC-CG-BzW.title">
+        <source>Save</source>
+        <target>Сохранить</target>
+        <note>Class = "UIBarButtonItem"; title = "Save"; ObjectID = "IOC-CG-BzW";</note>
+      </trans-unit>
+      <trans-unit id="LxX-2y-h0a.title">
+        <source>How it works</source>
+        <target>Как это работает</target>
+        <note>Class = "UINavigationItem"; title = "How it works"; ObjectID = "LxX-2y-h0a";</note>
+      </trans-unit>
+      <trans-unit id="N8q-O8-BQw.text">
+        <source>ThemeLabel</source>
+        <target></target>
+        <note>Class = "UILabel"; text = "ThemeLabel"; ObjectID = "N8q-O8-BQw";</note>
+      </trans-unit>
+      <trans-unit id="OB8-0b-Yb4.normalTitle">
+        <source>How it works</source>
+        <target>Как это работает</target>
+        <note>Class = "UIButton"; normalTitle = "How it works"; ObjectID = "OB8-0b-Yb4";</note>
+      </trans-unit>
+      <trans-unit id="UMW-2g-xxF.title">
+        <source>Save</source>
+        <target>Сохранить</target>
+        <note>Class = "UIBarButtonItem"; title = "Save"; ObjectID = "UMW-2g-xxF";</note>
+      </trans-unit>
+      <trans-unit id="VoL-VK-sH7.title">
+        <source>Add word</source>
+        <target>Добавить</target>
+        <note>Class = "UIBarButtonItem"; title = "Add word"; ObjectID = "VoL-VK-sH7";</note>
+      </trans-unit>
+      <trans-unit id="Xit-mw-II1.title">
+        <source>Choose dictionary theme</source>
+        <target>Список слов</target>
+        <note>Class = "UITableViewController"; title = "Choose dictionary theme"; ObjectID = "Xit-mw-II1";</note>
+      </trans-unit>
+      <trans-unit id="ahQ-xb-ob8.title">
+        <source>Cancel</source>
+        <target>Отмена</target>
+        <note>Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "ahQ-xb-ob8";</note>
+      </trans-unit>
+      <trans-unit id="aoZ-Dg-Z52.text">
+        <source>Label</source>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "aoZ-Dg-Z52";</note>
+      <target></target></trans-unit>
+      <trans-unit id="c4I-9J-uAn.text">
+        <source>Label</source>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "c4I-9J-uAn";</note>
+      <target></target></trans-unit>
+      <trans-unit id="cp5-9p-vwp.title">
+        <source>Save</source>
+        <target>Сохранить</target>
+        <note>Class = "UIBarButtonItem"; title = "Save"; ObjectID = "cp5-9p-vwp";</note>
+      </trans-unit>
+      <trans-unit id="e7V-0p-Q0K.title">
+        <source>List of words</source>
+        <target>Списки слов</target>
+        <note>Class = "UINavigationItem"; title = "List of words"; ObjectID = "e7V-0p-Q0K";</note>
+      </trans-unit>
+      <trans-unit id="ehr-1m-BK6.text">
+        <source>ProgressLabel</source>
+        <target></target>
+        <note>Class = "UILabel"; text = "ProgressLabel"; ObjectID = "ehr-1m-BK6";</note>
+      </trans-unit>
+      <trans-unit id="l7B-FO-ATI.title">
+        <source>Cancel</source>
+        <target>Отмена</target>
+        <note>Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "l7B-FO-ATI";</note>
+      </trans-unit>
+      <trans-unit id="mI2-cS-vRD.text">
+        <source>Tap to select</source>
+        <target>Нажмите для выбора</target>
+        <note>Class = "UILabel"; text = "Tap to select"; ObjectID = "mI2-cS-vRD";</note>
+      </trans-unit>
+      <trans-unit id="ncI-EF-UV6.text">
+        <source>Tap to select</source>
+        <target>Нажмите для выбора</target>
+        <note>Class = "UILabel"; text = "Tap to select"; ObjectID = "ncI-EF-UV6";</note>
+      </trans-unit>
+      <trans-unit id="pSm-cx-iKe.title">
+        <source>Add New</source>
+        <target>Создать новый</target>
+        <note>Class = "UIBarButtonItem"; title = "Add New"; ObjectID = "pSm-cx-iKe";</note>
+      </trans-unit>
+      <trans-unit id="poj-iQ-bVH.normalTitle">
+        <source>Choose dictionary</source>
+        <target>Выберите словарь</target>
+        <note>Class = "UIButton"; normalTitle = "Choose dictionary"; ObjectID = "poj-iQ-bVH";</note>
+      </trans-unit>
+      <trans-unit id="qca-Hb-ubJ.text">
+        <source>Number of words in one time</source>
+        <target>Число показываемых слов за раз</target>
+        <note>Class = "UILabel"; text = "Number of words in one time"; ObjectID = "qca-Hb-ubJ";</note>
+      </trans-unit>
+      <trans-unit id="rWo-aU-bdg.text">
+        <source>Word</source>
+        <target>Слово</target>
+        <note>Class = "UILabel"; text = "Word"; ObjectID = "rWo-aU-bdg";</note>
+      </trans-unit>
+      <trans-unit id="rmA-8Q-bK7.text">
+        <source>Tap to select</source>
+        <target>Нажмите для выбора</target>
+        <note>Class = "UILabel"; text = "Tap to select"; ObjectID = "rmA-8Q-bK7";</note>
+      </trans-unit>
+      <trans-unit id="sdu-WR-7QH.title">
+        <source>Language "To"</source>
+        <target>На какой язык</target>
+        <note>Class = "UINavigationItem"; title = "Language \"To\""; ObjectID = "sdu-WR-7QH";</note>
+      </trans-unit>
+      <trans-unit id="te1-x6-dy4.title">
+        <source>Cancel</source>
+        <target>Отмена</target>
+        <note>Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "te1-x6-dy4";</note>
+      </trans-unit>
+      <trans-unit id="uQE-7S-cJx.title">
+        <source>Choose active dictionary</source>
+        <target>Выберите словарь</target>
+        <note>Class = "UITableViewController"; title = "Choose active dictionary"; ObjectID = "uQE-7S-cJx";</note>
+      </trans-unit>
+      <trans-unit id="uuy-pF-yOm.title">
+        <source>Create new list</source>
+        <target>Новый список</target>
+        <note>Class = "UINavigationItem"; title = "Create new list"; ObjectID = "uuy-pF-yOm";</note>
+      </trans-unit>
+      <trans-unit id="v2x-Km-VFS.title">
+        <source>Language "From"</source>
+        <target>С какого языка</target>
+        <note>Class = "UINavigationItem"; title = "Language \"From\""; ObjectID = "v2x-Km-VFS";</note>
+      </trans-unit>
+      <trans-unit id="v7W-XS-Zdb.text">
+        <source>Language "from"</source>
+        <target>С какого языка</target>
+        <note>Class = "UILabel"; text = "Language \"from\""; ObjectID = "v7W-XS-Zdb";</note>
+      </trans-unit>
+      <trans-unit id="viI-AO-vLn.title">
+        <source>Preparing</source>
+        <target>Подготовка</target>
+        <note>Class = "UINavigationItem"; title = "Preparing"; ObjectID = "viI-AO-vLn";</note>
+      </trans-unit>
+      <trans-unit id="x3N-z1-XBN.text">
+        <source>Label</source>
+        <target></target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "x3N-z1-XBN";</note>
+      </trans-unit>
+      <trans-unit id="xU2-ke-FkU.title">
+        <source>Dictionary</source>
+        <target>Словарь</target>
+        <note>Class = "UINavigationItem"; title = "Dictionary"; ObjectID = "xU2-ke-FkU";</note>
+      </trans-unit>
+      <trans-unit id="xUz-UR-3uT.title">
+        <source>New dictionary</source>
+        <target>Новый словарь</target>
+        <note>Class = "UINavigationItem"; title = "New dictionary"; ObjectID = "xUz-UR-3uT";</note>
+      </trans-unit>
+      <trans-unit id="zaN-lB-8lG.text">
+        <source>LanguageToLabel</source>
+        <target></target>
+        <note>Class = "UILabel"; text = "LanguageToLabel"; ObjectID = "zaN-lB-8lG";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="UpYourDictionary/Info.plist" source-language="en" datatype="plaintext" target-language="ru">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.0.1" build-num="7A1001"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName">
+        <source>UpYourDict</source>
+        <target>UpYourDict</target>
+      </trans-unit>
+      <trans-unit id="CFBundleShortVersionString">
+        <source>1.0</source>
+        <target>1.0</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="UpYourDictionary/Localizable.strings" source-language="en" datatype="plaintext" target-language="ru">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.0.1" build-num="7A1001"/>
+    </header>
+    <body>
+      <trans-unit id="1. Choose dictionary or make it from your own words. Any language is supported! \n2. Push app to background. From this moment notifications with words and translation will be shown. Time interval and number of word you could set in settings. \n3. When notification is arrived, just read it 2-3 times and remove. Eventually each word will be shown 10 times for several days. So you will do learn any words in calm and relaxed way!">
+        <source>1. Choose dictionary or make it from your own words. Any language is supported! 
+2. Push app to background. From this moment notifications with words and translation will be shown. Time interval and number of word you could set in settings. 
+3. When notification is arrived, just read it 2-3 times and remove. Eventually each word will be shown 10 times for several days. So you will do learn any words in calm and relaxed way!</source>
+        <target>1. Выберите словарь или создайте новый со своими словами. Поддерживаются все языки!
+2. Сверните приложение, нажав на кнопку Home. С этого момента будут приходить уведомления со словом и его переводом. Интервал времени и число показываемых слов можно установить в настройках.
+3. Когда приходит уведомление, просто прочитайте его 2-3 раза и удалите. В итоге каждое слово будет показано 10 раз вместе с другими словами в течение нескольких дней. Вы просто читаете и запоминаете слова, не открывая приложение!</target>
+        <note>about</note>
+      </trans-unit>
+      <trans-unit id="Add own words">
+        <source>Add own words</source>
+        <note>No comment provided by engineer.</note>
+      <target>Добавить свои слова</target></trans-unit>
+      <trans-unit id="Attention">
+        <source>Attention</source>
+        <target>Внимание</target>
+        <note>attention</note>
+      </trans-unit>
+      <trans-unit id="Buy ready lists">
+        <source>Buy ready lists</source>
+        <note>No comment provided by engineer.</note>
+      <target>Купить готовые списки</target></trans-unit>
+      <trans-unit id="Cancel">
+        <source>Cancel</source>
+        <target>Отмена</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Changing settings in all dictionaries. Please wait about 20 sec. On success this message will disapper.">
+        <source>Changing settings in all dictionaries. Please wait about 20 sec. On success this message will disapper.</source>
+        <target>Изменение настроек для всех словарей. Пожалуйста подождите около 20 секунд. По окончании это сообщение пропадет.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="From: %@">
+        <source>From: %@</source>
+        <target>Откуда: %@ </target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Info. With these settings you will know any 50 words in: %d day(s)">
+        <source>Info. With these settings you will know any 50 words in: %d day(s)</source>
+        <target>Инфо. С этими настройками Вы выучите любые 50 слов за : %d дн</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Input template name">
+        <source>Input template name</source>
+        <target>Задайте имя для списка слов</target>
+        <note>Input template name</note>
+      </trans-unit>
+      <trans-unit id="New list of words">
+        <source>New list of words</source>
+        <note>No comment provided by engineer.</note>
+      <target>Новый список слов</target></trans-unit>
+      <trans-unit id="New template name">
+        <source>New template name</source>
+        <target>Имя списка</target>
+        <note>New template name</note>
+      </trans-unit>
+      <trans-unit id="Number of words in one time: %d">
+        <source>Number of words in one time: %d</source>
+        <target>Количество слов для показа за один раз: %d</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OK">
+        <source>OK</source>
+        <target>ОК</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Oops. It's look like translation server is unavailable. Please check your internet connection or if it's ok, give us one more chance little bit later">
+        <source>Oops. It's look like translation server is unavailable. Please check your internet connection or if it's ok, give us one more chance little bit later</source>
+        <note>No comment provided by engineer.</note>
+      <target>Что-то пошло не так, сервер недоступен. Пожалуйста, проверьте интернет соединение, а если оно есть, попробуйте чуть позже.</target></trans-unit>
+      <trans-unit id="Oops. It's look like we can only partially prepare dictionary, cause translation server has become unavailable. Please check your internet connection or if it's ok, give us one more chance little bit later">
+        <source>Oops. It's look like we can only partially prepare dictionary, cause translation server has become unavailable. Please check your internet connection or if it's ok, give us one more chance little bit later</source>
+        <note>No comment provided by engineer.</note>
+      <target>Похоже, что мы смогли только частично подготовить словарь, т.к. связь с сервером пропала. Пожалуйста, проверьте интернет соединение, а если оно есть, попробуйте чуть позже.</target></trans-unit>
+      <trans-unit id="Payment Transaction Failed">
+        <source>Payment Transaction Failed</source>
+        <note>No comment provided by engineer.</note>
+      <target>Платеж не удался</target></trans-unit>
+      <trans-unit id="Powered by Yandex.Translate">
+        <source>Powered by Yandex.Translate</source>
+        <target>Переведено сервисом Яндекс.Переводчик</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Preparing dictionary for first use. Please wait about 20 sec. On success this message will disapper.">
+        <source>Preparing dictionary for first use. Please wait about 20 sec. On success this message will disapper.</source>
+        <target>Подготовка словаря к первому использованию. Подождите около 20 секунд. По окончании это сообщение пропадет.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Preparing is done! Now you can push app to background and just read arriving notification with translation.">
+        <source>Preparing is done! Now you can push app to background and just read arriving notification with translation.</source>
+        <target>Подготовка завершена! Теперь можно свернуть приложение, нажав кнопку Home и просто читать приходящие уведомления с переводом.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Products Request Failed">
+        <source>Products Request Failed</source>
+        <note>No comment provided by engineer.</note>
+      <target>Не удалось получить список продуктов</target></trans-unit>
+      <trans-unit id="Progress: %@ %%">
+        <source>Progress: %@ %%</source>
+        <target>Прогресс: %@ %%</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Settings are saved!">
+        <source>Settings are saved!</source>
+        <target>Настройки сохранены!</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Store">
+        <source>Store</source>
+        <note>No comment provided by engineer.</note>
+      <target>Магазин</target></trans-unit>
+      <trans-unit id="Theme: %@">
+        <source>Theme: %@</source>
+        <target>Тема: %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Time interval to show words: %d hour(s)">
+        <source>Time interval to show words: %d hour(s)</source>
+        <target>Интервал времени между приходом уведомлений (в часах): %d</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Time when notifications arrive: %@:00-%@:00">
+        <source>Time when notifications arrive: %1$@:00-%2$@:00</source>
+        <note>No comment provided by engineer.</note>
+      <target>Время, когда приходят уведомления: %1$@:00-%2$@:00 </target></trans-unit>
+      <trans-unit id="To: %@">
+        <source>To: %@</source>
+        <target>Куда: %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Word:">
+        <source>Word:</source>
+        <target>Слово:</target>
+        <note>word in russian</note>
+      </trans-unit>
+      <trans-unit id="Words can't be empty. Please fill words in next rows: ">
+        <source>Words can't be empty. Please fill words in next rows: </source>
+        <target>Слова не должны быть пустыми. Пожалуйста заполните следующие строки: </target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="UpYourDictionary/RMStore.strings" source-language="en" datatype="plaintext" target-language="ru">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.0.1" build-num="7A1001"/>
+    </header>
+    <body>
+      <trans-unit id="Download canceled">
+        <source>Download canceled</source>
+        <note>Error description</note>
+      <target>Загрузка отменена</target></trans-unit>
+      <trans-unit id="Unknown product identifier">
+        <source>Unknown product identifier</source>
+        <note>Error description</note>
+      <target>Неизвестный код продукта</target></trans-unit>
+    </body>
+  </file>
+  <file original="UpYourDictionaryTests/Info.plist" source-language="en" datatype="plaintext" target-language="ru">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.0.1" build-num="7A1001"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="CFBundleShortVersionString">
+        <source>1.0</source>
+        <target></target>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="UpYourDictionaryUITests/Info.plist" source-language="en" datatype="plaintext" target-language="ru">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.0.1" build-num="7A1001"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="CFBundleShortVersionString">
+        <source>1.0</source>
+        <target></target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
