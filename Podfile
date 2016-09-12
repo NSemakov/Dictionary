@@ -1,10 +1,12 @@
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '7.0'
-target 'UpYourDictionary', 'UpYourDictionaryTests'
-pod 'AFNetworking', '~> 3.0'
 
-pod 'TTRangeSlider'
+target 'UpYourDictionary' do
+    pod 'AFNetworking', '~> 3.0'
 
-pod 'Firebase'
-pod 'Firebase/Core'
-pod 'Firebase/Database'
+    pod 'TTRangeSlider'
+
+    pod 'Firebase'
+    pod 'Firebase/Core'
+    pod 'Firebase/Database'
+end
