@@ -104,11 +104,13 @@
     [[NVNotificationManager sharedManager].queue cancelAllOperations];
 }
 - (void) application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
-    [[NVNotificationManager sharedManager] addNewNotificationToFullSet];
+    [[NVNotificationManager sharedManager] refreshProgressOfDictionaryWithCallback:^{
+        [[NVNotificationManager sharedManager] addNewNotificationToFullSet];
+    }];
         completionHandler(UIBackgroundFetchResultNewData);
 }
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-
+    [[NVNotificationManager sharedManager] addNewNotificationToFullSet];
 
 }
 
@@ -151,19 +153,6 @@
         }
         
     }];
-    /*
-    [[NVServerManager sharedManager] POSTSearchInCachedWordsAtFirebase:@"Столer" fromLang:@"ru" toLang:@"en" OnSuccess:^(NSString *translation) {
-        NSLog(@"%@",translation);
-    } onFailure:^(NSString *error) {
-        NSLog(@"%@",error);
-    }];
-     */
-    /*
-    [[NVServerManager sharedManager] POSTAddToCachedWordsAtFirebase:@"Стол" translation:@"Table" fromLang:@"ru" toLang:@"en" OnSuccess:^(NSString *translation) {
-        
-    } onFailure:^(NSString *error) {
-        
-    }];
-     */
+
 }
 @end

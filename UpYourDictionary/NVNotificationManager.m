@@ -32,7 +32,7 @@
     NSInteger timeToPush = [[NSUserDefaults standardUserDefaults] integerForKey:NVTimeToPush];
     if (timeToPush == 0) {
         timeToPush = 2;}
-    [self createNotificationInCycleTimeToPush:timeToPush numberOfNotifies:numberOfNotifies settingsWords:settingsWords prevDate:lastNofityFireDate maxIter:(62-notifyLeft*settingsWords)];
+    [self createNotificationInCycleTimeToPush:timeToPush numberOfNotifies:numberOfNotifies settingsWords:settingsWords prevDate:lastNofityFireDate maxIter:(62-notifyLeft)];
         
     }];
     [self.queue addOperation:blockOperation];
@@ -148,7 +148,6 @@
             //__weak NSBlockOperation* weakOperation=blockOperation;
             [blockOperation addExecutionBlock:^{
                 
-            
             NSInteger settingsWords = [[NSUserDefaults standardUserDefaults] integerForKey:NVNumberOfWordsToShow];
             if (settingsWords == 0) {
                 settingsWords = 2;}
@@ -160,7 +159,7 @@
             NSDate* prevDate = [NSDate date];
             
 
-            NSInteger numberOfScheduledNotifications = [self createNotificationInCycleTimeToPush:timeToPush numberOfNotifies:numberOfNotifies settingsWords:settingsWords prevDate:prevDate maxIter:(62-settingsWords)];
+            NSInteger numberOfScheduledNotifications = [self createNotificationInCycleTimeToPush:timeToPush numberOfNotifies:numberOfNotifies settingsWords:settingsWords prevDate:prevDate maxIter:(62-numberOfNotifies)];
             /*form first notification after 20 sec*/
             if ([[NVServerManager sharedManager] isNetworkAvailable]){
             for (NSInteger j=1; j<=numberOfNotifies; j++) {//формируем пачку нотификаций, если в одну не помещается

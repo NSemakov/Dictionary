@@ -30,20 +30,21 @@
     NSString* curSystemLang = [[[NSBundle mainBundle] preferredLocalizations] objectAtIndex:0];
     //NSString* curSystemLang = [[NSLocale preferredLanguages] objectAtIndex:0];
     [[NVServerManager sharedManager] POSTListOfDirectionsOnLang:curSystemLang OnSuccess:^(NSDictionary *responseObject) {
+        __typeof__(self) strongSelf = weakSelf;
         NSDictionary* langDict =[responseObject objectForKey:@"langs"];
         NSArray* langs = [langDict allValues];
         NSArray* sortedLangs=[langs sortedArrayUsingComparator:^NSComparisonResult(NSString* obj1, NSString* obj2) {
             return [obj1 compare:obj2];
         }];
-        weakSelf.langs = sortedLangs;
+        strongSelf.langs = sortedLangs;
         //ключи сортируются в зависимости от сортировки основных значений
         NSMutableArray* sortedLangsShort = [NSMutableArray new];
         for (NSString *s in sortedLangs){
             [sortedLangsShort addObjectsFromArray:[langDict allKeysForObject:s]];
         }
-        weakSelf.langsShort = [sortedLangsShort copy];
-        weakSelf.dirs=[responseObject objectForKey:@"dirs"];
-        [weakSelf.tableView reloadData];
+        strongSelf.langsShort = [sortedLangsShort copy];
+        strongSelf.dirs=[responseObject objectForKey:@"dirs"];
+        [strongSelf.tableView reloadData];
     } onFailure:^(NSString *error) {
         
     }];

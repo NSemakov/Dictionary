@@ -44,27 +44,31 @@
     __weak NVContainerVC* weakSelf = self;
     __weak typeof(sender) weakSender = sender;
     [NVNotificationManager sharedManager].delegateToRefresh = weakSelf;
-    //__weak NVContainerVC* weakSelf = self;
     dispatch_queue_t queue = dispatch_queue_create("com.UpYourDictionary.multithreading.queue", DISPATCH_QUEUE_CONCURRENT);
     dispatch_async(queue, ^{
         //dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
         [[NVNotificationManager sharedManager] generateNewNotificationsForDict:dict withCallback:^(NSInteger counter) {
             dispatch_async(dispatch_get_main_queue(), ^{
+                __typeof__(self) strongSelf = weakSelf;
+                __typeof__(self) strongSender = weakSender;
+                if (!strongSelf || !strongSender) {
+                    return;
+                }
                 if (counter == 0) {
-                   if ([weakSender isKindOfClass:[NVChooseActiveDictVC class]]) {
-                        [weakSelf isDownloadEndWithText:NSLocalizedString(@"Oops. It's look like translation server is unavailable. Please check your internet connection or if it's ok, give us one more chance little bit later", nil)];
-                    } else if ([weakSender isKindOfClass:[NVSettingsVC class]]){
+                   if ([strongSender isKindOfClass:[NVChooseActiveDictVC class]]) {
+                        [strongSelf isDownloadEndWithText:NSLocalizedString(@"Oops. It's look like translation server is unavailable. Please check your internet connection or if it's ok, give us one more chance little bit later", nil)];
+                    } else if ([strongSender isKindOfClass:[NVSettingsVC class]]){
                         //из настроек допустимо, чтобы количество нотификаций было равно 0.
-                        [weakSelf isDownloadEndWithText:text];
+                        [strongSelf isDownloadEndWithText:text];
                     }
                 } else if (counter > 0 && counter < 2) {//=1
                     //[weakSelf isDownloadEndWithText:NSLocalizedString(@"Oops. It's look like we can only partially prepare dictionary, cause translation server has become unavailable. Please check your internet connection or if it's ok, give us one more chance little bit later", nil)];
                 } else {
-                    [weakSelf isDownloadEndWithText:text];
+                    [strongSelf isDownloadEndWithText:text];
                 }
-                weakSelf.indicatorHidden = YES;
+                strongSelf.indicatorHidden = YES;
                 
-                weakSelf.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"Back", nil);
+                strongSelf.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"Back", nil);
                 //[NVNotificationManager sharedManager].delegateToRefresh = nil;
                 });
         }];

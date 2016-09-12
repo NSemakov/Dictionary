@@ -67,7 +67,7 @@
             break;
         case UIGestureRecognizerStateEnded:
         case UIGestureRecognizerStateCancelled :{
-            CALayer* transitionLayer = [self.storedContext containerView].layer;
+            //CALayer* transitionLayer = [self.storedContext containerView].layer;
             //transitionLayer.beginTime = CACurrentMediaTime();
             if (progress < 0.5) {
                 //self.completionSpeed = -1.0;
